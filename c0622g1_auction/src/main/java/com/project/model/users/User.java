@@ -3,6 +3,7 @@ package com.project.model.users;
 import com.project.model.account.Account;
 import com.project.model.auction.Auction;
 import com.project.model.payment.Payment;
+import com.project.model.product.Product;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -27,14 +28,22 @@ public class User {
     @JoinColumn(name = "user_type_id",referencedColumnName = "id")
     private UserType userType;
     @OneToMany(mappedBy="user")
-    private Set<Payment> payments;
-    @OneToMany(mappedBy="user")
     private Set<Auction> auctions;
     @OneToOne
     @JoinColumn(name = "account_id",referencedColumnName = "id")
     private Account account;
+    @OneToMany(mappedBy = "user")
+    private Set<Product> products;
 
     public User() {
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 
     public Account getAccount() {
@@ -45,13 +54,6 @@ public class User {
         this.account = account;
     }
 
-    public Set<Payment> getPayments() {
-        return payments;
-    }
-
-    public void setPayments(Set<Payment> payments) {
-        this.payments = payments;
-    }
 
     public Set<Auction> getAuctions() {
         return auctions;
@@ -149,11 +151,4 @@ public class User {
         this.userType = userType;
     }
 
-    public Set<Payment> getPayment() {
-        return payments;
-    }
-
-    public void setPayment(Set<Payment> payment) {
-        this.payments = payment;
-    }
 }

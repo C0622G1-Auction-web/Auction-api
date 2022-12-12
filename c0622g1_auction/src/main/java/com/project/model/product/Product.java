@@ -1,6 +1,7 @@
 package com.project.model.product;
 
 import com.project.model.auction.Auction;
+import com.project.model.users.User;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -38,7 +39,18 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<Auction> auctions;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private User user;
     public Product() {
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getId() {

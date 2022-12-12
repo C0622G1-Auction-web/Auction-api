@@ -1,5 +1,6 @@
 package com.project.model.payment;
 
+import com.project.model.auction.Auction;
 import com.project.model.users.User;
 
 import javax.persistence.*;
@@ -11,20 +12,19 @@ public class Payment {
     private Integer id;
     private String shippingDescription;
     private Boolean paymentStatus;
-    @ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
-    private User user;
+    @OneToOne
+    @JoinColumn(name = "auction_id",referencedColumnName = "id")
+    private Auction auction;
 
     public Payment() {
     }
 
-    public User getUser() {
-        return user;
+    public Auction getAuction() {
+        return auction;
     }
 
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setAuction(Auction auction) {
+        this.auction = auction;
     }
 
     public Integer getId() {

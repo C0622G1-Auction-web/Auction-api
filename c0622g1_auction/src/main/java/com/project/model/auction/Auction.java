@@ -1,5 +1,6 @@
 package com.project.model.auction;
 
+import com.project.model.payment.Payment;
 import com.project.model.product.Product;
 import com.project.model.users.User;
 
@@ -20,6 +21,8 @@ public class Auction {
     @ManyToOne
     @JoinColumn(name = "product_id",referencedColumnName = "id")
     private Product product;
+    @OneToOne(mappedBy = "auction")
+    private Payment payment;
     public Auction() {
     }
 
