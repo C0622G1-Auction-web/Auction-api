@@ -13,13 +13,12 @@ build/
 .settings
 .springBeans
 .sts4-cache
-/src/main/resources/*
+/src/main/resources/application.properties
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-*src/main/resources/application.properties
 .idea
 *.iws
 *.iml
