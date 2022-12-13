@@ -6,6 +6,7 @@ import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,6 +18,7 @@ public class UserService implements IUserService {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to update user
+     *
      * @param user
      * @return User
      */
@@ -43,6 +45,7 @@ public class UserService implements IUserService {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to create user
+     *
      * @param user
      * @return User
      */
@@ -68,6 +71,7 @@ public class UserService implements IUserService {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to find user by id
+     *
      * @param id
      * @return User
      */
@@ -75,5 +79,18 @@ public class UserService implements IUserService {
     @Override
     public Optional<User> findUserById(int id) {
         return userRepository.findUserById(id);
+    }
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find all user list
+     *
+     * @return List<User>
+     */
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }

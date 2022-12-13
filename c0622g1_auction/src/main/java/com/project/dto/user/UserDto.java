@@ -9,25 +9,39 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Set;
 
 public class UserDto implements Validator {
     private Integer id;
-     @NotEmpty(message = "Không được để trống")
+    @NotEmpty(message = "Họ không được để trống")
     private String firstName;
+    @NotEmpty(message = "Tên không được để trống")
     private String lastName;
+    @NotEmpty(message = "Email không được để trống")
     private String email;
+    @NotEmpty(message = "Số điện thoại không được để trống")
     private String phone;
+    @NotNull(message = "Điểm cống hiến không được bỏ trống")
     private Double pointDedication;
+    @NotEmpty(message = "Ngày sinh không được để trống")
     private String birthDay;
+    @NotEmpty(message = "CMND không được để trống")
     private String idCard;
+    @NotEmpty(message = "Avatar được để trống")
     private String avatar;
+    @NotEmpty(message = "Không được để trống")
     private Boolean deleteStatus;
+    @NotEmpty(message = "Địa chỉ được để trống")
     private Address address;
+    @NotEmpty(message = "Không được để trống")
     private UserType userType;
     private Set<Auction> auctions;
+    @NotEmpty(message = "Không được để trống")
     private Account account;
     private Set<Product> products;
+    private List<String> emailList;
 
     public UserDto() {
     }
@@ -152,6 +166,14 @@ public class UserDto implements Validator {
         this.products = products;
     }
 
+    public List<String> getEmailList() {
+        return emailList;
+    }
+
+    public void setEmailList(List<String> emailList) {
+        this.emailList = emailList;
+    }
+
     @Override
     public boolean supports(Class<?> clazz) {
         return false;
@@ -159,6 +181,40 @@ public class UserDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-
+        UserDto userDto = (UserDto) target;
+        if (userDto.getFirstName().equals("")) {
+            errors.rejectValue("firstName", "firstName", "Họ không được bỏ trống");
+        } else {
+            if (!userDto.getFirstName().matches("^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$")) {
+                errors.rejectValue("firstName", "firstName", "Họ không đúng định dạng !");
+            }
+        }
+        if (userDto.getLastName().equals("")) {
+            errors.rejectValue("lastName", "lastName", "Tên không được bỏ trống");
+        } else {
+            if (!userDto.getLastName().matches("^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$")) {
+                errors.rejectValue("lastName", "lastName", "Tên không đúng định dạng !");
+            }
+        }
+        for (String email : userDto.emailList) {
+            if (email.equals(userDto.getEmail())) {
+                errors.rejectValue("email", "email", "Email đã tồn tại");
+            }
+        }
+        if (userDto.getEmail().equals("")) {
+            errors.rejectValue("email", "email", "Email không được bỏ trông");
+        } else {
+            if (!userDto.getEmail().matches("^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
+                errors.rejectValue("email", "email", "Email must be valid");
+            }
+        }
+        if (userDto.getIdCard().equals("")) {
+            errors.rejectValue("idCard", "idCard", "CMND không được bỏ trống");
+        } else {
+            if (!(userDto.getIdCard().matches("\\d{9}") ||
+                    userDto.getIdCard().matches("\\d{12}"))) {
+                errors.rejectValue("idCard", "idCard", "CMND chỉ có 9 số hoặc 12 số");
+            }
+        }
     }
 }

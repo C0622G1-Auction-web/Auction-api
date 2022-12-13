@@ -3,6 +3,7 @@ package com.project.service.users;
 
 import com.project.model.users.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IUserService {
@@ -34,4 +35,12 @@ public interface IUserService {
      */
 
     Optional<User> findUserById(int id);
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find all user list
+     * @return List<User>
+     */
+    List<User> findAll();
 }

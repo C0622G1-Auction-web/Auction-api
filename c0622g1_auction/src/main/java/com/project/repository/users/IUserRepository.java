@@ -11,11 +11,24 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 @Transactional
 public interface IUserRepository extends JpaRepository<User,Integer> {
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find all user list
+     * @return List<User>
+     */
+
+    @Query(value = "select * " +
+                   "from user",
+            nativeQuery = true)
+    List<User> findAll();
 
     /**
      * Create by: TruongLH
