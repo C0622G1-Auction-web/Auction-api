@@ -18,6 +18,7 @@ public class Guide {
     public Guide() {
     }
 
+
     public Boolean getDeleteStatus() {
         return deleteStatus;
     }
