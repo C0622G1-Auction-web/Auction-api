@@ -216,5 +216,20 @@ public class UserDto implements Validator {
                 errors.rejectValue("idCard", "idCard", "CMND chỉ có 9 số hoặc 12 số");
             }
         }
+        if (userDto.getPhone().equals("")) {
+            errors.rejectValue("phoneNumber", "phoneNumber", "phone Number is not empty");
+        } else {
+            if (!(userDto.getPhone().matches("[0][9][0]\\d{7}") ||
+                    userDto.getPhone().matches("[0][9][1]\\d{7}") ||
+                    userDto.getPhone().matches("[(][8][4][)][+][9][0]\\d{7}") ||
+                    userDto.getPhone().matches("[(][8][4][)][+][9][1]\\d{7}"))) {
+                errors.rejectValue("phone", "phone", "Số điện thoại có định dang  (090xxxxxxx) hoặc (091xxxxxxx) hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx");
+            }
+        }
+        for (String username : userDto.emailList) {
+            if (username.equals(userDto.getAccount().getUsername())) {
+                errors.rejectValue("username", "username", "Tên đăng nhập đã tồn tại đã tồn tại");
+            }
+        }
     }
 }

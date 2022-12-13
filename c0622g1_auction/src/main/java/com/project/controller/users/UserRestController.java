@@ -26,7 +26,6 @@ public class UserRestController {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to create user
-     *
      * @return UHttpStatus.OK
      */
     @PostMapping("/create")
@@ -35,6 +34,7 @@ public class UserRestController {
         List<String> emailList = new ArrayList<>();
         for (User item : userList) {
             emailList.add(item.getEmail());
+            emailList.add(item.getAccount().getUsername());
         }
         userDto.setEmailList(emailList);
         userDto.validate(userDto, bindingResult);
@@ -51,8 +51,7 @@ public class UserRestController {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to create user
-     *
-     * @return UHttpStatus.OK
+     * @return HttpStatus.OK
      */
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable int id) {
@@ -63,7 +62,6 @@ public class UserRestController {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to create user
-     *
      * @return UHttpStatus.OK
      */
     @PutMapping("/edit")
@@ -72,6 +70,7 @@ public class UserRestController {
         List<String> emailList = new ArrayList<>();
         for (User item : userList) {
             emailList.add(item.getEmail());
+            emailList.add(item.getAccount().getUsername());
         }
         userDto.setEmailList(emailList);
         userDto.validate(userDto, bindingResult);
