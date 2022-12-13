@@ -14,6 +14,15 @@ public class ProductService implements IProductService {
     private IProductRepository productRepository;
 
     @Override
+
+    /**
+     * Created by: TienBM,
+     * Date created: 13/12/2022
+     * Function: find product by id
+     * @param productId
+     * @return Optional<Product>
+     */
+
     public Optional<Product> findProductById(Integer productId) {
         return productRepository.findProductById(productId);
     }

@@ -1,5 +1,6 @@
 package com.project.model.auction;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.payment.Payment;
 import com.project.model.product.Product;
 import com.project.model.users.User;
@@ -18,9 +19,13 @@ public class Auction {
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
     private String auctionDay;
+
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
+
+
     @ManyToOne
     @JoinColumn(name = "product_id",referencedColumnName = "id")
     private Product product;

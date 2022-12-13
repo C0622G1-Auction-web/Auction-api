@@ -24,10 +24,11 @@ public class AuctionRestController {
      * Created by: TienBM,
      * Date created: 13/12/2022
      * Function: find product by id
-     *
      * @param productId
+     * @return HttpStatus.OK if productOptional.isPresent() = true
      * @return HttpStatus.NOT_FOUND if productOptional.isPresent() = false
      */
+
     @GetMapping("/{productId}")
     public ResponseEntity<Product> findProductById(@PathVariable(value = "productId") Integer productId) {
         Optional<Product> productOptional = productService.findProductById(productId);
