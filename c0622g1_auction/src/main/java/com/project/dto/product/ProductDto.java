@@ -1,4 +1,4 @@
-package com.project.dto;
+package com.project.dto.product;
 
 import com.project.model.auction.Auction;
 import com.project.model.product.*;

@@ -1,6 +1,6 @@
 package com.project.repository.product;
 
-import com.project.dto.ProductSearchDto;
+import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,8 +21,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * order DESC start day
      * @param productSearchDto
      * @param pageable
-     * @return HttpStatus.NOT_FOUND if result is empty
-     * @return HttpStatus.OK if result is not empty
+     * @return Page<Product>
      */
     @Query(value = "SELECT " +
             "id, " +

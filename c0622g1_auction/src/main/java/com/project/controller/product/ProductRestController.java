@@ -1,7 +1,7 @@
 package com.project.controller.product;
 
-import com.project.dto.ProductDto;
-import com.project.dto.ProductSearchDto;
+import com.project.dto.product.ProductDto;
+import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
 import com.project.service.product.IProductService;
 import org.springframework.beans.BeanUtils;

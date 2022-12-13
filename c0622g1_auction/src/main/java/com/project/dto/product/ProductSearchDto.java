@@ -1,4 +1,4 @@
-package com.project.dto;
+package com.project.dto.product;
 
 public class ProductSearchDto {
     private String name;
