@@ -21,7 +21,7 @@ public class AuctionService implements IAuctionService {
      * @return HttpStatus.NO_CONTENT
      * @return HttpStatus.OK
      */
-    
+
     @Override
     public List<Auction> findAllTransaction() {
         return auctionRepository.findAll();
