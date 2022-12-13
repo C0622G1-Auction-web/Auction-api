@@ -1,20 +1,37 @@
 package com.project.model.account;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class PasswordResetToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String token;
-    private String expiryDate;
-    private Boolean status;
-    @ManyToOne
-    @JoinColumn(name = "account_id",referencedColumnName = "id")
+    Integer id;
+    String token;
+    LocalDateTime expiryDate;
+    @Column (columnDefinition = "default 0")
+    boolean status;
+    @ManyToOne()
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
     public PasswordResetToken() {
+    }
+
+    public PasswordResetToken(Integer id, String token, LocalDateTime expiryDate, boolean status, Account account) {
+        this.id = id;
+        this.token = token;
+        this.expiryDate = expiryDate;
+        this.status = status;
+        this.account = account;
+    }
+
+    public PasswordResetToken(String token, LocalDateTime expiryDate, boolean status, Account account) {
+        this.token = token;
+        this.expiryDate = expiryDate;
+        this.status = status;
+        this.account = account;
     }
 
     public Integer getId() {
@@ -33,19 +50,19 @@ public class PasswordResetToken {
         this.token = token;
     }
 
-    public String getExpiryDate() {
+    public LocalDateTime getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(String expiryDate) {
+    public void setExpiryDate(LocalDateTime expiryDate) {
         this.expiryDate = expiryDate;
     }
 
-    public Boolean getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
@@ -56,4 +73,5 @@ public class PasswordResetToken {
     public void setAccount(Account account) {
         this.account = account;
     }
+
 }
