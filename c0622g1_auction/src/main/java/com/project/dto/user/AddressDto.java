@@ -1,31 +1,17 @@
-package com.project.model.users;
+package com.project.dto.user;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.project.model.users.User;
 
-import javax.persistence.*;
-
-@Entity
-public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AddressDto {
     private Integer id;
     private String detailAddress;
     private String town;
     private String district;
     private String city;
     private String  country;
-    @OneToOne(mappedBy = "address")
-    @JsonBackReference
     private User user;
-    public Address() {
-    }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public AddressDto() {
     }
 
     public Integer getId() {
@@ -74,5 +60,13 @@ public class Address {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

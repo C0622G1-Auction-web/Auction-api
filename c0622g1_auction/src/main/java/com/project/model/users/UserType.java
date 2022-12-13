@@ -1,5 +1,7 @@
 package com.project.model.users;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -10,6 +12,7 @@ public class UserType {
     private Integer id;
     private String name;
     @OneToMany(mappedBy ="userType")
+    @JsonBackReference
     private Set<User> users;
 
     public UserType() {
