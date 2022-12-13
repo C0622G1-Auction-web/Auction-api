@@ -16,25 +16,66 @@ public class AccountService implements IAccountService {
     JavaMailSender javaMailSender;
     @Autowired
     IAccountRepository accountRepository;
+
+    /**Created by UyenNC
+     * Date created 13/12/2022
+     * Function: Find all valid account
+     * @return List<Account>
+     *
+     **/
     @Override
     public List<Account> findAllAccount() {
-        return accountRepository.findAll();
+        return accountRepository.findAllAccount();
     }
 
+    /**Created by UyenNC
+     * Date created 13/12/2022
+     * Function: Find account by username
+     * @param username
+     * @return Account
+     */
     @Override
     public Account findByUsername(String username) {
         return accountRepository.findAccountByUsername(username);
     }
 
+    /**Created by UyenNC
+     * Date created 13/12/2022
+     * Function Send mail with reset link to user's email
+     * @param email
+     * @param username
+     * @param passwordResetToken
+     */
     @Override
     public void sendMail(String email, String username, String passwordResetToken) {
-        String message = "Xin chào "+username+","+"\nVui lòng bấm vào link để đặt lại mật khẩu: \n";
-        String url = "http://localhost:8080/api/v1/token_check?token="+passwordResetToken;
+        String message = "Xin chào " + username + "," + "\nVui lòng bấm vào link để đặt lại mật khẩu: \n";
+        String url = "http://localhost:8080/api/v1/account/token_check?token=" + passwordResetToken;
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setSubject("Cấp lại mật khẩu");
         mailMessage.setText(message + url);
         mailMessage.setTo(email);
         javaMailSender.send(mailMessage);
+    }
+
+    /**Created by UyenNC
+     * Date created 13/12/2022
+     * Function Find account by account id
+     * @param id
+     * @return Account
+     */
+    @Override
+    public Account findById(Integer id) {
+        return accountRepository.findById(id).get();
+    }
+
+    /**Created by UyenNC
+     * Date created 13/12/2022
+     * Function Save account to database
+     * @param account
+     */
+    @Override
+    public void save(Account account) {
+        accountRepository.save(account);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.project.model.payment;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.auction.Auction;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class Payment {
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
     @OneToOne
+    @JsonBackReference
     @JoinColumn(name = "auction_id",referencedColumnName = "id")
     private Auction auction;
 

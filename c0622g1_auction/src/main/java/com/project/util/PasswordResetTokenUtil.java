@@ -8,19 +8,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 @Service
 public class PasswordResetTokenUtil {
-    private final int expiry = 60*24;
+    private final int expiry = 60 * 24;
 
     @Autowired
     IResetPassTokenRepository resetPassTokenRepository;
 
+    /**Created by UyenNC
+     * Date created 13/12/2022
+     * Function Find PasswordResetToken by token
+     * @param token
+     * @return PasswordResetToken
+     */
+    public PasswordResetToken validateToken(String token) {
+        PasswordResetToken passwordResetToken = resetPassTokenRepository.findByToken(token);
+        return passwordResetToken;
+
+    }
+
+    /**Created by UyenNC
+     * Date created 13/12/2022
+     * Function Create new token, save token to database
+     * @param account
+     * @return PasswordResetToken
+     */
     public PasswordResetToken createToken(Account account) {
         String token = UUID.randomUUID().toString();
         LocalDateTime expiryDate = LocalDateTime.now().plusMinutes(expiry);
-        PasswordResetToken resetToken = new PasswordResetToken(token,expiryDate, false,account);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String expiry = expiryDate.format(format);
+        PasswordResetToken resetToken = new PasswordResetToken(token, expiry, false, account);
         resetPassTokenRepository.save(resetToken);
         return resetToken;
 

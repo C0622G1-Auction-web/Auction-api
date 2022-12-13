@@ -7,27 +7,18 @@ import java.time.LocalDateTime;
 public class PasswordResetToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-    String token;
-    LocalDateTime expiryDate;
-    @Column (columnDefinition = "default 0")
-    boolean status;
-    @ManyToOne()
-    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private Integer id;
+    private String token;
+    private String expiryDate;
+    private Boolean status;
+    @ManyToOne
+    @JoinColumn(name = "account_id",referencedColumnName = "id")
     private Account account;
 
     public PasswordResetToken() {
     }
 
-    public PasswordResetToken(Integer id, String token, LocalDateTime expiryDate, boolean status, Account account) {
-        this.id = id;
-        this.token = token;
-        this.expiryDate = expiryDate;
-        this.status = status;
-        this.account = account;
-    }
-
-    public PasswordResetToken(String token, LocalDateTime expiryDate, boolean status, Account account) {
+    public PasswordResetToken(String token, String expiryDate, Boolean status, Account account) {
         this.token = token;
         this.expiryDate = expiryDate;
         this.status = status;
@@ -50,19 +41,19 @@ public class PasswordResetToken {
         this.token = token;
     }
 
-    public LocalDateTime getExpiryDate() {
+    public String getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(LocalDateTime expiryDate) {
+    public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
     }
 
-    public boolean isStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
@@ -73,5 +64,4 @@ public class PasswordResetToken {
     public void setAccount(Account account) {
         this.account = account;
     }
-
 }

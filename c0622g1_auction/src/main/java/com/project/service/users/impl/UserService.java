@@ -12,8 +12,15 @@ public class UserService implements IUserService {
     @Autowired
     IUserRepository userRepository;
 
+    /**Created by UyenNC
+     * Date created 13/12/2022
+     * Function Find user by account
+     * @param account
+     * @return User
+     */
     @Override
     public User findUserByAccount(Account account) {
-        return userRepository.findUserByAccount(account);
+        String id = account.getId() +"";
+        return userRepository.findUserByAccount(id);
     }
 }
