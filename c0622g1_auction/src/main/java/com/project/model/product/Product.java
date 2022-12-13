@@ -18,6 +18,7 @@ public class Product {
     private String endTime;
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
+    private String registerDay;
 
 
     @ManyToOne
@@ -45,6 +46,22 @@ public class Product {
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
     public Product() {
+    }
+
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+
+    public String getRegisterDay() {
+        return registerDay;
+    }
+
+    public void setRegisterDay(String registerDay) {
+        this.registerDay = registerDay;
     }
 
     public User getUser() {
