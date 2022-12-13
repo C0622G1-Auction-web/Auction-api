@@ -21,6 +21,8 @@ public class User {
     private String birthDay;
     private String idCard;
     private String avatar;
+    @Column(columnDefinition = "boolean default true")
+    private Boolean deleteStatus;
     @OneToOne
     @JoinColumn(name = "address_id",referencedColumnName = "id")
     private Address address;
@@ -36,6 +38,14 @@ public class User {
     private Set<Product> products;
 
     public User() {
+    }
+
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
     }
 
     public Set<Product> getProducts() {

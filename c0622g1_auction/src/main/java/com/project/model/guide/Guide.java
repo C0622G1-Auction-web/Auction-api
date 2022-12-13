@@ -10,10 +10,20 @@ public class Guide {
     private Integer id;
     private String title;
     private String content;
+    @Column(columnDefinition = "boolean default true")
+    private Boolean deleteStatus;
     @OneToMany(mappedBy = "guide")
     private Set<ImgUrlGuide> images;
 
     public Guide() {
+    }
+
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
     }
 
     public Integer getId() {

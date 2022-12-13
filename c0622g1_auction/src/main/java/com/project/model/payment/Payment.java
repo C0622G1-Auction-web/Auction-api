@@ -1,7 +1,6 @@
 package com.project.model.payment;
 
 import com.project.model.auction.Auction;
-import com.project.model.users.User;
 
 import javax.persistence.*;
 
@@ -12,11 +11,21 @@ public class Payment {
     private Integer id;
     private String shippingDescription;
     private Boolean paymentStatus;
+    @Column(columnDefinition = "boolean default true")
+    private Boolean deleteStatus;
     @OneToOne
     @JoinColumn(name = "auction_id",referencedColumnName = "id")
     private Auction auction;
 
     public Payment() {
+    }
+
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
     }
 
     public Auction getAuction() {

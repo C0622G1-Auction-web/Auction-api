@@ -13,6 +13,8 @@ public class Account {
     private String username;
     private String password;
     private Boolean statusLock;
+    @Column(columnDefinition = "boolean default true")
+    private Boolean deleteStatus;
     @OneToMany(mappedBy = "account")
     private Set<AccountRole> accountRoles;
     @OneToMany(mappedBy = "account")
@@ -22,6 +24,14 @@ public class Account {
     @OneToOne(mappedBy = "account")
     private LockAccount lockAccount;
     public Account() {
+    }
+
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
     }
 
     public LockAccount getLockAccount() {

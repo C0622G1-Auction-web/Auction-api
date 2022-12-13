@@ -16,7 +16,9 @@ public class Product {
     private Double initialPrice;
     private String startTime;
     private String endTime;
-    private boolean deleteStatus;
+    @Column(columnDefinition = "boolean default true")
+    private Boolean deleteStatus;
+
 
     @ManyToOne
     @JoinColumn(name = "price_step_id",referencedColumnName = "id")
