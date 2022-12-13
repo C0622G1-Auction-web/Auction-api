@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -62,8 +63,8 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "update product set review_status_id = 2 where id = :id", nativeQuery = true)
-    void reviewProduct(@Param(":id") Integer id);
+    @Query(value = "update product set review_status_id = 2 where id = :id ", nativeQuery = true)
+    Product reviewProduct(@Param("id") Integer id);
 
     /**
      * Create by: GiangLBH
@@ -74,8 +75,8 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "update product set review_status_id = 3 where id = :id", nativeQuery = true)
-    void doNotReviewProduct(@Param(":id") Integer id);
+    @Query(value = "update product set review_status_id = 3 where id = :id ", nativeQuery = true)
+    Product doNotReviewProduct(@Param("id") Integer id);
 
     /**
      * Create by: GiangLBH
@@ -104,4 +105,14 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             nativeQuery = true)
     Page<Product> searchByRoleAdmin(@Param("productSearchByRoleAdminDto") ProductSearchByRoleAdminDto productSearchByRoleAdminDto, Pageable pageable);
 
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to find product by id
+     *
+     * @param id
+     * @return Optional product
+     */
+    @Query(value = "select * from product where id = :id and delete_status = 0", nativeQuery = true)
+    Optional<Product> findById(@Param("id") Integer id);
 }

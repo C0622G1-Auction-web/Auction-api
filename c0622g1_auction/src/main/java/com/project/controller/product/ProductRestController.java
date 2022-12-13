@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/products")
@@ -54,6 +55,16 @@ public class ProductRestController {
         return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
     }
 
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to search product by product name and category and seller name
+     * and product initial price and auction status
+     *
+     * @param productSearchByRoleAdminDto
+     * @param pageable
+     * @return HttpStatus.NO_CONTENT if not found any product /  HttpStatus.OK and Products page if found
+     */
     @GetMapping("/searchByAdmin")
     public ResponseEntity<Page<Product>> searchByRoleAdmin(@RequestBody ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
                                                            @PageableDefault(value = 5) Pageable pageable) {
@@ -64,5 +75,71 @@ public class ProductRestController {
         return new ResponseEntity<Page<Product>>(productPage, HttpStatus.OK);
     }
 
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to review product
+     *
+     * @param id
+     * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK and reviewed Product if found
+     */
+    @PutMapping("/review{id}")
+    public ResponseEntity<Product> review(@PathVariable("id") Integer id) {
+        Optional<Product> optionalProduct = productService.findById(id);
+        if (!optionalProduct.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Product>(productService.review(id), HttpStatus.OK);
+    }
 
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to review product
+     *
+     * @param id
+     * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK and reviewed Product if found
+     */
+    @PutMapping("/do-not-review{id}")
+    public ResponseEntity<Product> doNotReview(@PathVariable("id") Integer id) {
+        Optional<Product> optionalProduct = productService.findById(id);
+        if (!optionalProduct.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Product>(productService.doNotReview(id), HttpStatus.OK);
+    }
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to find product by id
+     *
+     * @param id
+     * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK and product if found
+     */
+    @GetMapping("/find-by-id/{id}")
+    public ResponseEntity<Product> findById(@PathVariable("id") Integer id) {
+        Optional<Product> optionalProduct = productService.findById(id);
+        if (!optionalProduct.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Product>(optionalProduct.get(), HttpStatus.OK);
+    }
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to find product by id
+     *
+     * @param idList
+     * @return HttpStatus.NO_CONTENT if exists any product not found/  HttpStatus.OK and products found
+     */
+    @GetMapping("/find-by-list-id")
+    public ResponseEntity<List<Product>> findByListId(@RequestBody List<Integer> idList) {
+        List<Product> productList = productService.findByListId(idList);
+        if (idList.size() != productList.size()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
+    }
 }
