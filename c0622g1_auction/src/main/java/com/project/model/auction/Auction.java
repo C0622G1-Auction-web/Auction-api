@@ -13,11 +13,10 @@ public class Auction {
     private Integer id;
     private Double currentPrice;
     private String auctionTime;
-    private Boolean payStatus;
+    @Column(columnDefinition = "boolean default false")
     private Boolean auctionStatus;
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
-    private String auctionDay;
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
@@ -27,14 +26,6 @@ public class Auction {
     @OneToOne(mappedBy = "auction")
     private Payment payment;
     public Auction() {
-    }
-
-    public String getAuctionDay() {
-        return auctionDay;
-    }
-
-    public void setAuctionDay(String auctionDay) {
-        this.auctionDay = auctionDay;
     }
 
     public Boolean getDeleteStatus() {
@@ -83,14 +74,6 @@ public class Auction {
 
     public void setAuctionTime(String auctionTime) {
         this.auctionTime = auctionTime;
-    }
-
-    public Boolean getPayStatus() {
-        return payStatus;
-    }
-
-    public void setPayStatus(Boolean payStatus) {
-        this.payStatus = payStatus;
     }
 
     public Boolean getAuctionStatus() {
