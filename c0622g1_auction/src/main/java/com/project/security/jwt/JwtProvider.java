@@ -19,6 +19,14 @@ public class JwtProvider {
 
     private Integer jwtExpiration = 1 * 24 * 60 * 60;
 
+    /**
+     * Created by DucDH,
+     * Date Created: 13/12/2022
+     * Function: to create a Token
+     * @param authentication
+     * @return a Token if successful authenticated
+     */
+
     public String createToken(Authentication authentication) {
         MyUserDetail myUserDetail = (MyUserDetail) authentication.getPrincipal();
 
@@ -29,6 +37,14 @@ public class JwtProvider {
                 .compact();
     }
 
+    /**
+     * Created by DucDH,
+     * Date Created: 13/12/2022
+     * Function: to validate a token
+     * @param token
+     * @return false if token is invalid
+     * @return true if token is valid
+     */
 
     public boolean validateToken(String token) {
         try {
@@ -48,6 +64,14 @@ public class JwtProvider {
 
         return false;
     }
+
+    /**
+     * Created by DucDH,
+     * Date Created: 13/12/2022
+     * Function: to get username from token
+     * @param token
+     * @return username
+     */
 
     public String getUsernameFromToken (String token) {
         String username = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();

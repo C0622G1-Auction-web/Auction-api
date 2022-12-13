@@ -16,6 +16,17 @@ public class JwtEntryPoint implements AuthenticationEntryPoint {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtEntryPoint.class);
 
+    /**
+     * Created by DucDH,
+     * Date Created: 13/12/2022
+     * Function: to prevent an Unauthenticated request
+     * @param request
+     * @param response
+     * @param authException
+     * @throws IOException
+     * @throws ServletException
+     */
+
     @Override
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,

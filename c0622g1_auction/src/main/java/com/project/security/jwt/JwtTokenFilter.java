@@ -26,6 +26,15 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class);
 
+    /**
+     * Created by DucDH,
+     * Date Created: 13/12/2022
+     * Function: to get token from request
+     * @param request
+     * @return a token if request's header is valid
+     * @return null if request's header is invalid
+     */
+
     public String getToken(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
 
@@ -35,6 +44,17 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
         return null;
     }
+
+    /**
+     * Created by DucDH,
+     * Date Created: 13/12/2022
+     * Function: to check if the token is still valid or not
+     * @param request
+     * @param response
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,

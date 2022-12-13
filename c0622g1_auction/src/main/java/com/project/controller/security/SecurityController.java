@@ -1,10 +1,11 @@
-package com.project.controller;
+package com.project.controller.security;
 
 import com.project.payload.request.LoginForm;
 import com.project.payload.respone.JwtRespone;
 import com.project.security.jwt.JwtProvider;
 import com.project.security.user_detail.MyUserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,6 +30,7 @@ public class SecurityController {
      * Function: to Authenticate a LoginForm and return to the server a Token
      * @param loginForm
      * @return HttpStatus.401_Unauthorized if username or password invalid or both.
+     * @return ResponseEntity that contains an instance of JwtRespone and HttpStatus.200_OK if successful
      */
 
     @PostMapping("/login")
@@ -43,8 +45,8 @@ public class SecurityController {
 
         String token = jwtProvider.createToken(authentication);
 
-        return ResponseEntity.ok(new JwtRespone(token, myUserDetail.getUsername(),
-                myUserDetail.getAuthorities()));
+        return new ResponseEntity<>(new JwtRespone(token, myUserDetail.getUsername(),
+                myUserDetail.getAuthorities()), HttpStatus.OK);
     }
 
 }
