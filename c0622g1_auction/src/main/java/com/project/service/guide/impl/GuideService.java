@@ -25,6 +25,11 @@ public class GuideService implements IGuideService {
 
     @Override
     public void createGuide(Guide guide) {
-        guideRepository.createGuide(guide.getTitle(),guide.getTitle());
+        guideRepository.createGuide(guide.getTitle(),guide.getContent());
+    }
+
+    @Override
+    public void updateGuide(Guide guide) {
+        guideRepository.updateGuide(guide.getId(),guide.getTitle(),guide.getContent());
     }
 }

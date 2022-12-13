@@ -9,4 +9,6 @@ public interface IGuideService {
     Guide getGuideById(int id);
 
     void createGuide(Guide guide);
+
+    void updateGuide(Guide guide);
 }

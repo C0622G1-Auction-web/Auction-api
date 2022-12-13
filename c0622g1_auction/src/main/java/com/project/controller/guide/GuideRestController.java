@@ -1,4 +1,5 @@
 package com.project.controller.guide;
+
 import com.project.model.guide.Guide;
 import com.project.service.guide.IGuideService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,25 +15,70 @@ import java.util.List;
 public class GuideRestController {
     @Autowired
     private IGuideService guideService;
+
+    /**
+     * Create by: QuangND,
+     * Date created: 13/12/2022
+     * Function: find all guide
+     * @return list of guide
+     */
+
     @GetMapping()
     public ResponseEntity<List<Guide>> getGuideList() {
         List<Guide> guideList = guideService.findAllGuide();
-        if(guideList.isEmpty()){
+        if (guideList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(guideList, HttpStatus.OK);
     }
+
+    /**
+     * Create by: QuangND,
+     * Date created: 13/12/2022
+     * Function: find a guide by id
+     * @Param: Id of guide want to get
+     * @return an item guide
+     */
+
     @GetMapping("/{id}")
     public ResponseEntity<Guide> getGuideById(@PathVariable int id) {
         Guide editGuide = guideService.getGuideById(id);
-        if(editGuide==null) {
-            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        if (editGuide == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(editGuide, HttpStatus.OK);
     }
+
+    /**
+     * Create by: QuangND,
+     * Date created: 13/12/2022
+     * Function: create a new guide
+     * @Param: an item Guide
+     * @return a status code
+     */
+
     @PostMapping()
-    public ResponseEntity<?> createGuide(@RequestBody Guide guide){
+    public ResponseEntity<Guide> createGuide(@RequestBody Guide guide) {
         guideService.createGuide(guide);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
+     * Create by: QuangND,
+     * Date created: 13/12/2022
+     * Function: update a guide
+     * @Param: id
+     * @Param: an item Guide need to update
+     * @return a status code
+     */
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Guide> updateGuide(@PathVariable int id,
+                                             @RequestBody Guide guide) {
+        if (guideService.getGuideById(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        guideService.updateGuide(guide);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
