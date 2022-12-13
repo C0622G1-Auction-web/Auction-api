@@ -217,7 +217,7 @@ public class UserDto implements Validator {
             }
         }
         if (userDto.getPhone().equals("")) {
-            errors.rejectValue("phoneNumber", "phoneNumber", "phone Number is not empty");
+            errors.rejectValue("phoneNumber", "phoneNumber", "Số điện thoại không được để trống");
         } else {
             if (!(userDto.getPhone().matches("[0][9][0]\\d{7}") ||
                     userDto.getPhone().matches("[0][9][1]\\d{7}") ||
@@ -225,6 +225,9 @@ public class UserDto implements Validator {
                     userDto.getPhone().matches("[(][8][4][)][+][9][1]\\d{7}"))) {
                 errors.rejectValue("phone", "phone", "Số điện thoại có định dang  (090xxxxxxx) hoặc (091xxxxxxx) hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx");
             }
+        }
+        if (userDto.getAvatar().equals("")) {
+            errors.rejectValue("avatar", "avatar", "Avatar không được để trống");
         }
         for (String username : userDto.emailList) {
             if (username.equals(userDto.getAccount().getUsername())) {
