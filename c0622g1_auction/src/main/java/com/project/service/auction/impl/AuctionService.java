@@ -4,6 +4,8 @@ import com.project.model.auction.Auction;
 import com.project.repository.auction.IAuctionRepository;
 import com.project.service.auction.IAuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +25,17 @@ public class AuctionService implements IAuctionService {
      */
 
     @Override
-    public List<Auction> findAllTransaction() {
-        return auctionRepository.findAll();
+    public Page<Auction> findAllTransaction(Pageable pageable) {
+        return auctionRepository.findAll(pageable);
+    }
+
+    @Override
+    public void removeByListId(List<Integer> idList) {
+        auctionRepository.removeByListId(idList);
+    }
+
+    @Override
+    public List<Auction> findByListId(List<Integer> idList) {
+        return auctionRepository.findByListId(idList);
     }
 }
