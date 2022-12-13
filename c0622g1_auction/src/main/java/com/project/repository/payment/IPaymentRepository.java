@@ -24,15 +24,18 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
      * @return HttpStatus.OK
      */
 
-    @Query(value = "SELECT p.id AS code, sum(us.last_name + us.first_name) AS name, ad.city, ad.district, " +
+    @Query(value = "SELECT p.id AS code, us.last_name AS lastName , us.first_name AS firstName, ad.city, ad.district, " +
             "ad.detail_address AS address , ad.country, pr.name AS productName, au.current_price AS productPrice," +
-            " pr.description AS des, sum(au.current_price) AS total " +
+            " pr.description " +
             "FROM payment AS p \n" +
             "JOIN auction AS au ON p.auction_id = au.id " +
             "JOIN product AS pr ON au.product_id = pr.id\n" +
             "JOIN user AS us ON au.user_id = us.id\n" +
             "JOIN address AS ad ON us.address_id " +
-            "WHERE p.id = :id AND p.payment_status = 1 AND p.delete_status = 1", nativeQuery = true, countQuery = "select count(*) from payment")
+            "WHERE p.id = :id " +
+            "AND p.payment_status = 0 " +
+            "AND p.delete_status = 0 " +
+            "AND au.auction_status = 1 group by us.id", nativeQuery = true, countQuery = "select count(*) from payment")
     Optional<IPaymentDTO> findByIdPayment(@Param("id") Integer id);
 
 

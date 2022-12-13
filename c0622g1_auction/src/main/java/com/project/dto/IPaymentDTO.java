@@ -3,7 +3,9 @@ package com.project.dto;
 public interface IPaymentDTO {
     Integer getCode();
 
-    String getName();
+    String getFirstName();
+
+    String getLastName();
 
     String getCity();
 
@@ -17,7 +19,6 @@ public interface IPaymentDTO {
 
     Double getProductPrice();
 
-    String getDes();
-
-    String getTotal();
+    String getDescription();
+    
 }
