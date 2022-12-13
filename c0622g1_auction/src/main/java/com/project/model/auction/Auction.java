@@ -25,10 +25,12 @@ public class Auction {
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
 
-
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "product_id",referencedColumnName = "id")
     private Product product;
+
+    @JsonBackReference
     @OneToOne(mappedBy = "auction")
     private Payment payment;
     public Auction() {

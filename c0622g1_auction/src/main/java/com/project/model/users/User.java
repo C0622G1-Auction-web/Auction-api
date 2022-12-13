@@ -31,6 +31,8 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "user_type_id",referencedColumnName = "id")
     private UserType userType;
+
+    @JsonBackReference
     @OneToMany(mappedBy="user")
     private Set<Auction> auctions;
     @OneToOne

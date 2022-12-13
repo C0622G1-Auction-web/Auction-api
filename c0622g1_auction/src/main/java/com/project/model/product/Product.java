@@ -1,6 +1,5 @@
 package com.project.model.product;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.auction.Auction;
 import com.project.model.users.User;
 
@@ -36,6 +35,7 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
+
 
     @OneToMany(mappedBy = "product")
     private Set<ImgUrlProduct> imgUrlProducts;
