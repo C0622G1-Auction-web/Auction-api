@@ -1,5 +1,6 @@
 package com.project.model.auction;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.payment.Payment;
 import com.project.model.product.Product;
 import com.project.model.users.User;
@@ -20,9 +21,11 @@ public class Auction {
     private String auctionDay;
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JsonBackReference
     private User user;
     @ManyToOne
     @JoinColumn(name = "product_id",referencedColumnName = "id")
+    @JsonBackReference
     private Product product;
     @OneToOne(mappedBy = "auction")
     private Payment payment;
