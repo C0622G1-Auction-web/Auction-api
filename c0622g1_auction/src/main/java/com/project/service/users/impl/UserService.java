@@ -1,5 +1,6 @@
 package com.project.service.users.impl;
 
+import com.project.model.users.Address;
 import com.project.model.users.User;
 import com.project.repository.users.IUserRepository;
 import com.project.service.users.IUserService;
@@ -27,5 +28,14 @@ public class UserService implements IUserService {
                 user.getAddress(),
                 user.getUserType());
 
+    }
+    public void saveAddress(Address address) {
+        userRepository.saveAddress(
+                address.getId(),
+                address.getDetailAddress(),
+                address.getTown(),
+                address.getDistrict(),
+                address.getCity(),
+                address.getCountry());
     }
 }

@@ -14,6 +14,14 @@ public class AddressDto {
     public AddressDto() {
     }
 
+    public AddressDto(String detailAddress, String town, String district, String city, String country) {
+        this.detailAddress = detailAddress;
+        this.town = town;
+        this.district = district;
+        this.city = city;
+        this.country = country;
+    }
+
     public Integer getId() {
         return id;
     }

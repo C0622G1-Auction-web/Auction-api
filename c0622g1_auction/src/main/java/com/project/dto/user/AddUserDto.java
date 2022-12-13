@@ -1,11 +1,6 @@
 package com.project.dto.user;
 
-import com.project.model.account.Account;
-import com.project.model.users.Address;
-
-
-public class UserDto {
-    private Integer id;
+public class AddUserDto {
     private String firstName;
     private String lastName;
     private String email;
@@ -15,33 +10,17 @@ public class UserDto {
     private String idCard;
     private String avatar;
     private Boolean deleteStatus;
-    private Address address;
-    private Account account;
+    private String detailAddress;
+    private String town;
+    private String district;
+    private String city;
+    private String  country;
+    private String username;
+    private String password;
 
-    public UserDto( ) {
+    public AddUserDto() {
     }
 
-    public UserDto(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, Boolean deleteStatus, AddressDto addressDto, AccountDto accountDto) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.pointDedication = pointDedication;
-        this.birthDay = birthDay;
-        this.idCard = idCard;
-        this.avatar = avatar;
-        this.deleteStatus= deleteStatus;
-        this.address = address;
-        this.account = account;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -115,21 +94,59 @@ public class UserDto {
         this.deleteStatus = deleteStatus;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getDetailAddress() {
+        return detailAddress;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setDetailAddress(String detailAddress) {
+        this.detailAddress = detailAddress;
     }
 
-
-    public Account getAccount() {
-        return account;
+    public String getTown() {
+        return town;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setTown(String town) {
+        this.town = town;
     }
 
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

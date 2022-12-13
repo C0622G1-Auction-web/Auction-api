@@ -1,29 +1,32 @@
 package com.project.repository.users;
 
-import com.project.model.account.Account;
+
 import com.project.model.users.Address;
-import com.project.model.users.User;
-import com.project.model.users.UserType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
+
+@Repository
 public interface IAddressRepository extends JpaRepository<Address, Integer> {
     @Modifying
-    @Query(value = "insert into " +
-            "address(" +
-            "detail_address," +
-            "town," +
-            "district," +
-            "city," +
-            "coutry)",
+    @Query(value = "insert into address(id, detail_address, town, district, city, country)" +
+            "values(" +
+            ":id," +
+            ":detailAddress," +
+            ":town," +
+            ":district," +
+            ":city," +
+            ":country)",
             nativeQuery = true)
-    void  createAddress(@RequestParam("detail_address") String detail_address,
-                     @RequestParam("town") String town,
-                     @RequestParam("district") String district,
-                     @RequestParam("city") String city,
-                     @RequestParam("coutry") String coutry);
+    void saveAddress(
+            @Param("id") Integer id,
+            @Param("detailAddress") String detailAddress,
+            @Param("town") String town,
+            @Param("district") String district,
+            @Param("city") String city,
+            @Param("country") String country);
 }

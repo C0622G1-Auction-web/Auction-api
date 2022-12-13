@@ -1,5 +1,6 @@
 package com.project.service.users.impl;
 
+
 import com.project.model.users.Address;
 import com.project.repository.users.IAddressRepository;
 import com.project.service.users.IAddressService;
@@ -13,7 +14,8 @@ public class AddressService implements IAddressService {
 
     @Override
     public void saveAddress(Address address) {
-        addressRepository.createAddress(
+        addressRepository.saveAddress(
+                address.getId(),
                 address.getDetailAddress(),
                 address.getTown(),
                 address.getDistrict(),
