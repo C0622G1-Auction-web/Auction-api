@@ -37,13 +37,12 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "price_step_id, " +
             "review_status_id, " +
             "user_id " +
-            "FROM product\n" +
-            "WHERE DATE (product.end_time) > NOW()\n" +
-            "    And product.review_status_id = 2\n" +
-            "    AND product.delete_status = 0\n" +
-            "    AND product.category_id like %:#{#productSearchDto.categoryID}%\n" +
-            "    AND product.auction_status_id like %:#{#productSearchDto.productAuctionStatus}%\n" +
-            "    AND product.name like %:#{#productSearchDto.name}%\n" +
+            "FROM product " +
+            "WHERE product.review_status_id = 2 " +
+            "    AND product.delete_status = 0 " +
+            "    AND product.category_id like %:#{#productSearchDto.categoryID}%" +
+            "    AND product.auction_status_id like %:#{#productSearchDto.productAuctionStatus}%" +
+            "    AND product.name like %:#{#productSearchDto.name}%" +
             "    AND (product.initial_price > :#{#productSearchDto.rangePrice} " +
             "         OR product.initial_price = :#{#productSearchDto.rangePrice}) " +
             "ORDER BY product.start_time DESC" ,
