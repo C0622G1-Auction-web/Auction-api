@@ -682,7 +682,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -695,7 +695,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field phone more specific is containing special character
      */
     @Test
-    public void createUser_phone_15() throws Exception {
+    public void updateUser_phone_21() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -721,7 +721,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -734,7 +734,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field email more specific is min length
      */
     @Test
-    public void createUser_phone_16() throws Exception {
+    public void updateUser_phone_22() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -760,7 +760,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -773,7 +773,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field phone more specific is max length
      */
     @Test
-    public void createUser_phone_17() throws Exception {
+    public void updateUser_phone_23() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -799,7 +799,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -811,7 +811,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field dedication more specific is null
      */
     @Test
-    public void createUser_pointDedication_13() throws Exception {
+    public void updateUser_pointDedication_19() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Le Huu");
@@ -837,7 +837,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -850,7 +850,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field point dedication more specific is empty
      */
     @Test
-    public void createUser_pointDedication_14() throws Exception {
+    public void updateUser_pointDedication_20() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -876,7 +876,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -889,7 +889,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field point dedication smaller <0
      */
     @Test
-    public void createUser_pointDedication_16() throws Exception {
+    public void updateUser_pointDedication_21() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -915,7 +915,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -928,7 +928,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field point dedication more >100000
      */
     @Test
-    public void createUser_pointDedication_17() throws Exception {
+    public void updateUser_pointDedication_22() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -954,7 +954,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -967,7 +967,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field birth day more specific is null
      */
     @Test
-    public void createUser_birthDay_13() throws Exception {
+    public void updateUser_birthDay_19() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Le Huu");
@@ -993,7 +993,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1006,7 +1006,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field birth day more specific is empty
      */
     @Test
-    public void createUser_birthDay_14() throws Exception {
+    public void updateUser_birthDay_20() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1032,7 +1032,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1045,7 +1045,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field birth day more specific is containing special character
      */
     @Test
-    public void createUser_birthDay_15() throws Exception {
+    public void updateUser_birthDay_21() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1071,7 +1071,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1084,7 +1084,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field birth day more specific is min length
      */
     @Test
-    public void createUser_birthDay_16() throws Exception {
+    public void updateUser_birthDay_22() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1110,7 +1110,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1123,7 +1123,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field birth day more specific is max length
      */
     @Test
-    public void createUser_birthDay_17() throws Exception {
+    public void updateUser_birthDay_23() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1149,7 +1149,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1162,7 +1162,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field id card more specific is null
      */
     @Test
-    public void createUser_idCard_13() throws Exception {
+    public void updateUser_idCard_19() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Le Huu");
@@ -1188,7 +1188,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1201,7 +1201,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field id card more specific is empty
      */
     @Test
-    public void createUser_idCard_14() throws Exception {
+    public void updateUser_idCard_20() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1227,7 +1227,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1240,7 +1240,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field id card more specific is containing special character
      */
     @Test
-    public void createUser_idCard_15() throws Exception {
+    public void updateUser_idCard_21() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1266,7 +1266,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1279,7 +1279,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field id card more specific is min length
      */
     @Test
-    public void createUser_idCard_16() throws Exception {
+    public void updateUser_idCard_22() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1305,7 +1305,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1318,7 +1318,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field id card  more specific is max length
      */
     @Test
-    public void createUser_idCard_17() throws Exception {
+    public void updateUser_idCard_23() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1344,7 +1344,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1356,7 +1356,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field avatar more specific is null
      */
     @Test
-    public void createUser_avatar_13() throws Exception {
+    public void updateUser_avatar_19() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Le Huu");
@@ -1382,7 +1382,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1395,7 +1395,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field avatar more specific is empty
      */
     @Test
-    public void createUser_avatar_14() throws Exception {
+    public void updateUser_avatar_20() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1421,7 +1421,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1434,7 +1434,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field avatar more specific is containing special character
      */
     @Test
-    public void createUser_avatar_15() throws Exception {
+    public void updateUser_avatar_21() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1460,7 +1460,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1473,7 +1473,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field avatar more specific is min length
      */
     @Test
-    public void createUser_avatar_16() throws Exception {
+    public void updateUser_avatar_22() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1499,7 +1499,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1512,7 +1512,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field avatar  more specific is max length
      */
     @Test
-    public void createUser_avatar_17() throws Exception {
+    public void updateUser_avatar_23() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1538,7 +1538,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1550,7 +1550,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field detail address more specific is null
      */
     @Test
-    public void createUser_detailAddress_13() throws Exception {
+    public void updateUser_detailAddress_19() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Le Huu");
@@ -1576,7 +1576,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1589,7 +1589,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field detail address more specific is empty
      */
     @Test
-    public void createUser_detailAddress_14() throws Exception {
+    public void updateUser_detailAddress_20() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1615,7 +1615,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1628,7 +1628,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field detail address more specific is containing special character
      */
     @Test
-    public void createUser_detailAddress_15() throws Exception {
+    public void updateUser_detailAddress_21() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1654,7 +1654,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1667,7 +1667,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field detailAddress more specific is min length
      */
     @Test
-    public void createUser_detailAddress_16() throws Exception {
+    public void updateUser_detailAddress_22() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1693,7 +1693,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1706,7 +1706,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field detail address  more specific is max length
      */
     @Test
-    public void createUser_detailAddress_17() throws Exception {
+    public void updateUser_detailAddress_23() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1732,7 +1732,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1745,7 +1745,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field town more specific is null
      */
     @Test
-    public void createUser_town_13() throws Exception {
+    public void updateUser_town_19() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Le Huu");
@@ -1771,7 +1771,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1784,7 +1784,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field town more specific is empty
      */
     @Test
-    public void createUser_town_14() throws Exception {
+    public void updateUser_town_20() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1810,7 +1810,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1823,7 +1823,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field town more specific is containing special character
      */
     @Test
-    public void createUser_town_15() throws Exception {
+    public void updateUser_town_21() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1849,7 +1849,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1862,7 +1862,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field town more specific is min length
      */
     @Test
-    public void createUser_town_16() throws Exception {
+    public void updateUser_town_22() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1888,7 +1888,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1901,7 +1901,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field town  more specific is max length
      */
     @Test
-    public void createUser_town_17() throws Exception {
+    public void updateUser_town_23() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -1927,7 +1927,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1940,7 +1940,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field district more specific is null
      */
     @Test
-    public void createUser_district_13() throws Exception {
+    public void updateUser_district_19() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Le Huu");
@@ -1966,7 +1966,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -1979,7 +1979,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field district more specific is empty
      */
     @Test
-    public void createUser_district_14() throws Exception {
+    public void updateUser_district_20() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2005,7 +2005,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2018,7 +2018,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field district more specific is containing special character
      */
     @Test
-    public void createUser_district_15() throws Exception {
+    public void updateUser_district_21() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2044,7 +2044,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2057,7 +2057,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field district more specific is min length
      */
     @Test
-    public void createUser_district_16() throws Exception {
+    public void updateUser_district_22() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2083,7 +2083,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2096,7 +2096,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field district  more specific is max length
      */
     @Test
-    public void createUser_district_17() throws Exception {
+    public void updateUser_district_23() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2122,7 +2122,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2135,7 +2135,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field city more specific is null
      */
     @Test
-    public void createUser_city_13() throws Exception {
+    public void updateUser_city_19() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Le Huu");
@@ -2161,7 +2161,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2174,7 +2174,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field city more specific is empty
      */
     @Test
-    public void createUser_city_14() throws Exception {
+    public void updateUser_city_20() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2200,7 +2200,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2213,7 +2213,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field city more specific is containing special character
      */
     @Test
-    public void createUser_city_15() throws Exception {
+    public void updateUser_city_21() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2239,7 +2239,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2252,7 +2252,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field city more specific is min length
      */
     @Test
-    public void createUser_city_16() throws Exception {
+    public void updateUser_city_22() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2278,7 +2278,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2291,7 +2291,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field city  more specific is max length
      */
     @Test
-    public void createUser_city_17() throws Exception {
+    public void updateUser_city_23() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2317,7 +2317,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2330,7 +2330,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field country more specific is null
      */
     @Test
-    public void createUser_country_13() throws Exception {
+    public void updateUser_country_19() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Le Huu");
@@ -2356,7 +2356,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2369,7 +2369,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field country more specific is empty
      */
     @Test
-    public void createUser_country_14() throws Exception {
+    public void updateUser_country_20() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2395,7 +2395,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2408,7 +2408,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field country more specific is containing special character
      */
     @Test
-    public void createUser_country_15() throws Exception {
+    public void updateUser_country_21() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2434,7 +2434,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2447,7 +2447,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field country more specific is min length
      */
     @Test
-    public void createUser_country_16() throws Exception {
+    public void updateUser_country_22() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2473,7 +2473,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2486,7 +2486,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field country  more specific is max length
      */
     @Test
-    public void createUser_country_17() throws Exception {
+    public void updateUser_country_23() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2525,7 +2525,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field username more specific is null
      */
     @Test
-    public void createUser_username_13() throws Exception {
+    public void updateUser_username_19() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Le Huu");
@@ -2551,7 +2551,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2564,7 +2564,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field username more specific is empty
      */
     @Test
-    public void createUser_username_14() throws Exception {
+    public void updateUser_username_20() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2590,7 +2590,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2603,7 +2603,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field username more specific is containing special character
      */
     @Test
-    public void createUser_username_15() throws Exception {
+    public void updateUser_username_21() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2629,7 +2629,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2639,10 +2639,10 @@ public class AuctionRestController_updateUser {
     /**
      * Create by: TruongLH
      * Date created: 14/12/2022
-     * Function: this function use to test the validation of field username is exist (is not exist)
+     * Function: this function use to test the validation of field username is exist (is  could not exist)
      */
     @Test
-    public void createUser_username_30() throws Exception {
+    public void updateUser_username_30() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2668,7 +2668,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2681,7 +2681,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field username more specific is min length
      */
     @Test
-    public void createUser_username_16() throws Exception {
+    public void updateUser_username_22() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2707,7 +2707,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2720,7 +2720,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field username  more specific is max length
      */
     @Test
-    public void createUser_username_17() throws Exception {
+    public void updateUser_username_23() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2746,7 +2746,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2759,7 +2759,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field password more specific is null
      */
     @Test
-    public void createUser_password_13() throws Exception {
+    public void updateUser_password_19() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Le Huu");
@@ -2785,7 +2785,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2798,7 +2798,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field password more specific is empty
      */
     @Test
-    public void createUser_password_14() throws Exception {
+    public void updateUser_password_20() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2824,7 +2824,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2837,7 +2837,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field password more specific is containing special character
      */
     @Test
-    public void createUser_password_15() throws Exception {
+    public void updateUser_password_21() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2863,7 +2863,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2876,7 +2876,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field password more specific is min length
      */
     @Test
-    public void createUser_password_16() throws Exception {
+    public void updateUser_password_22() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2902,7 +2902,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2915,7 +2915,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field password  more specific is max length
      */
     @Test
-    public void createUser_password_17() throws Exception {
+    public void updateUser_password_23() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -2941,7 +2941,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2954,7 +2954,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field userTypeName more specific is null
      */
     @Test
-    public void createUser_userTypeName_13() throws Exception {
+    public void updateUser_userTypeName_19() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Le Huu");
@@ -2980,7 +2980,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -2993,7 +2993,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field userTypename more specific is empty
      */
     @Test
-    public void createUser_userTypeName_14() throws Exception {
+    public void updateUser_userTypeName_20() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -3019,7 +3019,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -3032,7 +3032,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field UserTypeName more specific is containing special character
      */
     @Test
-    public void createUser_userTypeName_15() throws Exception {
+    public void updateUser_userTypeName_21() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -3058,7 +3058,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -3071,7 +3071,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field userTypeName more specific is min length
      */
     @Test
-    public void createUser_userTypeName_16() throws Exception {
+    public void updateUser_userTypeName_22() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -3097,7 +3097,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -3110,7 +3110,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field userTypeName  more specific is max length
      */
     @Test
-    public void createUser_userTypeName_17() throws Exception {
+    public void updateUser_userTypeName_23() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -3136,7 +3136,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -3148,7 +3148,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field emailList more specific is null
      */
     @Test
-    public void createUser_emailList_13() throws Exception {
+    public void updateUser_emailList_19() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Le Huu");
@@ -3174,7 +3174,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -3187,7 +3187,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field emailList more specific is empty
      */
     @Test
-    public void createUser_emailList_14() throws Exception {
+    public void updateUser_emailList_20() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -3226,7 +3226,7 @@ public class AuctionRestController_updateUser {
      * Function: this function use to test the validation of field all right (is complete)
      */
     @Test
-    public void createUser_complete_18() throws Exception {
+    public void updateUser_complete_24() throws Exception {
         UserDto userDto = new UserDto();
         userDto.setId(1);
         userDto.setFirstName("Lê Hữu");
@@ -3252,7 +3252,7 @@ public class AuctionRestController_updateUser {
         userDto.setUserType(userType);
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/user/v1/create")
+                        .post("/api/user/v1/1/update")
                         .content(this.objectMapper.writeValueAsString(userDto))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
