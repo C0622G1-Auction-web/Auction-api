@@ -1,5 +1,7 @@
 package com.project.model.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,7 +11,10 @@ public class ReviewStatus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    @JsonBackReference
     @OneToMany(mappedBy = "reviewStatus")
+    @JsonBackReference
     private Set<Product> products;
     public ReviewStatus() {
     }

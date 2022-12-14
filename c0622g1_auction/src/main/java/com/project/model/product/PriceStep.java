@@ -1,5 +1,7 @@
 package com.project.model.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,7 +11,9 @@ public class PriceStep {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String step;
+    @JsonBackReference
     @OneToMany(mappedBy = "priceStep")
+    @JsonBackReference
     private Set<Product> products;
 
     public PriceStep() {
