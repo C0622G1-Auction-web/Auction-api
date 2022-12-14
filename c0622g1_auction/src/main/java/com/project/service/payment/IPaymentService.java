@@ -2,8 +2,11 @@ package com.project.service.payment;
 
 import com.project.model.payment.Payment;
 
-public interface IPaymentService {
+import java.util.List;
 
+public interface IPaymentService {
+    List<Payment> findValidPaymentByUserId(String userId);
+    
     /**
      * Created by: ChauPTM
      * Date created: 13/12/2022

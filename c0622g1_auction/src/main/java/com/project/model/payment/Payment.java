@@ -15,6 +15,8 @@ public class Payment {
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
 
+    @OneToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+
     @JsonBackReference
     @OneToOne
     @JoinColumn(name = "auction_id",referencedColumnName = "id")

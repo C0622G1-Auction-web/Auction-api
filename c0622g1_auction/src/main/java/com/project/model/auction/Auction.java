@@ -33,6 +33,7 @@ public class Auction {
     private Product product;
 
     @OneToOne(mappedBy = "auction")
+    @JsonBackReference
     private Payment payment;
     public Auction() {
     }
