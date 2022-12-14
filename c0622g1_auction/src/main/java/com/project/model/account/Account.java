@@ -13,16 +13,22 @@ public class Account {
     private String username;
     private String password;
     private Boolean statusLock;
+
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
+
     @OneToMany(mappedBy = "account")
     private Set<AccountRole> accountRoles;
+
     @OneToMany(mappedBy = "account")
     private Set<PasswordResetToken> passwordResetTokens;
+
     @OneToOne(mappedBy = "account")
     private User user;
+
     @OneToOne(mappedBy = "account")
     private LockAccount lockAccount;
+
     public Account() {
     }
 
