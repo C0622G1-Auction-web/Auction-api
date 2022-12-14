@@ -1,5 +1,7 @@
 package com.project.model.users;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,6 +11,8 @@ public class UserType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    @JsonBackReference
     @OneToMany(mappedBy ="userType")
     private Set<User> users;
 

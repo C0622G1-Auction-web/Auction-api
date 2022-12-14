@@ -20,31 +20,33 @@ public class Product {
     private Boolean deleteStatus;
     private String registerDay;
 
-
     @ManyToOne
-    @JoinColumn(name = "price_step_id",referencedColumnName = "id")
+    @JoinColumn(name = "price_step_id", referencedColumnName = "id")
     private PriceStep priceStep;
 
     @ManyToOne
-    @JoinColumn(name = "review_status_id",referencedColumnName = "id")
+    @JoinColumn(name = "review_status_id", referencedColumnName = "id")
     private ReviewStatus reviewStatus;
 
     @ManyToOne
-    @JoinColumn(name = "auction_status_id",referencedColumnName = "id")
+    @JoinColumn(name = "auction_status_id", referencedColumnName = "id")
     private AuctionStatus auctionStatus;
 
     @ManyToOne
-    @JoinColumn(name = "category_id",referencedColumnName = "id")
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
+
 
     @OneToMany(mappedBy = "product")
     private Set<ImgUrlProduct> imgUrlProducts;
+
     @OneToMany(mappedBy = "product")
     private Set<Auction> auctions;
 
     @ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
     public Product() {
     }
 
