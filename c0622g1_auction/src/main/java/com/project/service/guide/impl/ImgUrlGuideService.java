@@ -13,6 +13,7 @@ public class ImgUrlGuideService implements IImgUrlGuideService {
     @Autowired
     private IImgUrlGuideRepository imgUrlGuideRepository;
 
+
     /**
      * Created by: SonPT
      * Date created: 13-12-2022
@@ -22,8 +23,28 @@ public class ImgUrlGuideService implements IImgUrlGuideService {
      */
 
 
+
+
     @Override
     public List<ImgUrlGuide> findImgByGuideId(Integer id) {
         return imgUrlGuideRepository.findImgByGuideId(id);
     }
+
+
+
+    @Override
+    public void createImgGuide(ImgUrlGuide imgUrlGuide) {
+        imgUrlGuideRepository.createImgGuide(imgUrlGuide.getUrl(),imgUrlGuide.getGuide().getId());
+    }
+
+    @Override
+    public ImgUrlGuide findById(int id) {
+        return imgUrlGuideRepository.findImageById(id);
+    }
+
+    @Override
+    public void updateImgGuie(ImgUrlGuide imgUrlGuide) {
+        imgUrlGuideRepository.updateImgGuie(imgUrlGuide.getId(),imgUrlGuide.getUrl());
+    }
+
 }
