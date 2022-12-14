@@ -90,7 +90,7 @@ public class UserRestController {
             Address address = new Address();
             BeanUtils.copyProperties(userDto, address);
             Address address1 = addressService.updateAddress(address);
-            Account account1 = accountService.updateAddress(account);
+            Account account1 = accountService.updateAccount(account);
             BeanUtils.copyProperties(userDto, user);
             user.setAccount(account1);
             user.setAddress(address1);
