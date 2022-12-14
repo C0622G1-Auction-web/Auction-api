@@ -1,6 +1,7 @@
 package com.project.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.dto.guide.GuideDto;
 import com.project.dto.guide.ImgUrlGuideDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class ImageGuideRestController_createImgGuide {
+public class ImageGuideRestController_updateImgGuide {
     @Autowired
     private MockMvc mockMvc;
 
@@ -25,17 +26,19 @@ public class ImageGuideRestController_createImgGuide {
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
-     * Function: create a new url of image of guide with url null (belong fuction in frontend)
+     * Function: update url image of guide with id image Url is not exists in database
      *
-     * @return error status code
+     * @return error status code NOT FOUND
      */
 
     @Test
-    public void createGuide_url_13() throws Exception {
+    public void updateImgGuide_ImgUrlGuideDto() throws Exception {
         ImgUrlGuideDto imgUrlGuideDto = new ImgUrlGuideDto();
+        imgUrlGuideDto.setId(100);
+        imgUrlGuideDto.setUrl("testanh.png");
         imgUrlGuideDto.setGuideId(2);
         this.mockMvc.perform(MockMvcRequestBuilders
-                .post("/auction/api/guide/image")
+                .put("/auction/api/guide/image")
                 .content(this.objectMapper.writeValueAsString(imgUrlGuideDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -45,36 +48,18 @@ public class ImageGuideRestController_createImgGuide {
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
-     * Function: create a new url of image of guide with guide_id null (belong fuction in frontend)
+     * Function: update url image of guide with item url null
      *
-     * @return error status code
+     * @return error status code NOT ACCEPTABLE
      */
 
     @Test
-    public void createGuide_guide_13() throws Exception {
+    public void updateImgGuide_url_13() throws Exception {
         ImgUrlGuideDto imgUrlGuideDto = new ImgUrlGuideDto();
-        imgUrlGuideDto.setUrl("hinhanhtest.jpg");
-        this.mockMvc.perform(MockMvcRequestBuilders
-                .post("/auction/api/guide/image")
-                .content(this.objectMapper.writeValueAsString(imgUrlGuideDto))
-                .contentType(MediaType.APPLICATION_JSON_VALUE))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
-    /**
-     * Create by: QuangND,
-     * Date created: 14/12/2022
-     * Function: create a new url of image of guide with url is empty (belong fuction in frontend)
-     *
-     * @return error status code
-     */
-    @Test
-    public void createGuide_url_14() throws Exception {
-        ImgUrlGuideDto imgUrlGuideDto = new ImgUrlGuideDto();
-        imgUrlGuideDto.setUrl("");
+        imgUrlGuideDto.setId(100);
         imgUrlGuideDto.setGuideId(2);
         this.mockMvc.perform(MockMvcRequestBuilders
-                .post("/auction/api/guide/image")
+                .put("/auction/api/guide/image")
                 .content(this.objectMapper.writeValueAsString(imgUrlGuideDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -84,17 +69,41 @@ public class ImageGuideRestController_createImgGuide {
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
-     * Function: create a new url of image of guide with valid item
+     * Function: update url image of guide with item guideId null
      *
-     * @return status code success OK
+     * @return error status code NOT ACCEPTABLE
      */
+
     @Test
-    public void createGuide_url_18() throws Exception {
+    public void updateImgGuide_guideId_13() throws Exception {
         ImgUrlGuideDto imgUrlGuideDto = new ImgUrlGuideDto();
-        imgUrlGuideDto.setUrl("testanhdep");
+        imgUrlGuideDto.setId(100);
+        imgUrlGuideDto.setGuideId(2);
+        imgUrlGuideDto.setUrl("testanh.jpg");
+        this.mockMvc.perform(MockMvcRequestBuilders
+                .put("/auction/api/guide/image")
+                .content(this.objectMapper.writeValueAsString(imgUrlGuideDto))
+                .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    /**
+     * Create by: QuangND
+     * Date created: 14/12/2022
+     * Function: update url image of guide with all item valid
+     *
+     * @return status code OK
+     */
+
+    @Test
+    public void updateImgGuide_guideId_24() throws Exception {
+        ImgUrlGuideDto imgUrlGuideDto = new ImgUrlGuideDto();
+        imgUrlGuideDto.setId(3);
+        imgUrlGuideDto.setUrl("testanh.jpg");
         imgUrlGuideDto.setGuideId(2);
         this.mockMvc.perform(MockMvcRequestBuilders
-                .post("/auction/api/guide/image")
+                .put("/auction/api/guide/image")
                 .content(this.objectMapper.writeValueAsString(imgUrlGuideDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())

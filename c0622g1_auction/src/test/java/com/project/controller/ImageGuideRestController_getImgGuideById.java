@@ -8,6 +8,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -15,10 +16,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ImageGuideRestController_getImgGuideById {
     @Autowired
     private MockMvc mockMvc;
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
-     * Function: get list of images of guide by id of guide with id== null;
+     * Function: get list of images of guide by id of guide with id== null
+     *
      * @return error status code
      */
     @Test
@@ -33,6 +36,7 @@ public class ImageGuideRestController_getImgGuideById {
      * Create by: QuangND,
      * Date created: 14/12/2022
      * Function: get list of images of guide by id of guide with id of guide is empty
+     *
      * @return error status code
      */
     @Test
@@ -47,7 +51,8 @@ public class ImageGuideRestController_getImgGuideById {
      * Create by: QuangND,
      * Date created: 14/12/2022
      * Function: get list of images of guide by id of guide with id of guide not have in database
-     * @return  status code no content, empty list
+     *
+     * @return status code no_content, empty list
      */
 
     @Test
@@ -62,14 +67,21 @@ public class ImageGuideRestController_getImgGuideById {
      * Create by: QuangND,
      * Date created: 14/12/2022
      * Function: get list of images of guide by id of guide with id of guide have in database
-     * @return error status code
+     *
+     * @return status code success HttpStatus.OK and list img
      */
 
     @Test
     public void getImgGuideById_id_4() throws Exception {
         this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/auction/api/guide/image/find/1"))
+                MockMvcRequestBuilders.get("/auction/api/guide/image/find/2"))
                 .andDo(print())
-                .andExpect(status().is2xxSuccessful());
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("[0].id").value(3))
+                .andExpect(jsonPath("[0].url").value("awshjlglsgh.png"))
+                .andExpect(jsonPath("[1].id").value(9))
+                .andExpect(jsonPath("[1].url").value("kjhrrdhreu.png"))
+                .andExpect(jsonPath("[2].id").value(10))
+                .andExpect(jsonPath("[2].url").value("testanhdep.jpg"));
     }
 }

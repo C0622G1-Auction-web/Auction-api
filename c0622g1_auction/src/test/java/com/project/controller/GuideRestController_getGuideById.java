@@ -21,6 +21,7 @@ public class GuideRestController_getGuideById {
      * Create by: QuangND,
      * Date created: 14/12/2022
      * Function: get a guide with item id == null
+     *
      * @return error status code
      */
 
@@ -31,10 +32,12 @@ public class GuideRestController_getGuideById {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
      * Function: get a guide with item id empty
+     *
      * @return error status code
      */
 
@@ -45,10 +48,12 @@ public class GuideRestController_getGuideById {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
      * Function: get a guide with item id not have in database
+     *
      * @return error status code
      */
 
@@ -59,10 +64,12 @@ public class GuideRestController_getGuideById {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
      * Function: get a guide with item id valid (exists in dabatabase)
+     *
      * @return a guide with valid infor
      */
 
@@ -73,7 +80,7 @@ public class GuideRestController_getGuideById {
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("id").value(2))
-                .andExpect(jsonPath("title").value("Cach tinh tien"))
+                .andExpect(jsonPath("url").value("Cach tinh tien"))
                 .andExpect(jsonPath("content").value("Tinh tien bang paypal"));
     }
 }

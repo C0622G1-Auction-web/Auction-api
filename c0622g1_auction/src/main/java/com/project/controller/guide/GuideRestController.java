@@ -84,18 +84,15 @@ public class GuideRestController {
      * @return a status code
      */
 
-    @PutMapping("/{id}")
+    @PutMapping("")
     public ResponseEntity <GuideDto> updateGuide(@Validated @RequestBody GuideDto guideDto,
-                                                 BindingResult bindingResult,@PathVariable("id") int id) {
-        if (guideService.getGuideById(id) == null) {
+                                                 BindingResult bindingResult) {
+        if(guideService.getGuideById(guideDto.getId()) == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
         if(bindingResult.hasErrors()){
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
-
-
         Guide guideObj = new Guide();
         BeanUtils.copyProperties(guideDto, guideObj);
         guideService.updateGuide(guideObj);
