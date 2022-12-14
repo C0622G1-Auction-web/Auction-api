@@ -89,7 +89,7 @@ public class ProductRestController {
         Category category = new Category();
         category.setId(productDTO.getCategory().getId());
         product.setCategory(category);
-        
+
         Date date = new Date();
         product.setRegisterDay(String.valueOf(date));
         productService.saveProduct(product);
