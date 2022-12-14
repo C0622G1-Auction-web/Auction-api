@@ -1,28 +1,21 @@
 package com.project.service.users.impl;
 
-<<<<<<< HEAD
 import com.project.model.users.Address;
 import com.project.model.users.User;
-=======
 import com.project.dto.user.UserTopDto;
->>>>>>> 3ed5b9d1cd609697f7849ce200f58ade76d68f4e
 import com.project.repository.users.IUserRepository;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-<<<<<<< HEAD
 import java.util.Optional;
-=======
->>>>>>> 3ed5b9d1cd609697f7849ce200f58ade76d68f4e
 
 @Service
 public class UserService implements IUserService {
     @Autowired
     private IUserRepository userRepository;
 
-<<<<<<< HEAD
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -116,7 +109,6 @@ public class UserService implements IUserService {
     }
 
 
-=======
 
     /**
      * Created: SangDD
@@ -130,5 +122,4 @@ public class UserService implements IUserService {
 
         return userRepository.getTopAuctionUser(quality);
     }
->>>>>>> 3ed5b9d1cd609697f7849ce200f58ade76d68f4e
 }

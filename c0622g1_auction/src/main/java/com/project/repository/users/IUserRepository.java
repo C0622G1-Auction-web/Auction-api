@@ -1,22 +1,16 @@
 package com.project.repository.users;
 
-<<<<<<< HEAD
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
-=======
 import com.project.dto.user.UserTopDto;
-import com.project.model.users.User;
-import org.springframework.data.jpa.repository.JpaRepository;
->>>>>>> 3ed5b9d1cd609697f7849ce200f58ade76d68f4e
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-<<<<<<< HEAD
 import java.util.Optional;
 
 @Repository
@@ -169,17 +163,11 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     Optional<Address> findUserByAddressId(@Param("id") Integer id);
 
 
-=======
-
-@Repository
-@Transactional
-public interface IUserRepository extends JpaRepository<User,Integer> {
-
-
     /**
      * Created: SangDD
      * Created date: 13/12/2022
      * Function: get Top 10 users with the highest total money auction
+     *
      * @return List<User>
      */
     @Query(value = "SELECT " +
@@ -195,8 +183,7 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
             "    AND user.delete_status = 0 " +
             "GROUP By user.id " +
             "ORDER BY total_money_auction DESC " +
-            "LIMIT :quality " ,
+            "LIMIT :quality ",
             nativeQuery = true)
     List<UserTopDto> getTopAuctionUser(@Param("quality") String quality);
->>>>>>> 3ed5b9d1cd609697f7849ce200f58ade76d68f4e
 }

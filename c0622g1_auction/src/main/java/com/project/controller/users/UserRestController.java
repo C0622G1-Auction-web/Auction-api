@@ -1,7 +1,7 @@
 package com.project.controller.users;
 
-<<<<<<< HEAD
 import com.project.dto.UserListDto;
+import com.project.dto.user.UserTopDto;
 import com.project.model.users.User;
 import com.project.service.account.IAccountService;
 import com.project.service.users.IAddressService;
@@ -17,10 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
-@CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api/user")
-=======
 import com.project.dto.user.UserTopDto;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,12 +29,11 @@ import java.util.List;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/users")
->>>>>>> 3ed5b9d1cd609697f7849ce200f58ade76d68f4e
 public class UserRestController {
 
     @Autowired
     private IUserService userService;
-<<<<<<< HEAD
+
     @Autowired
     private IAddressService addressService;
     @Autowired
@@ -125,8 +120,6 @@ public class UserRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-=======
-
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -146,5 +139,4 @@ public class UserRestController {
         }
         return new ResponseEntity<>(userTopDtoList, HttpStatus.OK);
     }
->>>>>>> 3ed5b9d1cd609697f7849ce200f58ade76d68f4e
 }
