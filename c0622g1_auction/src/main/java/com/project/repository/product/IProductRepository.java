@@ -19,8 +19,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * Date created: 13/12/2022
      * Function: find product by id
      * @param productId
-     * @return HttpStatus.OK if result is present
-     * @return HttpStatus.NOT_FOUND if result is not present
+     * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
      */
 
     @Query(value = "select p.*"+
