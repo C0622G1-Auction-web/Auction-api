@@ -19,4 +19,6 @@ public interface IAccountService {
      * @return Account
      */
     Account updateAccount(Account account);
+
+    Account findAccountByUsername(String username);
 }

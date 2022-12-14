@@ -22,10 +22,13 @@ import java.util.List;
 @CrossOrigin("*")
 @RequestMapping("/api/user/v1")
 public class UserRestController {
+
     @Autowired
     private IUserService userService;
+
     @Autowired
     private IAccountService accountService;
+
     @Autowired
     private IAddressService addressService;
 
@@ -36,6 +39,7 @@ public class UserRestController {
      *
      * @return HttpStatus.NOT_CONTENT, HttpStatus.NOT_MODIFIED
      */
+
     @PostMapping("/create")
     public ResponseEntity<?> createUser(@Validated @RequestBody UserDto userDto, BindingResult bindingResult) {
         List<User> userList = userService.findAll();

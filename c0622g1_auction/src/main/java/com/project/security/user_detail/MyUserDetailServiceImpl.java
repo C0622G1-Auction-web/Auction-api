@@ -10,21 +10,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MyUserDetailServiceImpl implements UserDetailsService {
+
+    @Autowired
+    private IAccountService accountService;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
-    }
+        Account account = accountService.findAccountByUsername(username);
 
-//    @Autowired
-//    private IAccountService accountService;
-//
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//
-//        if (account == null) {
-//            throw new UsernameNotFoundException("Username not found!");
-//        }
-//
-//        return new MyUserDetail(account);
-//    }
+        if (account == null) {
+            throw new UsernameNotFoundException("Username not found!");
+        }
+
+        return new MyUserDetail(account);
+    }
 }
