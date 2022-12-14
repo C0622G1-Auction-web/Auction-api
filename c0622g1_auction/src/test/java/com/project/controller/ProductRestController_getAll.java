@@ -17,7 +17,7 @@ public class ProductRestController_getAll {
     /**
      * Created by: GiangLBH
      * Date created: 14/12/2022
-     * Function: to test method find all products when return result is empty
+     * Function: to test method find all products when result is empty page
      */
     @Test
     public void getAll_5() throws Exception {
@@ -32,7 +32,7 @@ public class ProductRestController_getAll {
     /**
      * Created by: GiangLBH
      * Date created: 14/12/2022
-     * Function: to test method find all products when return result have size > 0
+     * Function: to test method find all products when product page is found
      */
     @Test
     public void getAll_6() throws Exception {

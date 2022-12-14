@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class ProductRestController_remove {
@@ -24,11 +23,9 @@ public class ProductRestController_remove {
 
 
     /**
-     * Created by : HuyNV,
+     * Created by: GiangLBH
      * Date created: 14/12/2022
-     * Function: update = [item] = null
-     *
-     * @throws Exception
+     * Function: to test method remove list product by list id when list id is null
      */
     @Test
     public void remove_19() throws Exception {
@@ -44,21 +41,15 @@ public class ProductRestController_remove {
                 .andExpect(status().is4xxClientError());
     }
 
-
     /**
-     * Created by : HuyNV,
+     * Created by: GiangLBH
      * Date created: 14/12/2022
-     * Function: update = [item] = not found
-     *
-     * @throws Exception
+     * Function: to test method remove list product by list id when list id is empty
      */
     @Test
-    public void remove_22() throws Exception {
+    public void remove_20() throws Exception {
 
         List<Integer> idList = new ArrayList<>();
-        idList.add(0);
-        idList.add(1);
-        idList.add(2);
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
@@ -70,20 +61,41 @@ public class ProductRestController_remove {
     }
 
     /**
-     * Created by : HuyNV,
+     * Created by: GiangLBH
      * Date created: 14/12/2022
-     * Function: update Successful
-     *
-     * @throws Exception
+     * Function: to test method remove list product by list id when has id not exists in database
      */
     @Test
-    public void remove_24() throws Exception {
+    public void remove_30() throws Exception {
 
         List<Integer> idList = new ArrayList<>();
+        idList.add(1);
+        idList.add(1000);
 
         this.mockMvc.perform(
                 MockMvcRequestBuilders
-                        .put("api/v1/products/remove")
+                        .put("/api/v1/products/remove")
+                        .content(this.objectMapper.writeValueAsString(idList))
+                        .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    /**
+     * Created by: GiangLBH
+     * Date created: 14/12/2022
+     * Function: to test method remove list product by list id when all id exist in database
+     */
+    @Test
+    public void remove_31() throws Exception {
+
+        List<Integer> idList = new ArrayList<>();
+        idList.add(1);
+        idList.add(2);
+
+        this.mockMvc.perform(
+                MockMvcRequestBuilders
+                        .put("/api/v1/products/remove")
                         .content(this.objectMapper.writeValueAsString(idList))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())

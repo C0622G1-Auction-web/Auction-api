@@ -20,7 +20,7 @@ public class ProductRestController_findById {
      * Function: to test method find by id when id is null
      */
     @Test
-    public void findById_id_1() throws Exception {
+    public void findById_1() throws Exception {
         this.mockMvc.perform(
                 MockMvcRequestBuilders.get("/api/v1/products/find-by-id/"))
                 .andDo(print())
@@ -30,12 +30,12 @@ public class ProductRestController_findById {
     /**
      * Created by: GiangLBH
      * Date created: 14/12/2022
-     * Function: to test method find by id when id is empty
+     * Function: to test method find by id when id is incorrect format (not a integer) (id = "a")
      */
     @Test
-    public void findById_id_2() throws Exception {
+    public void findById_30() throws Exception {
         this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/v1/products/find-by-id/ "))
+                MockMvcRequestBuilders.get("/api/v1/products/find-by-id/a"))
                 .andDo(print())
                 .andExpect(status().is5xxServerError());
     }
@@ -43,10 +43,10 @@ public class ProductRestController_findById {
     /**
      * Created by: GiangLBH
      * Date created: 14/12/2022
-     * Function: to test method find by id when id not exists in database
+     * Function: to test method find by id when id not exists in database (id = 500)
      */
     @Test
-    public void findById_id_3() throws Exception {
+    public void findById_3() throws Exception {
         this.mockMvc.perform(
                 MockMvcRequestBuilders.get("api/v1/products/find-by-id/500"))
                 .andDo(print())
@@ -56,7 +56,7 @@ public class ProductRestController_findById {
     /**
      * Created by: GiangLBH
      * Date created: 14/12/2022
-     * Function: to test method find by id when id exists in database
+     * Function: to test method find by id when id exists in database (id = 2)
      */
     @Test
     public void findById_id_4() throws Exception {
@@ -66,6 +66,6 @@ public class ProductRestController_findById {
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("name").value("BÀN TRÀ APU BV4"))
                 .andExpect(jsonPath("initialPrice").value(800000.0))
-                .andExpect(jsonPath("priceStep.id").value(2));
+                .andExpect(jsonPath("user.id").value(2));
     }
 }

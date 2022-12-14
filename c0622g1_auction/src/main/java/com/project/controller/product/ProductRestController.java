@@ -48,6 +48,9 @@ public class ProductRestController {
      */
     @PutMapping("/remove")
     public ResponseEntity<List<Product>> remove(@RequestBody List<Integer> idList) {
+        if (idList.size() == 0) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         List<Product> productList = productService.findByListId(idList);
         if (idList.size() != productList.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
