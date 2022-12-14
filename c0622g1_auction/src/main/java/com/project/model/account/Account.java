@@ -12,6 +12,7 @@ public class Account {
     private Integer id;
     private String username;
     private String password;
+    @Column(columnDefinition = "boolean default true")
     private Boolean statusLock;
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
