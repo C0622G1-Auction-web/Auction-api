@@ -1,7 +1,7 @@
 package com.project.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.project.dto.UserDto;
+import com.project.dto.UserListDto;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.UserType;
@@ -30,24 +30,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_fist_name_21() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -60,24 +60,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Last_name_21() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -90,24 +90,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Email_21() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -120,24 +120,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Phone_21() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -150,24 +150,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Account_21() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(null);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -180,24 +180,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_address_21() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(null);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -209,24 +209,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_userType_21() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(null);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -239,24 +239,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_fist_name_22() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -269,24 +269,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Last_name_22() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -299,24 +299,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Email_22() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -329,24 +329,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Phone_22() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -359,24 +359,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Account_22() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(null);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -389,24 +389,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_address_22() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(null);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -418,24 +418,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_userType_22() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(null);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -448,24 +448,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_fist_name_23() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("sdfg244");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("sdfg244");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -478,24 +478,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Last_name_23() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("xdxgsg452475");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("xdxgsg452475");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -508,24 +508,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Email_23() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("xdvs345345");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("xdvs345345");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -538,24 +538,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Phone_23() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("sdafsdf4534");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("sdafsdf4534");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -568,24 +568,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Account_23() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(null);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -598,24 +598,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_address_23() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(null);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -627,24 +627,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_userType_23() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(null);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -657,24 +657,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_fist_name_24() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("sdfg244ddddddddddddddddddddddddddddddddddd");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("sdfg244ddddddddddddddddddddddddddddddddddd");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -687,24 +687,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Last_name_24() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("xdxgsg452475fffffffffffffffffffffffffff");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("xdxgsg452475fffffffffffffffffffffffffff");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -717,24 +717,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Email_24() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("xdvs345345sssssssssssssssssssssssssssssss");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("xdvs345345sssssssssssssssssssssssssssssss");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -747,24 +747,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Phone_24() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("sdafsdf45343333333333333333333");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("sdafsdf45343333333333333333333");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -777,24 +777,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Account_24() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(null);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -807,24 +807,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_address_24() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(null);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -836,24 +836,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_userType_24() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(null);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -866,24 +866,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_fist_name_25() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("sdfg244ddddddddddddddddddddddddddddddddddd");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("sdfg244ddddddddddddddddddddddddddddddddddd");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -896,24 +896,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Last_name_25() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("xdxgsg452475fffffffffffffffffffffffffff");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("xdxgsg452475fffffffffffffffffffffffffff");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -926,24 +926,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Email_25() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("xdvs345345sssssssssssssssssssssssssssssss");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("xdvs345345sssssssssssssssssssssssssssssss");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -956,24 +956,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Phone_25() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("sdafsdf45343333333333333333333");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("sdafsdf45343333333333333333333");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -986,24 +986,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_Account_25() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(null);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -1016,24 +1016,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_address_25() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(null);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -1045,24 +1045,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_userType_25() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(null);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
@@ -1075,24 +1075,24 @@ public class UserRestController_updateUser {
      */
     @Test
     public void test_updateUser_fist_name_26() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Address address = new Address();
         Account account = new Account();
         UserType userType = new UserType();
-        userDto.setFirstName("Nguyễn");
-        userDto.setLastName("Thanh Hải");
-        userDto.setEmail("a@gmail.com");
-        userDto.setPhone("092452345126");
+        userListDto.setFirstName("Nguyễn");
+        userListDto.setLastName("Thanh Hải");
+        userListDto.setEmail("a@gmail.com");
+        userListDto.setPhone("092452345126");
         account.setId(1);
         address.setId(1);
         userType.setId(1);
-        userDto.setAccount(account);
-        userDto.setUserType(userType);
-        userDto.setAddress(address);
+        userListDto.setAccount(account);
+        userListDto.setUserType(userType);
+        userListDto.setAddress(address);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());

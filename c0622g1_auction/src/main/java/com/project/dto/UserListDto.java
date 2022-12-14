@@ -4,7 +4,7 @@ import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.UserType;
 
-public class UserDto {
+public class UserListDto {
     private Integer id;
     private String firstName;
     private String lastName;
@@ -14,10 +14,10 @@ public class UserDto {
     private UserType userType;
     private Account account;
 
-    public UserDto() {
+    public UserListDto() {
     }
 
-    public UserDto(Integer id, String firstName, String lastName, String email, String phone, Address address, UserType userType, Account account) {
+    public UserListDto(Integer id, String firstName, String lastName, String email, String phone, Address address, UserType userType, Account account) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

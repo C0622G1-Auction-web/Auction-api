@@ -1,10 +1,8 @@
 package com.project.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.project.dto.UserDto;
+import com.project.dto.UserListDto;
 import com.project.model.account.Account;
-import com.project.model.users.Address;
-import com.project.model.users.UserType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -29,14 +27,14 @@ public class UserRestController_unlockUser {
      */
     @Test
     public void test_unlock_fist_name_26() throws Exception {
-        UserDto userDto = new UserDto();
+        UserListDto userListDto = new UserListDto();
         Account account = new Account();
         account.setStatusLock(true);
-        userDto.setAccount(account);
+        userListDto.setAccount(account);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                 .put("/api/user/account/1")
-                .content(this.objectMapper.writeValueAsString(userDto))
+                .content(this.objectMapper.writeValueAsString(userListDto))
                 .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful());

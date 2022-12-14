@@ -18,7 +18,8 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
 
 
     /**
-     * By: HaiNT
+     * Create by: HaiNT
+     * Date created: 13/12/2022
      *
      * @param id
      * @param name
@@ -46,7 +47,8 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     );
 
     /**
-     * By: HaiNT
+     * Create by: HaiNT
+     * Date created: 13/12/2022
      *
      * @param id
      * @param city
@@ -72,7 +74,8 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     );
 
     /**
-     * By: HaiNT
+     * Create by: HaiNT
+     * Date created: 13/12/2022
      *
      * @param id
      * @param idCard
@@ -105,13 +108,29 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     );
 
     /**
-     * By: HaiNT
-     * @param id
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param idList
+     * @return List User by idList
+     */
+    @Query(value = "select * " +
+            "from user u " +
+            "where u.id in :idList ",
+            nativeQuery = true)
+    List<User> findUserByIdList(List<Integer> idList);
+
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     * Function: to unlock account by id
+     *
+     * @param idList
      */
     @Transactional
     @Modifying
-    @Query(value = "UPDATE `auction_api`.`account` SET `status_lock` = 1 WHERE (`id` = :id);", nativeQuery = true)
-    void unlockAccount(@Param("id") Integer id);
+    @Query(value = "UPDATE `auction_api`.`account` SET `status_lock` = 1 WHERE (`id` in :idList);", nativeQuery = true)
+    void unlockAccount(@Param("idList") List<Integer> idList);
 
 
     /**
@@ -127,15 +146,20 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "where u.id= :id " +
             "and u.delete_status=1 ",
             nativeQuery = true)
-    Optional<User> findUserById(@Param("id") int id);
+    Optional<User> findUserById(@Param("id") Integer id);
+
 
     /**
-     * By: HaiNT
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     * Function: to find by id
+     *
      * @param id
-     * @return
+     * @return Optional<Address>
      */
     @Query(value = "SELECT * FROM auction_api.address WHERE id = :id ",
             nativeQuery = true)
-    Optional<Address> findUserByAddressId(@Param("id") int id);
+    Optional<Address> findUserByAddressId(@Param("id") Integer id);
+
 
 }

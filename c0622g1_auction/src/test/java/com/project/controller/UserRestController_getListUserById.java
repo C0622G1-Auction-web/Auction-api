@@ -49,7 +49,7 @@ public class UserRestController_getListUserById {
     @Test
     public void findById_3() throws Exception {
         this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/user/500"))
+                MockMvcRequestBuilders.get("/api/user/666"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }

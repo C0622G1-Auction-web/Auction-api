@@ -1,6 +1,6 @@
 package com.project.controller.users;
 
-import com.project.dto.UserDto;
+import com.project.dto.UserListDto;
 import com.project.model.users.User;
 import com.project.service.account.IAccountService;
 import com.project.service.users.IAddressService;
@@ -31,7 +31,8 @@ public class UserRestController {
     private IUserTypeService userTypeService;
 
     /**
-     * By: HaiNT
+     * Create by: HaiNT
+     * Date created: 13/12/2022
      *
      * @param id
      * @param name
@@ -41,7 +42,7 @@ public class UserRestController {
      * @return List User by param if param is empty then return list all users
      */
     @GetMapping
-    public ResponseEntity<List<UserDto>> getAllUser(
+    public ResponseEntity<List<UserListDto>> getAllUser(
             @RequestParam(defaultValue = "") String id,
             @RequestParam(defaultValue = "") String name,
             @RequestParam(defaultValue = "") String email,
@@ -52,9 +53,9 @@ public class UserRestController {
         if (userList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        List<UserDto> userListDtos = new ArrayList<>();
+        List<UserListDto> userListDtos = new ArrayList<>();
         for (User user : userList) {
-            UserDto userListDto = new UserDto();
+            UserListDto userListDto = new UserListDto();
             BeanUtils.copyProperties(user, userListDto);
             userListDto.setId(user.getId());
             userListDtos.add(userListDto);
@@ -63,7 +64,8 @@ public class UserRestController {
     }
 
     /**
-     * By: HaiNT
+     * Create by: HaiNT
+     * Date created: 13/12/2022
      *
      * @param id
      * @return Object user by id
@@ -75,31 +77,36 @@ public class UserRestController {
     }
 
     /**
-     * By: HaiNT
+     * Create by: HaiNT
+     * Date created: 13/12/2022
      *
      * @param id
-     * @param userDto
+     * @param userListDto
      * @return the user object is updated
      */
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable() int id, @RequestBody UserDto userDto) {
+    public ResponseEntity<UserListDto> updateUser(@PathVariable() int id, @RequestBody UserListDto userListDto) {
         User user = userService.findById(id).get();
-        BeanUtils.copyProperties(userDto, user);
+        BeanUtils.copyProperties(userListDto, user);
         userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
-     * By: HaiNT
-     * @param id
-     * @return  the user object is unlock
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param idList
+     * @return the user object is unlock
      */
-    @PutMapping("account/{id}")
-    public ResponseEntity<UserDto> unlockUser(@PathVariable() int id) {
-        User user = userService.findById(id).get();
-        userService.unlockUser(user.getAccount().getId());
+    @PutMapping("/unlockUser")
+    public ResponseEntity<UserListDto> unlockUser(@RequestBody List<Integer> idList) {
+        List<User> userList = userService.findByIdList(idList);
+        if (idList.size() != userList.size()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        userService.unlockUser(idList);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
 }

@@ -15,8 +15,15 @@ public interface IUserService {
 
     /**
      * By: HaiNT - Find list of users by id
+     * @param id
      */
-    Optional<User> findById(int id);
+    Optional<User> findById(Integer id);
+
+    /**
+     * By: HaiNT - Find list of users by idList
+     * @return
+     */
+    List<User> findByIdList(List<Integer> id);
 
     /**
      * By: HaiNT - Find list of address by AddressId
@@ -27,5 +34,5 @@ public interface IUserService {
 
     void updateUser(User user);
 
-    void unlockUser(Integer id);
+    void unlockUser(List<Integer> idList);
 }

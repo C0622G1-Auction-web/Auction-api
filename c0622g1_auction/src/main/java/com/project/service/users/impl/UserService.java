@@ -16,7 +16,9 @@ public class UserService implements IUserService {
     private IUserRepository userRepository;
 
     /**
-     * By: HaiNT
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
      * @param id
      * @param name
      * @param email
@@ -30,17 +32,21 @@ public class UserService implements IUserService {
     }
 
     /**
-     * By: HaiNT
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
      * @param id
      * @return User object by id
      */
     @Override
-    public Optional<User> findById(int id) {
+    public Optional<User> findById(Integer id) {
         return userRepository.findUserById(id);
     }
 
     /**
-     * By: HaiNT
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
      * @param id
      * @return Object Address by id
      */
@@ -50,7 +56,9 @@ public class UserService implements IUserService {
     }
 
     /**
-     * By: HaiNT
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
      * @param user
      */
     @Override
@@ -59,7 +67,9 @@ public class UserService implements IUserService {
     }
 
     /**
-     * By: HaiNT
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
      * @param user
      */
     @Override
@@ -70,12 +80,31 @@ public class UserService implements IUserService {
     }
 
     /**
-     * By: HaiNT
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
      * @param id
+     * @return User object by id
      */
     @Override
-    public void unlockUser(Integer id) {
-        userRepository.unlockAccount(id);
+    public List<User> findByIdList(List<Integer> id) {
+        return userRepository.findUserByIdList(id);
+    }
+
+//    @Override
+//    public List<User> findByIdList(List<Integer> id) {
+//        return userRepository.findUserByIdList(id);
+//    }
+
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param idList
+     */
+    @Override
+    public void unlockUser(List<Integer> idList) {
+        userRepository.unlockAccount(idList);
     }
 
 
