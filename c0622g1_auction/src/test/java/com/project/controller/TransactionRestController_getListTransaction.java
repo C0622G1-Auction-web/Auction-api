@@ -38,7 +38,7 @@ public class TransactionRestController_getListTransaction {
     /**
      * Created by : HuyNV,
      * Date created: 14/12/2022
-     * Function: List transaction 
+     * Function: List transaction
      *
      * @throws Exception
      */
