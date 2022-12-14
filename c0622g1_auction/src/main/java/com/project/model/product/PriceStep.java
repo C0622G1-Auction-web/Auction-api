@@ -13,6 +13,7 @@ public class PriceStep {
     private String step;
     @JsonBackReference
     @OneToMany(mappedBy = "priceStep")
+    @JsonBackReference
     private Set<Product> products;
 
     public PriceStep() {

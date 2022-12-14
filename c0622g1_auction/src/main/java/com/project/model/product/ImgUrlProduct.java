@@ -3,6 +3,7 @@ package com.project.model.product;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +16,7 @@ public class ImgUrlProduct {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JsonBackReference
     private Product product;
 
     public ImgUrlProduct() {
