@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public class UserDto implements Validator {
+public class UserDto implements Validator{
     private Integer id;
     @NotEmpty(message = "Họ không được để trống")
     private String firstName;
