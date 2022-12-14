@@ -20,7 +20,7 @@ import java.util.function.Function;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin("*")
+@CrossOrigin({"*", "*"})
 @RestController
 @RequestMapping("api/v1/products")
 public class ProductRestController {
@@ -157,6 +157,7 @@ public class ProductRestController {
         }
         return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
     }
+
 
     /**
      * Created SangDD

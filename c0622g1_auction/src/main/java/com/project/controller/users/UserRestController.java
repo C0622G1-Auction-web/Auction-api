@@ -1,6 +1,16 @@
 package com.project.controller.users;
 
 
+import com.project.dto.user.*;
+import com.project.model.account.Account;
+import com.project.model.users.Address;
+import com.project.model.users.User;
+import com.project.service.account.IAccountService;
+import com.project.service.account.ILockAccountService;
+import com.project.service.users.IAddressService;
+import com.project.service.users.IUserService;
+
+
 import com.project.dto.UserListDto;
 import com.project.dto.user.UserTopDto;
 import com.project.model.users.User;
@@ -8,6 +18,7 @@ import com.project.service.account.IAccountService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 import com.project.service.users.IUserTypeService;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -131,4 +142,47 @@ public class UserRestController {
         }
         return new ResponseEntity<>(userTopDtoList, HttpStatus.OK);
     }
+
+    /**
+     * Created: VietNQ
+     * Created date: 13/12/2022
+     * Function: create user account
+     * @return HttpStatus.OK if result is not empty
+     * @return HttpStatus.NOT_FOUND if result is not empty
+     */
+    @Autowired
+    private IAddressService addressService;
+    @Autowired
+    private IAccountService accountService;
+    @Autowired
+    private ILockAccountService lockAccountService;
+
+
+    @PostMapping("/create")
+    public ResponseEntity<?> addUser(@RequestBody AddUserDto addUserDto) {
+
+        AddressDto addressDto = new AddressDto(addUserDto.getDetailAddress(), addUserDto.getTown(), addUserDto.getDistrict(), addUserDto.getCity(), addUserDto.getCountry());
+        AccountDto accountDto = new AccountDto(addUserDto.getUsername(), addUserDto.getPassword());
+
+        UserDto userDto = new UserDto(addUserDto.getFirstName(), addUserDto.getLastName(), addUserDto.getEmail(),
+                addUserDto.getPhone(), addUserDto.getPointDedication(), addUserDto.getBirthDay(), addUserDto.getIdCard(), addUserDto.getAvatar(), addressDto, accountDto);
+
+        User user = new User();
+        Address address = new Address();
+        Account account = new Account();
+
+        BeanUtils.copyProperties(addressDto, address);
+        BeanUtils.copyProperties(accountDto, account);
+        BeanUtils.copyProperties(userDto, user);
+
+        Address addressATBC = addressService.saveAddress(address);
+        Account accountABT = accountService.saveAccount(account);
+        accountABT.setStatusLock(true);
+        accountABT.setDeleteStatus(true);
+        accountABT.setPassword("12345678");
+        userService.saveUser(user, addressATBC.getId(), accountABT.getId(), 4);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 }

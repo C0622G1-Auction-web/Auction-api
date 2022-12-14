@@ -12,7 +12,6 @@ public class PriceStep {
     private Integer id;
     private String step;
     @OneToMany(mappedBy = "priceStep")
-    @JsonBackReference
     private Set<Product> products;
 
     public PriceStep() {

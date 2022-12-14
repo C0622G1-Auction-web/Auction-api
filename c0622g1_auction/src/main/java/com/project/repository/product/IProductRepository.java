@@ -116,6 +116,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     @Query(value = "select * from product where id = :id and delete_status = 0", nativeQuery = true)
     Optional<Product> findById(@Param("id") Integer id);
 
+
     /**
      * Created SangDD
      * Date created 13/12/2022

@@ -38,5 +38,4 @@ public interface IProductService {
      */
     Page<Product> getAllAndSearch(ProductSearchDto productSearchDto, Pageable pageable);
 
-
 }
