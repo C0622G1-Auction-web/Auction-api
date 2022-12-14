@@ -23,7 +23,6 @@ import java.util.Optional;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("api/v1/products")
-@CrossOrigin("*")
 public class ProductRestController {
 
     @Autowired
@@ -156,6 +155,7 @@ public class ProductRestController {
         return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
     }
 
+    /**
      * Created SangDD
      * Date created 13/12/2022
      * Function: search and filter product by name, rangePrice, categoryID productAuctionStatus

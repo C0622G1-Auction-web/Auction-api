@@ -28,7 +28,6 @@ public interface IProductService {
 
     void doNotReview(Integer id);
 
-public interface IProductService {
     /**
      * Created SangDD
      * Date created 13/12/2022
