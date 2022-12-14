@@ -20,7 +20,8 @@ public class PaymentRestController {
      * Date created 13/12/2022
      * Function: Get unpaid payment list of user
      * @param userId
-     * @return List<Payment>
+     * @return HttpStatus.NOT_FOUND
+     * return HttpStatus.OK + List<Payment>
      */
     @GetMapping("list")
     public ResponseEntity<List<Payment>> getPaymentList(@PathVariable(value = "id") String userId) {

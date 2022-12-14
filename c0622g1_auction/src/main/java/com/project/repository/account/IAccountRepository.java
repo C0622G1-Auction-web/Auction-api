@@ -26,9 +26,11 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
             "and status_lock = 0", nativeQuery = true)
     Account findAccountByUsername(@Param(value = "username") String username);
 
-    /**Created by UyenNC
+    /**
+     * Created by UyenNC
      * Date created 13/12/2022
      * Function Find all valid account
+     *
      * @return List<Account>
      */
     @Query(value = "select * from account " +
@@ -36,5 +38,27 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
             "and status_lock = 0;", nativeQuery = true)
     List<Account> findAllAccount();
 
+    /**Created by UyenNC
+     * Date created 13/12/2022
+     * Function Update password for account with given id
+     *
+     * @param accountId
+     * @param password
+     */
+    @Query(value = "update `account` " +
+            "set `password` =:password " +
+            "where (`id` =:accountId );", nativeQuery = true)
+    void updateAccount(@Param(value = "accountId") Integer accountId, @Param(value = "password") String password);
 
+    /**Created by UyenNC
+     * Date created 13/12/2022
+     * Function Find account by given id
+     * @param id
+     * @return account
+     */
+    @Query(value = "select * from account " +
+            "where id =:id " +
+            "and delete_status = 0 " +
+            "and status_lock = 0;", nativeQuery = true)
+    Account findAccountById(@Param(value = "id") Integer id);
 }

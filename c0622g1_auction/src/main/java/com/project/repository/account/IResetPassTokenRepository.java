@@ -19,4 +19,17 @@ public interface IResetPassTokenRepository extends JpaRepository<PasswordResetTo
      */
     @Query(value = "select* from password_reset_token where token =:token and status = 0;", nativeQuery = true)
     PasswordResetToken findByToken(@Param(value = "token") String token);
+
+
+    /**Created by UyenNC
+     * Date created 13/12/2022
+     * Function Save new token to database
+     * @param token
+     * @param expiry
+     * @param status
+     * @param accountId
+     */
+    @Query(value = "insert into `password_reset_token` (`expiry_date`, `status`, `token`, `account_id`) " +
+            "values (:expiry, :status, :token, :accountId);", nativeQuery = true)
+    void createToken(@Param("token") String token, @Param("expiry") String expiry, @Param("status") Boolean status, @Param("accountId") String accountId);
 }

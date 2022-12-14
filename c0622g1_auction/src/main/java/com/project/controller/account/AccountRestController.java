@@ -31,43 +31,47 @@ public class AccountRestController {
     @Autowired
     private IUserService userService;
 
-    /**Created by UyenNC
+    /**
+     * Created by UyenNC
      * Date created: 13/12/2022
      * Function: Show Account List
-     * @return List<Account>
+     *
+     * @return List<Account> + HttpStatus.OK
+     * @return HttpStatus.NO_CONTENT
      */
     @GetMapping("")
-    public ResponseEntity<List<Account>> showAccountList(){
+    public ResponseEntity<List<Account>> showAccountList() {
         List<Account> accountList = accountService.findAllAccount();
-        if(accountList.isEmpty()){
+        if (accountList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(accountList, HttpStatus.OK);
     }
 
-    /**Created by UyenNC
+    /**
+     * Created by UyenNC
      * Date created: 13/12/2022
      * Function: Check whether the account and email is valid. If the account and email are valid, reset password link will be sent via the email
+     *
      * @param email
      * @param username
      * @return "Không tìm thấy tài khoản, vui lòng kiểm tra lại" + HttpStatus.NOT_FOUND
      * @return "Tài khoản hợp lệ, vui lòng kiểm tra hòm thư gmail"+ HttpStatus.OK
      * @return "Email không hợp lệ, vui lòng kiểm tra lại" + HttpStatus.NOT_FOUND
-     *
      */
     @GetMapping("verify_account")
-    public ResponseEntity<String> verifyAccount(@RequestParam(value = "email") String email, @RequestParam(value = "username") String username){
+    public ResponseEntity<String> verifyAccount(@RequestParam(value = "email") String email, @RequestParam(value = "username") String username) {
         Account account = accountService.findByUsername(username);
 
-        if(account == null){
+        if (account == null) {
             return new ResponseEntity<>("Không tìm thấy tài khoản, vui lòng kiểm tra lại", HttpStatus.NOT_FOUND);
         }
         User user = userService.findUserByAccount(account);
 
 
-        if(user.getEmail().equals(email)){
+        if (user.getEmail().equals(email)) {
             PasswordResetToken passwordResetToken = passwordResetTokenUtil.createToken(account);
-            accountService.sendMail(email,username, passwordResetToken.getToken());
+            accountService.sendMail(email, username, passwordResetToken.getToken());
             return new ResponseEntity<>("Tài khoản hợp lệ, vui lòng kiểm tra hòm thư gmail", HttpStatus.OK);
         }
 
@@ -83,20 +87,20 @@ public class AccountRestController {
      * @return headers + HttpStatus.MOVED_PERMANENTLY
      */
     @GetMapping("token_check")
-    public ResponseEntity<String> checkToken(@RequestParam(value = "token") String token){
+    public ResponseEntity<String> checkToken(@RequestParam(value = "token") String token) {
         PasswordResetToken passwordResetToken = passwordResetTokenUtil.validateToken(token);
-        if(passwordResetToken == null){
+        if (passwordResetToken == null) {
             return new ResponseEntity<>("Token không tồn tại", HttpStatus.NOT_FOUND);
         }
         String date = passwordResetToken.getExpiryDate();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         LocalDateTime expiryDate = LocalDateTime.parse(date, formatter);
-        if(expiryDate.isBefore(LocalDateTime.now())){
+        if (expiryDate.isBefore(LocalDateTime.now())) {
             return new ResponseEntity<>("Token đã hết hạn", HttpStatus.GATEWAY_TIMEOUT);
         }
         Integer accountId = passwordResetToken.getAccount().getId();
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(URI.create("/api/v1/account/update_pass/"+accountId));
+        headers.setLocation(URI.create("/api/v1/account/update_pass/" + accountId));
         return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
     }
 
@@ -109,7 +113,7 @@ public class AccountRestController {
      */
 
     @GetMapping("update_pass/{id}")
-    public ResponseEntity<String> updatePassword(@RequestParam(value = "password") String password, @PathVariable String id){
+    public ResponseEntity<String> updatePassword(@RequestParam(value = "password") String password, @PathVariable String id) {
         Account account = accountService.findById(Integer.valueOf(id));
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encryptPass = passwordEncoder.encode(password);

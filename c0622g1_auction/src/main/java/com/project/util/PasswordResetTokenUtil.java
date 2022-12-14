@@ -18,9 +18,11 @@ public class PasswordResetTokenUtil {
     @Autowired
     IResetPassTokenRepository resetPassTokenRepository;
 
-    /**Created by UyenNC
+    /**
+     * Created by UyenNC
      * Date created 13/12/2022
      * Function Find PasswordResetToken by token
+     *
      * @param token
      * @return PasswordResetToken
      */
@@ -30,9 +32,11 @@ public class PasswordResetTokenUtil {
 
     }
 
-    /**Created by UyenNC
+    /**
+     * Created by UyenNC
      * Date created 13/12/2022
      * Function Create new token, save token to database
+     *
      * @param account
      * @return PasswordResetToken
      */
@@ -41,8 +45,10 @@ public class PasswordResetTokenUtil {
         LocalDateTime expiryDate = LocalDateTime.now().plusMinutes(expiry);
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String expiry = expiryDate.format(format);
-        PasswordResetToken resetToken = new PasswordResetToken(token, expiry, false, account);
-        resetPassTokenRepository.save(resetToken);
+        Boolean status = false;
+        String accountId = account.getId() + "";
+        PasswordResetToken resetToken = new PasswordResetToken(token, expiry, status, account);
+        resetPassTokenRepository.createToken(token, expiry, status, accountId);
         return resetToken;
 
 

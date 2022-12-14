@@ -1,6 +1,7 @@
 package com.project.service.account.impl;
 
 import com.project.model.account.Account;
+import com.project.model.account.AccountRole;
 import com.project.repository.account.IAccountRepository;
 import com.project.service.account.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,17 +66,19 @@ public class AccountService implements IAccountService {
      */
     @Override
     public Account findById(Integer id) {
-        return accountRepository.findById(id).get();
+        return accountRepository.findAccountById(id);
     }
 
     /**Created by UyenNC
      * Date created 13/12/2022
-     * Function Save account to database
+     * Function Update password for given account
      * @param account
      */
     @Override
     public void save(Account account) {
-        accountRepository.save(account);
+        Integer accountId = account.getId();
+        String password = account.getPassword();
+        accountRepository.updateAccount(accountId, password);
     }
 
 }
