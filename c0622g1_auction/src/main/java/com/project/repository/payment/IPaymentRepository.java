@@ -20,6 +20,10 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
      */
     @Query(value = "select payment.* from payment\n" +
             "join auction on payment.auction_id = auction.id\n" +
-            "where payment.delete_status = 0 and payment.payment_status = 0 and auction.auction_status = 0 and auction.user_id =:user_id", nativeQuery = true)
+            "where payment.delete_status = 0 " +
+            "and payment.payment_status = 0 " +
+            "and auction.auction_status = 1 " +
+            "and auction.user_id =:user_id " +
+            "group by auction.user_id;", nativeQuery = true)
     List<Payment> findValidPaymentByUserId(@Param(value = "user_id") String userId);
 }

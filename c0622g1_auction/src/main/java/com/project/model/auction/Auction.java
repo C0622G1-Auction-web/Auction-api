@@ -1,5 +1,6 @@
 package com.project.model.auction;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.payment.Payment;
 import com.project.model.product.Product;
 import com.project.model.users.User;
@@ -25,6 +26,7 @@ public class Auction {
     @JoinColumn(name = "product_id",referencedColumnName = "id")
     private Product product;
     @OneToOne(mappedBy = "auction")
+    @JsonBackReference
     private Payment payment;
     public Auction() {
     }

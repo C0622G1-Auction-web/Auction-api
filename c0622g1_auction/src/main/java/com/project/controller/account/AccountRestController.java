@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -120,9 +119,9 @@ public class AccountRestController {
             return new ResponseEntity<>(bindingResult.getFieldError(), HttpStatus.NOT_ACCEPTABLE);
         }
         Account account = accountService.findById(Integer.valueOf(id));
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encryptPass = passwordEncoder.encode(password);
-        account.setPassword(encryptPass);
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        String encryptPass = passwordEncoder.encode(password);
+//        account.setPassword(encryptPass);
         accountService.save(account);
         return new ResponseEntity<>("Cập nhật mật khẩu thành công", HttpStatus.OK);
     }

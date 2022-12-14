@@ -1,5 +1,6 @@
 package com.project.controller.payment;
 
+import com.project.model.auction.Auction;
 import com.project.model.payment.Payment;
 import com.project.service.payment.IPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -26,6 +28,8 @@ public class PaymentRestController {
     @GetMapping("list")
     public ResponseEntity<List<Payment>> getPaymentList(@PathVariable(value = "id") String userId) {
         List<Payment> paymentList = paymentService.findValidPaymentByUserId(userId);
+
+
         if (paymentList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
