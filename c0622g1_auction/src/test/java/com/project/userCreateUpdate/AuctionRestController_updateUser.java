@@ -1,4 +1,4 @@
-package com.project;
+package com.project.userCreateUpdate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.dto.user.UserDto;

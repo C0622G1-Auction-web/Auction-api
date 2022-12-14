@@ -4,11 +4,13 @@ import com.project.model.users.UserType;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public class UserDto implements Validator{
+public class UserDto implements Validator {
     private Integer id;
     @NotEmpty(message = "Họ không được để trống")
     private String firstName;
@@ -19,6 +21,8 @@ public class UserDto implements Validator{
     @NotEmpty(message = "Số điện thoại không được để trống")
     private String phone;
     @NotNull(message = "Điểm cống hiến không được bỏ trống")
+    @Min(value = 0, message = "Điểm cống hiến không được bé thua 0")
+    @Max(value = 500, message = "Điểm cống hiến không được lớn hơn 500")
     private Double pointDedication;
     @NotEmpty(message = "Ngày sinh không được để trống")
     private String birthDay;
@@ -42,6 +46,7 @@ public class UserDto implements Validator{
     private String password;
     private List<String> emailList;
     private UserType userType;
+
     public UserDto() {
     }
 
@@ -196,20 +201,26 @@ public class UserDto implements Validator{
         return false;
     }
 
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to validate all field in user
+     */
     @Override
     public void validate(Object target, Errors errors) {
         UserDto userDto = (UserDto) target;
         if (userDto.getFirstName().equals("")) {
             errors.rejectValue("firstName", "firstName", "Họ không được bỏ trống");
         } else {
-            if (!userDto.getFirstName().matches("^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$")) {
+            if (!userDto.getFirstName().matches("^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{2,30}$")) {
                 errors.rejectValue("firstName", "firstName", "Họ không đúng định dạng !");
             }
         }
         if (userDto.getLastName().equals("")) {
             errors.rejectValue("lastName", "lastName", "Tên không được bỏ trống");
         } else {
-            if (!userDto.getLastName().matches("^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$")) {
+            if (!userDto.getLastName().matches("^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{2,30}$")) {
                 errors.rejectValue("lastName", "lastName", "Tên không đúng định dạng !");
             }
         }
@@ -253,15 +264,31 @@ public class UserDto implements Validator{
         }
         if (userDto.getTown().equals("")) {
             errors.rejectValue("town", "town", "Phường xã không được để trống");
+        } else {
+            if (!(userDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+                errors.rejectValue("town", "town", "Phường xã nhập từ 5 tới 30 kí tự");
+            }
         }
         if (userDto.getDistrict().equals("")) {
             errors.rejectValue("district", "district", "Quận huyện không được để trống");
+        } else {
+            if (!(userDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+                errors.rejectValue("district", "district", "Quận huyện nhập từ 5 tới 30 kí tự");
+            }
         }
         if (userDto.getCity().equals("")) {
-            errors.rejectValue("city", "city", "Tỉnh không được để trống");
+            errors.rejectValue("city", "city", "Tỉnh thành không được để trống");
+        } else {
+            if (!(userDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+                errors.rejectValue("city", "city", "Tỉnh thành nhập từ 5 tới 30 kí tự");
+            }
         }
         if (userDto.getCountry().equals("")) {
             errors.rejectValue("country", "country", "Đất Nước không được để trống");
+        } else {
+            if (!(userDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+                errors.rejectValue("country", "country", "Quốc gia nhập từ 5 tới 30 kí tự");
+            }
         }
     }
 }
