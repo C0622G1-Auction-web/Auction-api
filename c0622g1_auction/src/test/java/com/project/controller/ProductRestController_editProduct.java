@@ -68,7 +68,7 @@ public class ProductRestController_editProduct {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/v1/products/create")
+                        .put("/api/v1/products/update/")
                         .content(this.objectMapper.writeValueAsString(productDTO))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -113,7 +113,7 @@ public class ProductRestController_editProduct {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/v1/products/create/")
+                        .put("/api/v1/products/update/")
                         .content(this.objectMapper.writeValueAsString(productDTO))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -158,7 +158,7 @@ public class ProductRestController_editProduct {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/v1/products/create/")
+                        .put("/api/v1/products/update/")
                         .content(this.objectMapper.writeValueAsString(productDTO))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -202,7 +202,7 @@ public class ProductRestController_editProduct {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/v1/products/create/")
+                        .put("/api/v1/products/update/")
                         .content(this.objectMapper.writeValueAsString(productDTO))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -254,7 +254,7 @@ public class ProductRestController_editProduct {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/v1/products/create/")
+                        .put("/api/v1/products/update/")
                         .content(this.objectMapper.writeValueAsString(productDTO))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -297,7 +297,7 @@ public class ProductRestController_editProduct {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/v1/products/create/")
+                        .put("/api/v1/products/update/")
                         .content(this.objectMapper.writeValueAsString(productDTO))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -339,7 +339,7 @@ public class ProductRestController_editProduct {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/v1/products/create/")
+                        .put("/api/v1/products/update/")
                         .content(this.objectMapper.writeValueAsString(productDTO))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -382,7 +382,7 @@ public class ProductRestController_editProduct {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/v1/products/create/")
+                        .put("/api/v1/products/update/")
                         .content(this.objectMapper.writeValueAsString(productDTO))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -425,7 +425,7 @@ public class ProductRestController_editProduct {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/v1/products/create/")
+                        .put("/api/v1/products/update/")
                         .content(this.objectMapper.writeValueAsString(productDTO))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -468,7 +468,7 @@ public class ProductRestController_editProduct {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/v1/products/create/")
+                        .put("/api/v1/products/update/")
                         .content(this.objectMapper.writeValueAsString(productDTO))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -510,7 +510,7 @@ public class ProductRestController_editProduct {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/v1/products/create/")
+                        .put("/api/v1/products/update/")
                         .content(this.objectMapper.writeValueAsString(productDTO))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -553,7 +553,7 @@ public class ProductRestController_editProduct {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/v1/products/create/")
+                        .put("/api/v1/products/update/")
                         .content(this.objectMapper.writeValueAsString(productDTO))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -603,7 +603,7 @@ public class ProductRestController_editProduct {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/v1/products/create/")
+                        .put("/api/v1/products/update/")
                         .content(this.objectMapper.writeValueAsString(productDTO))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -646,7 +646,7 @@ public class ProductRestController_editProduct {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/v1/products/create/")
+                        .put("/api/v1/products/update/")
                         .content(this.objectMapper.writeValueAsString(productDTO))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
@@ -689,7 +689,7 @@ public class ProductRestController_editProduct {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
-                        .post("/api/v1/products/create/")
+                        .put("/api/v1/products/update/")
                         .content(this.objectMapper.writeValueAsString(productDTO))
                         .contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andDo(print())
