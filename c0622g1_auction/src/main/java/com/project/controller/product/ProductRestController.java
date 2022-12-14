@@ -91,44 +91,24 @@ public class ProductRestController {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
-        Product product = new Product();
-        BeanUtils.copyProperties(productDTO, product);
-
-        User user = new User();
-        user.setId(productDTO.getUser().getId());
-        product.setUser(user);
-
-        ReviewStatus reviewStatus = new ReviewStatus();
-        reviewStatus.setId(productDTO.getReviewStatus().getId());
-        product.setReviewStatus(reviewStatus);
-
-        AuctionStatus auctionStatus = new AuctionStatus();
-        auctionStatus.setId(productDTO.getAuctionStatus().getId());;
-        product.setAuctionStatus(auctionStatus);
-
-        PriceStep priceStep = new PriceStep();
-        priceStep.setId(productDTO.getPriceStep().getId());
-        product.setPriceStep(priceStep);
-
-        Category category = new Category();
-        category.setId(productDTO.getCategory().getId());
-        product.setCategory(category);
-
-        Date date = new Date();
-        product.setRegisterDay(String.valueOf(date));
-        productService.saveProduct(product);
+        productService.saveProduct(productDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-
+    /**
+     * Create by: HungNV,
+     * Date created: 14/12/2022
+     * Function: update product
+     *
+     * @param productDTO,bindingResult
+     * @return HttpStatus.create or (bindingResult.getFieldErrors() and HttpStatus.NOT_ACCEPTABLE)
+     */
     @PutMapping("update")
     public ResponseEntity<List<FieldError>> update(@RequestBody @Validated ProductDTO productDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
-        Product product = new Product();
-        BeanUtils.copyProperties(productDTO, product);
-        productService.update(product);
+        productService.update(productDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     /**
@@ -157,8 +137,11 @@ public class ProductRestController {
      * @return HttpStatus.CREATED
      */
 
-    @RequestMapping("img/create/img")
-    public ResponseEntity<ImgUrlProduct> saveImgProduct(@RequestBody ImgUrlProductDTO imgUrlProductDTO) {
+    @RequestMapping("img/create")
+    public ResponseEntity<List<FieldError>> saveImgProduct(@Validated @RequestBody ImgUrlProductDTO imgUrlProductDTO,BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
+        }
         iImgUrlProductService.saveImgProduct(imgUrlProductDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

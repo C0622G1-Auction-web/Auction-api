@@ -11,21 +11,19 @@ import com.project.dto.ProductSearchByRoleAdminDto;
 
 import com.project.dto.product.ProductSearchDto;
 
-import com.project.model.product.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 
 import java.util.List;
-import java.util.Optional;
 public interface IProductService {
 
 
     Optional<Product> findById(Integer id);
 
-    void saveProduct(Product product);
+    void saveProduct(ProductDTO ProductDTO);
 
-    void update(Product product);
+    void update(ProductDTO ProductDTO);
 
 
     List<Product> findByListId(List<Integer> idList);

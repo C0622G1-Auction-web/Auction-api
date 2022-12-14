@@ -1,21 +1,17 @@
 package com.project.model.product.dto;
 
-import com.project.model.auction.Auction;
-import com.project.model.product.*;
-import com.project.model.users.User;
-import com.project.model.users.dto.UserDTO;
-import org.springframework.validation.annotation.Validated;
+
 
 import javax.validation.constraints.*;
-import java.util.Set;
+
 
 public class ProductDTO{
 
     private int id;
 
-    @NotBlank
-    @NotNull
-    @Pattern(regexp = "^\\p{Lu}\\p{Ll}+(\\s\\p{Lu}\\p{Ll}+)*$")
+    @NotBlank(message = "Không để trống")
+    @NotNull(message = "Không để trống")
+    @Pattern(regexp = "^\\p{Lu}\\p{Ll}+(\\s\\p{Lu}\\p{Ll}+)*$[0-9]")
     @Size(min = 5, max =255)
     private String name;
 
@@ -24,9 +20,8 @@ public class ProductDTO{
     @Size(min = 5, max = 255)
     private String description;
 
-    @NotBlank
+
     @NotNull
-    @Pattern(regexp = "^[0-9]+$")
     private Double initialPrice;
 
     @NotBlank
@@ -37,13 +32,13 @@ public class ProductDTO{
 
     private Boolean deleteStatus;
     private String registerDay;
-    private PriceStepDTO priceStep;
-    private ReviewStatusDTO reviewStatus;
-    private AuctionStatusDTO auctionStatus;
-    private CategoryDTO category;
-    private Set<ImgUrlProduct> imgUrlProducts;
-    private Set<Auction> auctions;
-    private UserDTO user;
+    private Integer priceStep;
+    private Integer reviewStatus;
+    private Integer auctionStatus;
+    private Integer category;
+
+    @NotNull
+    private Integer user;
 
     public ProductDTO() {
     }
@@ -112,59 +107,43 @@ public class ProductDTO{
         this.registerDay = registerDay;
     }
 
-    public PriceStepDTO getPriceStep() {
+    public Integer getPriceStep() {
         return priceStep;
     }
 
-    public void setPriceStep(PriceStepDTO priceStep) {
+    public void setPriceStep(Integer priceStep) {
         this.priceStep = priceStep;
     }
 
-    public ReviewStatusDTO getReviewStatus() {
+    public Integer getReviewStatus() {
         return reviewStatus;
     }
 
-    public void setReviewStatus(ReviewStatusDTO reviewStatus) {
+    public void setReviewStatus(Integer reviewStatus) {
         this.reviewStatus = reviewStatus;
     }
 
-    public AuctionStatusDTO getAuctionStatus() {
+    public Integer getAuctionStatus() {
         return auctionStatus;
     }
 
-    public void setAuctionStatus(AuctionStatusDTO auctionStatus) {
+    public void setAuctionStatus(Integer auctionStatus) {
         this.auctionStatus = auctionStatus;
     }
 
-    public CategoryDTO getCategory() {
+    public Integer getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryDTO category) {
+    public void setCategory(Integer category) {
         this.category = category;
     }
 
-    public Set<ImgUrlProduct> getImgUrlProducts() {
-        return imgUrlProducts;
-    }
-
-    public void setImgUrlProducts(Set<ImgUrlProduct> imgUrlProducts) {
-        this.imgUrlProducts = imgUrlProducts;
-    }
-
-    public Set<Auction> getAuctions() {
-        return auctions;
-    }
-
-    public void setAuctions(Set<Auction> auctions) {
-        this.auctions = auctions;
-    }
-
-    public UserDTO getUser() {
+    public Integer getUser() {
         return user;
     }
 
-    public void setUser(UserDTO user) {
+    public void setUser(Integer user) {
         this.user = user;
     }
 }

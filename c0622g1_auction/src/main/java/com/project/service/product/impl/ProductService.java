@@ -33,17 +33,17 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void saveProduct(Product product) {
-        productRepository.saveProduct(product.getName(), product.getInitialPrice(), product.getUser().getId(),
-                product.getCategory().getId(), product.getDescription(), product.getPriceStep().getId(),
-                product.getStartTime(), product.getEndTime(), product.getRegisterDay());
+    public void saveProduct(ProductDTO productDTO) {
+        productRepository.saveProduct(productDTO.getName(), productDTO.getInitialPrice(), productDTO.getUser(),
+                productDTO.getCategory(), productDTO.getDescription(), productDTO.getPriceStep(),
+                productDTO.getStartTime(), productDTO.getEndTime(), productDTO.getRegisterDay(),productDTO.getAuctionStatus(),productDTO.getReviewStatus());
     }
 
     @Override
-    public void update(Product product) {
-        productRepository.updateProduct(product.getName(), product.getInitialPrice(), product.getUser().getId(),
-                product.getCategory().getId(), product.getDescription(), product.getPriceStep().getId(),
-                product.getStartTime(), product.getEndTime(), product.getRegisterDay(), product.getId());
+    public void update(ProductDTO productDTO) {
+        productRepository.updateProduct(productDTO.getName(), productDTO.getInitialPrice(), productDTO.getUser(),
+                productDTO.getCategory(), productDTO.getDescription(), productDTO.getPriceStep(),
+                productDTO.getStartTime(), productDTO.getEndTime(), productDTO.getRegisterDay(), productDTO.getId());
 
     }
 

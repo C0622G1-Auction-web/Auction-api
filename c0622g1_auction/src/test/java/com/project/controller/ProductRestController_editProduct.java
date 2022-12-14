@@ -46,25 +46,11 @@ public class ProductRestController_editProduct {
         productDTO.setEndTime("2022-12-25 11:00:00");
         productDTO.setRegisterDay("2022-12-15");
 
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(2);
-        productDTO.setUser(userDTO);
-
-        ReviewStatusDTO reviewStatusDTO = new ReviewStatusDTO();
-        reviewStatusDTO.setId(1);
-        productDTO.setReviewStatus(reviewStatusDTO);
-
-        AuctionStatusDTO auctionStatusDTO = new AuctionStatusDTO();
-        auctionStatusDTO.setId(1);
-        productDTO.setAuctionStatus(auctionStatusDTO);
-
-        PriceStepDTO priceStepDTO = new PriceStepDTO();
-        priceStepDTO.setId(1);
-        productDTO.setPriceStep(priceStepDTO);
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(1);
-        productDTO.setCategory(categoryDTO);
+        productDTO.setUser(2);
+        productDTO.setReviewStatus(1);
+        productDTO.setAuctionStatus(1);
+        productDTO.setPriceStep(2);
+        productDTO.setCategory(2);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -91,25 +77,11 @@ public class ProductRestController_editProduct {
         productDTO.setEndTime("2022-12-25 11:00:00");
         productDTO.setRegisterDay("2022-12-15");
 
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(2);
-        productDTO.setUser(userDTO);
-
-        ReviewStatusDTO reviewStatusDTO = new ReviewStatusDTO();
-        reviewStatusDTO.setId(1);
-        productDTO.setReviewStatus(reviewStatusDTO);
-
-        AuctionStatusDTO auctionStatusDTO = new AuctionStatusDTO();
-        auctionStatusDTO.setId(1);
-        productDTO.setAuctionStatus(auctionStatusDTO);
-
-        PriceStepDTO priceStepDTO = new PriceStepDTO();
-        priceStepDTO.setId(1);
-        productDTO.setPriceStep(priceStepDTO);
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(1);
-        productDTO.setCategory(categoryDTO);
+        productDTO.setUser(2);
+        productDTO.setReviewStatus(1);
+        productDTO.setAuctionStatus(1);
+        productDTO.setPriceStep(2);
+        productDTO.setCategory(2);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -136,25 +108,11 @@ public class ProductRestController_editProduct {
         productDTO.setEndTime("2022-12-25 11:00:00");
         productDTO.setRegisterDay("2022-12-15");
 
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(2);
-        productDTO.setUser(userDTO);
-
-        ReviewStatusDTO reviewStatusDTO = new ReviewStatusDTO();
-        reviewStatusDTO.setId(1);
-        productDTO.setReviewStatus(reviewStatusDTO);
-
-        AuctionStatusDTO auctionStatusDTO = new AuctionStatusDTO();
-        auctionStatusDTO.setId(1);
-        productDTO.setAuctionStatus(auctionStatusDTO);
-
-        PriceStepDTO priceStepDTO = new PriceStepDTO();
-        priceStepDTO.setId(1);
-        productDTO.setPriceStep(priceStepDTO);
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(1);
-        productDTO.setCategory(categoryDTO);
+        productDTO.setUser(2);
+        productDTO.setReviewStatus(1);
+        productDTO.setAuctionStatus(1);
+        productDTO.setPriceStep(2);
+        productDTO.setCategory(2);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -179,26 +137,11 @@ public class ProductRestController_editProduct {
         productDTO.setStartTime("2022-12-20 11:00:00");
         productDTO.setEndTime("2022-12-25 11:00:00");
         productDTO.setRegisterDay("2022-12-15");
-
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(2);
-        productDTO.setUser(userDTO);
-
-        ReviewStatusDTO reviewStatusDTO = new ReviewStatusDTO();
-        reviewStatusDTO.setId(1);
-        productDTO.setReviewStatus(reviewStatusDTO);
-
-        AuctionStatusDTO auctionStatusDTO = new AuctionStatusDTO();
-        auctionStatusDTO.setId(1);
-        productDTO.setAuctionStatus(auctionStatusDTO);
-
-        PriceStepDTO priceStepDTO = new PriceStepDTO();
-        priceStepDTO.setId(1);
-        productDTO.setPriceStep(priceStepDTO);
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(1);
-        productDTO.setCategory(categoryDTO);
+        productDTO.setUser(2);
+        productDTO.setReviewStatus(1);
+        productDTO.setAuctionStatus(1);
+        productDTO.setPriceStep(2);
+        productDTO.setCategory(2);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -232,25 +175,11 @@ public class ProductRestController_editProduct {
         productDTO.setEndTime("2022-12-25 11:00:00");
         productDTO.setRegisterDay("2022-12-15");
 
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(2);
-        productDTO.setUser(userDTO);
-
-        ReviewStatusDTO reviewStatusDTO = new ReviewStatusDTO();
-        reviewStatusDTO.setId(1);
-        productDTO.setReviewStatus(reviewStatusDTO);
-
-        AuctionStatusDTO auctionStatusDTO = new AuctionStatusDTO();
-        auctionStatusDTO.setId(1);
-        productDTO.setAuctionStatus(auctionStatusDTO);
-
-        PriceStepDTO priceStepDTO = new PriceStepDTO();
-        priceStepDTO.setId(1);
-        productDTO.setPriceStep(priceStepDTO);
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(1);
-        productDTO.setCategory(categoryDTO);
+        productDTO.setUser(2);
+        productDTO.setReviewStatus(1);
+        productDTO.setAuctionStatus(1);
+        productDTO.setPriceStep(2);
+        productDTO.setCategory(2);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -275,25 +204,11 @@ public class ProductRestController_editProduct {
         productDTO.setStartTime("2022-12-20 11:00:00");
         productDTO.setEndTime("2022-12-25 11:00:00");
         productDTO.setRegisterDay("2022-12-15");
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(2);
-        productDTO.setUser(userDTO);
-
-        ReviewStatusDTO reviewStatusDTO = new ReviewStatusDTO();
-        reviewStatusDTO.setId(1);
-        productDTO.setReviewStatus(reviewStatusDTO);
-
-        AuctionStatusDTO auctionStatusDTO = new AuctionStatusDTO();
-        auctionStatusDTO.setId(1);
-        productDTO.setAuctionStatus(auctionStatusDTO);
-
-        PriceStepDTO priceStepDTO = new PriceStepDTO();
-        priceStepDTO.setId(1);
-        productDTO.setPriceStep(priceStepDTO);
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(1);
-        productDTO.setCategory(categoryDTO);
+        productDTO.setUser(2);
+        productDTO.setReviewStatus(1);
+        productDTO.setAuctionStatus(1);
+        productDTO.setPriceStep(2);
+        productDTO.setCategory(2);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -317,25 +232,11 @@ public class ProductRestController_editProduct {
         productDTO.setStartTime("2022-12-20 11:00:00");
         productDTO.setEndTime("2022-12-25 11:00:00");
         productDTO.setRegisterDay("2022-12-15");
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(2);
-        productDTO.setUser(userDTO);
-
-        ReviewStatusDTO reviewStatusDTO = new ReviewStatusDTO();
-        reviewStatusDTO.setId(1);
-        productDTO.setReviewStatus(reviewStatusDTO);
-
-        AuctionStatusDTO auctionStatusDTO = new AuctionStatusDTO();
-        auctionStatusDTO.setId(1);
-        productDTO.setAuctionStatus(auctionStatusDTO);
-
-        PriceStepDTO priceStepDTO = new PriceStepDTO();
-        priceStepDTO.setId(1);
-        productDTO.setPriceStep(priceStepDTO);
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(1);
-        productDTO.setCategory(categoryDTO);
+        productDTO.setUser(2);
+        productDTO.setReviewStatus(1);
+        productDTO.setAuctionStatus(1);
+        productDTO.setPriceStep(2);
+        productDTO.setCategory(2);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -360,25 +261,11 @@ public class ProductRestController_editProduct {
         productDTO.setStartTime("2022-12-20 11:00:00");
         productDTO.setEndTime("2022-12-25 11:00:00");
         productDTO.setRegisterDay("2022-12-15");
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(2);
-        productDTO.setUser(userDTO);
-
-        ReviewStatusDTO reviewStatusDTO = new ReviewStatusDTO();
-        reviewStatusDTO.setId(1);
-        productDTO.setReviewStatus(reviewStatusDTO);
-
-        AuctionStatusDTO auctionStatusDTO = new AuctionStatusDTO();
-        auctionStatusDTO.setId(1);
-        productDTO.setAuctionStatus(auctionStatusDTO);
-
-        PriceStepDTO priceStepDTO = new PriceStepDTO();
-        priceStepDTO.setId(1);
-        productDTO.setPriceStep(priceStepDTO);
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(1);
-        productDTO.setCategory(categoryDTO);
+        productDTO.setUser(2);
+        productDTO.setReviewStatus(1);
+        productDTO.setAuctionStatus(1);
+        productDTO.setPriceStep(2);
+        productDTO.setCategory(2);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -403,25 +290,11 @@ public class ProductRestController_editProduct {
         productDTO.setStartTime("2022-12-20 11:00:00");
         productDTO.setEndTime("2022-12-25 11:00:00");
         productDTO.setRegisterDay("2022-12-15");
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(2);
-        productDTO.setUser(userDTO);
-
-        ReviewStatusDTO reviewStatusDTO = new ReviewStatusDTO();
-        reviewStatusDTO.setId(1);
-        productDTO.setReviewStatus(reviewStatusDTO);
-
-        AuctionStatusDTO auctionStatusDTO = new AuctionStatusDTO();
-        auctionStatusDTO.setId(1);
-        productDTO.setAuctionStatus(auctionStatusDTO);
-
-        PriceStepDTO priceStepDTO = new PriceStepDTO();
-        priceStepDTO.setId(1);
-        productDTO.setPriceStep(priceStepDTO);
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(1);
-        productDTO.setCategory(categoryDTO);
+        productDTO.setUser(2);
+        productDTO.setReviewStatus(1);
+        productDTO.setAuctionStatus(1);
+        productDTO.setPriceStep(2);
+        productDTO.setCategory(2);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -446,25 +319,11 @@ public class ProductRestController_editProduct {
         productDTO.setStartTime("2022-12-20 11:00:00");
         productDTO.setEndTime("2022-12-25 11:00:00");
         productDTO.setRegisterDay("2022-12-15");
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(2);
-        productDTO.setUser(userDTO);
-
-        ReviewStatusDTO reviewStatusDTO = new ReviewStatusDTO();
-        reviewStatusDTO.setId(1);
-        productDTO.setReviewStatus(reviewStatusDTO);
-
-        AuctionStatusDTO auctionStatusDTO = new AuctionStatusDTO();
-        auctionStatusDTO.setId(1);
-        productDTO.setAuctionStatus(auctionStatusDTO);
-
-        PriceStepDTO priceStepDTO = new PriceStepDTO();
-        priceStepDTO.setId(1);
-        productDTO.setPriceStep(priceStepDTO);
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(1);
-        productDTO.setCategory(categoryDTO);
+        productDTO.setUser(2);
+        productDTO.setReviewStatus(1);
+        productDTO.setAuctionStatus(1);
+        productDTO.setPriceStep(2);
+        productDTO.setCategory(2);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -488,25 +347,11 @@ public class ProductRestController_editProduct {
         productDTO.setStartTime("2022-12-20 11:00:00");
         productDTO.setEndTime("2022-12-25 11:00:00");
         productDTO.setRegisterDay("2022-12-15");
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(2);
-        productDTO.setUser(userDTO);
-
-        ReviewStatusDTO reviewStatusDTO = new ReviewStatusDTO();
-        reviewStatusDTO.setId(1);
-        productDTO.setReviewStatus(reviewStatusDTO);
-
-        AuctionStatusDTO auctionStatusDTO = new AuctionStatusDTO();
-        auctionStatusDTO.setId(1);
-        productDTO.setAuctionStatus(auctionStatusDTO);
-
-        PriceStepDTO priceStepDTO = new PriceStepDTO();
-        priceStepDTO.setId(1);
-        productDTO.setPriceStep(priceStepDTO);
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(1);
-        productDTO.setCategory(categoryDTO);
+        productDTO.setUser(2);
+        productDTO.setReviewStatus(1);
+        productDTO.setAuctionStatus(1);
+        productDTO.setPriceStep(2);
+        productDTO.setCategory(2);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -531,25 +376,11 @@ public class ProductRestController_editProduct {
         productDTO.setStartTime("2022-12-20 11:00:00");
         productDTO.setEndTime("2022-12-25 11:00:00");
         productDTO.setRegisterDay("2022-12-15");
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(2);
-        productDTO.setUser(userDTO);
-
-        ReviewStatusDTO reviewStatusDTO = new ReviewStatusDTO();
-        reviewStatusDTO.setId(1);
-        productDTO.setReviewStatus(reviewStatusDTO);
-
-        AuctionStatusDTO auctionStatusDTO = new AuctionStatusDTO();
-        auctionStatusDTO.setId(1);
-        productDTO.setAuctionStatus(auctionStatusDTO);
-
-        PriceStepDTO priceStepDTO = new PriceStepDTO();
-        priceStepDTO.setId(1);
-        productDTO.setPriceStep(priceStepDTO);
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(1);
-        productDTO.setCategory(categoryDTO);
+        productDTO.setUser(2);
+        productDTO.setReviewStatus(1);
+        productDTO.setAuctionStatus(1);
+        productDTO.setPriceStep(2);
+        productDTO.setCategory(2);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -581,25 +412,11 @@ public class ProductRestController_editProduct {
         productDTO.setStartTime("2022-12-20 11:00:00");
         productDTO.setEndTime("2022-12-25 11:00:00");
         productDTO.setRegisterDay("2022-12-15");
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(2);
-        productDTO.setUser(userDTO);
-
-        ReviewStatusDTO reviewStatusDTO = new ReviewStatusDTO();
-        reviewStatusDTO.setId(1);
-        productDTO.setReviewStatus(reviewStatusDTO);
-
-        AuctionStatusDTO auctionStatusDTO = new AuctionStatusDTO();
-        auctionStatusDTO.setId(1);
-        productDTO.setAuctionStatus(auctionStatusDTO);
-
-        PriceStepDTO priceStepDTO = new PriceStepDTO();
-        priceStepDTO.setId(1);
-        productDTO.setPriceStep(priceStepDTO);
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(1);
-        productDTO.setCategory(categoryDTO);
+        productDTO.setUser(2);
+        productDTO.setReviewStatus(1);
+        productDTO.setAuctionStatus(1);
+        productDTO.setPriceStep(2);
+        productDTO.setCategory(2);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -624,25 +441,11 @@ public class ProductRestController_editProduct {
         productDTO.setStartTime("");
         productDTO.setEndTime("2022-12-25 11:00:00");
         productDTO.setRegisterDay("2022-12-15");
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(2);
-        productDTO.setUser(userDTO);
-
-        ReviewStatusDTO reviewStatusDTO = new ReviewStatusDTO();
-        reviewStatusDTO.setId(1);
-        productDTO.setReviewStatus(reviewStatusDTO);
-
-        AuctionStatusDTO auctionStatusDTO = new AuctionStatusDTO();
-        auctionStatusDTO.setId(1);
-        productDTO.setAuctionStatus(auctionStatusDTO);
-
-        PriceStepDTO priceStepDTO = new PriceStepDTO();
-        priceStepDTO.setId(1);
-        productDTO.setPriceStep(priceStepDTO);
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(1);
-        productDTO.setCategory(categoryDTO);
+        productDTO.setUser(2);
+        productDTO.setReviewStatus(1);
+        productDTO.setAuctionStatus(1);
+        productDTO.setPriceStep(2);
+        productDTO.setCategory(2);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
@@ -667,25 +470,11 @@ public class ProductRestController_editProduct {
         productDTO.setStartTime("2022-12-25 11:00:00");
         productDTO.setEndTime("");
         productDTO.setRegisterDay("2022-12-15");
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(2);
-        productDTO.setUser(userDTO);
-
-        ReviewStatusDTO reviewStatusDTO = new ReviewStatusDTO();
-        reviewStatusDTO.setId(1);
-        productDTO.setReviewStatus(reviewStatusDTO);
-
-        AuctionStatusDTO auctionStatusDTO = new AuctionStatusDTO();
-        auctionStatusDTO.setId(1);
-        productDTO.setAuctionStatus(auctionStatusDTO);
-
-        PriceStepDTO priceStepDTO = new PriceStepDTO();
-        priceStepDTO.setId(1);
-        productDTO.setPriceStep(priceStepDTO);
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setId(1);
-        productDTO.setCategory(categoryDTO);
+        productDTO.setUser(2);
+        productDTO.setReviewStatus(1);
+        productDTO.setAuctionStatus(1);
+        productDTO.setPriceStep(2);
+        productDTO.setCategory(2);
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders
