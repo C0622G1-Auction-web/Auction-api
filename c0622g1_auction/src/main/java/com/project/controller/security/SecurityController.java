@@ -68,8 +68,4 @@ public class SecurityController {
                 myUserDetail.getAuthorities()), HttpStatus.OK);
     }
 
-
-//    hello worrld
-    //    hello worrld2
-
 }
