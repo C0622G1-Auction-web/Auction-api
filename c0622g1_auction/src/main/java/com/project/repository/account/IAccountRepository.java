@@ -12,12 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface IAccountRepository extends JpaRepository<Account,Integer> {
 
     @Query(
-            value = " select " +
-                    "   account.id, " +
-                    "   account.username " +
-                    "   account.password " +
-                    "   account.statusLock " +
-                    "   account.deleteStatus " +
+            value = " select * " +
                     " from account where username = :username ",
             nativeQuery = true
     )
