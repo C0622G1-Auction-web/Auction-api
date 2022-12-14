@@ -26,7 +26,7 @@ public class AuctionService implements IAuctionService {
 
     @Override
     public Page<Auction> findAllTransaction(Pageable pageable) {
-        return auctionRepository.findAll(pageable);
+        return auctionRepository.findAllTransaction(pageable);
     }
 
     @Override

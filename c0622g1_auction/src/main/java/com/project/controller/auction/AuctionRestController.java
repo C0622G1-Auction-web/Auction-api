@@ -1,5 +1,6 @@
 package com.project.controller.auction;
 
+import com.project.dto.auction.AuctionDto;
 import com.project.model.auction.Auction;
 import com.project.service.auction.IAuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,9 @@ public class AuctionRestController {
      * @return HttpStatus.NO_CONTENT
      * @return HttpStatus.OK
      */
-    @GetMapping
-    public ResponseEntity<Page<Auction>> getTransactionList(@PageableDefault(value = 5) Pageable pageable) {
+    @GetMapping("/transaction")
+    public ResponseEntity<Page<Auction>> getTransactionList(@PageableDefault(value = 5) Pageable pageable
+    ){
         Page<Auction> transactionPage = auctionService.findAllTransaction(pageable);
         if (transactionPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -45,7 +47,7 @@ public class AuctionRestController {
      * @return HttpStatus.OK and removed transaction if remove successfully
      * @return HttpStatus.NOT_FOUND if exists not found transaction
      */
-    @DeleteMapping
+    @PutMapping("/delete")
     public ResponseEntity<List<Auction>> remove(@RequestBody List<Integer> idList) {
         List<Auction> transactionList = auctionService.findByListId(idList);
         if (idList.size() != transactionList.size()) {
