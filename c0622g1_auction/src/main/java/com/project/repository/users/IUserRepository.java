@@ -1,9 +1,8 @@
 package com.project.repository.users;
 
-import com.project.model.account.Account;
-import com.project.model.users.Address;
+
 import com.project.model.users.User;
-import com.project.model.users.UserType;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -59,25 +58,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
                     @Param("lastName") String lastName,
                     @Param("phone") String phone,
                     @Param("pointDedication") Double pointDedication,
-                    @Param("accountId") Account accountId,
-                    @Param("addressId") Address addressId,
-                    @Param("userTypeId") UserType userTypeId);
-
-    @Modifying
-    @Query(value = "insert into address(id, detail_address, town, district, city, country)" +
-            "values(" +
-            ":id," +
-            ":detailAddress," +
-            ":town," +
-            ":district," +
-            ":city," +
-            ":country)",
-            nativeQuery = true)
-    void saveAddress(
-            @Param("id") Integer id,
-            @Param("detailAddress") String detailAddress,
-            @Param("town") String town,
-            @Param("district") String district,
-            @Param("city") String city,
-            @Param("country") String country);
+                    @Param("accountId") Integer accountId,
+                    @Param("addressId") Integer addressId,
+                    @Param("userTypeId") Integer userTypeId);
 }

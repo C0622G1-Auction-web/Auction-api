@@ -12,10 +12,7 @@ public class AccountService implements IAccountService {
     private IAccountRepository accountRepository;
 
     @Override
-    public void saveAccount(Account account) {
-        accountRepository.saveAccount(
-                account.getId(),
-                account.getUsername(),
-                account.getPassword());
+    public Account saveAccount(Account account) {
+        return accountRepository.save(account);
     }
 }

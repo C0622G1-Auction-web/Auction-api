@@ -13,13 +13,9 @@ public class AddressService implements IAddressService {
     private IAddressRepository addressRepository;
 
     @Override
-    public void saveAddress(Address address) {
-        addressRepository.saveAddress(
-                address.getId(),
-                address.getDetailAddress(),
-                address.getTown(),
-                address.getDistrict(),
-                address.getCity(),
-                address.getCountry());
+    public Address saveAddress(Address address) {
+        addressRepository.save(address);
+        return address;
     }
+
 }
