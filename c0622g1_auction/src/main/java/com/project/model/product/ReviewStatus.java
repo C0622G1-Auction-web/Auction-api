@@ -11,6 +11,8 @@ public class ReviewStatus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    @JsonBackReference
     @OneToMany(mappedBy = "reviewStatus")
     @JsonBackReference
     private Set<Product> products;
