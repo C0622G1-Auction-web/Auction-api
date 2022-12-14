@@ -1,10 +1,7 @@
-package com.project.controller.UserRestController;
-
+package com.project.controller.users;
 
 import com.project.dto.user.*;
-
 import com.project.model.account.Account;
-import com.project.model.account.LockAccount;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import com.project.service.account.IAccountService;
@@ -17,12 +14,43 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+import java.util.List;
+
 @CrossOrigin("*")
-@RequestMapping("/api/user/v1")
+@RestController
+@RequestMapping("/api/v1/users")
 public class UserRestController {
+
     @Autowired
     private IUserService userService;
+
+    /**
+     * Created: SangDD
+     * Created date: 13/12/2022
+     * Function: get Top 10 users with the highest total money auction
+     * @return HttpStatus.OK if result is not empty
+     * @return HttpStatus.NOT_FOUND if result is not empty
+     */
+    @GetMapping("/top/{quality}")
+    public ResponseEntity<List<UserTopDto>> getTopAuctionUser(@PathVariable String quality) {
+        String regexNumber = "^\\d+$";
+        if(!quality.matches(regexNumber)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        List<UserTopDto> userTopDtoList = userService.getTopAuctionUser(quality);
+        if(userTopDtoList.size() == 0) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(userTopDtoList, HttpStatus.OK);
+    }
+
+    /**
+     * Created: VietNQ
+     * Created date: 13/12/2022
+     * Function: create user account
+     * @return HttpStatus.OK if result is not empty
+     * @return HttpStatus.NOT_FOUND if result is not empty
+     */
     @Autowired
     private IAddressService addressService;
     @Autowired

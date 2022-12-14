@@ -14,7 +14,7 @@ public class Auction {
     private Integer id;
     private Double currentPrice;
     private String auctionTime;
-    private Boolean payStatus;
+    @Column(columnDefinition = "boolean default false")
     private Boolean auctionStatus;
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
@@ -76,14 +76,6 @@ public class Auction {
 
     public void setAuctionTime(String auctionTime) {
         this.auctionTime = auctionTime;
-    }
-
-    public Boolean getPayStatus() {
-        return payStatus;
-    }
-
-    public void setPayStatus(Boolean payStatus) {
-        this.payStatus = payStatus;
     }
 
     public Boolean getAuctionStatus() {
