@@ -11,8 +11,9 @@ public class UserType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    @OneToMany(mappedBy ="userType")
+
     @JsonBackReference
+    @OneToMany(mappedBy ="userType")
     private Set<User> users;
 
     public UserType() {

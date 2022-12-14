@@ -12,6 +12,7 @@ public class ReviewStatus {
     private Integer id;
     private String name;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "reviewStatus")
     private Set<Product> products;
     public ReviewStatus() {

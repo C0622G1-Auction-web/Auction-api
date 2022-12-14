@@ -1,17 +1,50 @@
 package com.project.dto.product;
-
 import com.project.model.auction.Auction;
 import com.project.model.product.*;
 import com.project.model.users.User;
 import java.util.Set;
 
-public class ProductDto {
+import com.project.dto.user.UserDto;
+import com.project.model.users.User;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+public class ProductDto implements Validator {
     private int id;
+
+    @NotNull(message = "Name of product not null")
+    @NotBlank(message = "Please input Name of Product")
     private String name;
+
+    @NotNull(message = "Description of product not null")
+    @NotBlank(message = "Please input Description of Product")
     private String description;
+
+    @NotNull(message = "Initial Price of product not null")
+    @NotBlank(message = "Please input initial Price of Product")
     private Double initialPrice;
+
+    @NotNull(message = "Start Time of product not null")
+    @NotBlank(message = "Please input start time to auction Product")
     private String startTime;
+
+    @NotNull(message = "End Time of product not null")
+    @NotBlank(message = "Please input end time to auction Product")
     private String endTime;
+
+    @NotBlank(message = "Please input step price to auction Product")
+    private PriceStepDto priceStepDto;
+
+    @NotBlank(message = "Please select options category to auction Product")
+    private CategoryDto categoryDto;
+
+    private UserDto userDto;
+
+
+
     private Boolean deleteStatus;
     private String registerDay;
     private PriceStep priceStep;
@@ -23,6 +56,18 @@ public class ProductDto {
     private User user;
 
     public ProductDto() {
+    }
+
+    public ProductDto(int id, String name, String description, Double initialPrice, String startTime, String endTime, PriceStepDto priceStepDto, CategoryDto categoryDto, UserDto userDto) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.initialPrice = initialPrice;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.priceStepDto = priceStepDto;
+        this.categoryDto = categoryDto;
+        this.userDto = userDto;
     }
 
     public int getId() {
@@ -73,6 +118,34 @@ public class ProductDto {
         this.endTime = endTime;
     }
 
+
+    public void setPriceStep(PriceStepDto priceStepDto) {
+        this.priceStepDto = priceStepDto;
+    }
+
+
+    public void setCategory(CategoryDto categoryDto) {
+        this.categoryDto = categoryDto;
+    }
+
+
+    public void setUser(UserDto userDto) {
+        this.userDto = userDto;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        ProductDto productDto = (ProductDto) target;
+
+        if (!productDto.name.matches("[A-Za-z ]+")) {
+            errors.rejectValue("name", "name.invalidFormat");
+        }
+    }
     public Boolean getDeleteStatus() {
         return deleteStatus;
     }

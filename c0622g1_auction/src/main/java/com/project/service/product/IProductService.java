@@ -1,6 +1,7 @@
 package com.project.service.product;
 
 
+import com.project.model.product.Product;
 import com.project.dto.ProductSearchByRoleAdminDto;
 
 import com.project.dto.product.ProductSearchDto;
@@ -13,7 +14,27 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
+import java.util.Optional;
+
 public interface IProductService {
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: save Product
+     */
+    void saveProduct(Product product);
+
+    /**
+     * Created by: TienBM,
+     * Date created: 13/12/2022
+     * Function: find product by id
+     * @param productId
+     * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
+     */
+
+    Optional<Product> findProductById(Integer productId);
+
+
     List<Product> findByListId(List<Integer> idList);
 
     void removeByListId(List<Integer> idList);
@@ -37,5 +58,4 @@ public interface IProductService {
      * @return Page<Product>
      */
     Page<Product> getAllAndSearch(ProductSearchDto productSearchDto, Pageable pageable);
-
 }

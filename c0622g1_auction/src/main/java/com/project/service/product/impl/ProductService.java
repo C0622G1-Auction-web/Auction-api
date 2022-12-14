@@ -1,6 +1,7 @@
 package com.project.service.product.impl;
 
 
+import com.project.dto.ProductDto;
 import com.project.dto.ProductSearchByRoleAdminDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
@@ -21,6 +22,31 @@ public class ProductService implements IProductService {
     private IProductRepository productRepository;
 
 
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: save Product
+     */
+
+    @Override
+    public void saveProduct(Product product) {
+        productRepository.createProduct(product.getDescription(), product.getEndTime(), product.getInitialPrice(), product.getName(), product.getStartTime(), product.getCategory().getId(), product.getPriceStep().getId(), product.getUser().getId());
+
+    }
+
+    /**
+     * Created by: TienBM,
+     * Date created: 13/12/2022
+     * Function: find product by id
+     *
+     * @param productId
+     * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
+     */
+
+    @Override
+    public Optional<Product> findProductById(Integer productId) {
+        return productRepository.findProductById(productId);
+    }
     @Override
     public List<Product> findByListId(List<Integer> idList) {
         return productRepository.findByListId(idList);

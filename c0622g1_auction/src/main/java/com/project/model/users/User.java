@@ -27,19 +27,23 @@ public class User {
     @JoinColumn(name = "address_id",referencedColumnName = "id")
     @JsonBackReference
     private Address address;
+
     @ManyToOne
     @JoinColumn(name = "user_type_id",referencedColumnName = "id")
     @JsonBackReference
     private UserType userType;
-    @OneToMany(mappedBy="user")
+
     @JsonBackReference
+    @OneToMany(mappedBy="user")
     private Set<Auction> auctions;
+
     @OneToOne
     @JoinColumn(name = "account_id",referencedColumnName = "id")
     @JsonBackReference
     private Account account;
-    @OneToMany(mappedBy = "user")
+
     @JsonBackReference
+    @OneToMany(mappedBy = "user")
     private Set<Product> products;
 
     public User() {

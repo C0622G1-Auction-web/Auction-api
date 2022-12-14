@@ -12,6 +12,7 @@ public class Category {
     private Integer id;
     private String name;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "category")
 
     private Set<Product> products;

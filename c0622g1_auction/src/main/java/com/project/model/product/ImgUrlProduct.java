@@ -13,10 +13,10 @@ public class ImgUrlProduct {
     private Integer id;
     private String url;
 
+    @JsonBackReference
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
-    @JsonBackReference
     private Product product;
 
     public ImgUrlProduct() {
