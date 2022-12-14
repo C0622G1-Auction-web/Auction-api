@@ -34,9 +34,9 @@ public class UserRestController {
      * Date created: 13/12/2022
      * Function: to create user
      *
-     * @return HttpStatus.OK, HttpStatus.NOT_MODIFIED
+     * @return HttpStatus.NOT_CONTENT, HttpStatus.NOT_MODIFIED
      */
-    @PostMapping()
+    @PostMapping("/create")
     public ResponseEntity<?> createUser(@Validated @RequestBody UserDto userDto, BindingResult bindingResult) {
         List<User> userList = userService.findAll();
         List<String> emailList = new ArrayList<>();
@@ -47,7 +47,7 @@ public class UserRestController {
         userDto.setEmailList(emailList);
         userDto.validate(userDto, bindingResult);
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NO_CONTENT);
         }
         User user = new User();
         Account account = new Account();
@@ -66,23 +66,11 @@ public class UserRestController {
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
-     * Function: to find user by id
-     *
-     * @return HttpStatus.OK
-     */
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable int id) {
-        return new ResponseEntity<>(userService.findUserById(id).get(), HttpStatus.OK);
-    }
-
-    /**
-     * Create by: TruongLH
-     * Date created: 13/12/2022
      * Function: to update user by id
      *
      * @return HttpStatus.OK, HttpStatus.NOT_MODIFIED
      */
-    @PutMapping("{id}/edit")
+    @PutMapping("/{id}/update")
     public ResponseEntity<?> editUserById(@Validated @PathVariable() int id, @RequestBody UserDto userDto, BindingResult bindingResult) {
         List<User> userList = userService.findAll();
         List<String> emailList = new ArrayList<>();
@@ -95,7 +83,7 @@ public class UserRestController {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
         } else {
-            User user = new User();
+            User user = userService.findUserById(id).get();
             Account account = new Account();
             BeanUtils.copyProperties(userDto, account);
             Address address = new Address();

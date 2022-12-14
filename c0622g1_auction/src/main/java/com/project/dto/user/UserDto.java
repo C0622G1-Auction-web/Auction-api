@@ -190,6 +190,7 @@ public class UserDto implements Validator {
         this.userType = userType;
     }
 
+
     @Override
     public boolean supports(Class<?> clazz) {
         return false;
