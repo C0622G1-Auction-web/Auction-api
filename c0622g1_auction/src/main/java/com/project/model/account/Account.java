@@ -1,5 +1,4 @@
 package com.project.model.account;
-
 import com.project.model.users.User;
 
 import javax.persistence.*;
@@ -12,6 +11,7 @@ public class Account {
     private Integer id;
     private String username;
     private String password;
+    @Column(columnDefinition = "boolean default true")
     private Boolean statusLock;
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;

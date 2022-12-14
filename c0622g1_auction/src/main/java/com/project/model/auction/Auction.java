@@ -38,14 +38,6 @@ public class Auction {
     public Auction() {
     }
 
-    public String getAuctionDay() {
-        return auctionDay;
-    }
-
-    public void setAuctionDay(String auctionDay) {
-        this.auctionDay = auctionDay;
-    }
-
     public Boolean getDeleteStatus() {
         return deleteStatus;
     }
@@ -92,14 +84,6 @@ public class Auction {
 
     public void setAuctionTime(String auctionTime) {
         this.auctionTime = auctionTime;
-    }
-
-    public Boolean getPayStatus() {
-        return payStatus;
-    }
-
-    public void setPayStatus(Boolean payStatus) {
-        this.payStatus = payStatus;
     }
 
     public Boolean getAuctionStatus() {
