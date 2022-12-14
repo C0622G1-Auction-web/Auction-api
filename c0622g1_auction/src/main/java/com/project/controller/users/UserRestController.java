@@ -42,6 +42,8 @@ public class UserRestController {
     private IAccountService accountService;
     @Autowired
     private IUserTypeService userTypeService;
+    @Autowired
+    private ILockAccountService lockAccountService;
 
     /**
      * Create by: HaiNT
@@ -150,14 +152,6 @@ public class UserRestController {
      * @return HttpStatus.OK if result is not empty
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
-    @Autowired
-    private IAddressService addressService;
-    @Autowired
-    private IAccountService accountService;
-    @Autowired
-    private ILockAccountService lockAccountService;
-
-
     @PostMapping("/create")
     public ResponseEntity<?> addUser(@RequestBody AddUserDto addUserDto) {
 

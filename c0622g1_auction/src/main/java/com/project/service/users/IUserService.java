@@ -1,12 +1,9 @@
 package com.project.service.users;
 
 import com.project.dto.user.UserTopDto;
-
-import com.project.model.users.User;
-import org.springframework.stereotype.Service;
-
 import com.project.model.users.Address;
 import com.project.model.users.User;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,16 +15,16 @@ public interface IUserService {
     void saveUser(User user, Integer addressId, Integer accountId, Integer Number);
 
 
-        /**
-         * Created: SangDD
-         * Created date: 13/12/2022
-         * Function: get Top 10 users with the highest total money auction
-         *
-         * @param quality user quality
-         * @return List<User>
-         */
-        List<UserTopDto> getTopAuctionUser(String quality);
-    }
+    /**
+     * Created: SangDD
+     * Created date: 13/12/2022
+     * Function: get Top 10 users with the highest total money auction
+     *
+     * @param quality user quality
+     * @return List<User>
+     */
+    List<UserTopDto> getTopAuctionUser(String quality);
+
 
     /**
      * By: HaiNT - Find list of users by param
@@ -59,16 +56,6 @@ public interface IUserService {
 
     void unlockUser(List<Integer> idList);
 
-
-    /**
-     * Created: SangDD
-     * Created date: 13/12/2022
-     * Function: get Top 10 users with the highest total money auction
-     *
-     * @param quality user quality
-     * @return List<User>
-     */
-    List<UserTopDto> getTopAuctionUser(String quality);
 
 }
 
