@@ -102,6 +102,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     Page<Product> searchByRoleAdmin(@Param("productSearchByRoleAdminDto") ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
                                     Pageable pageable);
 
+
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022

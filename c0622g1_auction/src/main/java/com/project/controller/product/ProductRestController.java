@@ -102,7 +102,7 @@ public class ProductRestController {
      * @param id
      * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK if found
      */
-    @PutMapping("/do-not-review{id}")
+    @PutMapping("/do-not-review/{id}")
     public ResponseEntity<Product> doNotReview(@PathVariable("id") Integer id) {
         Optional<Product> optionalProduct = productService.findById(id);
         if (!optionalProduct.isPresent()) {

@@ -44,12 +44,12 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product review(Integer id) {
-        return productRepository.reviewProduct(id);
+    public void review(Integer id) {
+        productRepository.reviewProduct(id);
     }
 
     @Override
-    public Product doNotReview(Integer id) {
-        return productRepository.doNotReviewProduct(id);
+    public void doNotReview(Integer id) {
+        productRepository.doNotReviewProduct(id);
     }
 }

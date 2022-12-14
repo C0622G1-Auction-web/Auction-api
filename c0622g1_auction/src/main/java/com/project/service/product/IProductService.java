@@ -19,7 +19,7 @@ public interface IProductService {
 
     Optional<Product> findById(Integer id);
 
-    Product review(Integer id);
+    void review(Integer id);
 
-    Product doNotReview(Integer id);
+    void doNotReview(Integer id);
 }
