@@ -1,5 +1,4 @@
 package com.project.model.account;
-
 import com.project.model.users.User;
 
 import javax.persistence.*;

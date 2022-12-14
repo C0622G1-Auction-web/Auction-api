@@ -1,5 +1,7 @@
 package com.project.model.guide;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,6 +14,7 @@ public class Guide {
     private String content;
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
+    @JsonManagedReference
     @OneToMany(mappedBy = "guide")
     private Set<ImgUrlGuide> images;
 

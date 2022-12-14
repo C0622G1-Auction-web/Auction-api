@@ -31,7 +31,7 @@ public interface IGuideRepository extends JpaRepository<Guide, Integer> {
      * @return a guide match with id
      */
 
-    @Query(value = "SELECT * FROM guide WHERE guide.id=:id AND guide.delete_status=true", nativeQuery = true)
+    @Query(value = "SELECT * FROM `guide` WHERE `guide`.id=:id AND guide.delete_status=true", nativeQuery = true)
     Guide getGuideById(@Param("id") int id);
 
     /**
@@ -57,7 +57,7 @@ public interface IGuideRepository extends JpaRepository<Guide, Integer> {
 
     @Modifying
     @Query(value = "UPDATE guide SET title = :title, content = :content WHERE guide.id=:id", nativeQuery = true)
-    void updateGuide(@Param("id") int id,
+    void updateGuide(@Param("id") Integer id,
                      @Param("title") String title,
                      @Param("content") String content);
 }

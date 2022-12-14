@@ -1,3 +1,4 @@
+
 package com.project.controller.guide;
 
 import com.project.model.guide.ImgUrlGuide;
@@ -24,8 +25,8 @@ public class ImageGuideRestController {
      * @return list of image url and status code
      */
 
-    @GetMapping("/{id}")
-    public ResponseEntity<List<ImgUrlGuide>> findImgGuideById(@PathVariable int id) {
+    @GetMapping("/find/{id}")
+    public ResponseEntity<List<ImgUrlGuide>> getImgGuideById(@PathVariable int id) {
         List<ImgUrlGuide> listImg = imgUrlGuideService.findImgByGuideId(id);
         if (listImg.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

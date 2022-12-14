@@ -1,10 +1,15 @@
 package com.project.controller.guide;
 
+import com.project.dto.guide.GuideDto;
 import com.project.model.guide.Guide;
 import com.project.service.guide.IGuideService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,8 +45,9 @@ public class GuideRestController {
      * @return an item guide
      */
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public ResponseEntity<Guide> getGuideById(@PathVariable int id) {
+
         Guide editGuide = guideService.getGuideById(id);
         if (editGuide == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -58,8 +64,14 @@ public class GuideRestController {
      */
 
     @PostMapping()
-    public ResponseEntity<Guide> createGuide(@RequestBody Guide guide) {
-        guideService.createGuide(guide);
+    public ResponseEntity<List<FieldError>> createGuide(@Validated @RequestBody GuideDto guideDto,
+                                                        BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.NOT_ACCEPTABLE);
+        }
+        Guide guideObj = new Guide();
+        BeanUtils.copyProperties(guideDto, guideObj);
+        guideService.createGuide(guideObj);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -73,12 +85,18 @@ public class GuideRestController {
      */
 
     @PutMapping("/{id}")
-    public ResponseEntity<Guide> updateGuide(@PathVariable int id,
-                                             @RequestBody Guide guide) {
+    public ResponseEntity <List<FieldError>> updateGuide(@Validated @PathVariable int id,
+                                             @RequestBody GuideDto guideDto, BindingResult bindingResult) {
         if (guideService.getGuideById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        guideService.updateGuide(guide);
+        if(bindingResult.hasErrors()){
+                return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.NOT_ACCEPTABLE);
+
+        }
+        Guide guideObj = new Guide();
+        BeanUtils.copyProperties(guideDto, guideObj);
+        guideService.updateGuide(guideObj);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
