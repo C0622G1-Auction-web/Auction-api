@@ -1,10 +1,6 @@
 package com.project.service.payment;
 
-import com.project.dto.IPaymentDTO;
 import com.project.model.payment.Payment;
-import org.springframework.data.repository.query.Param;
-
-import java.util.Optional;
 
 public interface IPaymentService {
 
@@ -14,8 +10,7 @@ public interface IPaymentService {
      * Function: to find payment by id
      *
      * @param id
-     * @return HttpStatus.NO_CONTENT
-     * @return HttpStatus.OK
+     * @return Payment
      */
-    Optional<IPaymentDTO> findByIdPayment(Integer id);
+    Payment findPaymentById(Integer id);
 }
