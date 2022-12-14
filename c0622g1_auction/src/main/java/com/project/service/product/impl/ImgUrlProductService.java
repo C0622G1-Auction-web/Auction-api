@@ -19,7 +19,7 @@ public class ImgUrlProductService implements IImgUrlProductService {
     }
 
     @Override
-    public ImgUrlProduct saveImgProduct(ImgUrlProduct imgUrlProduct) {
-        return imgUrlProductRepository.saveImgProduct(imgUrlProduct);
+    public void saveImgProduct(ImgUrlProduct imgUrlProduct) {
+        imgUrlProductRepository.saveImgProduct(imgUrlProduct.getUrl(), imgUrlProduct.getProduct().getId());
     }
 }

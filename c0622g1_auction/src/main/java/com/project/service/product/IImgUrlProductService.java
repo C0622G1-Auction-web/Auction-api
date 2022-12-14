@@ -7,5 +7,5 @@ import java.util.List;
 public interface IImgUrlProductService {
     List<ImgUrlProduct> findImgByProductId(Integer id);
 
-    ImgUrlProduct saveImgProduct(ImgUrlProduct imgUrlProduct);
+    void saveImgProduct(ImgUrlProduct imgUrlProduct);
 }

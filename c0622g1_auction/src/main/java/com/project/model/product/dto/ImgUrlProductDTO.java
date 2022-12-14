@@ -1,24 +1,18 @@
-package com.project.model.product;
+package com.project.model.product.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.model.product.Product;
 
-import javax.persistence.*;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-@Entity
-public class ImgUrlProduct {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ImgUrlProductDTO {
     private Integer id;
     private String url;
-
-
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
-    public ImgUrlProduct() {
+    public ImgUrlProductDTO() {
     }
 
     public Integer getId() {

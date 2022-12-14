@@ -1,5 +1,7 @@
 package com.project.model.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.model.auction.Auction;
 import com.project.model.users.User;
 
@@ -22,27 +24,35 @@ public class Product {
 
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "price_step_id",referencedColumnName = "id")
     private PriceStep priceStep;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "review_status_id",referencedColumnName = "id")
     private ReviewStatus reviewStatus;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "auction_status_id",referencedColumnName = "id")
     private AuctionStatus auctionStatus;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "category_id",referencedColumnName = "id")
     private Category category;
 
     @OneToMany(mappedBy = "product")
+    @JsonBackReference
     private Set<ImgUrlProduct> imgUrlProducts;
+
     @OneToMany(mappedBy = "product")
+    @JsonBackReference
     private Set<Auction> auctions;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
     public Product() {

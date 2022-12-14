@@ -1,22 +1,18 @@
-package com.project.model.product;
+package com.project.model.product.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.model.product.Product;
 
-import javax.persistence.*;
+import javax.persistence.OneToMany;
 import java.util.Set;
 
-@Entity
-public class ReviewStatus {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AuctionStatusDTO {
     private Integer id;
     private String name;
-
-    @OneToMany(mappedBy = "reviewStatus")
-    @JsonBackReference
     private Set<Product> products;
-    public ReviewStatus() {
+
+    public AuctionStatusDTO() {
     }
 
     public Integer getId() {

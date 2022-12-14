@@ -1,5 +1,8 @@
 package com.project.model.users;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +16,8 @@ public class Address {
     private String city;
     private String  country;
     @OneToOne(mappedBy = "address")
+    @JsonBackReference
+    @JsonIgnore
     private User user;
     public Address() {
     }
