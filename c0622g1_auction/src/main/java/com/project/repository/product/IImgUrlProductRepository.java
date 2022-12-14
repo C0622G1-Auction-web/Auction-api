@@ -1,10 +1,12 @@
 package com.project.repository.product;
 
 import com.project.model.product.ImgUrlProduct;
+import com.project.model.product.ReviewStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,4 +49,5 @@ public interface IImgUrlProductRepository extends JpaRepository<ImgUrlProduct,In
     @Query(value="INSERT INTO img_url_product (url,product_id) VALUES (:url, :product_id)",nativeQuery = true)
     void createImgProduct(@Param("url") String url,
                         @Param("product_id") int id);
+
 }

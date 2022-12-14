@@ -14,6 +14,7 @@ public class Category {
 
     @JsonBackReference
     @OneToMany(mappedBy = "category")
+
     private Set<Product> products;
 
     public Category() {

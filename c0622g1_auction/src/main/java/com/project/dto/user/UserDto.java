@@ -10,9 +10,13 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import java.util.Set;
-
+import com.project.model.account.Account;
+import com.project.model.users.Address;
 public class UserDto implements Validator {
 
+
+    private  AccountDto accountDto;
+    private  AddressDto addressDto;
     private Integer id;
     private String firstName;
     private String lastName;
@@ -40,6 +44,9 @@ public class UserDto implements Validator {
 
     public UserDto(Integer id, String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, Boolean deleteStatus, Address address, UserType userType, Set<Auction> auctions, Account account, Set<ProductDto> productDtos) {
         this.id = id;
+    }
+
+    public UserDto(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, AddressDto addressDto, AccountDto accountDto) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -54,6 +61,8 @@ public class UserDto implements Validator {
         this.auctions = auctions;
         this.account = account;
         this.productDtos = productDtos;
+        this.addressDto = addressDto;
+        this.accountDto = accountDto;
     }
 
     public Integer getId() {
@@ -182,7 +191,21 @@ public class UserDto implements Validator {
     }
 
     @Override
-    public void validate(Object target, Errors errors) {
+    public void validate(Object target, Errors errors) {}
 
+    public AddressDto getAddressDto() {
+        return addressDto;
+    }
+
+    public void setAddressDto(AddressDto addressDto) {
+        this.addressDto = addressDto;
+    }
+
+    public AccountDto getAccountDto() {
+        return accountDto;
+    }
+
+    public void setAccountDto(AccountDto accountDto) {
+        this.accountDto = accountDto;
     }
 }

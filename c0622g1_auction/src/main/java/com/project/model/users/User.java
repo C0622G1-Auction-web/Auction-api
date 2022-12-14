@@ -3,7 +3,6 @@ package com.project.model.users;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.account.Account;
 import com.project.model.auction.Auction;
-import com.project.model.payment.Payment;
 import com.project.model.product.Product;
 
 import javax.persistence.*;
@@ -26,17 +25,21 @@ public class User {
     private Boolean deleteStatus;
     @OneToOne
     @JoinColumn(name = "address_id",referencedColumnName = "id")
+    @JsonBackReference
     private Address address;
 
     @ManyToOne
     @JoinColumn(name = "user_type_id",referencedColumnName = "id")
+    @JsonBackReference
     private UserType userType;
 
     @JsonBackReference
     @OneToMany(mappedBy="user")
     private Set<Auction> auctions;
+
     @OneToOne
     @JoinColumn(name = "account_id",referencedColumnName = "id")
+    @JsonBackReference
     private Account account;
 
     @JsonBackReference
@@ -119,7 +122,7 @@ public class User {
         this.phone = phone;
     }
 
-    public Double getPointDedication() {
+    public double getPointDedication() {
         return pointDedication;
     }
 

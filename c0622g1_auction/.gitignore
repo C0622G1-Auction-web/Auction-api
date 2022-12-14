@@ -15,6 +15,10 @@ build/
 .sts4-cache
 /src/main/resources/application.properties
 /src/test/java/com/project/controller
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/

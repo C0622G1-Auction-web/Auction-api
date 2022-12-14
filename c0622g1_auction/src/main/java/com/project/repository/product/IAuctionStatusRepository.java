@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 @Transactional
 public interface IAuctionStatusRepository extends JpaRepository<AuctionStatus,Integer> {
+
     /**
      * Created by: SonPT
      * Date created: 13-12-2022

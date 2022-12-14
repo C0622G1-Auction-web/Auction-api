@@ -1,4 +1,8 @@
 package com.project.dto.product;
+import com.project.model.auction.Auction;
+import com.project.model.product.*;
+import com.project.model.users.User;
+import java.util.Set;
 
 import com.project.dto.user.UserDto;
 import com.project.model.users.User;
@@ -38,6 +42,18 @@ public class ProductDto implements Validator {
     private CategoryDto categoryDto;
 
     private UserDto userDto;
+
+
+
+    private Boolean deleteStatus;
+    private String registerDay;
+    private PriceStep priceStep;
+    private ReviewStatus reviewStatus;
+    private AuctionStatus auctionStatus;
+    private Category category;
+    private Set<ImgUrlProduct> imgUrlProducts;
+    private Set<Auction> auctions;
+    private User user;
 
     public ProductDto() {
     }
@@ -102,25 +118,16 @@ public class ProductDto implements Validator {
         this.endTime = endTime;
     }
 
-    public PriceStepDto getPriceStep() {
-        return priceStepDto;
-    }
 
     public void setPriceStep(PriceStepDto priceStepDto) {
         this.priceStepDto = priceStepDto;
     }
 
-    public CategoryDto getCategory() {
-        return categoryDto;
-    }
 
     public void setCategory(CategoryDto categoryDto) {
         this.categoryDto = categoryDto;
     }
 
-    public UserDto getUser() {
-        return userDto;
-    }
 
     public void setUser(UserDto userDto) {
         this.userDto = userDto;
@@ -138,5 +145,76 @@ public class ProductDto implements Validator {
         if (!productDto.name.matches("[A-Za-z ]+")) {
             errors.rejectValue("name", "name.invalidFormat");
         }
+    }
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+
+    public String getRegisterDay() {
+        return registerDay;
+    }
+
+    public void setRegisterDay(String registerDay) {
+        this.registerDay = registerDay;
+    }
+
+    public PriceStep getPriceStep() {
+        return priceStep;
+    }
+
+    public void setPriceStep(PriceStep priceStep) {
+        this.priceStep = priceStep;
+    }
+
+    public ReviewStatus getReviewStatus() {
+        return reviewStatus;
+    }
+
+    public void setReviewStatus(ReviewStatus reviewStatus) {
+        this.reviewStatus = reviewStatus;
+    }
+
+    public AuctionStatus getAuctionStatus() {
+        return auctionStatus;
+    }
+
+    public void setAuctionStatus(AuctionStatus auctionStatus) {
+        this.auctionStatus = auctionStatus;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Set<ImgUrlProduct> getImgUrlProducts() {
+        return imgUrlProducts;
+    }
+
+    public void setImgUrlProducts(Set<ImgUrlProduct> imgUrlProducts) {
+        this.imgUrlProducts = imgUrlProducts;
+    }
+
+    public Set<Auction> getAuctions() {
+        return auctions;
+    }
+
+    public void setAuctions(Set<Auction> auctions) {
+        this.auctions = auctions;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
