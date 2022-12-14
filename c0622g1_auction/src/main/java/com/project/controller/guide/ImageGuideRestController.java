@@ -1,6 +1,4 @@
 
-
-
 package com.project.controller.guide;
 
 import com.project.model.guide.ImgUrlGuide;
@@ -16,24 +14,16 @@ import java.util.List;
 @RequestMapping("auction/api/guide/image")
 @CrossOrigin("*")
 public class ImageGuideRestController {
-
-
-
-
     @Autowired
     private IImgUrlGuideService imgUrlGuideService;
 
     /**
-     * Create by: SonPT,
      * Create by: QuangND,
      * Date created: 13/12/2022
      * Function: find all image url by id of guide
      * @Param: id of guide
      * @return list of image url and status code
      */
-
-    @GetMapping("/{id}")
-    public ResponseEntity<List<ImgUrlGuide>> findImgGuideById(@PathVariable int id) {
 
     @GetMapping("/find/{id}")
     public ResponseEntity<List<ImgUrlGuide>> getImgGuideById(@PathVariable int id) {

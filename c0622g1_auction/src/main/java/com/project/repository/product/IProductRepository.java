@@ -41,7 +41,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
                           @Param("initial_price") Double initialPrice, @Param("name") String name,
                           @Param("start_time") String startTime, @Param("category_id") Integer categoryId,
                           @Param("price_step_id") Integer priceStepId, @Param("user_id") Integer user_id);
-     * Created by: TienBM,
+     /** Created by: TienBM,
      * Date created: 13/12/2022
      * Function: find product by id
      * @param productId

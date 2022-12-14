@@ -20,7 +20,6 @@ public class Auction {
     private Boolean auctionStatus;
     @Column(columnDefinition = "boolean default false")
     private Boolean deleteStatus;
-    private String auctionDay;
 
     @JsonIgnore
     @ManyToOne

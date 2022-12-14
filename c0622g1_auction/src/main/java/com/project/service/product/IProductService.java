@@ -3,6 +3,8 @@ package com.project.service.product;
 
 import com.project.model.product.Product;
 
+import java.util.Optional;
+
 public interface IProductService {
     /**
      * Created by: SonPT
@@ -10,14 +12,6 @@ public interface IProductService {
      * Function: save Product
      */
     void saveProduct(Product product);
-
-import com.project.dto.ProductDto;
-import com.project.model.product.Product;
-
-import java.util.Optional;
-
-
-public interface IProductService {
 
     /**
      * Created by: TienBM,
