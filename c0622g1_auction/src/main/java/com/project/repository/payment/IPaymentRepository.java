@@ -17,11 +17,10 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
     /**
      * Created by: ChauPTM
      * Date created: 13/12/2022
-     * Function: to find payment by id
+     * Function: to find payment by id using DTO
      *
      * @param id
-     * @return HttpStatus.NO_CONTENT
-     * @return HttpStatus.OK
+     * @return PaymentDTO
      */
 
     @Query(value = "SELECT p.id AS code, us.last_name AS lastName , us.first_name AS firstName, ad.city, ad.district, " +
@@ -36,7 +35,18 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
             "AND p.payment_status = 0 " +
             "AND p.delete_status = 0 " +
             "AND au.auction_status = 1 group by us.id", nativeQuery = true, countQuery = "select count(*) from payment")
-    Optional<IPaymentDTO> findByIdPayment(@Param("id") Integer id);
+    Optional<IPaymentDTO> findPaymentIdByDTO(@Param("id") Integer id);
 
+
+    /**
+     * Created by: ChauPTM
+     * Date created: 13/12/2022
+     * Function: to find payment by id
+     *
+     * @param id
+     * @return Payment
+     */
+    @Query(value = "SELECT payment.* FROM payment WHERE payment_status = 0 AND id =:id", nativeQuery = true)
+    Payment findPaymentById(@Param("id") Integer id);
 
 }

@@ -20,5 +20,5 @@ public interface IPaymentDTO {
     Double getProductPrice();
 
     String getDescription();
-    
+
 }
