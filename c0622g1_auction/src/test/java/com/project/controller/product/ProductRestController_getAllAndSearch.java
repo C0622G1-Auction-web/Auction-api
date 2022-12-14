@@ -67,6 +67,11 @@ public class ProductRestController_getAllAndSearch {
                 .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * created: sangDD
+     * date:14/12/2022
+     * @throws Exception
+     */
     @Test
     public void getAllAndSearch_11() throws Exception {
         ProductSearchDto productSearchDto = new ProductSearchDto();

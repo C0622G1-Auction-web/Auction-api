@@ -26,6 +26,10 @@ public class UserRestController {
      */
     @GetMapping("/top/{quality}")
     public ResponseEntity<List<UserTopDto>> getTopAuctionUser(@PathVariable String quality) {
+        String regexNumber = "^\\d+$";
+        if(!quality.matches(regexNumber)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         List<UserTopDto> userTopDtoList = userService.getTopAuctionUser(quality);
         if(userTopDtoList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
