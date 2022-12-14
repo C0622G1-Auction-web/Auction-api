@@ -85,15 +85,17 @@ public class GuideRestController {
      */
 
     @PutMapping("/{id}")
-    public ResponseEntity <List<FieldError>> updateGuide(@Validated @PathVariable int id,
-                                             @RequestBody GuideDto guideDto, BindingResult bindingResult) {
+    public ResponseEntity <GuideDto> updateGuide(@Validated @RequestBody GuideDto guideDto,
+                                                 BindingResult bindingResult,@PathVariable("id") int id) {
         if (guideService.getGuideById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        if(bindingResult.hasErrors()){
-                return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.NOT_ACCEPTABLE);
 
+        if(bindingResult.hasErrors()){
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
+
+
         Guide guideObj = new Guide();
         BeanUtils.copyProperties(guideDto, guideObj);
         guideService.updateGuide(guideObj);
