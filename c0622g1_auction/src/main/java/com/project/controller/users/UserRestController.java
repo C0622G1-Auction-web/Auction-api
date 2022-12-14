@@ -26,7 +26,7 @@ public class UserRestController {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to create user
-     * @return UHttpStatus.OK
+     * @return HttpStatus.OK,HttpStatus.NOT_MODIFIED
      */
     @PostMapping("/create")
     public ResponseEntity<?> createUser(@Validated @RequestBody UserDto userDto, BindingResult bindingResult) {
@@ -50,7 +50,7 @@ public class UserRestController {
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
-     * Function: to create user
+     * Function: to find user by id
      * @return HttpStatus.OK
      */
     @GetMapping("/{id}")
@@ -61,11 +61,11 @@ public class UserRestController {
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
-     * Function: to create user
-     * @return UHttpStatus.OK
+     * Function: to update user by id
+     * @return HttpStatus.OK,HttpStatus.NOT_MODIFIED
      */
-    @PutMapping("/edit")
-    public ResponseEntity<?> editUserById(@Validated @RequestBody UserDto userDto, BindingResult bindingResult) {
+    @PutMapping("{id}/edit")
+    public ResponseEntity<?> editUserById(@Validated @PathVariable() int id, @RequestBody UserDto userDto, BindingResult bindingResult) {
         List<User> userList= userService.findAll();
         List<String> emailList = new ArrayList<>();
         for (User item : userList) {
@@ -77,7 +77,7 @@ public class UserRestController {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
         } else {
-            User user = new User();
+            User user = userService.findUserById(id).get();
             BeanUtils.copyProperties(userDto, user);
             userService.updateUser(user);
             return new ResponseEntity<>(HttpStatus.OK);
