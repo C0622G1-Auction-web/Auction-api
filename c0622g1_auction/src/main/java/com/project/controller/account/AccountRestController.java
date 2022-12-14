@@ -11,6 +11,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -96,7 +98,7 @@ public class AccountRestController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         LocalDateTime expiryDate = LocalDateTime.parse(date, formatter);
         if (expiryDate.isBefore(LocalDateTime.now())) {
-            return new ResponseEntity<>("Token đã hết hạn", HttpStatus.GATEWAY_TIMEOUT);
+            return new ResponseEntity<>("Token đã hết hạn", HttpStatus.BAD_REQUEST);
         }
         Integer accountId = passwordResetToken.getAccount().getId();
         HttpHeaders headers = new HttpHeaders();
@@ -112,8 +114,11 @@ public class AccountRestController {
      * @return "Cập nhật mật khẩu thành công" + HttpStatus.OK
      */
 
-    @GetMapping("update_pass/{id}")
-    public ResponseEntity<String> updatePassword(@RequestParam(value = "password") String password, @PathVariable String id) {
+    @PostMapping("update_pass/{id}")
+    public ResponseEntity<?> updatePassword(@Validated @RequestParam(value = "password") String password, @PathVariable String id, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return new ResponseEntity<>(bindingResult.getFieldError(), HttpStatus.NOT_ACCEPTABLE);
+        }
         Account account = accountService.findById(Integer.valueOf(id));
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encryptPass = passwordEncoder.encode(password);
