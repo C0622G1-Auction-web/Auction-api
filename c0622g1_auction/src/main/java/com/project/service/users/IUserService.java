@@ -1,6 +1,7 @@
 package com.project.service.users;
 
 
+import com.project.model.account.Account;
 import com.project.model.users.User;
 
 import java.util.List;
@@ -43,4 +44,5 @@ public interface IUserService {
      * @return List<User>
      */
     List<User> findAll();
+
 }

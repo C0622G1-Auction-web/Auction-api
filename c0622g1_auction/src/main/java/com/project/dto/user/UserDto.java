@@ -1,9 +1,5 @@
 package com.project.dto.user;
 
-import com.project.model.account.Account;
-import com.project.model.auction.Auction;
-import com.project.model.product.Product;
-import com.project.model.users.Address;
 import com.project.model.users.UserType;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -11,7 +7,6 @@ import org.springframework.validation.Validator;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.Set;
 
 public class UserDto implements Validator {
     private Integer id;
@@ -31,18 +26,22 @@ public class UserDto implements Validator {
     private String idCard;
     @NotEmpty(message = "Avatar được để trống")
     private String avatar;
-    @NotEmpty(message = "Không được để trống")
-    private Boolean deleteStatus;
     @NotEmpty(message = "Địa chỉ được để trống")
-    private Address address;
-    @NotEmpty(message = "Không được để trống")
-    private UserType userType;
-    private Set<Auction> auctions;
-    @NotEmpty(message = "Không được để trống")
-    private Account account;
-    private Set<Product> products;
+    private String detailAddress;
+    @NotEmpty(message = "Phường xã được để trống")
+    private String town;
+    @NotEmpty(message = "Quận huyên được để trống")
+    private String district;
+    @NotEmpty(message = "Tỉnh được để trống")
+    private String city;
+    @NotEmpty(message = "Đất nước được để trống")
+    private String country;
+    @NotEmpty(message = "Tên đăng nhập được để trống")
+    private String username;
+    @NotEmpty(message = "Mật khẩu được để trống")
+    private String password;
     private List<String> emailList;
-
+    private UserType userType;
     public UserDto() {
     }
 
@@ -118,20 +117,69 @@ public class UserDto implements Validator {
         this.avatar = avatar;
     }
 
-    public Boolean getDeleteStatus() {
-        return deleteStatus;
+    public String getUsername() {
+        return username;
     }
 
-    public void setDeleteStatus(Boolean deleteStatus) {
-        this.deleteStatus = deleteStatus;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+    public List<String> getEmailList() {
+        return emailList;
+    }
+
+    public void setEmailList(List<String> emailList) {
+        this.emailList = emailList;
+    }
+
+    public String getDetailAddress() {
+        return detailAddress;
+    }
+
+    public void setDetailAddress(String detailAddress) {
+        this.detailAddress = detailAddress;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public UserType getUserType() {
@@ -140,38 +188,6 @@ public class UserDto implements Validator {
 
     public void setUserType(UserType userType) {
         this.userType = userType;
-    }
-
-    public Set<Auction> getAuctions() {
-        return auctions;
-    }
-
-    public void setAuctions(Set<Auction> auctions) {
-        this.auctions = auctions;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
-
-    public List<String> getEmailList() {
-        return emailList;
-    }
-
-    public void setEmailList(List<String> emailList) {
-        this.emailList = emailList;
     }
 
     @Override
@@ -230,9 +246,21 @@ public class UserDto implements Validator {
             errors.rejectValue("avatar", "avatar", "Avatar không được để trống");
         }
         for (String username : userDto.emailList) {
-            if (username.equals(userDto.getAccount().getUsername())) {
+            if (username.equals(userDto.getUsername())) {
                 errors.rejectValue("username", "username", "Tên đăng nhập đã tồn tại đã tồn tại");
             }
+        }
+        if (userDto.getTown().equals("")) {
+            errors.rejectValue("town", "town", "Phường xã không được để trống");
+        }
+        if (userDto.getDistrict().equals("")) {
+            errors.rejectValue("district", "district", "Quận huyện không được để trống");
+        }
+        if (userDto.getCity().equals("")) {
+            errors.rejectValue("city", "city", "Tỉnh không được để trống");
+        }
+        if (userDto.getCountry().equals("")) {
+            errors.rejectValue("country", "country", "Đất Nước không được để trống");
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.project.service.users.impl;
 
+import com.project.model.account.Account;
 import com.project.model.users.User;
 import com.project.repository.users.IUserRepository;
 import com.project.service.users.IUserService;
@@ -93,4 +94,5 @@ public class UserService implements IUserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
+
 }
