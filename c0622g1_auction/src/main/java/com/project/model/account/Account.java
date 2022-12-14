@@ -19,6 +19,7 @@ public class Account {
     @NotEmpty
     @Size(min = 10, max = 30)
     private String password;
+    @Column(columnDefinition = "boolean default true")
     private Boolean statusLock;
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;

@@ -23,4 +23,16 @@ public class PaymentService implements IPaymentService {
     public List<Payment> findValidPaymentByUserId(String userId) {
         return paymentRepository.findValidPaymentByUserId(userId);
     }
+    /**
+     * Created by: ChauPTM
+     * Date created: 13/12/2022
+     * Function: to find payment by id using DTO
+     *
+     * @param id
+     * @return Payment
+     */
+    @Override
+    public Payment findPaymentById(Integer id) {
+        return paymentRepository.findPaymentById(id);
+    }
 }

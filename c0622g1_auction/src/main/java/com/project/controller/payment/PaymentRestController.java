@@ -1,6 +1,7 @@
 package com.project.controller.payment;
 
 import com.project.model.auction.Auction;
+
 import com.project.model.payment.Payment;
 import com.project.service.payment.IPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,21 @@ public class PaymentRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(paymentList, HttpStatus.OK);
+    }
+
+    /**
+     * Created by: ChauPTM
+     * Date created: 13/12/2022
+     * Function: to find payment by id
+     * @param id
+     * @return HttpStatus.NO_CONTENT, HttpStatus.OK
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<Payment> getPayment(@PathVariable Integer id) {
+        Payment payment = paymentService.findPaymentById(id);
+        if (payment == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(payment, HttpStatus.OK);
     }
 }
