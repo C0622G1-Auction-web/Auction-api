@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("api/v1/products")
 public class ProductRestController {
@@ -43,16 +44,16 @@ public class ProductRestController {
      * Function: to delete products by idList
      *
      * @param idList
-     * @return HttpStatus.OK and removed products if remove successfully / HttpStatus.NOT_FOUND if exists not found product
+     * @return HttpStatus.OK if remove successfully / HttpStatus.NOT_FOUND if exists not found product
      */
-    @DeleteMapping
+    @PutMapping("/remove")
     public ResponseEntity<List<Product>> remove(@RequestBody List<Integer> idList) {
         List<Product> productList = productService.findByListId(idList);
         if (idList.size() != productList.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         productService.removeByListId(idList);
-        return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
+        return new ResponseEntity<List<Product>>(HttpStatus.OK);
     }
 
     /**
@@ -81,15 +82,16 @@ public class ProductRestController {
      * Function: to review product
      *
      * @param id
-     * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK and reviewed Product if found
+     * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK if found
      */
-    @PutMapping("/review{id}")
+    @PutMapping("/review/{id}")
     public ResponseEntity<Product> review(@PathVariable("id") Integer id) {
         Optional<Product> optionalProduct = productService.findById(id);
         if (!optionalProduct.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<Product>(productService.review(id), HttpStatus.OK);
+        productService.review(id);
+        return new ResponseEntity<Product>(HttpStatus.OK);
     }
 
     /**
@@ -98,7 +100,7 @@ public class ProductRestController {
      * Function: to review product
      *
      * @param id
-     * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK and reviewed Product if found
+     * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK if found
      */
     @PutMapping("/do-not-review{id}")
     public ResponseEntity<Product> doNotReview(@PathVariable("id") Integer id) {
@@ -106,7 +108,8 @@ public class ProductRestController {
         if (!optionalProduct.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<Product>(productService.doNotReview(id), HttpStatus.OK);
+        productService.doNotReview(id);
+        return new ResponseEntity<Product>(HttpStatus.OK);
     }
 
     /**
