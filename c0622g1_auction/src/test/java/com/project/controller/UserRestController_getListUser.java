@@ -14,30 +14,48 @@ public class UserRestController_getListUser {
 
     @Autowired
     private MockMvc mockMvc;
-    @Autowired
-    private ObjectMapper mapper;
 
 
+    /**
+     * Created by: HaiNT
+     * Date created: 14/12/2022
+     * Function: to test method find all products when return result is empty
+     */
     @Test
-    public void getListUser_6() throws Exception {
+    public void getListUser_5() throws Exception {
         this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/useraaaaa/1"))
+                MockMvcRequestBuilders
+                        .get("/products"))
                 .andDo(print())
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(jsonPath("id").value(1))
-                .andExpect(jsonPath("firstName").value("Nguyễn"))
-                .andExpect(jsonPath("lastName").value("Thanh Hải"))
-                .andExpect(jsonPath("email").value("a@gmail.com"))
-                .andExpect(jsonPath("phone").value("092452345126"))
-                .andExpect(jsonPath("pointDedication").value(100.0))
-                .andExpect(jsonPath("birthDay").value("1999-03-12"))
-                .andExpect(jsonPath("idCard").value("1"))
-                .andExpect(jsonPath("address.id").value(1))
-                .andExpect(jsonPath("userType").value(1))
-                .andExpect(jsonPath("account.id").value(2));
+                .andExpect(status().is4xxClientError());
     }
 
+    /**
+     * Created by: HaiNT
+     * Date created: 14/12/2022
+     * Function: to test method find all products when return result have size > 0
+     */
+    @Test
+    public void getListUser_6() throws Exception {
 
+        this.mockMvc.perform(
+                MockMvcRequestBuilders
+                        .get("/products?page=1"))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(jsonPath("totalPages").value(3))
+                .andExpect(jsonPath("totalElements").value(3))
+                .andExpect(jsonPath("content[0].firstName").value("Nguyễn"))
+                .andExpect(jsonPath("content[0].lastName").value("Thanh Hải"))
+                .andExpect(jsonPath("content[0].address.id").value(1))
+                .andExpect(jsonPath("content[0].userType.id").value(1))
+                .andExpect(jsonPath("content[0].account.id").value(1))
+                .andExpect(jsonPath("content[2].firstName").value("Le"))
+                .andExpect(jsonPath("content[2].lastName").value("Hữu Trường13"))
+                .andExpect(jsonPath("content[2].address.id").value(3))
+                .andExpect(jsonPath("content[2].userType.id").value(3))
+                .andExpect(jsonPath("content[2].account.id").value(3));
+    }
 
 
 }

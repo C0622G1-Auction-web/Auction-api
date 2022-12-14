@@ -74,8 +74,8 @@ public class UserRestController_getListUserById {
                 .andExpect(jsonPath("birthDay").value("1999-03-12"))
                 .andExpect(jsonPath("idCard").value("1"))
                 .andExpect(jsonPath("address.id").value(1))
-                .andExpect(jsonPath("userType").value(1))
-                .andExpect(jsonPath("account.id").value(2));
+                .andExpect(jsonPath("userType.id").value(1))
+                .andExpect(jsonPath("account.id").value(1));
     }
 }
 
