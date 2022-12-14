@@ -14,7 +14,8 @@ build/
 .springBeans
 .sts4-cache
 /src/main/resources/application.properties
-/src/test/controller
+/src/test/java/com/project/controller
+
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
