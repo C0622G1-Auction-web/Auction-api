@@ -17,12 +17,12 @@ public class ProductRestController_review {
     /**
      * Created by: GiangLBH
      * Date created: 14/12/2022
-     * Function: to test method find by id when id is null
+     * Function: to test method review product when id is null
      */
     @Test
-    public void findById_id_1() throws Exception {
+    public void review_19() throws Exception {
         this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/v1/products/find-by-id/"))
+                MockMvcRequestBuilders.get("/api/v1/products/review/"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -30,12 +30,12 @@ public class ProductRestController_review {
     /**
      * Created by: GiangLBH
      * Date created: 14/12/2022
-     * Function: to test method find by id when id is empty
+     * Function: to test method review product when id is empty
      */
     @Test
-    public void findById_id_2() throws Exception {
+    public void review_20() throws Exception {
         this.mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/v1/products/find-by-id/ "))
+                MockMvcRequestBuilders.get("/api/v1/products/review/ "))
                 .andDo(print())
                 .andExpect(status().is5xxServerError());
     }
@@ -43,12 +43,12 @@ public class ProductRestController_review {
     /**
      * Created by: GiangLBH
      * Date created: 14/12/2022
-     * Function: to test method find by id when id not exists in database
+     * Function: to test method review product when id is incorrect format
      */
     @Test
-    public void findById_id_3() throws Exception {
+    public void review_21() throws Exception {
         this.mockMvc.perform(
-                MockMvcRequestBuilders.get("api/v1/products/find-by-id/500"))
+                MockMvcRequestBuilders.get("/api/v1/products/review/qqq"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -56,16 +56,30 @@ public class ProductRestController_review {
     /**
      * Created by: GiangLBH
      * Date created: 14/12/2022
-     * Function: to test method find by id when id exists in database
+     * Function: to test method review product when id not exists in database
      */
     @Test
-    public void findById_id_4() throws Exception {
+    public void review() throws Exception {
         this.mockMvc.perform(
-                MockMvcRequestBuilders.get("api/v1/products/find-by-id/2"))
+                MockMvcRequestBuilders.get("/api/v1/products/review/555"))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
+    }
+
+    /**
+     * Created by: GiangLBH
+     * Date created: 14/12/2022
+     * Function: to test method review product when id is exists in database
+     */
+    @Test
+    public void review_24() throws Exception {
+        this.mockMvc.perform(
+                MockMvcRequestBuilders.get("/api/v1/products/review/1"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("name").value("BÀN TRÀ APU BV4"))
                 .andExpect(jsonPath("initialPrice").value(800000.0))
-                .andExpect(jsonPath("priceStep.id").value(2));
+                .andExpect(jsonPath("priceStep.id").value(2))
+                .andExpect(jsonPath("reviewStatus.id").value(2));
     }
 }
