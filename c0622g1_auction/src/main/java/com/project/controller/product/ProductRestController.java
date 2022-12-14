@@ -2,6 +2,7 @@ package com.project.controller.product;
 
 
 import com.project.model.product.*;
+import com.project.model.product.dto.ImgUrlProductDTO;
 import com.project.model.product.dto.ProductDTO;
 import com.project.model.users.User;
 import com.project.service.product.ICategoryService;
@@ -62,7 +63,7 @@ public class ProductRestController {
      * @param productDTO,bindingResult
      * @return HttpStatus.create or (bindingResult.getFieldErrors() and HttpStatus.NOT_ACCEPTABLE)
      */
-    @PostMapping("/create")
+    @PostMapping("create")
     public ResponseEntity<List<FieldError>> create(@RequestBody @Validated ProductDTO productDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
@@ -97,7 +98,7 @@ public class ProductRestController {
     }
 
 
-    @PutMapping("/update")
+    @PutMapping("update")
     public ResponseEntity<List<FieldError>> update(@RequestBody @Validated ProductDTO productDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
@@ -133,10 +134,14 @@ public class ProductRestController {
      * @return HttpStatus.CREATED
      */
 
-    @PostMapping("img/create")
+    @RequestMapping("img/create/img")
     public ResponseEntity<ImgUrlProduct> saveImgProduct(@RequestBody ImgUrlProduct imgUrlProduct) {
         iImgUrlProductService.saveImgProduct(imgUrlProduct);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+//    public ResponseEntity<ImgUrlProduct> saveImgProduct(@RequestBody ImgUrlProductDTO imgUrlProductDTO) {
+//        iImgUrlProductService.saveImg(imgUrlProductDTO);
+//        return new ResponseEntity<>(HttpStatus.CREATED);
+//    }
 }

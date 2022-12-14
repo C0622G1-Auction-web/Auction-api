@@ -36,4 +36,9 @@ public interface IImgUrlProductRepository extends JpaRepository<ImgUrlProduct, I
     @Modifying
     @Query(value = "insert into img_url_product (url,product_id) values (?1,?2)", nativeQuery = true)
     void saveImgProduct(String url, Integer product);
+
+    @Transactional
+    @Modifying
+    @Query(value = "insert into img_url_product (url,product_id) values (?1,?2)", nativeQuery = true)
+    void saveImgTest(String url, Integer product_id);
 }
