@@ -2,6 +2,7 @@ package com.project.model.users;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.project.model.account.Account;
 import com.project.model.auction.Auction;
 import com.project.model.payment.Payment;
@@ -44,6 +45,7 @@ public class User {
     @JsonIgnore
     @JoinColumn(name = "account_id",referencedColumnName = "id")
     private Account account;
+
     @OneToMany(mappedBy = "user")
     @JsonBackReference
     @JsonIgnore

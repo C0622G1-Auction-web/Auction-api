@@ -14,11 +14,12 @@ public class Address {
     private String town;
     private String district;
     private String city;
-    private String  country;
+    private String country;
     @OneToOne(mappedBy = "address")
     @JsonBackReference
     @JsonIgnore
     private User user;
+
     public Address() {
     }
 

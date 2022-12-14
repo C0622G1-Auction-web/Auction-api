@@ -13,10 +13,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ProductRestController_findById {
-
     @Autowired
     private MockMvc mockMvc;
-
     @Test
     public void findById_id_1 () throws Exception {
         this.mockMvc.perform(

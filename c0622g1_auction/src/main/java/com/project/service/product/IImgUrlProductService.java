@@ -8,8 +8,7 @@ import java.util.List;
 public interface IImgUrlProductService {
     List<ImgUrlProduct> findImgByProductId(Integer id);
 
-    void saveImgProduct(ImgUrlProduct imgUrlProduct);
+    void saveImgProduct(ImgUrlProductDTO imgUrlProductDTO);
 
 
-    void saveImg(ImgUrlProductDTO imgUrlProductDTO);
 }

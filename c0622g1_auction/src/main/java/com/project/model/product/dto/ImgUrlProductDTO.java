@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 public class ImgUrlProductDTO {
     private Integer id;
     private String url;
-    private Integer product_id;
+    private Integer productId;
 
     public ImgUrlProductDTO() {
     }
@@ -31,11 +31,11 @@ public class ImgUrlProductDTO {
         this.url = url;
     }
 
-    public Integer getProduct_id() {
-        return product_id;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(Integer product_id) {
-        this.product_id = product_id;
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 }

@@ -20,12 +20,9 @@ public class ImgUrlProductService implements IImgUrlProductService {
     }
 
     @Override
-    public void saveImgProduct(ImgUrlProduct imgUrlProduct) {
-        imgUrlProductRepository.saveImgProduct(imgUrlProduct.getUrl(), imgUrlProduct.getProduct().getId());
+    public void saveImgProduct(ImgUrlProductDTO imgUrlProductDTO) {
+        imgUrlProductRepository.saveImgProduct(imgUrlProductDTO.getUrl(), imgUrlProductDTO.getProductId());
     }
 
-    @Override
-    public void saveImg(ImgUrlProductDTO imgUrlProductDTO) {
-        imgUrlProductRepository.saveImgTest(imgUrlProductDTO.getUrl(), imgUrlProductDTO.getProduct_id());
-    }
+
 }

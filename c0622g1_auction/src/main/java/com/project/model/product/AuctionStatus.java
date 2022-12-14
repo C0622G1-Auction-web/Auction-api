@@ -4,6 +4,7 @@ package com.project.model.product;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -15,7 +16,11 @@ public class AuctionStatus {
     private String name;
 
     @OneToMany(mappedBy = "auctionStatus")
+    @JsonBackReference
     private Set<Product> products;
+
+    public AuctionStatus() {
+    }
 
     public Set<Product> getProducts() {
         return products;
@@ -24,10 +29,6 @@ public class AuctionStatus {
     public void setProducts(Set<Product> products) {
         this.products = products;
     }
-
-    public AuctionStatus() {
-    }
-
     public Integer getId() {
         return id;
     }
