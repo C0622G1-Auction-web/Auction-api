@@ -16,12 +16,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class GuideRestController_getGuideById {
     @Autowired
     private MockMvc mockMvc;
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
      * Function: get a guide with item id == null
      * @return error status code
      */
+
     @Test
     public void getGuideById_id_1() throws Exception {
         this.mockMvc.perform(

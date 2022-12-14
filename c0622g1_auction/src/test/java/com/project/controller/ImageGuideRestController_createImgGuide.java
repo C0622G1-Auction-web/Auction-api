@@ -26,7 +26,6 @@ public class ImageGuideRestController_createImgGuide {
     @Test
     public void createGuide_url_18() throws Exception {
         ImgUrlGuide imgUrlGuide= new ImgUrlGuide();
-        Guide guide = new Guide();
         imgUrlGuide.setUrl("kjgdgkkgd.png");
 
         this.mockMvc.perform(MockMvcRequestBuilders
