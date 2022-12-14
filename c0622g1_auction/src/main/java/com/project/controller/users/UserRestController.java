@@ -59,6 +59,7 @@ public class UserRestController {
         BeanUtils.copyProperties(userDto, user);
         user.setAccount(account1);
         user.setAddress(address1);
+        user.setDeleteStatus(true);
         userService.createUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
