@@ -14,12 +14,11 @@ public class ProductService implements IProductService {
     /**
      * Created by: SonPT
      * Date created: 13-12-2022
-     * Function: get all product status
-     * @return product status list
+     * Function: save Product
      */
 
     @Override
-    public Product saveProduct(String description, String endTime, Double initialPrice, String name, String registerDay, String startTime, Integer categoryId, Integer priceStepId, Integer user_id) {
-        return productRepository.createProduct(description, endTime, initialPrice, name, registerDay, startTime, categoryId, priceStepId, user_id);
+    public void saveProduct(Product product) {
+         productRepository.createProduct(product.getDescription(), product.getEndTime(), product.getInitialPrice(), product.getName(), product.getStartTime(), product.getCategory().getId(), product.getPriceStep().getId(), product.getUser().getId());
     }
 }
