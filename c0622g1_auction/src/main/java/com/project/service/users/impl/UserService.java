@@ -27,7 +27,6 @@ public class UserService implements IUserService {
      * @param user
      * @return User
      */
-
     @Override
     public void updateUser(User user) {
         userRepository.updateUser(
@@ -112,10 +111,6 @@ public class UserService implements IUserService {
      * @return User object by id
      */
 
-    @Override
-    public Optional<User> findById(Integer id) {
-        return userRepository.findUserById(id);
-    }
 
     /**
      * Create by: TruongLH
@@ -171,6 +166,11 @@ public class UserService implements IUserService {
         updateAddress(user);
         userRepository.updateUser(user.getId(), user.getIdCard(), user.getAvatar(), user.getBirthDay(), user.getEmail(),
                 user.getFirstName(), user.getLastName(), user.getPhone());
+    }
+
+    @Override
+    public void unlockUser(antlr.collections.List<Integer> idList) {
+
     }
 
     /**

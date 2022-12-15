@@ -4,39 +4,14 @@ import antlr.collections.List;
 import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
 import com.project.model.users.User;
-import org.apache.el.stream.Optional;
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-
-=======
->>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
-=======
-=======
-
-
->>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
->>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
 import com.project.model.account.Account;
-import com.project.model.users.User;
-
-import java.util.List;
 import java.util.Optional;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
+
+
 @Service
-=======
-
-
->>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
-=======
-
-
-=======
-@Service
->>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
->>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
 public interface IUserService {
 
     /**
@@ -117,17 +92,7 @@ public interface IUserService {
 
     void unlockUser(List<Integer> idList);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
     User findUserByAccount(Account account);
->>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
-=======
-    User findUserByAccount(Account account);
-=======
-
->>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
->>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
 }
 
