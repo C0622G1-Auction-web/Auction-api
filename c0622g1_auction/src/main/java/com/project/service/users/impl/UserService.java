@@ -15,19 +15,17 @@ import java.util.Optional;
 @Service
 public class UserService implements IUserService {
 
-
+    @Autowired
+    private IUserRepository userRepository;
     /**
      * Create by: VietNQ
      * Date created: 13/12/2022
      * Function: to create user
-     *
      * @return void
      */
-    @Autowired
-    private IUserRepository userRepository;
     @Override
     public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
-        userRepository.createUser(
+        userRepository.addUser(
                 user.getAvatar(),
                 user.getBirthDay(),
                 user.getDeleteStatus(),
@@ -49,7 +47,7 @@ public class UserService implements IUserService {
      * @param id
      */
     public void lockUser(List<Integer> id) {
-        userRepository.findUserByIdList(id);
+        userRepository.lockAccount(id);
     }
      /* Create by: HaiNT
      * Date created: 13/12/2022
@@ -123,7 +121,12 @@ public class UserService implements IUserService {
     public List<User> findByIdList(List<Integer> id) {
         return userRepository.findUserByIdList(id);
     }
-
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     * @param id
+     * @return User object by id
+     */
 
     /**
      * Create by: HaiNT

@@ -23,16 +23,6 @@ public interface IUserService {
     void saveUser(User user, Integer addressId, Integer accountId, Integer Number);
 
     /**
-     * Create by: VietNQ
-     * Date created: 13/12/2022
-     * Function: to lockAccount
-     *
-     * @param id
-     */
-    void lockUser(List<Integer> id);
-
-
-    /**
      * Created: SangDD
      * Created date: 13/12/2022
      * Function: get Top 10 users with the highest total money auction
@@ -72,5 +62,9 @@ public interface IUserService {
     void updateUser(User user);
 
     void unlockUser(List<Integer> idList);
+    /**
+     * By: VietNQ - Find list of address by AddressId
+     */
+    void lockUser(List<Integer> id);
 }
 

@@ -54,18 +54,18 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             ":addressId," +
             ":userTypeId)",
             nativeQuery = true)
-    void createUser(@Param("avatar") String avatar,
-                    @Param("birthDay") String birthDay,
-                    @Param("deleteStatus") Boolean deleteStatus,
-                    @Param("email") String email,
-                    @Param("fistName") String fistName,
-                    @Param("idCard") String idCard,
-                    @Param("lastName") String lastName,
-                    @Param("phone") String phone,
-                    @Param("pointDedication") Double pointDedication,
-                    @Param("accountId") Integer accountId,
-                    @Param("addressId") Integer addressId,
-                    @Param("userTypeId") Integer userTypeId);
+    void addUser(@Param("avatar") String avatar,
+                 @Param("birthDay") String birthDay,
+                 @Param("deleteStatus") Boolean deleteStatus,
+                 @Param("email") String email,
+                 @Param("fistName") String fistName,
+                 @Param("idCard") String idCard,
+                 @Param("lastName") String lastName,
+                 @Param("phone") String phone,
+                 @Param("pointDedication") Double pointDedication,
+                 @Param("accountId") Integer accountId,
+                 @Param("addressId") Integer addressId,
+                 @Param("userTypeId") Integer userTypeId);
 
     /**
      * Create by: VietNQ
@@ -75,9 +75,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      */
     @Modifying
     @Query(value = "UPDATE account SET status_lock = 0 WHERE (id = :id);", nativeQuery = true)
-    void lockAccount(@Param("id") Integer id) ;
-
-
+    void lockAccount(@Param("id") List<Integer> id) ;
 
     /**
      * Create by: HaiNT
@@ -248,4 +246,17 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "LIMIT :quality ",
             nativeQuery = true)
     List<UserTopDto> getTopAuctionUser(@Param("quality") String quality);
+
+    /**
+     * Create by: VietNq
+     * Date created: 13/12/2022
+     *
+     * @param id
+     * @return List User by id
+     */
+    @Query(value = "select * " +
+            "from user u " +
+            "where u.id in :idList ",
+            nativeQuery = true)
+    User findUserByIdLock(Integer id);
 }
