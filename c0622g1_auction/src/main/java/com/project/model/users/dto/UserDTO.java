@@ -1,19 +1,17 @@
-package com.project.model.users;
+package com.project.model.users.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import com.project.model.account.Account;
 import com.project.model.auction.Auction;
 import com.project.model.product.Product;
+import com.project.model.users.Address;
+import com.project.model.users.UserType;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDTO {
     private Integer id;
     private String firstName;
     private String lastName;
@@ -23,41 +21,14 @@ public class User {
     private String birthDay;
     private String idCard;
     private String avatar;
-    @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
-    @OneToOne
-
-    @JsonIgnore
-    @JoinColumn(name = "address_id",referencedColumnName = "id")
-    @JsonBackReference
     private Address address;
-    @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "user_type_id",referencedColumnName = "id")
-    @JsonBackReference
     private UserType userType;
-    @OneToMany(mappedBy="user")
-    @JsonBackReference
-
-    @JsonIgnore
-
     private Set<Auction> auctions;
-    @OneToOne
-    @JsonBackReference
-    @JsonIgnore
-    @JoinColumn(name = "account_id",referencedColumnName = "id")
     private Account account;
-
-    @OneToOne(mappedBy = "user")
-    @JsonIgnore
-    @JsonBackReference
-    private Account account1;
-
-    @OneToMany(mappedBy = "user")
-    @JsonBackReference
     private Set<Product> products;
 
-    public User() {
+    public UserDTO() {
     }
 
     public Integer getId() {

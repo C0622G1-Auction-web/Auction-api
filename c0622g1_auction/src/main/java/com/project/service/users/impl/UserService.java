@@ -1,8 +1,10 @@
 package com.project.service.users.impl;
 
+import com.project.model.users.Address;
+
 import com.project.model.users.User;
 import com.project.dto.user.UserTopDto;
-import com.project.model.users.Address;
+
 import com.project.repository.users.IUserRepository;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +61,8 @@ public class UserService implements IUserService {
      * @return List of users by param
      */
     @Override
-    public List<User> getUserBy(String id, String name, String email, String userTypeId, String address) {
-        return userRepository.getUserBy(id, name, email, userTypeId, address);
+    public List<User> getUserBy(String id, String name, String email, String userTypeId, String address, Integer index) {
+        return userRepository.getUserBy(id, name, email, userTypeId, address, index);
     }
 
     /**
@@ -94,8 +96,15 @@ public class UserService implements IUserService {
      * @param user
      */
     @Override
-    public void updateAddress(User user) {
+    public void updateAddressByRoleAdmin(User user) {
         userRepository.save(user);
+    }
+    @Override
+    public void updateUser(User user) {
+    }
+    @Override
+    public void unlockUser(List<Integer> idList) {
+
     }
 
     /**
@@ -105,9 +114,9 @@ public class UserService implements IUserService {
      * @param user
      */
     @Override
-    public void updateUser(User user) {
-        updateAddress(user);
-        userRepository.updateUser(user.getId(), user.getIdCard(), user.getAvatar(), user.getBirthDay(), user.getEmail(),
+    public void updateUserByRoleAdmin(User user) {
+        updateAddressByRoleAdmin(user);
+        userRepository.updateUserByRoleAdmin(user.getId(), user.getIdCard(), user.getAvatar(), user.getBirthDay(), user.getEmail(),
                 user.getFirstName(), user.getLastName(), user.getPhone());
     }
 
@@ -121,12 +130,6 @@ public class UserService implements IUserService {
     public List<User> findByIdList(List<Integer> id) {
         return userRepository.findUserByIdList(id);
     }
-    /**
-     * Create by: VietNQ
-     * Date created: 13/12/2022
-     * @param id
-     * @return User object by id
-     */
 
     /**
      * Create by: HaiNT
@@ -134,10 +137,9 @@ public class UserService implements IUserService {
      * @param idList
      */
     @Override
-    public void unlockUser(List<Integer> idList) {
-        userRepository.unlockAccount(idList);
+    public void unlockAccountByIdList(List<Integer> idList) {
+        userRepository.unlockAccountByIdList(idList);
     }
-
 
     /**
      * Created: SangDD
@@ -148,6 +150,7 @@ public class UserService implements IUserService {
      * @return List<User>
      */
     @Override
+
     public List<UserTopDto> getTopAuctionUser(String quality) {
 
         return userRepository.getTopAuctionUser(quality);
