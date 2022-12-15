@@ -21,56 +21,6 @@ import java.util.Optional;
 public interface IUserRepository extends JpaRepository<User, Integer> {
 
     /**
-     * Create by: VietNQ
-     * Date created: 13/12/2022
-     * Function: to create user
-     * @return HttpStatus.NotFound
-     * @return HttpStatus.OK
-     */
-    @Modifying
-    @Query(value = "insert into " +
-            "user(avatar," +
-            "birth_day," +
-            "delete_status," +
-            "email," +
-            "first_name," +
-            "id_card," +
-            "last_name," +
-            "phone," +
-            "point_dedication," +
-            "account_id," +
-            "address_id," +
-            "user_type_id)" +
-            " values (" +
-            ":avatar," +
-            ":birthDay," +
-            ":deleteStatus," +
-            ":email," +
-            ":fistName," +
-            ":idCard," +
-            ":lastName," +
-            ":phone," +
-            ":pointDedication," +
-            ":accountId," +
-            ":addressId," +
-            ":userTypeId)",
-            nativeQuery = true)
-    void createUser(@Param("avatar") String avatar,
-                    @Param("birthDay") String birthDay,
-                    @Param("deleteStatus") Boolean deleteStatus,
-                    @Param("email") String email,
-                    @Param("fistName") String fistName,
-                    @Param("idCard") String idCard,
-                    @Param("lastName") String lastName,
-                    @Param("phone") String phone,
-                    @Param("pointDedication") Double pointDedication,
-                    @Param("accountId") Integer accountId,
-                    @Param("addressId") Integer addressId,
-                    @Param("userTypeId") Integer userTypeId);
-
-
-
-    /**
      * Create by: HaiNT
      * Date created: 13/12/2022
      *
@@ -90,13 +40,15 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "AND (user.first_name like %:name% or user.last_name like %:name%) " +
             "AND (address.detail_address LIKE %:address% OR address.town LIKE %:address% or address.district LIKE %:address% or address.city LIKE %:address% or address.country LIKE %:address%) " +
             "AND user.email like %:email% " +
-            "AND user.user_type_id like %:userTypeId% ", nativeQuery = true)
+            "AND user.user_type_id like %:userTypeId% " +
+            "GROUP BY user.id LIMIT :index,5", nativeQuery = true)
     List<User> getUserBy(
             @Param("id") String id,
             @Param("name") String name,
             @Param("email") String email,
             @Param("userTypeId") String userTypeId,
-            @Param("address") String address
+            @Param("address") String address,
+            @Param("index") Integer index
     );
 
     /**
@@ -182,8 +134,68 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "UPDATE `auction_api`.`account` SET `status_lock` = 1 WHERE (`id` in :idList);", nativeQuery = true)
-    void unlockAccount(@Param("idList") List<Integer> idList);
+    @Query(value = "UPDATE auction_api.account SET status_lock = 1 WHERE (id in :idList);", nativeQuery = true)
+    void unlockAccountByIdList(@Param("idList") List<Integer> idList);
+
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     * Function: to  find Address by id
+     *
+     * @param id
+     * @return Optional<Address>
+     */
+    @Query(value = "SELECT * FROM auction_api.address WHERE id = :id ",
+            nativeQuery = true)
+    Optional<Address> findUserByAddressId(@Param("id") Integer id);
+
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     * Function: to create user
+     *
+     * @return HttpStatus.OK
+     */
+    @Modifying
+    @Query(value = "insert into " +
+            "user(avatar," +
+            "birth_day," +
+            "delete_status," +
+            "email," +
+            "first_name," +
+            "id_card," +
+            "last_name," +
+            "phone," +
+            "point_dedication," +
+            "account_id," +
+            "address_id," +
+            "user_type_id)" +
+            " values (" +
+            ":avatar," +
+            ":birthDay," +
+            ":deleteStatus," +
+            ":email," +
+            ":fistName," +
+            ":idCard," +
+            ":lastName," +
+            ":phone," +
+            ":pointDedication," +
+            ":accountId," +
+            ":addressId," +
+            ":userTypeId)",
+            nativeQuery = true)
+    void createUser(@Param("avatar") String avatar,
+                    @Param("birthDay") String birthDay,
+                    @Param("deleteStatus") Boolean deleteStatus,
+                    @Param("email") String email,
+                    @Param("fistName") String fistName,
+                    @Param("idCard") String idCard,
+                    @Param("lastName") String lastName,
+                    @Param("phone") String phone,
+                    @Param("pointDedication") Double pointDedication,
+                    @Param("accountId") Integer accountId,
+                    @Param("addressId") Integer addressId,
+                    @Param("userTypeId") Integer userTypeId);
 
 
     /**
@@ -200,19 +212,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "and u.delete_status=1 ",
             nativeQuery = true)
     Optional<User> findUserById(@Param("id") Integer id);
-
-
-    /**
-     * Create by: HaiNT
-     * Date created: 13/12/2022
-     * Function: to find by id
-     *
-     * @param id
-     * @return Optional<Address>
-     */
-    @Query(value = "SELECT * FROM auction_api.address WHERE id = :id ",
-            nativeQuery = true)
-    Optional<Address> findUserByAddressId(@Param("id") Integer id);
 
 
     /**
@@ -238,4 +237,5 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "LIMIT :quality ",
             nativeQuery = true)
     List<UserTopDto> getTopAuctionUser(@Param("quality") String quality);
+
 }
