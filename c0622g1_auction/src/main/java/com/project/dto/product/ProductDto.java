@@ -1,16 +1,15 @@
 package com.project.dto.product;
-import com.project.model.auction.Auction;
-import com.project.model.product.*;
-import com.project.model.users.User;
-import java.util.Set;
 
 import com.project.dto.user.UserDto;
+import com.project.model.auction.Auction;
+import com.project.model.product.*;
 import com.project.model.users.User;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 public class ProductDto implements Validator {
     private int id;
@@ -43,8 +42,6 @@ public class ProductDto implements Validator {
 
     private UserDto userDto;
 
-
-
     private Boolean deleteStatus;
     private String registerDay;
     private PriceStep priceStep;
@@ -59,15 +56,12 @@ public class ProductDto implements Validator {
     }
 
     public ProductDto(int id, String name, String description, Double initialPrice, String startTime, String endTime, PriceStepDto priceStepDto, CategoryDto categoryDto, UserDto userDto) {
-        this.id = id;
-        this.name = name;
+
         this.description = description;
         this.initialPrice = initialPrice;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.priceStepDto = priceStepDto;
-        this.categoryDto = categoryDto;
-        this.userDto = userDto;
+
     }
 
     public int getId() {
@@ -146,6 +140,7 @@ public class ProductDto implements Validator {
             errors.rejectValue("name", "name.invalidFormat");
         }
     }
+
     public Boolean getDeleteStatus() {
         return deleteStatus;
     }

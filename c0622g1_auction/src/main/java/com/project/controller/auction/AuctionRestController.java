@@ -1,25 +1,10 @@
 package com.project.controller.auction;
 
-import com.project.service.auction.impl.AuctionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-@RequestMapping("/api/v1/auction")
-@CrossOrigin("*")
-public class AuctionRestController {
-
-    @Autowired
-    private AuctionService auctionService;
-
-
 import com.project.dto.AuctionDto;
 import com.project.dto.ProductDto;
 import com.project.model.auction.Auction;
 import com.project.model.product.Product;
-import com.project.service.auction.IAuctionService;
+import com.project.service.auction.impl.AuctionService;
 import com.project.service.product.IProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,18 +17,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.Optional;
 import java.util.function.Function;
 
-@CrossOrigin("*")
 @RestController
-@RequestMapping("/auction/api")
+@RequestMapping("/api/v1/auction")
+@CrossOrigin("*")
 public class AuctionRestController {
+
     @Autowired
-    private IAuctionService auctionService;
+    private AuctionService auctionService;
 
     @Autowired
     private IProductService productService;
@@ -57,7 +40,7 @@ public class AuctionRestController {
      * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
      */
 
-    @GetMapping("/{productId}")
+    @GetMapping("auction-detail/{productId}")
     public ResponseEntity<ProductDto> findProductById(@PathVariable(value = "productId") Integer productId) {
         Optional<Product> productOptional = productService.findProductById(productId);
         if (productOptional.isPresent()) {
