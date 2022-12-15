@@ -1,15 +1,13 @@
 package com.project.service.users.impl;
 
+import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
-
 import com.project.model.users.User;
 import com.project.dto.user.UserTopDto;
-
 import com.project.repository.users.IUserRepository;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +17,7 @@ public class UserService implements IUserService {
 
     @Autowired
     private IUserRepository userRepository;
+
     /**
      * Create by: VietNQ
      * Date created: 13/12/2022
@@ -99,9 +98,11 @@ public class UserService implements IUserService {
     public void updateAddressByRoleAdmin(User user) {
         userRepository.save(user);
     }
+
     @Override
     public void updateUser(User user) {
     }
+
     @Override
     public void unlockUser(List<Integer> idList) {
 
@@ -145,14 +146,11 @@ public class UserService implements IUserService {
      * Created: SangDD
      * Created date: 13/12/2022
      * Function: get Top 10 users with the highest total money auction
-
      * @param quality user quality
      * @return List<User>
      */
     @Override
-
     public List<UserTopDto> getTopAuctionUser(String quality) {
-
         return userRepository.getTopAuctionUser(quality);
     }
 }

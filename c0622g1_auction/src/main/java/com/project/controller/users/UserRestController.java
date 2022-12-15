@@ -1,5 +1,10 @@
 package com.project.controller.users;
 
+
+
+import com.project.dto.UserListDto;
+import com.project.dto.user.UserTopDto;
+
 import com.project.dto.user.*;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
@@ -17,7 +22,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+
 import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -25,7 +33,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/user/v1/")
+@RequestMapping("/api/v1/users")
 public class UserRestController {
 
     @Autowired
@@ -33,8 +41,10 @@ public class UserRestController {
 
     @Autowired
     private IAddressService addressService;
+
     @Autowired
     private IAccountService accountService;
+
     @Autowired
     private IUserTypeService userTypeService;
 
