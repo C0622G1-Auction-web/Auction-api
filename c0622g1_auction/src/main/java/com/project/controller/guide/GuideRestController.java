@@ -29,24 +29,14 @@ import java.util.List;
 @CrossOrigin("*")
 public class GuideRestController {
 
-
-
-
     @Autowired
     private IGuideService guideService;
 
     /**
-
      * Create by: SonPT,
      * Date created: 13/12/2022
      * Function: find all guide
      * @return list of guide status code OK
-
-     * Create by: QuangND,
-     * Date created: 13/12/2022
-     * Function: find all guide
-     * @return list of guide
-
      */
 
     @GetMapping()
@@ -57,9 +47,7 @@ public class GuideRestController {
         }
         return new ResponseEntity<>(guideList, HttpStatus.OK);
     }
-
-
-
+    
     /**
      * Create by: QuangND,
      * Date created: 13/12/2022
