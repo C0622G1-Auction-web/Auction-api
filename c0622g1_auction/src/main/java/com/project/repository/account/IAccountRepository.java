@@ -2,6 +2,7 @@ package com.project.repository.account;
 
 import com.project.model.account.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -12,8 +13,7 @@ import java.util.List;
 @Repository
 @Transactional
 public interface IAccountRepository extends JpaRepository<Account, Integer> {
-<<<<<<< HEAD
-=======
+
     /**
      * Created by UyenNC
      * Date created: 13/12/2022
@@ -47,10 +47,12 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
      * @param accountId
      * @param password
      */
+    @Modifying
     @Query(value = "update `account` " +
             "set `password` =:password " +
             "where (`id` =:accountId );", nativeQuery = true)
-    void updateAccount(@Param(value = "accountId") Integer accountId, @Param(value = "password") String password);
+    void updateAccount(@Param(value = "accountId") Integer accountId,
+                       @Param(value = "password") String password);
 
     /**Created by UyenNC
      * Date created 13/12/2022
@@ -63,5 +65,4 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
             "and delete_status = 0 " +
             "and status_lock = 0;", nativeQuery = true)
     Account findAccountById(@Param(value = "id") Integer id);
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
 }

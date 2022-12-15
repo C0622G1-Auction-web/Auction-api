@@ -1,5 +1,6 @@
 package com.project.service.payment.impl;
 
+import com.project.dto.IPaymentDTO;
 import com.project.model.payment.Payment;
 import com.project.repository.payment.IPaymentRepository;
 import com.project.service.payment.IPaymentService;
@@ -20,7 +21,7 @@ public class PaymentService implements IPaymentService {
      * @return List<Payment>
      */
     @Override
-    public List<Payment> findValidPaymentByUserId(String userId) {
+    public List<IPaymentDTO> findValidPaymentByUserId(String userId) {
         return paymentRepository.findValidPaymentByUserId(userId);
     }
     /**

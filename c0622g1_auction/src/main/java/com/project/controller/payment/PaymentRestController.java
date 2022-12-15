@@ -1,6 +1,7 @@
 package com.project.controller.payment;
 
 
+import com.project.dto.IPaymentDTO;
 import com.project.model.payment.Payment;
 import com.project.service.payment.IPaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class PaymentRestController {
      * return HttpStatus.OK + List<Payment>
      */
     @GetMapping("list")
-    public ResponseEntity<List<Payment>> getPaymentList(@PathVariable(value = "user_id") String userId) {
-        List<Payment> paymentList = paymentService.findValidPaymentByUserId(userId);
+    public ResponseEntity<List<IPaymentDTO>> getPaymentList(@PathVariable(value = "user_id") String userId) {
+        List<IPaymentDTO> paymentList = paymentService.findValidPaymentByUserId(userId);
 
 
         if (paymentList.isEmpty()) {

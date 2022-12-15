@@ -1,10 +1,6 @@
 package com.project.service.account.impl;
 
 import com.project.model.account.Account;
-<<<<<<< HEAD
-=======
-import com.project.model.account.AccountRole;
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
 import com.project.repository.account.IAccountRepository;
 import com.project.service.account.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +14,16 @@ import java.util.List;
 public class AccountService implements IAccountService {
     @Autowired
     private IAccountRepository accountRepository;
-<<<<<<< HEAD
-=======
-    @Autowired
-    JavaMailSender javaMailSender;
 
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
+   @Autowired
+   JavaMailSender javaMailSender;
+
+
 
     @Override
     public Account saveAccount(Account account) {
         return accountRepository.save(account);
     }
-<<<<<<< HEAD
-=======
 
 
     /**Created by UyenNC
@@ -96,5 +89,5 @@ public class AccountService implements IAccountService {
         accountRepository.updateAccount(accountId, password);
     }
 
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
+
 }

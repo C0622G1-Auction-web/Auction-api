@@ -8,6 +8,7 @@ import com.project.model.product.Product;
 import javax.persistence.*;
 import java.util.Set;
 
+
 @Entity
 public class User {
     @Id
@@ -26,30 +27,21 @@ public class User {
     @JsonBackReference
     @OneToOne
     @JoinColumn(name = "address_id",referencedColumnName = "id")
-    @JsonBackReference
     private Address address;
-<<<<<<< HEAD
 
-=======
-    @JsonBackReference
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
+
+
     @ManyToOne
     @JoinColumn(name = "user_type_id",referencedColumnName = "id")
     @JsonBackReference
     private UserType userType;
-<<<<<<< HEAD
 
-=======
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
     @JsonBackReference
     @OneToMany(mappedBy="user")
     private Set<Auction> auctions;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
-    @OneToOne
+    @OneToOne()
     @JoinColumn(name = "account_id",referencedColumnName = "id")
     @JsonBackReference
     private Account account;
