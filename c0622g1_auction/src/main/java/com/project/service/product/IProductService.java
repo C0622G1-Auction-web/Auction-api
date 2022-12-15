@@ -1,19 +1,32 @@
 package com.project.service.product;
 
 
+
 import com.project.dto.product.ProductSearchByRoleAdminDto;
+
+import com.project.model.product.Product;
+import com.project.model.product.dto.ProductDTO;
+
+import java.util.Optional;
+
 
 import com.project.dto.product.ProductSearchDto;
 
-import com.project.model.product.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 
 import java.util.List;
-import java.util.Optional;
-
 public interface IProductService {
+
+
+    Optional<Product> findById(Integer id);
+
+    void saveProduct(ProductDTO ProductDTO);
+
+    void update(ProductDTO ProductDTO);
+
+
     List<Product> findByListId(List<Integer> idList);
 
     void removeByListId(List<Integer> idList);
@@ -22,11 +35,11 @@ public interface IProductService {
 
     Page<Product> searchByRoleAdmin(ProductSearchByRoleAdminDto productSearchByRoleAdminDto, Pageable pageable);
 
-    Optional<Product> findById(Integer id);
 
     void review(Integer id);
 
     void doNotReview(Integer id);
+
 
     /**
      * Created SangDD
