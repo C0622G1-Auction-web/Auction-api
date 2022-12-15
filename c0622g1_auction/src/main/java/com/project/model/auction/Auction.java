@@ -24,6 +24,7 @@ public class Auction {
     private User user;
     @ManyToOne
     @JoinColumn(name = "product_id",referencedColumnName = "id")
+    @JsonBackReference
     private Product product;
     @OneToOne(mappedBy = "auction")
     private Payment payment;
