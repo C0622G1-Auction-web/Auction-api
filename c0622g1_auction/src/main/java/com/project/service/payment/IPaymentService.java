@@ -1,11 +1,12 @@
 package com.project.service.payment;
 
+import com.project.dto.IPaymentDTO;
 import com.project.model.payment.Payment;
 
 import java.util.List;
 
 public interface IPaymentService {
-    List<Payment> findValidPaymentByUserId(String userId);
+    List<IPaymentDTO> findValidPaymentByUserId(String userId);
     
     /**
      * Created by: ChauPTM

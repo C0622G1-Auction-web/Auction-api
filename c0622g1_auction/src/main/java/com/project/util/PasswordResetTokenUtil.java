@@ -1,14 +1,15 @@
 package com.project.util;
 
-
 import com.project.model.account.Account;
 import com.project.model.account.PasswordResetToken;
 import com.project.repository.account.IResetPassTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -45,12 +46,26 @@ public class PasswordResetTokenUtil {
         LocalDateTime expiryDate = LocalDateTime.now().plusMinutes(expiry);
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String expiry = expiryDate.format(format);
-        Boolean status = false;
         String accountId = account.getId() + "";
-        PasswordResetToken resetToken = new PasswordResetToken(token, expiry, status, account);
-        resetPassTokenRepository.createToken(token, expiry, status, accountId);
+        PasswordResetToken resetToken = new PasswordResetToken(token, expiry, false, account);
+        resetPassTokenRepository.createToken(expiry, token, accountId);
         return resetToken;
+    }
 
-
+    /**Created by UyenNC
+     * Date created 15/12/2022
+     * Function Validate whether the token belongs to the account or not
+     * @param accountId
+     * @param token
+     * @return
+     */
+    public PasswordResetToken validateTokenByAccountId(String accountId, String token) {
+        List<PasswordResetToken> tokenList = resetPassTokenRepository.findTokenByAccountId(accountId);
+        for (int i = 0; i < tokenList.size(); i++) {
+            if (tokenList.get(i).getToken().equals(token)) {
+                return tokenList.get(i);
+            }
+        }
+        return null;
     }
 }

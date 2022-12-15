@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -101,7 +99,7 @@ public class AccountRestController {
         }
         Integer accountId = passwordResetToken.getAccount().getId();
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(URI.create("/api/v1/account/update_pass/" + accountId));
+        headers.setLocation(URI.create("/api/v1/account/update_pass?id=" + accountId + "&token=" + token));
         return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
     }
 
@@ -109,16 +107,39 @@ public class AccountRestController {
      * Date created: 13/12/2022
      * Function: Update new password
      * @param password
-     * @param id
+     * @param accountId
      * @return "Cập nhật mật khẩu thành công" + HttpStatus.OK
      */
 
-    @PostMapping("update_pass/{id}")
-    public ResponseEntity<?> updatePassword(@Validated @RequestParam(value = "password") String password, @PathVariable String id, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
-            return new ResponseEntity<>(bindingResult.getFieldError(), HttpStatus.NOT_ACCEPTABLE);
+    @GetMapping("update_pass")
+    public ResponseEntity<?> updatePassword(@RequestParam(value = "id", required = false) String accountId, @RequestParam(value = "token", required = false) String token, @RequestParam(value = "password", required = false) String password) {
+        Account account = accountService.findById(Integer.valueOf(accountId));
+
+        if (account == null) {
+            return new ResponseEntity<>("Tài khoản không tồn tại", HttpStatus.NOT_FOUND);
         }
-        Account account = accountService.findById(Integer.valueOf(id));
+
+        PasswordResetToken passwordResetToken = passwordResetTokenUtil.validateTokenByAccountId(String.valueOf(account.getId()), token);
+        if (passwordResetToken == null) {
+            return new ResponseEntity<>("Token không đúng", HttpStatus.NOT_FOUND);
+        }
+
+        String date = passwordResetToken.getExpiryDate();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        LocalDateTime expiryDate = LocalDateTime.parse(date, formatter);
+        if (expiryDate.isBefore(LocalDateTime.now())) {
+            return new ResponseEntity<>("Token đã hết hạn", HttpStatus.BAD_REQUEST);
+        }
+        if (password == null) {
+            return new ResponseEntity<>("Password không được null", HttpStatus.BAD_REQUEST);
+        }
+        if (password.trim().length() == 0 || password.length() == 0) {
+            return new ResponseEntity<>("Password không được để trống", HttpStatus.BAD_REQUEST);
+        }
+        if (password.length() < 5 || password.length() > 50) {
+            return new ResponseEntity<>("Password có độ dài tối thiểu là 5 kí tự và tối đa là 50 kí tự", HttpStatus.BAD_REQUEST);
+        }
+
 //        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 //        String encryptPass = passwordEncoder.encode(password);
 //        account.setPassword(encryptPass);
@@ -126,3 +147,4 @@ public class AccountRestController {
         return new ResponseEntity<>("Cập nhật mật khẩu thành công", HttpStatus.OK);
     }
 }
+

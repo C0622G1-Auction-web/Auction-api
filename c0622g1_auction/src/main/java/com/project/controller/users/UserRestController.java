@@ -1,6 +1,7 @@
 package com.project.controller.users;
 
 
+import com.project.dto.UserListDto;
 import com.project.dto.user.*;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
@@ -9,16 +10,7 @@ import com.project.service.account.IAccountService;
 import com.project.service.account.ILockAccountService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
-
-
-import com.project.dto.UserListDto;
-import com.project.dto.user.UserTopDto;
-import com.project.model.users.User;
-import com.project.service.account.IAccountService;
-import com.project.service.users.IAddressService;
-import com.project.service.users.IUserService;
 import com.project.service.users.IUserTypeService;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +22,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/user/v1")
 public class UserRestController {
 
     @Autowired

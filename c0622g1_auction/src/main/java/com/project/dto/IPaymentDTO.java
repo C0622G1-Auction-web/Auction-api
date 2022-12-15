@@ -1,5 +1,7 @@
 package com.project.dto;
 
+import java.util.List;
+
 public interface IPaymentDTO {
     Integer getCode();
 
@@ -20,5 +22,9 @@ public interface IPaymentDTO {
     Double getProductPrice();
 
     String getDescription();
+
+    Integer getProductId();
+
+
 
 }
