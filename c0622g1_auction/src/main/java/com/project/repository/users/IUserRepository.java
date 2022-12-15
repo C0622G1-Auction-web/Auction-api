@@ -21,8 +21,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Create by: VietNQ
      * Date created: 13/12/2022
      * Function: to create user
-     * @return HttpStatus.NotFound
-     * @return HttpStatus.OK
+     * @return void
      */
     @Modifying
     @Query(value = "insert into " +
@@ -65,6 +64,16 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
                     @Param("addressId") Integer addressId,
                     @Param("userTypeId") Integer userTypeId);
 
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     *Function: to lockAccount
+     * @param id
+     */
+    @Modifying
+    @Query(value = "UPDATE account SET status_lock = 0 WHERE (id = :id);", nativeQuery = true)
+    void lockAccount(@Param("id") Integer id) ;
+
 
     /**
      * Created: SangDD
@@ -88,4 +97,17 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "LIMIT :quality " ,
             nativeQuery = true)
     List<UserTopDto> getTopAuctionUser(@Param("quality") String quality);
+
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param idList
+     * @return List User by idList
+     */
+    @Query(value = "select * " +
+            "from user u " +
+            "where u.id in :idList ",
+            nativeQuery = true)
+    List<User> findUserByIdList(List<Integer> idList);
 }

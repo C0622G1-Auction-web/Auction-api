@@ -12,6 +12,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -60,13 +61,15 @@ public class UserRestController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<?> addUser(@RequestBody AddUserDto addUserDto) {
+    public ResponseEntity<?> addUser( @Validated @RequestBody AddUserDto addUserDto) {
 
-        AddressDto addressDto = new AddressDto(addUserDto.getDetailAddress(), addUserDto.getTown(), addUserDto.getDistrict(), addUserDto.getCity(), addUserDto.getCountry());
+        AddressDto addressDto = new AddressDto(addUserDto.getDetailAddress(), addUserDto.getTown(),
+                addUserDto.getDistrict(), addUserDto.getCity(), addUserDto.getCountry());
         AccountDto accountDto = new AccountDto(addUserDto.getUsername(), addUserDto.getPassword());
 
         UserDto userDto = new UserDto(addUserDto.getFirstName(), addUserDto.getLastName(), addUserDto.getEmail(),
-                addUserDto.getPhone(), addUserDto.getPointDedication(), addUserDto.getBirthDay(), addUserDto.getIdCard(), addUserDto.getAvatar(), addressDto, accountDto);
+                addUserDto.getPhone(), addUserDto.getPointDedication(), addUserDto.getBirthDay(),
+                addUserDto.getIdCard(), addUserDto.getAvatar(), addressDto, accountDto);
 
         User user = new User();
         Address address = new Address();
@@ -83,6 +86,25 @@ public class UserRestController {
         accountABT.setPassword("12345678");
         userService.saveUser(user, addressATBC.getId(), accountABT.getId(), 4);
 
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     *Function: to lockAccount
+     * @param id
+     * @return HttpStatus.OK if result is not empty
+     * @return HttpStatus.NOT_FOUND if result is not empty
+     */
+    @PutMapping("/lockUser")
+    public ResponseEntity<UserListDto> unlockUser(@RequestBody List<Integer> id) {
+        List<User> userList = userService.findByIdList(id);
+        if (id.size() != userList.size()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        userService.unlockUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

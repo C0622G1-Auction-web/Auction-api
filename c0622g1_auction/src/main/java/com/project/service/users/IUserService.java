@@ -10,7 +10,30 @@ import java.util.List;
 
 @Service
 public interface IUserService {
+
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     * Function: to create user
+     * @return void
+     */
     void saveUser(User user, Integer addressId, Integer accountId, Integer Number);
+
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     *Function: to lockAccount
+     * @param id
+     */
+    void unlockUser(List<Integer> id);
+
+
+    /**
+     * By: HaiNT - Find list of users by idList
+     * @return
+     */
+    List<User> findByIdList(List<Integer> id);
+
 
 
         /**
@@ -22,4 +45,7 @@ public interface IUserService {
          * @return List<User>
          */
         List<UserTopDto> getTopAuctionUser(String quality);
-    }
+
+
+
+}
