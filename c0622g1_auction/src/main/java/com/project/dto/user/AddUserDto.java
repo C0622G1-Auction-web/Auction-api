@@ -5,6 +5,8 @@ import com.project.model.users.UserType;
 
 
 public class AddUserDto {
+    public AddUserDto() {
+    }
 
     private Integer id;
     private String firstName;
