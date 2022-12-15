@@ -25,7 +25,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/user/v2")
+@RequestMapping("/api/user/v1")
 public class UserRestController {
 
     @Autowired
@@ -97,10 +97,10 @@ public class UserRestController {
      * @return the user object is updated
      */
     @PutMapping("/{id}")
-    public ResponseEntity<UserListDto> updateUser(@PathVariable() int id, @RequestBody UserListDto userListDto) {
+    public ResponseEntity<UserListDto> updateUserByRoleAdmin(@PathVariable() int id, @RequestBody UserListDto userListDto) {
         User user = userService.findById(id).get();
         BeanUtils.copyProperties(userListDto, user);
-        userService.updateUser(user);
+        userService.updateUserByRoleAdmin(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

@@ -65,7 +65,7 @@ public class UserService implements IUserService {
      * @param user
      */
     @Override
-    public void updateAddress(User user) {
+    public void updateAddressByRoleAdmin(User user) {
         userRepository.save(user);
     }
 
@@ -76,9 +76,9 @@ public class UserService implements IUserService {
      * @param user
      */
     @Override
-    public void updateUser(User user) {
-        updateAddress(user);
-        userRepository.updateUser(user.getId(), user.getIdCard(), user.getAvatar(), user.getBirthDay(), user.getEmail(),
+    public void updateUserByRoleAdmin(User user) {
+        updateAddressByRoleAdmin(user);
+        userRepository.updateUserByRoleAdmin(user.getId(), user.getIdCard(), user.getAvatar(), user.getBirthDay(), user.getEmail(),
                 user.getFirstName(), user.getLastName(), user.getPhone());
     }
 

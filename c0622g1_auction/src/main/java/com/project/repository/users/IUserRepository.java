@@ -3,10 +3,8 @@ package com.project.repository.users;
 import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
 import com.project.model.users.User;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -102,7 +100,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "last_name = :lastName, " +
             "phone = :phone " +
             "WHERE (`id` = :id) ", nativeQuery = true)
-    void updateUser(@Param("id") Integer id,
+    void updateUserByRoleAdmin(@Param("id") Integer id,
                     @Param("idCard") String idCard,
                     @Param("avatar") String avatar,
                     @Param("birthDay") String birthDay,

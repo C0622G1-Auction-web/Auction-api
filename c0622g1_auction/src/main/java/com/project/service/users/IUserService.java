@@ -39,12 +39,12 @@ public interface IUserService {
     /**
      * By: HaiNT - Find list of address by AddressId
      */
-    void updateAddress(User user);
+    void updateAddressByRoleAdmin(User user);
 
     /**
      * By: HaiNT - Find list of address by AddressId
      */
-    void updateUser(User user);
+    void updateUserByRoleAdmin(User user);
 
     /**
      * By: HaiNT - Find list of address by AddressId
