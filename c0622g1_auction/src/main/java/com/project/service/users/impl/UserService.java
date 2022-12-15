@@ -1,6 +1,7 @@
 package com.project.service.users.impl;
 
 import com.project.model.users.Address;
+
 import com.project.model.users.User;
 import com.project.dto.user.UserTopDto;
 
@@ -15,13 +16,43 @@ import java.util.Optional;
 
 @Service
 public class UserService implements IUserService {
+
     @Autowired
     private IUserRepository userRepository;
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     * Function: to create user
+     * @return void
+     */
+    @Override
+    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
+        userRepository.addUser(
+                user.getAvatar(),
+                user.getBirthDay(),
+                user.getDeleteStatus(),
+                user.getEmail(),
+                user.getFirstName(),
+                user.getIdCard(),
+                user.getLastName(),
+                user.getPhone(),
+                user.getPointDedication(),
+                accountId,
+                addressId,
+                userType);
+    }
 
     /**
-     * Create by: HaiNT
+     * Create by: VietNQ
      * Date created: 13/12/2022
-     *
+     *Function: to lockAccount
+     * @param id
+     */
+    public void lockUser(List<Integer> id) {
+        userRepository.lockAccount(id);
+    }
+     /* Create by: HaiNT
+     * Date created: 13/12/2022
      * @param id
      * @param name
      * @param email
@@ -68,6 +99,13 @@ public class UserService implements IUserService {
     public void updateAddressByRoleAdmin(User user) {
         userRepository.save(user);
     }
+    @Override
+    public void updateUser(User user) {
+    }
+    @Override
+    public void unlockUser(List<Integer> idList) {
+
+    }
 
     /**
      * Create by: HaiNT
@@ -85,7 +123,6 @@ public class UserService implements IUserService {
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
-     *
      * @param id
      * @return User object by id
      */
@@ -97,7 +134,6 @@ public class UserService implements IUserService {
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
-     *
      * @param idList
      */
     @Override
@@ -105,34 +141,11 @@ public class UserService implements IUserService {
         userRepository.unlockAccountByIdList(idList);
     }
 
-
-
-
-    @Override
-    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
-        userRepository.createUser(
-                user.getAvatar(),
-                user.getBirthDay(),
-                user.getDeleteStatus(),
-                user.getEmail(),
-                user.getFirstName(),
-                user.getIdCard(),
-                user.getLastName(),
-                user.getPhone(),
-                user.getPointDedication(),
-                accountId,
-                addressId,
-                userType);
-
-    }
-
-
-
     /**
      * Created: SangDD
      * Created date: 13/12/2022
      * Function: get Top 10 users with the highest total money auction
-     *
+
      * @param quality user quality
      * @return List<User>
      */
