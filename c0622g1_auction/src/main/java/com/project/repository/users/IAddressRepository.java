@@ -1,12 +1,22 @@
 package com.project.repository.users;
 
+<<<<<<< HEAD
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+=======
 
+import com.project.model.users.Address;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+>>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
+
+
+
+@Repository
 public interface IAddressRepository extends JpaRepository<Address, Integer> {
 
     /**

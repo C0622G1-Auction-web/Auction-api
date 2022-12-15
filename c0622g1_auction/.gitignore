@@ -15,6 +15,13 @@ build/
 .sts4-cache
 /src/main/resources/application.properties
 /src/test/java/com/project/controller
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
+>>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
@@ -27,6 +34,7 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+
 
 ### NetBeans ###
 /nbproject/private/

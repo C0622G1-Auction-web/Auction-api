@@ -1,8 +1,12 @@
 package com.project.model.account;
 
+<<<<<<< HEAD
 import com.project.model.account.AccountRole;
 import com.project.model.account.LockAccount;
 import com.project.model.account.PasswordResetToken;
+=======
+import com.fasterxml.jackson.annotation.JsonBackReference;
+>>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
 import com.project.model.users.User;
 
 import javax.persistence.*;
@@ -29,6 +33,7 @@ public class Account {
     private Set<PasswordResetToken> passwordResetTokens;
 
     @OneToOne(mappedBy = "account")
+    @JsonBackReference
     private User user;
 
     @OneToOne(mappedBy = "account")

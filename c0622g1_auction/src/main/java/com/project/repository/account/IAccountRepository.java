@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 @Transactional
 public interface IAccountRepository extends JpaRepository<Account, Integer> {
+<<<<<<< HEAD
 
 
     @Query(
@@ -54,4 +55,6 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
     Account updateAccount(@Param("username") String username,
                           @Param("password") String password);
 
+=======
+>>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
 }
