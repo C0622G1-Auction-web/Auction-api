@@ -11,10 +11,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-<<<<<<< HEAD
 
-=======
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
     @JsonBackReference
     @OneToMany(mappedBy = "category")
 
