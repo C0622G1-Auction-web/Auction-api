@@ -24,7 +24,6 @@ public class GuideRestController_getGuideById {
      *
      * @return error status code
      */
-
     @Test
     public void getGuideById_id_1() throws Exception {
         this.mockMvc.perform(
@@ -40,7 +39,6 @@ public class GuideRestController_getGuideById {
      *
      * @return error status code
      */
-
     @Test
     public void getGuideById_id_2() throws Exception {
         this.mockMvc.perform(
@@ -56,7 +54,6 @@ public class GuideRestController_getGuideById {
      *
      * @return error status code
      */
-
     @Test
     public void getGuideById_id_3() throws Exception {
         this.mockMvc.perform(
@@ -72,7 +69,6 @@ public class GuideRestController_getGuideById {
      *
      * @return a guide with valid infor
      */
-
     @Test
     public void getGuideById_4() throws Exception {
         this.mockMvc.perform(

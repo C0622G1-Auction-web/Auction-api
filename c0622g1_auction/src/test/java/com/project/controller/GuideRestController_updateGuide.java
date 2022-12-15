@@ -29,7 +29,6 @@ public class GuideRestController_updateGuide {
      *
      * @return error status code Not Acceptable
      */
-
     @Test
     public void updateGuide_title_19() throws Exception {
         GuideDto guideDto = new GuideDto();
@@ -51,7 +50,6 @@ public class GuideRestController_updateGuide {
      *
      * @return error status code Not Acceptable
      */
-
     @Test
     public void updateGuide_title_20() throws Exception {
         GuideDto guideDto = new GuideDto();
@@ -143,7 +141,6 @@ public class GuideRestController_updateGuide {
      *
      * @return error status code Not Acceptable
      */
-
     @Test
     public void updateGuide_content_19() throws Exception {
         GuideDto guideDto = new GuideDto();
@@ -165,7 +162,6 @@ public class GuideRestController_updateGuide {
      *
      * @return error status code
      */
-
     @Test
     public void updateGuide_content_20() throws Exception {
         GuideDto guideDto = new GuideDto();
@@ -188,7 +184,6 @@ public class GuideRestController_updateGuide {
      *
      * @return error status code
      */
-
     @Test
     public void updateGuide_content_22() throws Exception {
         GuideDto guideDto = new GuideDto();

@@ -29,7 +29,6 @@ public class ImageGuideRestController_createImgGuide {
      *
      * @return error status code
      */
-
     @Test
     public void createGuide_url_13() throws Exception {
         ImgUrlGuideDto imgUrlGuideDto = new ImgUrlGuideDto();
@@ -49,7 +48,6 @@ public class ImageGuideRestController_createImgGuide {
      *
      * @return error status code
      */
-
     @Test
     public void createGuide_guide_13() throws Exception {
         ImgUrlGuideDto imgUrlGuideDto = new ImgUrlGuideDto();
@@ -61,6 +59,7 @@ public class ImageGuideRestController_createImgGuide {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022

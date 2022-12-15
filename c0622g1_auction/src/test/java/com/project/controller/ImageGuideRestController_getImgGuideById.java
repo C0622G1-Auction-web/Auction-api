@@ -54,7 +54,6 @@ public class ImageGuideRestController_getImgGuideById {
      *
      * @return status code no_content, empty list
      */
-
     @Test
     public void getImgGuideById_id_3() throws Exception {
         this.mockMvc.perform(
@@ -70,7 +69,6 @@ public class ImageGuideRestController_getImgGuideById {
      *
      * @return status code success HttpStatus.OK and list img
      */
-
     @Test
     public void getImgGuideById_id_4() throws Exception {
         this.mockMvc.perform(
