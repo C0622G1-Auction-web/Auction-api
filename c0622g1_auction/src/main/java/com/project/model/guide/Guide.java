@@ -1,5 +1,8 @@
 package com.project.model.guide;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -13,6 +16,8 @@ public class Guide {
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
     @OneToMany(mappedBy = "guide")
+    @JsonBackReference
+    @JsonIgnore
     private Set<ImgUrlGuide> images;
 
     public Guide() {

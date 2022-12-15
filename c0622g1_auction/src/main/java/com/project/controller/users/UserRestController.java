@@ -1,17 +1,31 @@
 package com.project.controller.users;
 
 
+
 import com.project.dto.UserListDto;
 import com.project.dto.user.UserTopDto;
+
+import com.project.dto.user.*;
+import com.project.model.account.Account;
+import com.project.model.users.Address;
 import com.project.model.users.User;
 import com.project.service.account.IAccountService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
+
+
+import com.project.dto.UserListDto;
+import com.project.dto.user.UserTopDto;
 import com.project.service.users.IUserTypeService;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+
+import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -27,8 +41,10 @@ public class UserRestController {
 
     @Autowired
     private IAddressService addressService;
+
     @Autowired
     private IAccountService accountService;
+
     @Autowired
     private IUserTypeService userTypeService;
 
@@ -49,9 +65,11 @@ public class UserRestController {
             @RequestParam(defaultValue = "") String name,
             @RequestParam(defaultValue = "") String email,
             @RequestParam(defaultValue = "") String address,
-            @RequestParam(defaultValue = "") String userTypeId
+            @RequestParam(defaultValue = "") String userTypeId,
+            @RequestParam(defaultValue = "0") Integer index
+
     ) {
-        List<User> userList = userService.getUserBy(id, name, email, userTypeId, address);
+        List<User> userList = userService.getUserBy(id, name, email, userTypeId, address, index);
         if (userList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -68,7 +86,6 @@ public class UserRestController {
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
-     *
      * @param id
      * @return Object user by id
      */
@@ -87,17 +104,16 @@ public class UserRestController {
      * @return the user object is updated
      */
     @PutMapping("/{id}")
-    public ResponseEntity<UserListDto> updateUser(@PathVariable() int id, @RequestBody UserListDto userListDto) {
+    public ResponseEntity<UserListDto> updateUserByRoleAdmin(@PathVariable() int id, @RequestBody UserListDto userListDto) {
         User user = userService.findById(id).get();
         BeanUtils.copyProperties(userListDto, user);
-        userService.updateUser(user);
+        userService.updateUserByRoleAdmin(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
-     *
      * @param idList
      * @return the user object is unlock
      */
@@ -107,10 +123,9 @@ public class UserRestController {
         if (idList.size() != userList.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        userService.unlockUser(idList);
+        userService.unlockAccountByIdList(idList);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
     /**
      * Created: SangDD
@@ -130,5 +145,55 @@ public class UserRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(userTopDtoList, HttpStatus.OK);
+    }
+
+    /**
+     * Created: VietNQ
+     * Created date: 13/12/2022
+     * Function: create user account
+     * @return HttpStatus.OK if result is not empty
+     * @return HttpStatus.NOT_FOUND if result is not empty
+     */
+    @PostMapping("/add")
+    public ResponseEntity<?> addUser( @Validated @RequestBody FormAddUser formAddUser) {
+
+       AddressDto addressDto= new AddressDto(formAddUser.getDetailAddress(),formAddUser.getTown(),formAddUser.getDistrict(),formAddUser.getCity(),formAddUser.getCountry());
+        AccountDto accountDto = new AccountDto(formAddUser.getUsername(), formAddUser.getPassword(),formAddUser.getStatusLock(),formAddUser.getDeleteStatus());
+        AddUserDto addUserDto = new AddUserDto(formAddUser.getFirstName(), formAddUser.getLastName(), formAddUser.getEmail(),
+                formAddUser.getPhone(), formAddUser.getPointDedication(), formAddUser.getBirthDay(),
+                formAddUser.getIdCard(), formAddUser.getAvatar(), addressDto, accountDto);
+
+        User user = new User();
+        Address address = new Address();
+        Account account = new Account();
+
+        BeanUtils.copyProperties(addressDto, address);
+        BeanUtils.copyProperties(accountDto, account);
+        BeanUtils.copyProperties(addUserDto, user);
+
+        Address addressATBC = addressService.saveAddress(address);
+        Account accountABT = accountService.saveAccount(account);
+
+        userService.saveUser(user, addressATBC.getId(), accountABT.getId(), 4);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     *Function: to lockAccount
+     * @param id
+     * @return HttpStatus.OK if result is not empty
+     * @return HttpStatus.NOT_FOUND if result is not empty
+     */
+    @PutMapping("/lockUser")
+    public ResponseEntity<UserListDto> lockUser(@RequestBody List<Integer> id) {
+        List<User> userList = userService.findByIdList(id);
+        if (id.size() != userList.size()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        userService.lockUser(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

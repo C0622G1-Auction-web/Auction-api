@@ -1,6 +1,6 @@
 package com.project.controller.auction;
 
-import com.project.dto.auction.AuctionDto;
+import com.project.dto.auction.TransactionSearchDto;
 import com.project.model.auction.Auction;
 import com.project.service.auction.IAuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("api/auction/v1")
+@RequestMapping("/auction/api")
 public class AuctionRestController {
     @Autowired
     private IAuctionService auctionService;
@@ -25,13 +25,14 @@ public class AuctionRestController {
      * Date created: 13/12/2022
      * Function: to list and search transaction
      *
-     * @return HttpStatus.NO_CONTENT
      * @return HttpStatus.OK
      */
     @GetMapping("/transaction")
-    public ResponseEntity<Page<Auction>> getTransactionList(@PageableDefault(value = 5) Pageable pageable
-    ){
-        Page<Auction> transactionPage = auctionService.findAllTransaction(pageable);
+    public ResponseEntity<Page<Auction>> getTransactionList(
+            @RequestBody TransactionSearchDto transactionSearchDto,
+            @PageableDefault(value = 5) Pageable pageable
+    ) {
+        Page<Auction> transactionPage = auctionService.findAllTransaction(transactionSearchDto, pageable);
         if (transactionPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -44,7 +45,6 @@ public class AuctionRestController {
      * Function: to delete transactions by idList
      *
      * @param idList
-     * @return HttpStatus.OK and removed transaction if remove successfully
      * @return HttpStatus.NOT_FOUND if exists not found transaction
      */
     @PutMapping("/delete")

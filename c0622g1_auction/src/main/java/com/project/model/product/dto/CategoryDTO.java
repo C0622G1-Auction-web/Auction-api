@@ -1,33 +1,20 @@
-package com.project.model.product;
-
+package com.project.model.product.dto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.project.model.product.Product;
 
-
-import javax.persistence.*;
+import javax.persistence.OneToMany;
 import java.util.Set;
 
-@Entity
-public class AuctionStatus {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CategoryDTO {
     private Integer id;
     private String name;
-
-    @OneToMany(mappedBy = "auctionStatus")
     private Set<Product> products;
 
-    public AuctionStatus() {
+    public CategoryDTO() {
     }
 
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
     public Integer getId() {
         return id;
     }
@@ -43,6 +30,12 @@ public class AuctionStatus {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 }
-
-
