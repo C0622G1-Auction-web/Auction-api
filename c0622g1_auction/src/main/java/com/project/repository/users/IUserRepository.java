@@ -124,19 +124,19 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
 
     @Modifying
     @Query(value = " update `user` " +
-            "set `avatar` = :avatar , " +
-            " `birth_day` = :birthDay ," +
-            " `delete_status` = :deleteStatus , " +
-            " `email` = :email ," +
-            " `first_name` = :fistName , " +
-            " `id_card` = :idCard ," +
-            " `last_name` = :lastName, " +
-            " `phone` = :phone, " +
-            " `point_dedication` = :pointDedication, " +
-            " `account_id` = :accountId, " +
-            " `address_id` = :addressId, " +
-            " `user_type_id` = :userTypeId, " +
-            "where (`id` = :id) ", nativeQuery = true)
+                   "set `avatar` = :avatar , " +
+                      " `birth_day` = :birthDay ," +
+                      " `delete_status` = :deleteStatus , " +
+                      " `email` = :email ," +
+                      " `first_name` = :fistName , " +
+                      " `id_card` = :idCard ," +
+                      " `last_name` = :lastName, " +
+                      " `phone` = :phone, " +
+                      " `point_dedication` = :pointDedication, " +
+                      " `account_id` = :accountId, " +
+                      " `address_id` = :addressId, " +
+                      " `user_type_id` = :userTypeId, " +
+                      "where (`id` = :id) ", nativeQuery = true)
     void updateUser(@Param("avatar") String avatar,
                     @Param("birthDay") String birthDay,
                     @Param("deleteStatus") Boolean deleteStatus,

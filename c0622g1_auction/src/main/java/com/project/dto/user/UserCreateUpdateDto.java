@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public class UserDto implements Validator {
+public class UserCreateUpdateDto implements Validator {
     private Integer id;
     @NotEmpty(message = "Họ không được để trống")
     private String firstName;
@@ -47,7 +47,7 @@ public class UserDto implements Validator {
     private List<String> emailList;
     private UserType userType;
 
-    public UserDto() {
+    public UserCreateUpdateDto() {
     }
 
     public Integer getId() {
@@ -209,84 +209,84 @@ public class UserDto implements Validator {
      */
     @Override
     public void validate(Object target, Errors errors) {
-        UserDto userDto = (UserDto) target;
-        if (userDto.getFirstName().equals("")) {
+        UserCreateUpdateDto userCreateUpdateDto = (UserCreateUpdateDto) target;
+        if (userCreateUpdateDto.getFirstName().equals("")) {
             errors.rejectValue("firstName", "firstName", "Họ không được bỏ trống");
         } else {
-            if (!userDto.getFirstName().matches("^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{2,30}$")) {
+            if (!userCreateUpdateDto.getFirstName().matches("^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{2,30}$")) {
                 errors.rejectValue("firstName", "firstName", "Họ không đúng định dạng !");
             }
         }
-        if (userDto.getLastName().equals("")) {
+        if (userCreateUpdateDto.getLastName().equals("")) {
             errors.rejectValue("lastName", "lastName", "Tên không được bỏ trống");
         } else {
-            if (!userDto.getLastName().matches("^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{2,30}$")) {
+            if (!userCreateUpdateDto.getLastName().matches("^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{2,30}$")) {
                 errors.rejectValue("lastName", "lastName", "Tên không đúng định dạng !");
             }
         }
-        for (String email : userDto.emailList) {
-            if (email.equals(userDto.getEmail())) {
+        for (String email : userCreateUpdateDto.emailList) {
+            if (email.equals(userCreateUpdateDto.getEmail())) {
                 errors.rejectValue("email", "email", "Email đã tồn tại");
             }
         }
-        if (userDto.getEmail().equals("")) {
+        if (userCreateUpdateDto.getEmail().equals("")) {
             errors.rejectValue("email", "email", "Email không được bỏ trông");
         } else {
-            if (!userDto.getEmail().matches("^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
+            if (!userCreateUpdateDto.getEmail().matches("^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
                 errors.rejectValue("email", "email", "Email must be valid");
             }
         }
-        if (userDto.getIdCard().equals("")) {
+        if (userCreateUpdateDto.getIdCard().equals("")) {
             errors.rejectValue("idCard", "idCard", "CMND không được bỏ trống");
         } else {
-            if (!(userDto.getIdCard().matches("\\d{9}") ||
-                    userDto.getIdCard().matches("\\d{12}"))) {
+            if (!(userCreateUpdateDto.getIdCard().matches("\\d{9}") ||
+                    userCreateUpdateDto.getIdCard().matches("\\d{12}"))) {
                 errors.rejectValue("idCard", "idCard", "CMND chỉ có 9 số hoặc 12 số");
             }
         }
-        if (userDto.getPhone().equals("")) {
+        if (userCreateUpdateDto.getPhone().equals("")) {
             errors.rejectValue("phoneNumber", "phoneNumber", "Số điện thoại không được để trống");
         } else {
-            if (!(userDto.getPhone().matches("[0][9][0]\\d{7}") ||
-                    userDto.getPhone().matches("[0][9][1]\\d{7}") ||
-                    userDto.getPhone().matches("[(][8][4][)][+][9][0]\\d{7}") ||
-                    userDto.getPhone().matches("[(][8][4][)][+][9][1]\\d{7}"))) {
+            if (!(userCreateUpdateDto.getPhone().matches("[0][9][0]\\d{7}") ||
+                    userCreateUpdateDto.getPhone().matches("[0][9][1]\\d{7}") ||
+                    userCreateUpdateDto.getPhone().matches("[(][8][4][)][+][9][0]\\d{7}") ||
+                    userCreateUpdateDto.getPhone().matches("[(][8][4][)][+][9][1]\\d{7}"))) {
                 errors.rejectValue("phone", "phone", "Số điện thoại có định dang  (090xxxxxxx) hoặc (091xxxxxxx) hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx");
             }
         }
-        if (userDto.getAvatar().equals("")) {
+        if (userCreateUpdateDto.getAvatar().equals("")) {
             errors.rejectValue("avatar", "avatar", "Avatar không được để trống");
         }
-        for (String username : userDto.emailList) {
-            if (username.equals(userDto.getUsername())) {
+        for (String username : userCreateUpdateDto.emailList) {
+            if (username.equals(userCreateUpdateDto.getUsername())) {
                 errors.rejectValue("username", "username", "Tên đăng nhập đã tồn tại đã tồn tại");
             }
         }
-        if (userDto.getTown().equals("")) {
+        if (userCreateUpdateDto.getTown().equals("")) {
             errors.rejectValue("town", "town", "Phường xã không được để trống");
         } else {
-            if (!(userDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+            if (!(userCreateUpdateDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
                 errors.rejectValue("town", "town", "Phường xã nhập từ 5 tới 30 kí tự");
             }
         }
-        if (userDto.getDistrict().equals("")) {
+        if (userCreateUpdateDto.getDistrict().equals("")) {
             errors.rejectValue("district", "district", "Quận huyện không được để trống");
         } else {
-            if (!(userDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+            if (!(userCreateUpdateDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
                 errors.rejectValue("district", "district", "Quận huyện nhập từ 5 tới 30 kí tự");
             }
         }
-        if (userDto.getCity().equals("")) {
+        if (userCreateUpdateDto.getCity().equals("")) {
             errors.rejectValue("city", "city", "Tỉnh thành không được để trống");
         } else {
-            if (!(userDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+            if (!(userCreateUpdateDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
                 errors.rejectValue("city", "city", "Tỉnh thành nhập từ 5 tới 30 kí tự");
             }
         }
-        if (userDto.getCountry().equals("")) {
+        if (userCreateUpdateDto.getCountry().equals("")) {
             errors.rejectValue("country", "country", "Đất Nước không được để trống");
         } else {
-            if (!(userDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+            if (!(userCreateUpdateDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
                 errors.rejectValue("country", "country", "Quốc gia nhập từ 5 tới 30 kí tự");
             }
         }

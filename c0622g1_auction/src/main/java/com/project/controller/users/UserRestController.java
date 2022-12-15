@@ -1,6 +1,6 @@
 package com.project.controller.users;
 
-import com.project.dto.user.UserDto;
+import com.project.dto.user.UserCreateUpdateDto;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
@@ -39,28 +39,27 @@ public class UserRestController {
      *
      * @return HttpStatus.NOT_CONTENT, HttpStatus.NOT_MODIFIED
      */
-
     @PostMapping("/create")
-    public ResponseEntity<?> createUser(@Validated @RequestBody UserDto userDto, BindingResult bindingResult) {
+    public ResponseEntity<?> createUser(@Validated @RequestBody UserCreateUpdateDto userCreateUpdateDto, BindingResult bindingResult) {
         List<User> userList = userService.findAll();
         List<String> emailList = new ArrayList<>();
         for (User item : userList) {
             emailList.add(item.getEmail());
             emailList.add(item.getAccount().getUsername());
         }
-        userDto.setEmailList(emailList);
-        userDto.validate(userDto, bindingResult);
+        userCreateUpdateDto.setEmailList(emailList);
+        userCreateUpdateDto.validate(userCreateUpdateDto, bindingResult);
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NO_CONTENT);
         }
         User user = new User();
         Account account = new Account();
-        BeanUtils.copyProperties(userDto, account);
+        BeanUtils.copyProperties(userCreateUpdateDto, account);
         Address address = new Address();
-        BeanUtils.copyProperties(userDto, address);
+        BeanUtils.copyProperties(userCreateUpdateDto, address);
         Address address1 = addressService.createAddress(address);
         Account account1 = accountService.createAccount(account);
-        BeanUtils.copyProperties(userDto, user);
+        BeanUtils.copyProperties(userCreateUpdateDto, user);
         user.setAccount(account1);
         user.setAddress(address1);
         user.setDeleteStatus(true);
@@ -76,26 +75,26 @@ public class UserRestController {
      * @return HttpStatus.OK, HttpStatus.NOT_MODIFIED
      */
     @PutMapping("/{id}/update")
-    public ResponseEntity<?> editUserById(@Validated @PathVariable() int id, @RequestBody UserDto userDto, BindingResult bindingResult) {
+    public ResponseEntity<?> editUserById(@Validated @PathVariable() int id, @RequestBody UserCreateUpdateDto userCreateUpdateDto, BindingResult bindingResult) {
         List<User> userList = userService.findAll();
         List<String> emailList = new ArrayList<>();
         for (User item : userList) {
             emailList.add(item.getEmail());
             emailList.add(item.getAccount().getUsername());
         }
-        userDto.setEmailList(emailList);
-        userDto.validate(userDto, bindingResult);
+        userCreateUpdateDto.setEmailList(emailList);
+        userCreateUpdateDto.validate(userCreateUpdateDto, bindingResult);
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
         } else {
             User user = userService.findUserById(id).get();
             Account account = new Account();
-            BeanUtils.copyProperties(userDto, account);
+            BeanUtils.copyProperties(userCreateUpdateDto, account);
             Address address = new Address();
-            BeanUtils.copyProperties(userDto, address);
+            BeanUtils.copyProperties(userCreateUpdateDto, address);
             Address address1 = addressService.updateAddress(address);
             Account account1 = accountService.updateAccount(account);
-            BeanUtils.copyProperties(userDto, user);
+            BeanUtils.copyProperties(userCreateUpdateDto, user);
             user.setAccount(account1);
             user.setAddress(address1);
             userService.updateUser(user);
