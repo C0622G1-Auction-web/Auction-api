@@ -9,6 +9,8 @@ import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +21,8 @@ public class UserService implements IUserService {
     private IUserRepository userRepository;
 
     @Override
+    public Optional<User> findUser(int id) {
+        return userRepository.findById(id);
     public void saveUser(User user, Integer addressId, Integer accountId,Integer userType) {
         userRepository.createUser(
                 user.getAvatar(),

@@ -1,5 +1,6 @@
 package com.project.service.product.impl;
 
+import com.project.dto.ProductDto;
 
 import com.project.dto.ProductDto;
 import com.project.dto.ProductSearchByRoleAdminDto;
@@ -20,6 +21,32 @@ public class ProductService implements IProductService {
 
     @Autowired
     private IProductRepository productRepository;
+    /**
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function: get page products Sign up for auctions by user id
+     * @param user id
+     * @param pageable
+     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
+     */
+    @Override
+    public Page<ProductDto> showProductById(Integer id, Pageable pageable) {
+        return productRepository.showProductById(id, pageable);
+    }
+
+    /**
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function: get page products Sign up for auctions by user id
+     * @param user id
+     * @return void
+     */
+
+    @Override
+    public void cancelProduct(Integer id) {
+        productRepository.cancelProduct(id);
+    }
+
 
 
     /**

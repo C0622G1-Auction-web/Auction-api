@@ -1,5 +1,18 @@
 package com.project.controller.product;
 
+import com.project.dto.ProductDto;
+import com.project.model.product.Product;
+import com.project.model.product.ReviewStatus;
+import com.project.model.users.User;
+import com.project.service.product.IProductService;
+import com.project.service.product.IReviewStatusService;
+import com.project.service.users.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import com.project.dto.product.ProductDto;
 import com.project.model.product.Product;
 import com.project.service.product.IProductService;
@@ -32,12 +45,70 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+//@RequestMapping("/api/v1/product")
 @RequestMapping("api/v1/products")
 @CrossOrigin("*")
 public class ProductRestController {
 
     @Autowired
     private IProductService productService;
+
+    @Autowired
+    private IUserService iUserService;
+
+    @Autowired
+    private IReviewStatusService iReviewStatusService;
+
+    /**
+     * Create by AnhTDQ
+     * Date created: 15/12/2022
+     * Function: get all products Sign up for auctions
+     *
+     * @return HttpStatus.NO_CONTENT if not found any product /  HttpStatus.OK and Products page if found
+     */
+
+    @GetMapping("list")
+    public ResponseEntity<Page<ProductDto>> historyProduct(Integer id, Pageable pageable) {
+        Page<ProductDto> productList = productService.showProductById(5, pageable);
+
+        if (productList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(productList, HttpStatus.OK);
+
+    }
+
+    /**
+     * Create by AnhTDQ
+     * Date created: 15/12/2022
+     * Function: cancel products Sign up for auctions
+     *
+     * @return : HttpStatus.OK and cancel successfully
+     */
+
+    @GetMapping("/canceled/{id}")
+    public ResponseEntity<Product> canceledProduct(@PathVariable("id") Integer id) {
+        productService.cancelProduct(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
+    /**
+     * Create by AnhTDQ
+     * Date created: 15/12/2022
+     * Function: get all reviewStatus of Sign up for auctions
+     *
+     * @return HttpStatus.NO_CONTENT if not found any reviewStatus /  HttpStatus.OK and  list reviewStatus if found
+     */
+
+    @GetMapping("/listReviewStatus")
+    public ResponseEntity<List<ReviewStatus>> showReviewStatus() {
+        List<ReviewStatus> reviewStatusList = iReviewStatusService.findAll();
+        if (reviewStatusList.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(reviewStatusList,HttpStatus.OK);
+    }
 
     /**
      * Created by: SonPT

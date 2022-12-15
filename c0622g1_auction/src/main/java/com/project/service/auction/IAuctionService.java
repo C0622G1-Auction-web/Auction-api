@@ -1,5 +1,12 @@
 package com.project.service.auction;
 
+import com.project.model.product.Product;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+
+public interface IAuctionService {
+    List<Product> showProductAuctionById(@Param("id") int id);
 import com.project.dto.AuctionDto;
 import com.project.model.auction.Auction;
 import org.springframework.data.domain.Page;
