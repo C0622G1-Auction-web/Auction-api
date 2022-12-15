@@ -20,10 +20,9 @@ import java.util.function.Function;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin("*")
+@CrossOrigin({"*", "*"})
 @RestController
 @RequestMapping("api/v1/products")
-@CrossOrigin("*")
 public class ProductRestController {
 
     @Autowired
@@ -55,6 +54,9 @@ public class ProductRestController {
      */
     @PutMapping("/remove")
     public ResponseEntity<List<Product>> remove(@RequestBody List<Integer> idList) {
+        if (idList.size() == 0) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         List<Product> productList = productService.findByListId(idList);
         if (idList.size() != productList.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -156,6 +158,8 @@ public class ProductRestController {
         return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
     }
 
+
+    /**
      * Created SangDD
      * Date created 13/12/2022
      * Function: search and filter product by name, rangePrice, categoryID productAuctionStatus

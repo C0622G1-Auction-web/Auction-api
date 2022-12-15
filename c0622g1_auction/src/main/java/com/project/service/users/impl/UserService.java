@@ -3,6 +3,7 @@ package com.project.service.users.impl;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import com.project.dto.user.UserTopDto;
+
 import com.project.repository.users.IUserRepository;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,29 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class UserService implements IUserService {
     @Autowired
     private IUserRepository userRepository;
+
+    @Override
+    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
+        userRepository.createUser(
+                user.getAvatar(),
+                user.getBirthDay(),
+                user.getDeleteStatus(),
+                user.getEmail(),
+                user.getFirstName(),
+                user.getIdCard(),
+                user.getLastName(),
+                user.getPhone(),
+                user.getPointDedication(),
+                accountId,
+                addressId,
+                userType);
+
+    }
 
     /**
      * Create by: HaiNT
@@ -28,6 +48,7 @@ public class UserService implements IUserService {
      * @return List of users by param
      */
     @Override
+
     public List<User> getUserBy(String id, String name, String email, String userTypeId, String address) {
         return userRepository.getUserBy(id, name, email, userTypeId, address);
     }
@@ -92,10 +113,6 @@ public class UserService implements IUserService {
         return userRepository.findUserByIdList(id);
     }
 
-//    @Override
-//    public List<User> findByIdList(List<Integer> id) {
-//        return userRepository.findUserByIdList(id);
-//    }
 
     /**
      * Create by: HaiNT
@@ -109,15 +126,16 @@ public class UserService implements IUserService {
     }
 
 
-
     /**
      * Created: SangDD
      * Created date: 13/12/2022
      * Function: get Top 10 users with the highest total money auction
+     *
      * @param quality user quality
      * @return List<User>
      */
     @Override
+
     public List<UserTopDto> getTopAuctionUser(String quality) {
 
         return userRepository.getTopAuctionUser(quality);
