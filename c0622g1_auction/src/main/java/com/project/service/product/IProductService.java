@@ -1,17 +1,14 @@
 package com.project.service.product;
 
 
-<<<<<<< HEAD
+
 import com.project.dto.product.ProductSearchByRoleAdminDto;
-=======
+
 import com.project.model.product.Product;
 import com.project.model.product.dto.ProductDTO;
 
 import java.util.Optional;
 
-
-import com.project.dto.ProductSearchByRoleAdminDto;
->>>>>>> 36e019559080780e3aa592ba0c210420f2b24902
 
 import com.project.dto.product.ProductSearchDto;
 
