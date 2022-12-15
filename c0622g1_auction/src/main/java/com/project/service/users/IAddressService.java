@@ -3,6 +3,7 @@ package com.project.service.users;
 import com.project.model.users.Address;
 
 public interface IAddressService {
+
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
@@ -18,4 +19,5 @@ public interface IAddressService {
      * @return Address
      */
     Address updateAddress(Address address);
+
 }

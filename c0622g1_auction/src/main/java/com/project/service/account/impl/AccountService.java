@@ -12,6 +12,7 @@ public class AccountService implements IAccountService {
     @Autowired
     private IAccountRepository accountRepository;
 
+<<<<<<< HEAD
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
@@ -45,5 +46,10 @@ public class AccountService implements IAccountService {
     @Override
     public Account findAccountByUsername(String username) {
         return accountRepository.findAccountByUsername(username);
+=======
+    @Override
+    public Account saveAccount(Account account) {
+        return accountRepository.save(account);
+>>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
     }
 }

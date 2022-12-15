@@ -1,5 +1,6 @@
 package com.project.service.account;
 
+<<<<<<< HEAD
 import com.project.model.account.Account;
 
 public interface IAccountService {
@@ -21,4 +22,11 @@ public interface IAccountService {
     Account updateAccount(Account account);
 
     Account findAccountByUsername(String username);
+=======
+
+import com.project.model.account.Account;
+
+public interface IAccountService {
+    Account saveAccount(Account account);
+>>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
 }

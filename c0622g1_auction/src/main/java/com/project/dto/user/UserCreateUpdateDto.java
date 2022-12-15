@@ -1,5 +1,10 @@
 package com.project.dto.user;
 
+import com.project.dto.product.ProductDto;
+import com.project.model.account.Account;
+import com.project.model.auction.Auction;
+import com.project.model.product.Product;
+import com.project.model.users.Address;
 import com.project.model.users.UserType;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -49,6 +54,60 @@ public class UserCreateUpdateDto implements Validator {
 
     public UserCreateUpdateDto() {
     }
+
+public class UserDto implements Validator {
+
+
+    private  AccountDto accountDto;
+    private  AddressDto addressDto;
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phone;
+    private Double pointDedication;
+    private String birthDay;
+    private String idCard;
+    private String avatar;
+
+    private Boolean deleteStatus;
+
+    private Address address;
+
+    private UserType userType;
+
+    private Set<Auction> auctions;
+
+    private Account account;
+
+    private Set<ProductDto> productDtos;
+
+    public UserDto() {
+    }
+
+    public UserDto(Integer id, String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, Boolean deleteStatus, Address address, UserType userType, Set<Auction> auctions, Account account, Set<ProductDto> productDtos) {
+        this.id = id;
+    }
+
+    public UserDto(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, AddressDto addressDto, AccountDto accountDto) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.pointDedication = pointDedication;
+        this.birthDay = birthDay;
+        this.idCard = idCard;
+        this.avatar = avatar;
+        this.deleteStatus = deleteStatus;
+        this.address = address;
+        this.userType = userType;
+        this.auctions = auctions;
+        this.account = account;
+        this.productDtos = productDtos;
+        this.addressDto = addressDto;
+        this.accountDto = accountDto;
+    }
+
 
     public Integer getId() {
         return id;
@@ -185,6 +244,21 @@ public class UserCreateUpdateDto implements Validator {
 
     public void setCountry(String country) {
         this.country = country;
+
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public UserType getUserType() {
@@ -195,6 +269,29 @@ public class UserCreateUpdateDto implements Validator {
         this.userType = userType;
     }
 
+    public Set<Auction> getAuctions() {
+        return auctions;
+    }
+
+    public void setAuctions(Set<Auction> auctions) {
+        this.auctions = auctions;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Set<ProductDto> getProductDtos() {
+        return productDtos;
+    }
+
+    public void setProductDtos(Set<ProductDto> productDtos) {
+        this.productDtos = productDtos;
+    }
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -290,5 +387,22 @@ public class UserCreateUpdateDto implements Validator {
                 errors.rejectValue("country", "country", "Quốc gia nhập từ 5 tới 30 kí tự");
             }
         }
+    @Override
+    public void validate(Object target, Errors errors) {}
+
+    public AddressDto getAddressDto() {
+        return addressDto;
+    }
+
+    public void setAddressDto(AddressDto addressDto) {
+        this.addressDto = addressDto;
+    }
+
+    public AccountDto getAccountDto() {
+        return accountDto;
+    }
+
+    public void setAccountDto(AccountDto accountDto) {
+        this.accountDto = accountDto;
     }
 }
