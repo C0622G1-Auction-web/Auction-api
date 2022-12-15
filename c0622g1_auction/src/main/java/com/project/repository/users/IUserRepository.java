@@ -3,6 +3,10 @@ package com.project.repository.users;
 
 import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
+<<<<<<< HEAD
+=======
+import com.project.model.account.Account;
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
 import com.project.model.users.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -239,4 +243,17 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "LIMIT :quality ",
             nativeQuery = true)
     List<UserTopDto> getTopAuctionUser(@Param("quality") String quality);
+<<<<<<< HEAD
+=======
+
+    /**Created by UyenNC
+     * Date created 13/12/2022
+     * Function Find user by account
+     * @param accountId
+     * @return User
+     */
+    @Query(value = "select * from user " +
+            "where account_id =:accountId and delete_status = 0;", nativeQuery = true)
+    User findUserByAccount(@Param("accountId") String accountId);
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
 }
