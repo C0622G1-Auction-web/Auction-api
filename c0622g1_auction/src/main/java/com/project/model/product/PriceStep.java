@@ -11,7 +11,6 @@ public class PriceStep {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String step;
-    @JsonBackReference
     @OneToMany(mappedBy = "priceStep")
     private Set<Product> products;
 
