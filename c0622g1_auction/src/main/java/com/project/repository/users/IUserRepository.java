@@ -1,13 +1,20 @@
 package com.project.repository.users;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
+=======
+=======
+
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import com.project.model.users.UserType;
+<<<<<<< HEAD
 <<<<<<< HEAD
 import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
@@ -16,6 +23,15 @@ import com.project.model.users.User;
 
 import com.project.dto.user.UserTopDto;
 >>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
+=======
+
+import com.project.dto.user.UserTopDto;
+=======
+import com.project.dto.user.UserTopDto;
+import com.project.model.users.Address;
+import com.project.model.users.User;
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -76,6 +92,10 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
      */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
 @Repository
 @Transactional
 public interface IUserRepository extends JpaRepository<User, Integer> {
@@ -87,8 +107,12 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @return HttpStatus.NotFound
      * @return HttpStatus.OK
      */
+<<<<<<< HEAD
 =======
 >>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
+=======
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
     @Modifying
     @Query(value = "insert into " +
             "user(avatar," +
@@ -105,10 +129,17 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "user_type_id)" +
             " values(:avatar," +
 <<<<<<< HEAD
+<<<<<<< HEAD
             " values (" +
             ":avatar," +
 =======
 >>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
+=======
+=======
+            " values (" +
+            ":avatar," +
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
             ":birthDay," +
             ":deleteStatus," +
             ":email," +
@@ -134,7 +165,10 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
                     @Param("addressId") Address addressId,
                     @Param("userTypeId") UserType userTypeId);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
 
 
     /**
@@ -181,7 +215,12 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
                     @Param("lastName") String lastName,
                     @Param("phone") String phone,
                     @Param("pointDedication") Double pointDedication,
+<<<<<<< HEAD
 >>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
+=======
+=======
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
                     @Param("accountId") Integer accountId,
                     @Param("addressId") Integer addressId,
                     @Param("userTypeId") Integer userTypeId);
@@ -303,9 +342,15 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     void unlockAccount(@Param("idList") List<Integer> idList);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
+=======
+=======
+
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
@@ -355,13 +400,21 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
                     @Param("id") Integer id);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
      /** Function: to find by id
      *
      * @param id
      * @return Optional<User>
      */
+<<<<<<< HEAD
 =======
 >>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
+=======
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
     @Query(value = "select * " +
             "from user u " +
             "where u.id= :id " +
@@ -408,7 +461,10 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             nativeQuery = true)
     List<UserTopDto> getTopAuctionUser(@Param("quality") String quality);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
 
     /**Created by UyenNC
      * Date created 13/12/2022
@@ -421,5 +477,10 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "where account_id =:accountId and delete_status = 0;", nativeQuery = true)
     User findUserByAccount(@Param("accountId") String accountId);
 
+<<<<<<< HEAD
 >>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
+=======
+=======
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
 }

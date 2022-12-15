@@ -1,17 +1,32 @@
 package com.project.controller.users;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.project.dto.user.UserCreateUpdateDto;
 import com.project.dto.user.UserDto;
 =======
 import com.project.dto.UserListDto;
 >>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
+=======
+import com.project.dto.UserListDto;
+=======
+import com.project.dto.user.UserCreateUpdateDto;
+import com.project.dto.user.UserDto;
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
 import com.project.dto.user.*;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import com.project.service.account.IAccountService;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import com.project.service.account.ILockAccountService;
+import com.project.service.users.IAddressService;
+import com.project.service.users.IUserService;
+=======
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 import com.project.service.account.ILockAccountService;
@@ -24,11 +39,15 @@ import com.project.service.account.IAccountService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 import com.project.service.users.IUserTypeService;
+<<<<<<< HEAD
 =======
 import com.project.service.account.ILockAccountService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 >>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
+=======
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,11 +63,19 @@ import java.util.List;
 @CrossOrigin("*")
 @RequestMapping("/api/user/v1")
 <<<<<<< HEAD
+<<<<<<< HEAD
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/users")
 =======
 >>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
+=======
+=======
+@CrossOrigin("*")
+@RestController
+@RequestMapping("/api/v1/users")
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
 public class UserRestController {
 
     @Autowired
@@ -96,6 +123,46 @@ public class UserRestController {
         user.setDeleteStatus(true);
         userService.createUser(user);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to update user by id
+     * @return HttpStatus.OK, HttpStatus.NOT_MODIFIED
+     */
+    @PutMapping("/{id}/update")
+    public ResponseEntity<?> editUserById(@Validated @PathVariable() int id, @RequestBody UserDto userDto, BindingResult bindingResult) {
+        List<User> userList = userService.findAll();
+        List<String> emailList = new ArrayList<>();
+        for (User item : userList) {
+            emailList.add(item.getEmail());
+            emailList.add(item.getAccount().getUsername());
+        }
+        userDto.setEmailList(emailList);
+        userDto.validate(userDto, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
+        } else {
+            User user = userService.findUserById(id).get();
+            Account account = new Account();
+            BeanUtils.copyProperties(userDto, account);
+            Address address = new Address();
+            BeanUtils.copyProperties(userDto, address);
+            Address address1 = addressService.updateAddress(address);
+            Account account1 = accountService.updateAccount(account);
+            BeanUtils.copyProperties(userDto, user);
+            user.setAccount(account1);
+            user.setAddress(address1);
+            userService.updateUser(user);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
+=======
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
     private IAddressService addressService;
     @Autowired
     private IAccountService accountService;
@@ -103,10 +170,14 @@ public class UserRestController {
     private IUserTypeService userTypeService;
     @Autowired
     private ILockAccountService lockAccountService;
+<<<<<<< HEAD
 =======
         return new ResponseEntity<>(HttpStatus.OK);
     }
 >>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
+=======
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
 
     /**
      * Create by: HaiNT
@@ -171,11 +242,18 @@ public class UserRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+
+
     /**
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
      * <<<<<<< HEAD
 >>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
+=======
+     * Create by: HaiNT
+=======
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to update user by id
@@ -211,11 +289,16 @@ public class UserRestController {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
      /** Create by: HaiNT
 =======
     /**
      * Create by: HaiNT
 >>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
+=======
+     /** Create by: HaiNT
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
+>>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
      * Date created: 13/12/2022
      *
      * @param idList
