@@ -1,7 +1,11 @@
 package com.project.model.auction;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+=======
+import com.fasterxml.jackson.annotation.JsonIgnore;
+>>>>>>> 71b775208e76c461b2c64609126bfb79bc05e666
 import com.project.model.payment.Payment;
 import com.project.model.product.Product;
 import com.project.model.users.User;
@@ -16,33 +20,40 @@ public class Auction {
     private Double currentPrice;
     private String auctionTime;
     private Boolean payStatus;
+    @Column(columnDefinition = "boolean default false")
     private Boolean auctionStatus;
-    @Column(columnDefinition = "boolean default true")
+    @Column(columnDefinition = "boolean default false")
     private Boolean deleteStatus;
+<<<<<<< HEAD
+
+=======
     private String auctionDay;
 
     @JsonBackReference
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JsonBackReference
     private User user;
 
+<<<<<<< HEAD
+=======
     @JsonBackReference
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_id",referencedColumnName = "id")
     private Product product;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
+    @JsonBackReference
     @OneToOne(mappedBy = "auction")
     private Payment payment;
 
     public Auction() {
-    }
-
-    public String getAuctionDay() {
-        return auctionDay;
-    }
-
-    public void setAuctionDay(String auctionDay) {
-        this.auctionDay = auctionDay;
     }
 
     public Boolean getDeleteStatus() {
@@ -91,14 +102,6 @@ public class Auction {
 
     public void setAuctionTime(String auctionTime) {
         this.auctionTime = auctionTime;
-    }
-
-    public Boolean getPayStatus() {
-        return payStatus;
-    }
-
-    public void setPayStatus(Boolean payStatus) {
-        this.payStatus = payStatus;
     }
 
     public Boolean getAuctionStatus() {

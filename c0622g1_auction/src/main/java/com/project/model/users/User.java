@@ -3,7 +3,6 @@ package com.project.model.users;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.account.Account;
 import com.project.model.auction.Auction;
-import com.project.model.payment.Payment;
 import com.project.model.product.Product;
 
 import javax.persistence.*;
@@ -27,18 +26,34 @@ public class User {
     @JsonBackReference
     @OneToOne
     @JoinColumn(name = "address_id",referencedColumnName = "id")
-    private Address address;
     @JsonBackReference
+    private Address address;
+<<<<<<< HEAD
+
+=======
+    @JsonBackReference
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
     @ManyToOne
     @JoinColumn(name = "user_type_id",referencedColumnName = "id")
+    @JsonBackReference
     private UserType userType;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
     @JsonBackReference
     @OneToMany(mappedBy="user")
     private Set<Auction> auctions;
-    @JsonBackReference
+
+<<<<<<< HEAD
+=======
+
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
     @OneToOne
     @JoinColumn(name = "account_id",referencedColumnName = "id")
+    @JsonBackReference
     private Account account;
+
     @JsonBackReference
     @OneToMany(mappedBy = "user")
     private Set<Product> products;
@@ -119,7 +134,7 @@ public class User {
         this.phone = phone;
     }
 
-    public Double getPointDedication() {
+    public double getPointDedication() {
         return pointDedication;
     }
 

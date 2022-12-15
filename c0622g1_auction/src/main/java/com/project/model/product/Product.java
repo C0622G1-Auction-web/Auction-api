@@ -21,38 +21,51 @@ public class Product {
     private Boolean deleteStatus;
     private String registerDay;
 
+<<<<<<< HEAD
+=======
 
     @JsonBackReference
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
     @ManyToOne
-    @JoinColumn(name = "price_step_id",referencedColumnName = "id")
+    @JoinColumn(name = "price_step_id", referencedColumnName = "id")
     private PriceStep priceStep;
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "review_status_id",referencedColumnName = "id")
+    @JoinColumn(name = "review_status_id", referencedColumnName = "id")
     private ReviewStatus reviewStatus;
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "auction_status_id",referencedColumnName = "id")
+    @JoinColumn(name = "auction_status_id", referencedColumnName = "id")
     private AuctionStatus auctionStatus;
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "category_id",referencedColumnName = "id")
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
+<<<<<<< HEAD
 
+
+=======
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
     @JsonBackReference
     @OneToMany(mappedBy = "product")
     private Set<ImgUrlProduct> imgUrlProducts;
+
     @JsonBackReference
     @OneToMany(mappedBy = "product")
     private Set<Auction> auctions;
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+<<<<<<< HEAD
+    @JsonBackReference
+=======
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
     private User user;
+
     public Product() {
     }
 
