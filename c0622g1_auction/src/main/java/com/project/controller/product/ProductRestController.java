@@ -5,7 +5,6 @@ package com.project.controller.product;
 import com.project.model.product.*;
 import com.project.model.product.dto.ImgUrlProductDTO;
 import com.project.model.product.dto.ProductDTO;
-import com.project.model.users.User;
 import com.project.service.product.ICategoryService;
 import com.project.service.product.IImgUrlProductService;
 import com.project.service.product.IPriceStepService;
@@ -19,7 +18,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -28,20 +27,12 @@ import com.project.dto.ProductSearchByRoleAdminDto;
 import com.project.dto.product.ProductDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
-import com.project.service.product.IProductService;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import java.util.function.Function;
 
 
-import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
@@ -172,6 +163,9 @@ public class ProductRestController {
      */
     @PutMapping("/remove")
     public ResponseEntity<List<Product>> remove(@RequestBody List<Integer> idList) {
+        if (idList.size() == 0) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
         List<Product> productList = productService.findByListId(idList);
         if (idList.size() != productList.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -257,7 +251,9 @@ public class ProductRestController {
         return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
     }
 
-     /**
+
+
+    /**
      * Created SangDD
      * Date created 13/12/2022
      * Function: search and filter product by name, rangePrice, categoryID productAuctionStatus

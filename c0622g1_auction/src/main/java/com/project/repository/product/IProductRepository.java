@@ -2,17 +2,12 @@ package com.project.repository.product;
 
 
 import com.project.dto.ProductSearchByRoleAdminDto;
-
 import com.project.dto.product.ProductSearchDto;
-
 import com.project.model.product.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import org.springframework.data.jpa.repository.Modifying;
-
-
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -160,11 +155,13 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     Optional<Product> findById(@Param("id") Integer id);
 
 
+
      /**
      * Created SangDD
      * Date created 13/12/2022
      * Function: search and filter product by name, rangePrice, categoryID productAuctionStatus
      * order DESC start day
+     *
      * @param productSearchDto
      * @param pageable
      * @return Page<Product>
@@ -192,7 +189,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "    AND product.name like %:#{#productSearchDto.name}%" +
             "    AND (product.initial_price > :#{#productSearchDto.rangePrice} " +
             "         OR product.initial_price = :#{#productSearchDto.rangePrice}) " +
-            "ORDER BY product.start_time DESC" ,
+            "ORDER BY product.start_time DESC",
             nativeQuery = true)
     Page<Product> getAllAndSearch(@Param("productSearchDto") ProductSearchDto productSearchDto, Pageable pageable);
 

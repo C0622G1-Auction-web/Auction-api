@@ -103,7 +103,6 @@ public class ProductRestController_createProduct {
         productDTO.setStartTime("2022-12-20 11:00:00");
         productDTO.setEndTime("2022-12-25 11:00:00");
         productDTO.setRegisterDay("2022-12-15");
-
         productDTO.setUser(2);
         productDTO.setReviewStatus(1);
         productDTO.setAuctionStatus(1);
