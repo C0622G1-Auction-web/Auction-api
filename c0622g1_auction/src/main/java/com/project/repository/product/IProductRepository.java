@@ -166,7 +166,6 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * @param pageable
      * @return Page<Product>
      */
-
     @Query(value = "SELECT " +
             "id, " +
             "name, " +
@@ -192,6 +191,4 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "ORDER BY product.start_time DESC",
             nativeQuery = true)
     Page<Product> getAllAndSearch(@Param("productSearchDto") ProductSearchDto productSearchDto, Pageable pageable);
-
-
 }

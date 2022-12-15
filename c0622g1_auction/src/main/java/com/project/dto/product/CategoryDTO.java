@@ -1,17 +1,18 @@
-package com.project.model.product.dto;
+package com.project.dto.product;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.model.product.Product;
 
-
+import javax.persistence.OneToMany;
 import java.util.Set;
 
-public class ReviewStatusDTO {
+public class CategoryDTO {
     private Integer id;
     private String name;
     private Set<Product> products;
 
-    public ReviewStatusDTO() {
+    public CategoryDTO() {
     }
 
     public Integer getId() {

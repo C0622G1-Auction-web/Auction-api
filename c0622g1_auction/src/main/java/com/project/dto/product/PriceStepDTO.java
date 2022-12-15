@@ -1,18 +1,22 @@
-package com.project.model.product.dto;
+package com.project.dto.product;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.model.product.Product;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.Set;
 
-public class AuctionStatusDTO {
+public class PriceStepDTO {
+
     private Integer id;
-    private String name;
+    private String step;
     private Set<Product> products;
 
-    public AuctionStatusDTO() {
+    public PriceStepDTO() {
     }
 
     public Integer getId() {
@@ -23,12 +27,12 @@ public class AuctionStatusDTO {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getStep() {
+        return step;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStep(String step) {
+        this.step = step;
     }
 
     public Set<Product> getProducts() {

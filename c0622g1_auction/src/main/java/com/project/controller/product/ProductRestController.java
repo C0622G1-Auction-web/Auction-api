@@ -1,19 +1,19 @@
 package com.project.controller.product;
 
-
-
-import com.project.dto.product.ProductSearchByRoleAdminDto;
-
-
-import com.project.model.product.*;
-import com.project.model.product.dto.ImgUrlProductDTO;
-import com.project.model.product.dto.ProductDTO;
+import com.project.dto.product.*;
+import com.project.model.product.Category;
+import com.project.model.product.ImgUrlProduct;
+import com.project.model.product.PriceStep;
+import com.project.model.product.Product;
 import com.project.service.product.ICategoryService;
 import com.project.service.product.IImgUrlProductService;
 import com.project.service.product.IPriceStepService;
 import com.project.service.product.IProductService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -21,21 +21,9 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
 import java.util.Optional;
-
-
-
-import com.project.dto.product.ProductDto;
-import com.project.dto.product.ProductSearchDto;
-import com.project.model.product.Product;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import java.util.function.Function;
-
-
 
 @CrossOrigin("*")
 @RestController
@@ -44,7 +32,6 @@ public class ProductRestController {
 
     @Autowired
     private IProductService productService;
-
 
     @Autowired
     private ICategoryService categoryService;
@@ -62,11 +49,10 @@ public class ProductRestController {
      *
      * @return categoryList and HttpStatus.OK
      */
-
     @GetMapping("category")
-    public ResponseEntity<List<Category>> getListCategory(){
+    public ResponseEntity<List<Category>> getListCategory() {
         List<Category> categoryList = categoryService.getListCategory();
-        if (categoryList.isEmpty()){
+        if (categoryList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(categoryList, HttpStatus.OK);
@@ -79,15 +65,15 @@ public class ProductRestController {
      *
      * @return priceStepList and HttpStatus.OK
      */
-
     @GetMapping("priceStep")
-    public ResponseEntity<List<PriceStep>> getListPriceStep(){
+    public ResponseEntity<List<PriceStep>> getListPriceStep() {
         List<PriceStep> priceStepList = priceStepService.getListPriceStep();
-        if (priceStepList.isEmpty()){
+        if (priceStepList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(priceStepList, HttpStatus.OK);
     }
+
     /**
      * Create by: HungNV,
      * Date created: 14/12/2022
@@ -110,15 +96,15 @@ public class ProductRestController {
      * Date created: 14/12/2022
      * Function: create new product
      *
-     * @param productDTO,bindingResult
+     * @param productCreateDTO,bindingResult
      * @return HttpStatus.create or (bindingResult.getFieldErrors() and HttpStatus.NOT_ACCEPTABLE)
      */
     @PostMapping("create")
-    public ResponseEntity<List<FieldError>> create(@RequestBody @Validated ProductDTO productDTO, BindingResult bindingResult) {
+    public ResponseEntity<List<FieldError>> create(@RequestBody @Validated ProductCreateDTO productCreateDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
-        productService.saveProduct(productDTO);
+        productService.saveProduct(productCreateDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -127,17 +113,18 @@ public class ProductRestController {
      * Date created: 14/12/2022
      * Function: update product
      *
-     * @param productDTO,bindingResult
+     * @param productCreateDTO,bindingResult
      * @return HttpStatus.create or (bindingResult.getFieldErrors() and HttpStatus.NOT_ACCEPTABLE)
      */
     @PutMapping("update")
-    public ResponseEntity<List<FieldError>> update(@RequestBody @Validated ProductDTO productDTO, BindingResult bindingResult) {
+    public ResponseEntity<List<FieldError>> update(@RequestBody @Validated ProductCreateDTO productCreateDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
-        productService.update(productDTO);
+        productService.update(productCreateDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     /**
      * Create by: HungNV,
      * Date created: 13/12/2022
@@ -163,10 +150,9 @@ public class ProductRestController {
      * @param imgUrlProductDTO
      * @return HttpStatus.CREATED
      */
-
     @RequestMapping("img/create")
-    public ResponseEntity<List<FieldError>> saveImgProduct(@Validated @RequestBody ImgUrlProductDTO imgUrlProductDTO,BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
+    public ResponseEntity<List<FieldError>> saveImgProduct(@Validated @RequestBody ImgUrlProductDTO imgUrlProductDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
         iImgUrlProductService.saveImgProduct(imgUrlProductDTO);
@@ -288,14 +274,13 @@ public class ProductRestController {
     }
 
 
-
     /**
      * Created SangDD
      * Date created 13/12/2022
      * Function: search and filter product by name, rangePrice, categoryID productAuctionStatus
+     *
      * @param productSearchDto
      * @param pageable
-     * @return HttpStatus.NOT_FOUND if result is empty
      * @return HttpStatus.OK if result is not empty
      */
     @GetMapping("/search")
@@ -303,8 +288,8 @@ public class ProductRestController {
                                                             @PageableDefault(value = 5) Pageable pageable) {
 
         Page<Product> productPage = productService.getAllAndSearch(productSearchDto, pageable);
-        if(productPage.hasContent()) {
-            Page<ProductDto> productDtoPage  = productPage.map(new Function<Product, ProductDto>() {
+        if (productPage.hasContent()) {
+            Page<ProductDto> productDtoPage = productPage.map(new Function<Product, ProductDto>() {
                 @Override
                 public ProductDto apply(Product product) {
                     ProductDto productDto = new ProductDto();
