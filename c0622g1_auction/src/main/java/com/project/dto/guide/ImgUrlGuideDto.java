@@ -1,5 +1,26 @@
 package com.project.dto.guide;
 
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+public class ImgUrlGuideDto {
+    private Integer id;
+    @NotBlank
+    private String url;
+    @NotNull
+    private Integer guideId;
+
+    public ImgUrlGuideDto() {
+    }
+
+    public Integer getGuideId() {
+        return guideId;
+    }
+
+    public void setGuideId(Integer guideId) {
+        this.guideId = guideId;
+
 import com.project.model.guide.Guide;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -24,6 +45,7 @@ public class ImgUrlGuideDto implements Validator {
         this.id = id;
         this.url = url;
         this.guideDto = guideDto;
+
     }
 
     public Integer getId() {
@@ -42,6 +64,9 @@ public class ImgUrlGuideDto implements Validator {
         this.url = url;
     }
 
+
+
+
     public GuideDto getGuide() {
         return guideDto;
     }
@@ -59,4 +84,5 @@ public class ImgUrlGuideDto implements Validator {
     public void validate(Object target, Errors errors) {
 
     }
+
 }
