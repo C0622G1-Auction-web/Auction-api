@@ -1,6 +1,5 @@
 package com.project.dto.user;
 
-import com.project.model.users.User;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
