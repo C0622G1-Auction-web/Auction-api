@@ -1,6 +1,12 @@
 package com.project.model.account;
 
+<<<<<<< HEAD
+import com.project.model.account.AccountRole;
+import com.project.model.account.LockAccount;
+import com.project.model.account.PasswordResetToken;
+=======
 import com.fasterxml.jackson.annotation.JsonBackReference;
+>>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
 import com.project.model.users.User;
 
 import javax.persistence.*;
@@ -11,6 +17,7 @@ import java.util.Set;
 
 @Entity
 public class Account {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -21,20 +28,26 @@ public class Account {
     private String password;
     @Column(columnDefinition = "boolean default true")
     private Boolean statusLock;
+
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
+
     @OneToMany(mappedBy = "account")
     @JsonBackReference
     private Set<AccountRole> accountRoles;
+
     @OneToMany(mappedBy = "account")
     @JsonBackReference
     private Set<PasswordResetToken> passwordResetTokens;
+
     @OneToOne(mappedBy = "account")
     @JsonBackReference
     private User user;
+
     @OneToOne(mappedBy = "account")
     @JsonBackReference
     private LockAccount lockAccount;
+
     public Account() {
     }
 

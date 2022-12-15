@@ -1,9 +1,15 @@
 package com.project.service.users.impl;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import com.project.model.account.Account;
+=======
+>>>>>>> 503fa03357badf99ebaebfdca637bc0cf1c5b5c5
 import com.project.model.users.User;
 import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
+>>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
 import com.project.model.users.User;
 =======
 import com.project.model.account.Account;
@@ -19,18 +25,65 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
 @Service
 public class UserService implements IUserService {
     @Autowired
     private IUserRepository userRepository;
 
+<<<<<<< HEAD
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to update user
+     *
+     * @param user
+     * @return User
+     */
+
+    @Override
+    public void updateUser(User user) {
+        userRepository.updateUser(
+                user.getAvatar(),
+                user.getBirthDay(),
+                user.getDeleteStatus(),
+                user.getEmail(),
+                user.getFirstName(),
+                user.getIdCard(),
+                user.getLastName(),
+                user.getPhone(),
+                user.getPointDedication(),
+                user.getAccount(),
+                user.getAddress(),
+                user.getUserType(),
+                user.getId());
+    }
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to create user
+     *
+     * @param user
+     * @return User
+     */
+
+    @Override
+    public void createUser(User user) {
+=======
     @Override
 <<<<<<< HEAD
     public void saveUser(User user, Integer addressId, Integer accountId,Integer userType) {
+<<<<<<< HEAD
 =======
     public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
 >>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
+=======
+>>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
+>>>>>>> 503fa03357badf99ebaebfdca637bc0cf1c5b5c5
         userRepository.createUser(
                 user.getAvatar(),
                 user.getBirthDay(),
@@ -41,6 +94,24 @@ public class UserService implements IUserService {
                 user.getLastName(),
                 user.getPhone(),
                 user.getPointDedication(),
+<<<<<<< HEAD
+                user.getAccount(),
+                user.getAddress(),
+                user.getUserType());
+    }
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user by id
+     *
+     * @param id
+     * @return User
+     */
+
+    @Override
+    public Optional<User> findUserById(int id) {
+=======
                 accountId,
                 addressId,
                 userType);
@@ -72,10 +143,25 @@ public class UserService implements IUserService {
      */
     @Override
     public Optional<User> findById(Integer id) {
+>>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
         return userRepository.findUserById(id);
     }
 
     /**
+<<<<<<< HEAD
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find all user list
+     *
+     * @return List<User>
+     */
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+=======
      * Create by: HaiNT
      * Date created: 13/12/2022
      *
@@ -155,6 +241,7 @@ public class UserService implements IUserService {
         return userRepository.getTopAuctionUser(quality);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
         /**Created by UyenNC
@@ -171,4 +258,7 @@ public class UserService implements IUserService {
         }
 
 >>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
+=======
+>>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
+>>>>>>> 503fa03357badf99ebaebfdca637bc0cf1c5b5c5
 }
