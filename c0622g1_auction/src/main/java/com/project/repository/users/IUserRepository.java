@@ -1,13 +1,21 @@
 package com.project.repository.users;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import com.project.model.users.UserType;
+<<<<<<< HEAD
 import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
 import com.project.model.users.User;
+=======
+
+import com.project.dto.user.UserTopDto;
+>>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -67,6 +75,7 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
      * @param userTypeId
      */
 
+<<<<<<< HEAD
 @Repository
 @Transactional
 public interface IUserRepository extends JpaRepository<User, Integer> {
@@ -78,6 +87,8 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @return HttpStatus.NotFound
      * @return HttpStatus.OK
      */
+=======
+>>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
     @Modifying
     @Query(value = "insert into " +
             "user(avatar," +
@@ -93,8 +104,11 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "address_id," +
             "user_type_id)" +
             " values(:avatar," +
+<<<<<<< HEAD
             " values (" +
             ":avatar," +
+=======
+>>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
             ":birthDay," +
             ":deleteStatus," +
             ":email," +
@@ -119,11 +133,58 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
                     @Param("accountId") Account accountId,
                     @Param("addressId") Address addressId,
                     @Param("userTypeId") UserType userTypeId);
+<<<<<<< HEAD
+=======
+
+
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     * Function: to create user
+     * @return HttpStatus.NotFound
+     * @return HttpStatus.OK
+     */
+    @Modifying
+    @Query(value = "insert into " +
+            "user(avatar," +
+            "birth_day," +
+            "delete_status," +
+            "email," +
+            "first_name," +
+            "id_card," +
+            "last_name," +
+            "phone," +
+            "point_dedication," +
+            "account_id," +
+            "address_id," +
+            "user_type_id)" +
+            " values(:avatar," +
+            ":avatar," +
+            ":birthDay," +
+            ":deleteStatus," +
+            ":email," +
+            ":fistName," +
+            ":idCard," +
+            ":lastName," +
+            ":phone," +
+            ":pointDedication," +
+            ":accountId," +
+            ":addressId," +
+            ":userTypeId)",
+            nativeQuery = true)
+    void createUser(@Param("avatar") String avatar,
+                    @Param("birthDay") String birthDay,
+                    @Param("deleteStatus") Boolean deleteStatus,
+                    @Param("email") String email,
+                    @Param("fistName") String fistName,
+                    @Param("idCard") String idCard,
+                    @Param("lastName") String lastName,
+                    @Param("phone") String phone,
+                    @Param("pointDedication") Double pointDedication,
+>>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
                     @Param("accountId") Integer accountId,
                     @Param("addressId") Integer addressId,
                     @Param("userTypeId") Integer userTypeId);
-
-
 
     /**
      * Create by: HaiNT
@@ -136,6 +197,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param address
      * @return List User
      */
+
     @Query(value = "SELECT * " +
             "FROM user " +
             "join address on address.id = user.address_id " +
@@ -240,7 +302,10 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     @Query(value = "UPDATE `auction_api`.`account` SET `status_lock` = 1 WHERE (`id` in :idList);", nativeQuery = true)
     void unlockAccount(@Param("idList") List<Integer> idList);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
@@ -289,11 +354,14 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
                     @Param("userTypeId") UserType userTypeId,
                     @Param("id") Integer id);
 
+<<<<<<< HEAD
      /** Function: to find by id
      *
      * @param id
      * @return Optional<User>
      */
+=======
+>>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
     @Query(value = "select * " +
             "from user u " +
             "where u.id= :id " +
@@ -339,4 +407,19 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "LIMIT :quality ",
             nativeQuery = true)
     List<UserTopDto> getTopAuctionUser(@Param("quality") String quality);
+<<<<<<< HEAD
+=======
+
+    /**Created by UyenNC
+     * Date created 13/12/2022
+     * Function Find user by account
+     * @param accountId
+     * @return User
+     */
+
+    @Query(value = "select * from user " +
+            "where account_id =:accountId and delete_status = 0;", nativeQuery = true)
+    User findUserByAccount(@Param("accountId") String accountId);
+
+>>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
 }

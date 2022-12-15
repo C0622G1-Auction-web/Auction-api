@@ -20,4 +20,8 @@ public interface IAddressService {
      */
     Address updateAddress(Address address);
 
+<<<<<<< HEAD
+=======
+    Address saveAddress(Address address);
+>>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
 }

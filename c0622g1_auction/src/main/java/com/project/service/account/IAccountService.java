@@ -1,7 +1,7 @@
 package com.project.service.account;
-
-<<<<<<< HEAD
 import com.project.model.account.Account;
+
+import java.util.List;
 
 public interface IAccountService {
 
@@ -22,11 +22,17 @@ public interface IAccountService {
     Account updateAccount(Account account);
 
     Account findAccountByUsername(String username);
-=======
 
-import com.project.model.account.Account;
-
-public interface IAccountService {
     Account saveAccount(Account account);
->>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
+
+    List<Account> findAllAccount();
+
+    Account findByUsername(String username);
+
+
+    void sendMail(String email, String username, String passwordResetToken);
+
+    Account findById(Integer id);
+
+    void save(Account account);
 }

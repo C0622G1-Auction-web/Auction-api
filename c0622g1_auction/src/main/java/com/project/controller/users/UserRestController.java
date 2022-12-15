@@ -1,12 +1,17 @@
 package com.project.controller.users;
 
+<<<<<<< HEAD
 import com.project.dto.user.UserCreateUpdateDto;
 import com.project.dto.user.UserDto;
+=======
+import com.project.dto.UserListDto;
+>>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
 import com.project.dto.user.*;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import com.project.service.account.IAccountService;
+<<<<<<< HEAD
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 import com.project.service.account.ILockAccountService;
@@ -19,6 +24,11 @@ import com.project.service.account.IAccountService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 import com.project.service.users.IUserTypeService;
+=======
+import com.project.service.account.ILockAccountService;
+import com.project.service.users.IAddressService;
+import com.project.service.users.IUserService;
+>>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,9 +43,12 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/user/v1")
+<<<<<<< HEAD
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/users")
+=======
+>>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
 public class UserRestController {
 
     @Autowired
@@ -46,6 +59,9 @@ public class UserRestController {
 
     @Autowired
     private IAddressService addressService;
+
+    @Autowired
+    private ILockAccountService lockAccountService;
 
     /**
      * Create by: TruongLH
@@ -79,6 +95,7 @@ public class UserRestController {
         user.setAddress(address1);
         user.setDeleteStatus(true);
         userService.createUser(user);
+<<<<<<< HEAD
     private IAddressService addressService;
     @Autowired
     private IAccountService accountService;
@@ -86,6 +103,10 @@ public class UserRestController {
     private IUserTypeService userTypeService;
     @Autowired
     private ILockAccountService lockAccountService;
+=======
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+>>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
 
     /**
      * Create by: HaiNT
@@ -98,6 +119,7 @@ public class UserRestController {
      * @param userTypeId
      * @return List User by param if param is empty then return list all users
      */
+
     @GetMapping
     public ResponseEntity<List<UserListDto>> getAllUser(
             @RequestParam(defaultValue = "") String id,
@@ -150,6 +172,10 @@ public class UserRestController {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * <<<<<<< HEAD
+>>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to update user by id
@@ -184,12 +210,18 @@ public class UserRestController {
         }
     }
 
+<<<<<<< HEAD
      /** Create by: HaiNT
+=======
+    /**
+     * Create by: HaiNT
+>>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
      * Date created: 13/12/2022
      *
      * @param idList
      * @return the user object is unlock
      */
+
     @PutMapping("/unlockUser")
     public ResponseEntity<UserListDto> unlockUser(@RequestBody List<Integer> idList) {
         List<User> userList = userService.findByIdList(idList);
@@ -200,7 +232,6 @@ public class UserRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -208,6 +239,7 @@ public class UserRestController {
      *
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
+
     @GetMapping("/top/{quality}")
     public ResponseEntity<List<UserTopDto>> getTopAuctionUser(@PathVariable String quality) {
         String regexNumber = "^\\d+$";
@@ -225,7 +257,7 @@ public class UserRestController {
      * Created: VietNQ
      * Created date: 13/12/2022
      * Function: create user account
-     * @return HttpStatus.OK if result is not empty
+     *
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
     @PostMapping("/create")
@@ -234,7 +266,7 @@ public class UserRestController {
         AddressDto addressDto = new AddressDto(addUserDto.getDetailAddress(), addUserDto.getTown(), addUserDto.getDistrict(), addUserDto.getCity(), addUserDto.getCountry());
         AccountDto accountDto = new AccountDto(addUserDto.getUsername(), addUserDto.getPassword());
 
-        UserDto userDto = new UserDto(addUserDto.getFirstName(), addUserDto.getLastName(), addUserDto.getEmail(),
+        AddUserDto userDto1 = new AddUserDto(addUserDto.getFirstName(), addUserDto.getLastName(), addUserDto.getEmail(),
                 addUserDto.getPhone(), addUserDto.getPointDedication(), addUserDto.getBirthDay(), addUserDto.getIdCard(), addUserDto.getAvatar(), addressDto, accountDto);
 
         User user = new User();
@@ -243,7 +275,7 @@ public class UserRestController {
 
         BeanUtils.copyProperties(addressDto, address);
         BeanUtils.copyProperties(accountDto, account);
-        BeanUtils.copyProperties(userDto, user);
+        BeanUtils.copyProperties(userDto1, user);
 
         Address addressATBC = addressService.saveAddress(address);
         Account accountABT = accountService.saveAccount(account);
