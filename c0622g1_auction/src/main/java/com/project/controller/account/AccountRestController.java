@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -124,16 +123,26 @@ public class AccountRestController {
         if (passwordResetToken == null) {
             return new ResponseEntity<>("Token không đúng", HttpStatus.NOT_FOUND);
         }
+
         String date = passwordResetToken.getExpiryDate();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         LocalDateTime expiryDate = LocalDateTime.parse(date, formatter);
         if (expiryDate.isBefore(LocalDateTime.now())) {
             return new ResponseEntity<>("Token đã hết hạn", HttpStatus.BAD_REQUEST);
         }
+        if (password == null) {
+            return new ResponseEntity<>("Password không được null", HttpStatus.BAD_REQUEST);
+        }
+        if (password.trim().length() == 0 || password.length() == 0) {
+            return new ResponseEntity<>("Password không được để trống", HttpStatus.BAD_REQUEST);
+        }
+        if (password.length() < 5 || password.length() > 50) {
+            return new ResponseEntity<>("Password có độ dài tối thiểu là 5 kí tự và tối đa là 50 kí tự", HttpStatus.BAD_REQUEST);
+        }
 
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encryptPass = passwordEncoder.encode(password);
-        account.setPassword(encryptPass);
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        String encryptPass = passwordEncoder.encode(password);
+//        account.setPassword(encryptPass);
         accountService.save(account);
         return new ResponseEntity<>("Cập nhật mật khẩu thành công", HttpStatus.OK);
     }
