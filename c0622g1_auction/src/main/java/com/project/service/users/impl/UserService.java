@@ -1,9 +1,16 @@
 package com.project.service.users.impl;
 
+<<<<<<< HEAD
 import com.project.model.users.User;
 import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
 import com.project.model.users.User;
+=======
+import com.project.model.account.Account;
+import com.project.model.users.User;
+import com.project.dto.user.UserTopDto;
+import com.project.model.users.Address;
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
 import com.project.repository.users.IUserRepository;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +26,11 @@ public class UserService implements IUserService {
     private IUserRepository userRepository;
 
     @Override
+<<<<<<< HEAD
     public void saveUser(User user, Integer addressId, Integer accountId,Integer userType) {
+=======
+    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
         userRepository.createUser(
                 user.getAvatar(),
                 user.getBirthDay(),
@@ -125,6 +136,11 @@ public class UserService implements IUserService {
     }
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -138,4 +154,21 @@ public class UserService implements IUserService {
 
         return userRepository.getTopAuctionUser(quality);
     }
+<<<<<<< HEAD
+=======
+
+        /**Created by UyenNC
+         * Date created 13/12/2022
+         * Function Find user by account
+         * @param account
+         * @return User
+         */
+
+        @Override
+        public User findUserByAccount(Account account) {
+            String id = account.getId() +"";
+            return userRepository.findUserByAccount(id);
+        }
+
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
 }
