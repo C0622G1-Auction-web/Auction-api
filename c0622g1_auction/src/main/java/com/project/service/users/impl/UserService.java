@@ -1,22 +1,10 @@
 package com.project.service.users.impl;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import com.project.model.account.Account;
-=======
->>>>>>> 503fa03357badf99ebaebfdca637bc0cf1c5b5c5
-import com.project.model.users.User;
+
 import com.project.dto.user.UserTopDto;
-import com.project.model.users.Address;
->>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
-import com.project.model.users.User;
-=======
 import com.project.model.account.Account;
-import com.project.model.users.User;
-import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
+import com.project.model.users.User;
 import com.project.repository.users.IUserRepository;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +13,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
 @Service
 public class UserService implements IUserService {
+
     @Autowired
     private IUserRepository userRepository;
 
-<<<<<<< HEAD
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
@@ -73,17 +57,6 @@ public class UserService implements IUserService {
 
     @Override
     public void createUser(User user) {
-=======
-    @Override
-<<<<<<< HEAD
-    public void saveUser(User user, Integer addressId, Integer accountId,Integer userType) {
-<<<<<<< HEAD
-=======
-    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
-=======
->>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
->>>>>>> 503fa03357badf99ebaebfdca637bc0cf1c5b5c5
         userRepository.createUser(
                 user.getAvatar(),
                 user.getBirthDay(),
@@ -94,7 +67,6 @@ public class UserService implements IUserService {
                 user.getLastName(),
                 user.getPhone(),
                 user.getPointDedication(),
-<<<<<<< HEAD
                 user.getAccount(),
                 user.getAddress(),
                 user.getUserType());
@@ -111,12 +83,9 @@ public class UserService implements IUserService {
 
     @Override
     public Optional<User> findUserById(int id) {
-=======
-                accountId,
-                addressId,
-                userType);
-
+        return userRepository.findUserById(id);
     }
+
 
     /**
      * Create by: HaiNT
@@ -129,6 +98,7 @@ public class UserService implements IUserService {
      * @param address
      * @return List of users by param
      */
+
     @Override
     public List<User> getUserBy(String id, String name, String email, String userTypeId, String address) {
         return userRepository.getUserBy(id, name, email, userTypeId, address);
@@ -141,14 +111,13 @@ public class UserService implements IUserService {
      * @param id
      * @return User object by id
      */
+
     @Override
     public Optional<User> findById(Integer id) {
->>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
         return userRepository.findUserById(id);
     }
 
     /**
-<<<<<<< HEAD
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to find all user list
@@ -161,13 +130,19 @@ public class UserService implements IUserService {
         return userRepository.findAll();
     }
 
-=======
+    @Override
+    public void saveUser(User user, Integer addressId, Integer accountId, Integer Number) {
+
+    }
+
+    /**
      * Create by: HaiNT
      * Date created: 13/12/2022
      *
      * @param id
      * @return Object Address by id
      */
+
     @Override
     public Optional<Address> findByAddressId(int id) {
         return userRepository.findUserByAddressId(id);
@@ -190,8 +165,9 @@ public class UserService implements IUserService {
      *
      * @param user
      */
+
     @Override
-    public void updateUser(User user) {
+    public void editUser(User user) {
         updateAddress(user);
         userRepository.updateUser(user.getId(), user.getIdCard(), user.getAvatar(), user.getBirthDay(), user.getEmail(),
                 user.getFirstName(), user.getLastName(), user.getPhone());
@@ -204,6 +180,7 @@ public class UserService implements IUserService {
      * @param id
      * @return User object by id
      */
+
     @Override
     public List<User> findByIdList(List<Integer> id) {
         return userRepository.findUserByIdList(id);
@@ -221,12 +198,6 @@ public class UserService implements IUserService {
         userRepository.unlockAccount(idList);
     }
 
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -235,30 +206,26 @@ public class UserService implements IUserService {
      * @param quality user quality
      * @return List<User>
      */
+
     @Override
     public List<UserTopDto> getTopAuctionUser(String quality) {
 
         return userRepository.getTopAuctionUser(quality);
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
-        /**Created by UyenNC
-         * Date created 13/12/2022
-         * Function Find user by account
-         * @param account
-         * @return User
-         */
+    /**
+     * Created by UyenNC
+     * Date created 13/12/2022
+     * Function Find user by account
+     *
+     * @param account
+     * @return User
+     */
 
-        @Override
-        public User findUserByAccount(Account account) {
-            String id = account.getId() +"";
-            return userRepository.findUserByAccount(id);
-        }
+    @Override
+    public User findUserByAccount(Account account) {
+        String id = account.getId() + "";
+        return userRepository.findUserByAccount(id);
+    }
 
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
-=======
->>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
->>>>>>> 503fa03357badf99ebaebfdca637bc0cf1c5b5c5
 }
