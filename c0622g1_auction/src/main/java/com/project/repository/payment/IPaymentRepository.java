@@ -19,7 +19,7 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
      * Date created 13/12/2022
      * Function Find valid payment by user id
      * @param userId
-     * @return List<Payment>
+     * @return List<IPaymentDTO>
      */
     @Query(value = "SELECT p.id AS code, us.last_name AS lastName , us.first_name AS firstName, ad.city, ad.district, \n" +
             "            ad.detail_address AS address , ad.country, pr.name AS productName, au.current_price AS productPrice,\n" +
@@ -28,11 +28,11 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
             "            JOIN auction AS au ON p.auction_id = au.id  \n" +
             "            JOIN product AS pr ON au.product_id = pr.id\n" +
             "            JOIN user AS us ON au.user_id = us.id\n" +
-            "\t\t\tJOIN address AS ad ON us.address_id \n" +
+            "            JOIN address AS ad ON us.address_id \n" +
             "            WHERE us.id =:user_id \n" +
             "            AND p.payment_status = 0 \n" +
             "            AND p.delete_status = 0 \n" +
-            "            AND au.auction_status = 1 group by us.id;", nativeQuery = true)
+            "            AND au.auction_status = 1 group by p.id;", nativeQuery = true)
     List<IPaymentDTO> findValidPaymentByUserId(@Param(value = "user_id") String userId);
 
     /**

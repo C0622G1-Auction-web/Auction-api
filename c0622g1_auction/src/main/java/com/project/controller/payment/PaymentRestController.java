@@ -13,7 +13,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1/{user_id}/payment")
+@RequestMapping("/api/v1/payments")
 public class PaymentRestController {
     @Autowired
     IPaymentService paymentService;
@@ -25,7 +25,7 @@ public class PaymentRestController {
      * @return HttpStatus.NOT_FOUND
      * return HttpStatus.OK + List<Payment>
      */
-    @GetMapping("list")
+    @GetMapping("{user_id}/list")
     public ResponseEntity<List<IPaymentDTO>> getPaymentList(@PathVariable(value = "user_id") String userId) {
         List<IPaymentDTO> paymentList = paymentService.findValidPaymentByUserId(userId);
 

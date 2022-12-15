@@ -19,7 +19,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1/account")
+@RequestMapping("/api/v1/accounts")
 public class AccountRestController {
     @Autowired
     private IAccountService accountService;
@@ -55,8 +55,8 @@ public class AccountRestController {
      * @param email
      * @param username
      * @return "Không tìm thấy tài khoản, vui lòng kiểm tra lại" + HttpStatus.NOT_FOUND
-     * @return "Tài khoản hợp lệ, vui lòng kiểm tra hòm thư gmail"+ HttpStatus.OK
-     * @return "Email không hợp lệ, vui lòng kiểm tra lại" + HttpStatus.NOT_FOUND
+     * "Tài khoản hợp lệ, vui lòng kiểm tra hòm thư gmail"+ HttpStatus.OK
+     * "Email không hợp lệ, vui lòng kiểm tra lại" + HttpStatus.NOT_FOUND
      */
     @GetMapping("verify_account")
     public ResponseEntity<String> verifyAccount(@RequestParam(value = "email") String email, @RequestParam(value = "username") String username) {
@@ -82,8 +82,8 @@ public class AccountRestController {
      * Function: Check whether the token attached to the link is valid and not expired. If it is valid and not expired, redirect to the update password link
      * @param token
      * @return "Token không tồn tại" + HttpStatus.NOT_FOUND
-     * @return "Token đã hết hạn"+ HttpStatus.GATEWAY_TIMEOUT
-     * @return headers + HttpStatus.MOVED_PERMANENTLY
+     *  "Token đã hết hạn"+ HttpStatus.GATEWAY_TIMEOUT
+     *  headers + HttpStatus.MOVED_PERMANENTLY
      */
     @GetMapping("token_check")
     public ResponseEntity<String> checkToken(@RequestParam(value = "token") String token) {
@@ -99,7 +99,7 @@ public class AccountRestController {
         }
         Integer accountId = passwordResetToken.getAccount().getId();
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(URI.create("/api/v1/account/update_pass?id=" + accountId + "&token=" + token));
+        headers.setLocation(URI.create("/api/v1/accounts/update_pass?id=" + accountId + "&token=" + token));
         return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
     }
 
@@ -112,7 +112,9 @@ public class AccountRestController {
      */
 
     @GetMapping("update_pass")
-    public ResponseEntity<?> updatePassword(@RequestParam(value = "id", required = false) String accountId, @RequestParam(value = "token", required = false) String token, @RequestParam(value = "password", required = false) String password) {
+    public ResponseEntity<?> updatePassword(@RequestParam(value = "id", required = false) String accountId,
+                                            @RequestParam(value = "token", required = false) String token,
+                                            @RequestParam(value = "password", required = false) String password) {
         Account account = accountService.findById(Integer.valueOf(accountId));
 
         if (account == null) {
