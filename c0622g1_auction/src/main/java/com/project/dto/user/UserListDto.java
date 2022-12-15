@@ -1,4 +1,4 @@
-package com.project.dto;
+package com.project.dto.user;
 
 import com.project.model.account.Account;
 import com.project.model.users.Address;

@@ -1,6 +1,7 @@
 package com.project.repository.users;
 
 import com.project.dto.user.UserTopDto;
+import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -61,7 +62,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "UPDATE auction_api.address " +
+    @Query(value = "UPDATE address " +
             "SET city = :city, " +
             "country = :country, " +
             "detail_address = :detailAddress, " +
@@ -91,7 +92,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "UPDATE auction_api.user " +
+    @Query(value = "UPDATE user " +
             "SET avatar = :avatar, " +
             "birth_day = :birthDay , " +
             "email = :email, " +
@@ -132,20 +133,8 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "UPDATE auction_api.account SET status_lock = 1 WHERE (id in :idList);", nativeQuery = true)
+    @Query(value = "UPDATE account SET status_lock = 1 WHERE (id in :idList);", nativeQuery = true)
     void unlockAccountByIdList(@Param("idList") List<Integer> idList);
-
-    /**
-     * Create by: HaiNT
-     * Date created: 13/12/2022
-     * Function: to  find Address by id
-     *
-     * @param id
-     * @return Optional<Address>
-     */
-    @Query(value = "SELECT * FROM auction_api.address WHERE id = :id ",
-            nativeQuery = true)
-    Optional<Address> findUserByAddressId(@Param("id") Integer id);
 
     /**
      * Create by: VietNQ
@@ -154,6 +143,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      *
      * @return HttpStatus.OK
      */
+    @Transactional
     @Modifying
     @Query(value = "insert into " +
             "user(avatar," +
@@ -206,8 +196,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      */
     @Query(value = "select * " +
             "from user u " +
-            "where u.id= :id " +
-            "and u.delete_status=1 ",
+            "where u.id= :id ",
             nativeQuery = true)
     Optional<User> findUserById(@Param("id") Integer id);
 

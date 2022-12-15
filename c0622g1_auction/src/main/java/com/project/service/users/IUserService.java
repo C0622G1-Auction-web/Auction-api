@@ -1,6 +1,7 @@
 package com.project.service.users;
 
 import com.project.dto.user.UserTopDto;
+import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.stereotype.Service;
@@ -17,16 +18,18 @@ public interface IUserService {
     /**
      * By: HaiNT - Find list of users by param
      */
-    List<User> getUserBy(String id, String name, String email, String userTypeId, String address,Integer index);
+    List<User> getUserBy(String id, String name, String email, String userTypeId, String address, Integer index);
 
     /**
      * By: HaiNT - Find list of users by id
+     *
      * @param id
      */
     Optional<User> findById(Integer id);
 
     /**
      * By: HaiNT - Find list of users by idList
+     *
      * @return
      */
     List<User> findByIdList(List<Integer> id);
@@ -35,6 +38,11 @@ public interface IUserService {
      * By: HaiNT - Find list of address by AddressId
      */
     Optional<Address> findByAddressId(int id);
+
+    /**
+     * By: HaiNT - Find list of address by AddressId
+     */
+    Optional<Account> findByAccountId(int id);
 
     /**
      * By: HaiNT - Find list of address by AddressId

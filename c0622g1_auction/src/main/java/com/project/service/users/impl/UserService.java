@@ -1,10 +1,14 @@
 package com.project.service.users.impl;
 
+import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import com.project.dto.user.UserTopDto;
 
+import com.project.repository.account.IAccountRepository;
+import com.project.repository.users.IAddressRepository;
 import com.project.repository.users.IUserRepository;
+import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +21,10 @@ import java.util.Optional;
 public class UserService implements IUserService {
     @Autowired
     private IUserRepository userRepository;
+    @Autowired
+    private IAddressRepository addressRepository;
+    @Autowired
+    private IAccountRepository accountRepository;
 
     /**
      * Create by: HaiNT
@@ -55,7 +63,19 @@ public class UserService implements IUserService {
      */
     @Override
     public Optional<Address> findByAddressId(int id) {
-        return userRepository.findUserByAddressId(id);
+        return addressRepository.findById(id);
+    }
+
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param id
+     * @return Object Account by id
+     */
+    @Override
+    public Optional<Account> findByAccountId(int id) {
+        return accountRepository.findById(id);
     }
 
     /**
@@ -106,8 +126,6 @@ public class UserService implements IUserService {
     }
 
 
-
-
     @Override
     public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
         userRepository.createUser(
@@ -125,7 +143,6 @@ public class UserService implements IUserService {
                 userType);
 
     }
-
 
 
     /**

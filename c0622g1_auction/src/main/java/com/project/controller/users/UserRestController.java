@@ -10,7 +10,7 @@ import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 
 
-import com.project.dto.UserListDto;
+import com.project.dto.user.UserListDto;
 import com.project.dto.user.UserTopDto;
 import com.project.service.users.IUserTypeService;
 
@@ -51,7 +51,7 @@ public class UserRestController {
      * @param userTypeId
      * @return List User by param if param is empty then return list all users
      */
-    @GetMapping
+    @GetMapping("/user/list")
     public ResponseEntity<List<UserListDto>> getAllUser(
             @RequestParam(defaultValue = "") String id,
             @RequestParam(defaultValue = "") String name,
@@ -69,6 +69,9 @@ public class UserRestController {
         for (User user : userList) {
             UserListDto userListDto = new UserListDto();
             BeanUtils.copyProperties(user, userListDto);
+            userListDto.setAccount(user.getAccount());
+            userListDto.setAddress(user.getAddress());
+            userListDto.setUserType(user.getUserType());
             userListDto.setId(user.getId());
             userListDtos.add(userListDto);
         }
@@ -84,25 +87,10 @@ public class UserRestController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<User> userById(@PathVariable() int id) {
-        User user = userService.findById(id).get();
+        User user = userService.findById(id).orElse(null);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    /**
-     * Create by: HaiNT
-     * Date created: 13/12/2022
-     *
-     * @param id
-     * @param userListDto
-     * @return the user object is updated
-     */
-    @PutMapping("/{id}")
-    public ResponseEntity<UserListDto> updateUserByRoleAdmin(@PathVariable() int id, @RequestBody UserListDto userListDto) {
-        User user = userService.findById(id).get();
-        BeanUtils.copyProperties(userListDto, user);
-        userService.updateUserByRoleAdmin(user);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
     /**
      * Create by: HaiNT
@@ -120,6 +108,28 @@ public class UserRestController {
         userService.unlockAccountByIdList(idList);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param id
+     * @param userEditDto
+     * @return the user object is updated
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<UserListDto> updateUserByRoleAdmin(@PathVariable() Integer id, @RequestBody UserEditDto userEditDto) {
+        User user = userService.findById(id).get();
+        Address address = userService.findByAddressId(user.getAddress().getId()).get();
+        Account account = userService.findByAccountId(user.getAccount().getId()).get();
+        BeanUtils.copyProperties(userEditDto, address);
+        BeanUtils.copyProperties(userEditDto, account);
+        BeanUtils.copyProperties(userEditDto, user);
+        userService.updateUserByRoleAdmin(user);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
     /**
      * Created: SangDD
@@ -145,7 +155,7 @@ public class UserRestController {
      * Created: VietNQ
      * Created date: 13/12/2022
      * Function: create user account
-     * @return HttpStatus.OK if result is not empty
+     *
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
     @PostMapping("/create")
@@ -174,5 +184,8 @@ public class UserRestController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
+
 
 }
