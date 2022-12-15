@@ -218,7 +218,7 @@ public class UserRestController {
      *
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
-    @PostMapping("/create")
+    @PostMapping("/add")
     public ResponseEntity<?> addUser(@RequestBody AddUserDto addUserDto) {
 
         AddressDto addressDto = new AddressDto(addUserDto.getDetailAddress(), addUserDto.getTown(), addUserDto.getDistrict(), addUserDto.getCity(), addUserDto.getCountry());

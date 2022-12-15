@@ -1,9 +1,5 @@
 package com.project.service.users.impl;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
 import com.project.model.users.Address;
 import com.project.repository.users.IAddressRepository;
 import com.project.service.users.IAddressService;
@@ -15,7 +11,6 @@ public class AddressService implements IAddressService {
     @Autowired
     private IAddressRepository addressRepository;
 
-<<<<<<< HEAD
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
@@ -47,12 +42,10 @@ public class AddressService implements IAddressService {
                 address.getCity(),
                 address.getCountry());
     }
-=======
     @Override
     public Address saveAddress(Address address) {
         addressRepository.save(address);
         return address;
     }
 
->>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
 }
