@@ -1,7 +1,7 @@
 package com.project.service.product.impl;
 
-import com.project.dto.product.ImgUrlProductDTO;
 import com.project.model.product.ImgUrlProduct;
+import com.project.model.product.dto.ImgUrlProductDTO;
 import com.project.repository.product.IImgUrlProductRepository;
 import com.project.service.product.IImgUrlProductService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,6 +3,7 @@ package com.project.model.account;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.model.users.User;
+
 import javax.persistence.*;
 import java.util.Set;
 

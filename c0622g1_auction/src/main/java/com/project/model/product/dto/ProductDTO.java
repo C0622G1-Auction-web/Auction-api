@@ -1,16 +1,19 @@
-package com.project.dto.product;
+package com.project.model.product.dto;
 
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
-import javax.validation.constraints.*;
 
-
-public class ProductCreateDTO {
+public class ProductDTO{
 
     private int id;
 
     @NotBlank(message = "Không để trống")
     @NotNull(message = "Không để trống")
+    @Pattern(regexp = "^\\p{Lu}\\p{Ll}+(\\s\\p{Lu}\\p{Ll}+)*$[0-9]")
     @Size(min = 5, max =255)
     private String name;
 
@@ -39,7 +42,7 @@ public class ProductCreateDTO {
     @NotNull
     private Integer user;
 
-    public ProductCreateDTO() {
+    public ProductDTO() {
     }
 
     public int getId() {

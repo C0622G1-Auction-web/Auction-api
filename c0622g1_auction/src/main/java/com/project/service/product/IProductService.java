@@ -1,9 +1,9 @@
 package com.project.service.product;
 
-import com.project.dto.product.ProductCreateDTO;
 import com.project.dto.product.ProductSearchByRoleAdminDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
+import com.project.model.product.dto.ProductDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -22,9 +22,9 @@ public interface IProductService {
      */
     Optional<Product> findById(Integer id);
 
-    void saveProduct(ProductCreateDTO ProductCreateDTO);
+    void saveProduct(ProductDTO ProductDTO);
 
-    void update(ProductCreateDTO ProductCreateDTO);
+    void update(ProductDTO ProductDTO);
 
     /**
      * Create by: GiangLBH

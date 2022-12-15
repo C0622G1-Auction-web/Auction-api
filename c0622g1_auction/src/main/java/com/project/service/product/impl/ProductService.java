@@ -2,13 +2,9 @@ package com.project.service.product.impl;
 
 
 import com.project.dto.product.ProductSearchByRoleAdminDto;
-
-import com.project.model.product.Product;
-import com.project.dto.product.ProductCreateDTO;
-
-
 import com.project.dto.product.ProductSearchDto;
-
+import com.project.model.product.Product;
+import com.project.model.product.dto.ProductDTO;
 import com.project.repository.product.IProductRepository;
 import com.project.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 import java.util.Optional;
 
 @Service
@@ -40,17 +35,17 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void saveProduct(ProductCreateDTO productCreateDTO) {
-        productRepository.saveProduct(productCreateDTO.getName(), productCreateDTO.getInitialPrice(), productCreateDTO.getUser(),
-                productCreateDTO.getCategory(), productCreateDTO.getDescription(), productCreateDTO.getPriceStep(),
-                productCreateDTO.getStartTime(), productCreateDTO.getEndTime(), productCreateDTO.getRegisterDay(), productCreateDTO.getAuctionStatus(), productCreateDTO.getReviewStatus());
+    public void saveProduct(ProductDTO productDTO) {
+        productRepository.saveProduct(productDTO.getName(), productDTO.getInitialPrice(), productDTO.getUser(),
+                productDTO.getCategory(), productDTO.getDescription(), productDTO.getPriceStep(),
+                productDTO.getStartTime(), productDTO.getEndTime(), productDTO.getRegisterDay(),productDTO.getAuctionStatus(),productDTO.getReviewStatus());
     }
 
     @Override
-    public void update(ProductCreateDTO productCreateDTO) {
-        productRepository.updateProduct(productCreateDTO.getName(), productCreateDTO.getInitialPrice(), productCreateDTO.getUser(),
-                productCreateDTO.getCategory(), productCreateDTO.getDescription(), productCreateDTO.getPriceStep(),
-                productCreateDTO.getStartTime(), productCreateDTO.getEndTime(), productCreateDTO.getRegisterDay(), productCreateDTO.getId());
+    public void update(ProductDTO productDTO) {
+        productRepository.updateProduct(productDTO.getName(), productDTO.getInitialPrice(), productDTO.getUser(),
+                productDTO.getCategory(), productDTO.getDescription(), productDTO.getPriceStep(),
+                productDTO.getStartTime(), productDTO.getEndTime(), productDTO.getRegisterDay(), productDTO.getId());
 
     }
 
@@ -107,6 +102,7 @@ public class ProductService implements IProductService {
             pageable) {
         return productRepository.searchByRoleAdmin(productSearchByRoleAdminDto, pageable);
     }
+
 
     /**
      * Create by: GiangLBH

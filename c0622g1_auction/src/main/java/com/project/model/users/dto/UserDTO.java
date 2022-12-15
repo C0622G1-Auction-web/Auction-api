@@ -1,14 +1,11 @@
 package com.project.model.users.dto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.model.account.Account;
 import com.project.model.auction.Auction;
 import com.project.model.product.Product;
 import com.project.model.users.Address;
 import com.project.model.users.UserType;
 
-import javax.persistence.*;
 import java.util.Set;
 
 public class UserDTO {

@@ -1,8 +1,7 @@
 package com.project.service.product;
 
-import com.project.dto.product.ImgUrlProductDTO;
 import com.project.model.product.ImgUrlProduct;
-
+import com.project.model.product.dto.ImgUrlProductDTO;
 
 import java.util.List;
 

@@ -19,7 +19,6 @@ import java.util.Optional;
 public interface IUserRepository extends JpaRepository<User, Integer> {
 
     /**
-<<<<<<< HEAD
      * Create by: VietNQ
      * Date created: 13/12/2022
      * Function: to create user
@@ -270,6 +269,9 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     Optional<User> findUserById(@Param("id") Integer id);
 
 
+
+
+
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -293,6 +295,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "LIMIT :quality ",
             nativeQuery = true)
     List<UserTopDto> getTopAuctionUser(@Param("quality") String quality);
+
 
     /**
      * Create by: VietNq

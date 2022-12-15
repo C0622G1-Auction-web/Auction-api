@@ -1,14 +1,7 @@
-package com.project.dto.product;
+package com.project.model.product.dto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.project.model.product.Product;
-
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 public class ImgUrlProductDTO {
     private Integer id;

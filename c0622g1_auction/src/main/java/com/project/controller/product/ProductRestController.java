@@ -1,10 +1,15 @@
 package com.project.controller.product;
 
-import com.project.dto.product.*;
+
+import com.project.dto.product.ProductDto;
+import com.project.dto.product.ProductSearchByRoleAdminDto;
+import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Category;
 import com.project.model.product.ImgUrlProduct;
 import com.project.model.product.PriceStep;
 import com.project.model.product.Product;
+import com.project.model.product.dto.ImgUrlProductDTO;
+import com.project.model.product.dto.ProductDTO;
 import com.project.service.product.ICategoryService;
 import com.project.service.product.IImgUrlProductService;
 import com.project.service.product.IPriceStepService;
@@ -96,15 +101,15 @@ public class ProductRestController {
      * Date created: 14/12/2022
      * Function: create new product
      *
-     * @param productCreateDTO,bindingResult
+     * @param productDTO,bindingResult
      * @return HttpStatus.create or (bindingResult.getFieldErrors() and HttpStatus.NOT_ACCEPTABLE)
      */
     @PostMapping("create")
-    public ResponseEntity<List<FieldError>> create(@RequestBody @Validated ProductCreateDTO productCreateDTO, BindingResult bindingResult) {
+    public ResponseEntity<List<FieldError>> create(@RequestBody @Validated ProductDTO productDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
-        productService.saveProduct(productCreateDTO);
+        productService.saveProduct(productDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -113,15 +118,15 @@ public class ProductRestController {
      * Date created: 14/12/2022
      * Function: update product
      *
-     * @param productCreateDTO,bindingResult
+     * @param productDTO,bindingResult
      * @return HttpStatus.create or (bindingResult.getFieldErrors() and HttpStatus.NOT_ACCEPTABLE)
      */
     @PutMapping("update")
-    public ResponseEntity<List<FieldError>> update(@RequestBody @Validated ProductCreateDTO productCreateDTO, BindingResult bindingResult) {
+    public ResponseEntity<List<FieldError>> update(@RequestBody @Validated ProductDTO productDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
-        productService.update(productCreateDTO);
+        productService.update(productDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -150,6 +155,7 @@ public class ProductRestController {
      * @param imgUrlProductDTO
      * @return HttpStatus.CREATED
      */
+
     @RequestMapping("img/create")
     public ResponseEntity<List<FieldError>> saveImgProduct(@Validated @RequestBody ImgUrlProductDTO imgUrlProductDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -199,26 +205,6 @@ public class ProductRestController {
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
-     * Function: to search product by product name and category and seller name
-     * and product initial price and auction status
-     *
-     * @param productSearchByRoleAdminDto
-     * @param pageable
-     * @return HttpStatus.NO_CONTENT if not found any product /  HttpStatus.OK and Products page if found
-     */
-    @GetMapping("/searchByAdmin")
-    public ResponseEntity<Page<Product>> searchByRoleAdmin(@RequestBody ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
-                                                           @PageableDefault(value = 5) Pageable pageable) {
-        Page<Product> productPage = productService.searchByRoleAdmin(productSearchByRoleAdminDto, pageable);
-        if (productPage.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<Page<Product>>(productPage, HttpStatus.OK);
-    }
-
-    /**
-     * Create by: GiangLBH
-     * Date created: 13/12/2022
      * Function: to review product
      *
      * @param id
@@ -256,7 +242,7 @@ public class ProductRestController {
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
-     * Function: to find product by id
+     * Function: to find product by list id
      *
      * @param idList
      * @return HttpStatus.NO_CONTENT if exists any product not found/  HttpStatus.OK and products found
@@ -272,7 +258,6 @@ public class ProductRestController {
         }
         return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
     }
-
 
     /**
      * Created SangDD
@@ -300,6 +285,26 @@ public class ProductRestController {
             return new ResponseEntity<>(productDtoPage, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to search product by product name and category and seller name
+     * and product initial price and auction status
+     *
+     * @param productSearchByRoleAdminDto
+     * @param pageable
+     * @return HttpStatus.NO_CONTENT if not found any product /  HttpStatus.OK and Products page if found
+     */
+    @GetMapping("/search-by-admin")
+    public ResponseEntity<Page<Product>> searchByRoleAdmin(@RequestBody ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
+                                                           @PageableDefault(value = 5) Pageable pageable) {
+        Page<Product> productPage = productService.searchByRoleAdmin(productSearchByRoleAdminDto, pageable);
+        if (productPage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<Page<Product>>(productPage, HttpStatus.OK);
     }
 
 }
