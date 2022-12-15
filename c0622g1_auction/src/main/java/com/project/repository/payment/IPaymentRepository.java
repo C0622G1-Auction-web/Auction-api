@@ -46,7 +46,7 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
      * @param id
      * @return Payment
      */
-    @Query(value = "SELECT payment.* FROM payment WHERE payment_status = 0 AND id =:id", nativeQuery = true)
+    @Query(value = " SELECT * FROM payment WHERE payment_status = 0 AND id = :id ", nativeQuery = true)
     Payment findPaymentById(@Param("id") Integer id);
 
 }
