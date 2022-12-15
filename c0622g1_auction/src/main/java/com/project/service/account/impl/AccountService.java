@@ -1,10 +1,6 @@
 package com.project.service.account.impl;
 
 import com.project.model.account.Account;
-<<<<<<< HEAD
-=======
-import com.project.model.account.AccountRole;
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
 import com.project.repository.account.IAccountRepository;
 import com.project.service.account.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,37 +12,71 @@ import java.util.List;
 
 @Service
 public class AccountService implements IAccountService {
+
     @Autowired
     private IAccountRepository accountRepository;
-<<<<<<< HEAD
-=======
+
     @Autowired
     JavaMailSender javaMailSender;
 
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to create account
+     *
+     * @return Account
+     */
+
+    @Override
+    public Account createAccount(Account account) {
+        return accountRepository.createAccount(
+                account.getUsername(),
+                account.getPassword());
+    }
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to update account
+     *
+     * @return Account
+     */
+
+    @Override
+    public Account updateAccount(Account account) {
+        return accountRepository.updateAccount(
+                account.getUsername(),
+                account.getPassword());
+    }
+
+
+    @Override
+    public Account findAccountByUsername(String username) {
+        return accountRepository.findAccountByUsername(username);
+    }
 
     @Override
     public Account saveAccount(Account account) {
         return accountRepository.save(account);
     }
-<<<<<<< HEAD
-=======
 
-
-    /**Created by UyenNC
+    /**
+     * Created by UyenNC
      * Date created 13/12/2022
      * Function: Find all valid account
-     * @return List<Account>
      *
+     * @return List<Account>
      **/
     @Override
     public List<Account> findAllAccount() {
         return accountRepository.findAllAccount();
     }
 
-    /**Created by UyenNC
+    /**
+     * Created by UyenNC
      * Date created 13/12/2022
      * Function: Find account by username
+     *
      * @param username
      * @return Account
      */
@@ -55,9 +85,11 @@ public class AccountService implements IAccountService {
         return accountRepository.findAccountByUsername(username);
     }
 
-    /**Created by UyenNC
+    /**
+     * Created by UyenNC
      * Date created 13/12/2022
      * Function Send mail with reset link to user's email
+     *
      * @param email
      * @param username
      * @param passwordResetToken
@@ -73,9 +105,11 @@ public class AccountService implements IAccountService {
         javaMailSender.send(mailMessage);
     }
 
-    /**Created by UyenNC
+    /**
+     * Created by UyenNC
      * Date created 13/12/2022
      * Function Find account by account id
+     *
      * @param id
      * @return Account
      */
@@ -84,9 +118,11 @@ public class AccountService implements IAccountService {
         return accountRepository.findAccountById(id);
     }
 
-    /**Created by UyenNC
+    /**
+     * Created by UyenNC
      * Date created 13/12/2022
      * Function Update password for given account
+     *
      * @param account
      */
     @Override
@@ -96,5 +132,4 @@ public class AccountService implements IAccountService {
         accountRepository.updateAccount(accountId, password);
     }
 
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
 }

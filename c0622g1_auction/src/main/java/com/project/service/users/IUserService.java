@@ -4,21 +4,51 @@ import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD
-
-import java.util.List;
-import java.util.Optional;
-
-=======
 import com.project.model.account.Account;
 import com.project.model.users.User;
+
 import java.util.List;
 import java.util.Optional;
 
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
 
-@Service
 public interface IUserService {
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to update user
+     * @return User
+     */
+
+    void updateUser(User user);
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to create user
+     * @return User
+     */
+
+    void createUser(User user);
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user by id
+     * @param id
+     * @return User
+     */
+
+    Optional<User> findUserById(int id);
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find all user list
+     * @return List<User>
+     */
+    List<User> findAll();
+
 
     void saveUser(User user, Integer addressId, Integer accountId, Integer Number);
 
@@ -60,14 +90,10 @@ public interface IUserService {
 
     void updateAddress(User user);
 
-    void updateUser(User user);
+    void editUser(User user);
 
     void unlockUser(List<Integer> idList);
 
-<<<<<<< HEAD
-
-=======
     User findUserByAccount(Account account);
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
 }
 
