@@ -121,7 +121,7 @@ public class ProductRestController {
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
-     * Function: to find product by id
+     * Function: to find product by list id
      *
      * @param idList
      * @return HttpStatus.NO_CONTENT if exists any product not found/  HttpStatus.OK and products found

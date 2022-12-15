@@ -34,7 +34,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
-     * Function: to delete product by List ids
+     * Function: to delete products list by List ids
      *
      * @param idList
      */
@@ -45,7 +45,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
-     * Function: to find product by List ids
+     * Function: to find products list by List ids
      *
      * @param idList
      * @return product list
@@ -86,20 +86,18 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * @param pageable
      * @return product page
      */
-    @Query(value = "select pt.* from `product` pt " +
+    @Query(value = "select pt.* " +
+            "from `product` pt " +
             "join `category` cy on pt.category_id = cy.id " +
             "join `user` ur on pt.user_id = ur.id " +
             "join `auction_status` aus on pt.auction_status_id = aus.id " +
             "where pt.delete_status = 0 " +
             "and pt.name like %:#{#productSearchByRoleAdminDto.productName}% " +
             "and cy.name like %:#{#productSearchByRoleAdminDto.categoryName}% " +
-            "and (ur.first_name like %:#{#productSearchByRoleAdminDto.sellerName}% " +
-            "   or ur.last_name like %:#{#productSearchByRoleAdminDto.sellerName}% )"
-//            "   or (%:#{#productSearchByRoleAdminDto.sellerName}% like ur.first_name " +
-//            "   and %:#{#productSearchByRoleAdminDto.sellerName}%) like  ur.last_name) "
-//            "and (pt.initial_price >= %:#{#productSearchByRoleAdminDto.minPrice}% " +
-//            "    and pt.initial_price <= %:#{#productSearchByRoleAdminDto.maxPrice}%) " +
-//            "and aus.name like %:#{#productSearchByRoleAdminDto.auctionStatusName}% "
+            "and (concat(ur.first_name,' ',ur.last_name) like %:#{#productSearchByRoleAdminDto.sellerName}%) " +
+            "and (pt.initial_price >= :#{#productSearchByRoleAdminDto.minPrice} " +
+            "and pt.initial_price <= :#{#productSearchByRoleAdminDto.maxPrice}) " +
+            "and aus.name like %:#{#productSearchByRoleAdminDto.auctionStatusName}% "
             ,nativeQuery = true)
     Page<Product> searchByRoleAdmin(@Param("productSearchByRoleAdminDto") ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
                                     Pageable pageable);
