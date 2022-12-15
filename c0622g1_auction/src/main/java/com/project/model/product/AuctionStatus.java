@@ -12,9 +12,13 @@ public class AuctionStatus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
     @OneToMany(mappedBy = "auctionStatus")
     @JsonBackReference
     private Set<Product> products;
+
+    public AuctionStatus() {
+    }
 
     public Set<Product> getProducts() {
         return products;
@@ -23,10 +27,6 @@ public class AuctionStatus {
     public void setProducts(Set<Product> products) {
         this.products = products;
     }
-
-    public AuctionStatus() {
-    }
-
     public Integer getId() {
         return id;
     }

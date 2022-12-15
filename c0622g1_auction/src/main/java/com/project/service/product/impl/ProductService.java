@@ -1,6 +1,8 @@
 package com.project.service.product.impl;
 
-import com.project.dto.ProductSearchByRoleAdminDto;
+
+import com.project.dto.product.ProductSearchByRoleAdminDto;
+import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
 import com.project.repository.product.IProductRepository;
 import com.project.service.product.IProductService;
@@ -17,6 +19,7 @@ public class ProductService implements IProductService {
 
     @Autowired
     private IProductRepository productRepository;
+
 
     @Override
     public List<Product> findByListId(List<Integer> idList) {
@@ -51,5 +54,19 @@ public class ProductService implements IProductService {
     @Override
     public void doNotReview(Integer id) {
         productRepository.doNotReviewProduct(id);
+    }
+
+    /**
+     * Created SangDD
+     * Date created 13/12/2022
+     * Function: search and filter product by name, rangePrice, categoryID productAuctionStatus
+     *
+     * @param productSearchDto
+     * @param pageable
+     * @return Page<Product>
+     */
+    @Override
+    public Page<Product> getAllAndSearch(ProductSearchDto productSearchDto, Pageable pageable) {
+        return productRepository.getAllAndSearch(productSearchDto, pageable);
     }
 }
