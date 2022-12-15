@@ -3,7 +3,6 @@ package com.project.service.users.impl;
 import com.project.model.users.User;
 import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
-import com.project.model.users.User;
 import com.project.repository.users.IUserRepository;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,6 @@ public class UserService implements IUserService {
      */
     @Autowired
     private IUserRepository userRepository;
-
     @Override
     public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
         userRepository.createUser(
@@ -45,20 +43,16 @@ public class UserService implements IUserService {
     }
 
     /**
-<<<<<<< HEAD
      * Create by: VietNQ
      * Date created: 13/12/2022
      *Function: to lockAccount
      * @param id
      */
-
-    public void unlockUser(List<Integer> id) {
+    public void lockUser(List<Integer> id) {
         userRepository.findUserByIdList(id);
     }
-=======
-     * Create by: HaiNT
+     /* Create by: HaiNT
      * Date created: 13/12/2022
-     *
      * @param id
      * @param name
      * @param email
@@ -119,11 +113,9 @@ public class UserService implements IUserService {
                 user.getFirstName(), user.getLastName(), user.getPhone());
     }
 
->>>>>>> 92143ecfc1de062faeebce4a84d0bb271cb0d604
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
-     *
      * @param id
      * @return User object by id
      */
@@ -134,11 +126,8 @@ public class UserService implements IUserService {
 
 
     /**
-<<<<<<< HEAD
-=======
      * Create by: HaiNT
      * Date created: 13/12/2022
-     *
      * @param idList
      */
     @Override
@@ -148,11 +137,10 @@ public class UserService implements IUserService {
 
 
     /**
->>>>>>> 92143ecfc1de062faeebce4a84d0bb271cb0d604
      * Created: SangDD
      * Created date: 13/12/2022
      * Function: get Top 10 users with the highest total money auction
-     *
+
      * @param quality user quality
      * @return List<User>
      */

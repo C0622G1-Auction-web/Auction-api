@@ -13,10 +13,6 @@ import com.project.service.users.IUserService;
 
 import com.project.dto.UserListDto;
 import com.project.dto.user.UserTopDto;
-import com.project.model.users.User;
-import com.project.service.account.IAccountService;
-import com.project.service.users.IAddressService;
-import com.project.service.users.IUserService;
 import com.project.service.users.IUserTypeService;
 
 import org.springframework.beans.BeanUtils;
@@ -152,10 +148,6 @@ public class UserRestController {
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
     @Autowired
-    private IAddressService addressService;
-    @Autowired
-    private IAccountService accountService;
-    @Autowired
     private ILockAccountService lockAccountService;
 
 
@@ -198,12 +190,12 @@ public class UserRestController {
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
     @PutMapping("/lockUser")
-    public ResponseEntity<UserListDto> unlockUser(@RequestBody List<Integer> id) {
+    public ResponseEntity<UserListDto> lockUser(@RequestBody List<Integer> id) {
         List<User> userList = userService.findByIdList(id);
         if (id.size() != userList.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        userService.unlockUser(id);
+        userService.lockUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

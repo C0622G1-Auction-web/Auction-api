@@ -248,17 +248,4 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "LIMIT :quality ",
             nativeQuery = true)
     List<UserTopDto> getTopAuctionUser(@Param("quality") String quality);
-
-    /**
-     * Create by: HaiNT
-     * Date created: 13/12/2022
-     *
-     * @param idList
-     * @return List User by idList
-     */
-    @Query(value = "select * " +
-            "from user u " +
-            "where u.id in :idList ",
-            nativeQuery = true)
-    List<User> findUserByIdList(List<Integer> idList);
 }
