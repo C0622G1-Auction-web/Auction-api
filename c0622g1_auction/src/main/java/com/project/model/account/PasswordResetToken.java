@@ -1,6 +1,7 @@
 package com.project.model.account;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class PasswordResetToken {
@@ -15,6 +16,13 @@ public class PasswordResetToken {
     private Account account;
 
     public PasswordResetToken() {
+    }
+
+    public PasswordResetToken(String token, String expiryDate, Boolean status, Account account) {
+        this.token = token;
+        this.expiryDate = expiryDate;
+        this.status = status;
+        this.account = account;
     }
 
     public Integer getId() {
