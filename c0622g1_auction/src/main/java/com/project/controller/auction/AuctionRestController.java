@@ -1,6 +1,6 @@
 package com.project.controller.auction;
 
-import com.project.dto.auction.AuctionDto;
+import com.project.dto.auction.TransactionSearchDto;
 import com.project.model.auction.Auction;
 import com.project.service.auction.IAuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("api/auction/v1")
+@RequestMapping("/auction/api")
 public class AuctionRestController {
     @Autowired
     private IAuctionService auctionService;
@@ -29,9 +29,11 @@ public class AuctionRestController {
      * @return HttpStatus.OK
      */
     @GetMapping("/transaction")
-    public ResponseEntity<Page<Auction>> getTransactionList(@PageableDefault(value = 5) Pageable pageable
+    public ResponseEntity<Page<Auction>> getTransactionList(
+            @RequestBody TransactionSearchDto transactionSearchDto,
+            @PageableDefault(value = 5) Pageable pageable
     ){
-        Page<Auction> transactionPage = auctionService.findAllTransaction(pageable);
+        Page<Auction> transactionPage = auctionService.findAllTransaction(transactionSearchDto,pageable);
         if (transactionPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

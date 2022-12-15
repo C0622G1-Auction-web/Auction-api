@@ -1,5 +1,6 @@
 package com.project.repository.auction;
 
+import com.project.dto.auction.TransactionSearchDto;
 import com.project.model.auction.Auction;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,8 +26,19 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
      * @return HttpStatus.OK
      */
 
-    @Query(value = "select * from auction_web.auction ", nativeQuery = true)
-    Page<Auction> findAllTransaction(Pageable pageable);
+    @Query(value = "select auc.* " +
+            "        from `auction` auc join `product` pt " +
+            "        on auc.product_id = pt.id " +
+            "        join `user` ur on pt.user_id = ur.id " +
+            "        join `view_user` vw on auc.user_id = vw.id " +
+            "        where auc.delete_status = 0 " +
+            "        and concat(ur.first_name,' ', ur.last_name) like %:#{#transactionSearchDto.userPost}% " +
+            "        and concat(vw.first_name,' ', vw.last_name) like %:#{#transactionSearchDto.userBuying}% " +
+            "        and pt.name like %:#{#transactionSearchDto.nameProduct}% " +
+            "        and auc.current_price >= :#{#transactionSearchDto.currentPrice} " +
+            "        and auc.pay_status like %:#{#transactionSearchDto.payStatus}% ", nativeQuery = true)
+    Page<Auction> findAllTransaction(@Param("transactionSearchDto") TransactionSearchDto transactionSearchDto,
+            Pageable pageable);
 
     /**
      * Created by : HuyNV
