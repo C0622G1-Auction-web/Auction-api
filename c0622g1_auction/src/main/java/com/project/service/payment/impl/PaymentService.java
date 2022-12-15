@@ -35,4 +35,14 @@ public class PaymentService implements IPaymentService {
     public Payment findPaymentById(Integer id) {
         return paymentRepository.findPaymentById(id);
     }
+
+    @Override
+    public List<Payment> findByListId(List<Integer> idList) {
+        return paymentRepository.findByListId(idList);
+    }
+
+    @Override
+    public void updateByListId(List<Integer> idList, String shippingDescription) {
+         paymentRepository.updateByListId(idList, shippingDescription);
+    }
 }

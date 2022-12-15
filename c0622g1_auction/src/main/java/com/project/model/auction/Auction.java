@@ -18,36 +18,25 @@ public class Auction {
     private Boolean payStatus;
     @Column(columnDefinition = "boolean default false")
     private Boolean auctionStatus;
+    private String auctionDay;
     @Column(columnDefinition = "boolean default false")
     private Boolean deleteStatus;
-<<<<<<< HEAD
 
-=======
-    private String auctionDay;
 
-    @JsonBackReference
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     @JsonBackReference
     private User user;
 
-<<<<<<< HEAD
-=======
     @JsonBackReference
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_id",referencedColumnName = "id")
     private Product product;
-<<<<<<< HEAD
 
-=======
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
     @JsonBackReference
     @OneToOne(mappedBy = "auction")
     private Payment payment;
+
     public Auction() {
     }
 
@@ -113,5 +102,21 @@ public class Auction {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Boolean getPayStatus() {
+        return payStatus;
+    }
+
+    public void setPayStatus(Boolean payStatus) {
+        this.payStatus = payStatus;
+    }
+
+    public String getAuctionDay() {
+        return auctionDay;
+    }
+
+    public void setAuctionDay(String auctionDay) {
+        this.auctionDay = auctionDay;
     }
 }

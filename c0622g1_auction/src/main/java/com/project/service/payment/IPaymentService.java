@@ -16,4 +16,8 @@ public interface IPaymentService {
      * @return Payment
      */
     Payment findPaymentById(Integer id);
+
+    List<Payment> findByListId(List<Integer> idList);
+
+    void updateByListId(List<Integer> idList, String shippingDescription);
 }

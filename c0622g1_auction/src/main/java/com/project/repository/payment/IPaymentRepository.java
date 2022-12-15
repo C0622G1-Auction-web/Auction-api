@@ -2,7 +2,9 @@ package com.project.repository.payment;
 
 import com.project.dto.IPaymentDTO;
 import com.project.model.payment.Payment;
+import com.project.model.product.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -62,5 +64,30 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
      */
     @Query(value = "SELECT payment.* FROM payment WHERE payment_status = 0 AND id =:id", nativeQuery = true)
     Payment findPaymentById(@Param("id") Integer id);
+
+    /**
+     * Create by: BaoBC
+     * Date created: 14/12/2022
+     * Function: to find payment by List ids
+     *
+     * @param idList
+     * @return product list
+     */
+    @Modifying
+    @Query(value = "select * from payment where id in :idList and payment_status = 0 and delete_status = 0", nativeQuery = true)
+    List<Payment> findByListId(@Param("idList") List<Integer> idList);
+
+    /**
+     * Create by: BaoBC
+     * Date created: 14/12/2022
+     * Function: to find payment by List ids
+     *
+     * @param idList
+     * @return product list
+     */
+    @Modifying
+    @Query(value = "update payment set shipping_description = :shippingDescription where id in :idList", nativeQuery = true)
+    void updateByListId(@Param("idList") List<Integer> idList,
+                         @Param("shippingDescription") String shippingDescription);
 
 }

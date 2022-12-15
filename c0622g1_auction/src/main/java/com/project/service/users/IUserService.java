@@ -4,18 +4,18 @@ import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD
+
 
 import java.util.List;
 import java.util.Optional;
 
-=======
+
 import com.project.model.account.Account;
 import com.project.model.users.User;
 import java.util.List;
 import java.util.Optional;
 
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
+
 
 @Service
 public interface IUserService {
@@ -64,10 +64,7 @@ public interface IUserService {
 
     void unlockUser(List<Integer> idList);
 
-<<<<<<< HEAD
 
-=======
     User findUserByAccount(Account account);
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
 }
 

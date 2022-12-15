@@ -12,8 +12,7 @@ import java.util.List;
 @Repository
 @Transactional
 public interface IAccountRepository extends JpaRepository<Account, Integer> {
-<<<<<<< HEAD
-=======
+
     /**
      * Created by UyenNC
      * Date created: 13/12/2022
@@ -63,5 +62,4 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
             "and delete_status = 0 " +
             "and status_lock = 0;", nativeQuery = true)
     Account findAccountById(@Param(value = "id") Integer id);
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
 }
