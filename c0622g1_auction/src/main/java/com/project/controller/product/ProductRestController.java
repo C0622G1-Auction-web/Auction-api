@@ -54,6 +54,39 @@ public class ProductRestController {
 
     /**
      * Create by: HungNV,
+     * Date created: 15/12/2022
+     * Function: get list of categories
+     *
+     * @return categoryList and HttpStatus.OK
+     */
+
+    @GetMapping("category")
+    public ResponseEntity<List<Category>> getListCategory(){
+        List<Category> categoryList = categoryService.getListCategory();
+        if (categoryList.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(categoryList, HttpStatus.OK);
+    }
+
+    /**
+     * Create by: HungNV,
+     * Date created: 15/12/2022
+     * Function: get list of priceStep
+     *
+     * @return priceStepList and HttpStatus.OK
+     */
+
+    @GetMapping("priceStep")
+    public ResponseEntity<List<PriceStep>> getListPriceStep(){
+        List<PriceStep> priceStepList = priceStepService.getListPriceStep();
+        if (priceStepList.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(priceStepList, HttpStatus.OK);
+    }
+    /**
+     * Create by: HungNV,
      * Date created: 14/12/2022
      * Function: find product by product id
      *
