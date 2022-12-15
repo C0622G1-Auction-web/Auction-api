@@ -14,6 +14,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -93,10 +94,13 @@ public class AuctionRestController {
      */
 
     @PostMapping
-    public ResponseEntity addAuction(@Valid @RequestBody AuctionDto auctionDto,
-                                     BindingResult bindingResult) {
+    public ResponseEntity<?> addAuction(@Validated @RequestBody AuctionDto auctionDto,
+                                        BindingResult bindingResult) {
+        Double maxCurrentPrice = auctionService.getPageAuctionByProductId(auctionDto.getId(), Pageable.unpaged()).getContent().get(0).getCurrentPrice();
+        auctionDto.setMaxCurrentPrice(maxCurrentPrice);
+        new AuctionDto().validate(auctionDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.BAD_REQUEST);
         }
         auctionService.addAuction(auctionDto);
         return new ResponseEntity(auctionDto, HttpStatus.OK);
