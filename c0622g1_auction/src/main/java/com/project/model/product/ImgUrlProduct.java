@@ -2,11 +2,6 @@ package com.project.model.product;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
 import javax.persistence.*;
 
 @Entity

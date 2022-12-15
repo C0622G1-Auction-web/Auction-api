@@ -12,11 +12,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-<<<<<<< HEAD
 @RequestMapping("api/v1/payments")
-=======
-@RequestMapping("/api/v1/{user_id}/payment")
->>>>>>> 71b775208e76c461b2c64609126bfb79bc05e666
 public class PaymentRestController {
     @Autowired
     IPaymentService paymentService;
