@@ -44,7 +44,6 @@ public class UserRestController {
      *
      * @return HttpStatus.NOT_CONTENT, HttpStatus.NOT_MODIFIED
      */
-
     @PostMapping("/create")
     public ResponseEntity<?> createUser(@Validated @RequestBody UserDto userDto, BindingResult bindingResult) {
         List<User> userList = userService.findAll();
@@ -71,6 +70,40 @@ public class UserRestController {
         user.setDeleteStatus(true);
         userService.createUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to update user by id
+     * @return HttpStatus.OK, HttpStatus.NOT_MODIFIED
+     */
+    @PutMapping("/{id}/update")
+    public ResponseEntity<?> editUserById(@Validated @PathVariable() int id, @RequestBody UserDto userDto, BindingResult bindingResult) {
+        List<User> userList = userService.findAll();
+        List<String> emailList = new ArrayList<>();
+        for (User item : userList) {
+            emailList.add(item.getEmail());
+            emailList.add(item.getAccount().getUsername());
+        }
+        userDto.setEmailList(emailList);
+        userDto.validate(userDto, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
+        } else {
+            User user = userService.findUserById(id).get();
+            Account account = new Account();
+            BeanUtils.copyProperties(userDto, account);
+            Address address = new Address();
+            BeanUtils.copyProperties(userDto, address);
+            Address address1 = addressService.updateAddress(address);
+            Account account1 = accountService.updateAccount(account);
+            BeanUtils.copyProperties(userDto, user);
+            user.setAccount(account1);
+            user.setAddress(address1);
+            userService.updateUser(user);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
     }
 
     /**
@@ -136,41 +169,7 @@ public class UserRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    /**
-     * <<<<<<< HEAD
-     * Create by: TruongLH
-     * Date created: 13/12/2022
-     * Function: to update user by id
-     *
-     * @return HttpStatus.OK, HttpStatus.NOT_MODIFIED
-     */
-    @PutMapping("/{id}/update")
-    public ResponseEntity<?> editUserById(@Validated @PathVariable() int id, @RequestBody UserDto userDto, BindingResult bindingResult) {
-        List<User> userList = userService.findAll();
-        List<String> emailList = new ArrayList<>();
-        for (User item : userList) {
-            emailList.add(item.getEmail());
-            emailList.add(item.getAccount().getUsername());
-        }
-        userDto.setEmailList(emailList);
-        userDto.validate(userDto, bindingResult);
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
-        } else {
-            User user = userService.findUserById(id).get();
-            Account account = new Account();
-            BeanUtils.copyProperties(userDto, account);
-            Address address = new Address();
-            BeanUtils.copyProperties(userDto, address);
-            Address address1 = addressService.updateAddress(address);
-            Account account1 = accountService.updateAccount(account);
-            BeanUtils.copyProperties(userDto, user);
-            user.setAccount(account1);
-            user.setAddress(address1);
-            userService.updateUser(user);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-    }
+
 
     /**
      * Create by: HaiNT
