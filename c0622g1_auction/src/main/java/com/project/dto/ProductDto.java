@@ -18,9 +18,18 @@ public class ProductDto {
     private Set<Auction> auctions;
     private User user;
     private String fullName;
+    private Double maxCurrentPrice;
 
 
     public ProductDto() {
+    }
+
+    public Double getMaxCurrentPrice() {
+        return maxCurrentPrice;
+    }
+
+    public void setMaxCurrentPrice(Double maxCurrentPrice) {
+        this.maxCurrentPrice = maxCurrentPrice;
     }
 
     public String getName() {

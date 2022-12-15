@@ -43,6 +43,6 @@ public class AuctionService implements IAuctionService {
         auctionRepository.addAuction(
                 auctionDto.getCurrentPrice(),
                 auctionDto.getProductId(),
-                auctionDto.getUserId());
+                auctionDto.getUser().getId());
     }
 }

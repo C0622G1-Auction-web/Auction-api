@@ -15,12 +15,10 @@ public class Auction {
     private Integer id;
     private Double currentPrice;
     private String auctionTime;
-    private Boolean payStatus;
     @Column(columnDefinition = "boolean default false")
     private Boolean auctionStatus;
     @Column(columnDefinition = "boolean default false")
     private Boolean deleteStatus;
-    private String auctionDay;
 
     @JsonIgnore
     @ManyToOne

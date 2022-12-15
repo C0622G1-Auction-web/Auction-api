@@ -25,7 +25,7 @@ import java.util.function.Function;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/auction/api")
+@RequestMapping("/api/v1/auction")
 public class AuctionRestController {
     @Autowired
     private IAuctionService auctionService;
@@ -42,13 +42,15 @@ public class AuctionRestController {
      * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
      */
 
-    @GetMapping("/{productId}")
+    @GetMapping("auction-detail/{productId}")
     public ResponseEntity<ProductDto> findProductById(@PathVariable(value = "productId") Integer productId) {
         Optional<Product> productOptional = productService.findProductById(productId);
+        Double maxCurrentPrice = auctionService.getPageAuctionByProductId(productOptional.get().getId(), Pageable.unpaged()).getContent().get(0).getCurrentPrice();
         if (productOptional.isPresent()) {
             ProductDto productDto = new ProductDto();
             BeanUtils.copyProperties(productOptional.get(), productDto);
             productDto.setFullName(productDto.getUser().getFirstName() + " " + productDto.getUser().getLastName());
+            productDto.setMaxCurrentPrice(maxCurrentPrice);
             return new ResponseEntity<>(productDto, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
