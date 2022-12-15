@@ -1,16 +1,27 @@
 package com.project.service.users;
 
+import antlr.collections.List;
 import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
 import com.project.model.users.User;
+import org.apache.el.stream.Optional;
 import org.springframework.stereotype.Service;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
 import com.project.model.account.Account;
 import com.project.model.users.User;
 
 import java.util.List;
 import java.util.Optional;
+<<<<<<< HEAD
 
 
+=======
+@Service
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
 public interface IUserService {
 
     /**
@@ -19,7 +30,6 @@ public interface IUserService {
      * Function: to update user
      * @return User
      */
-
     void updateUser(User user);
 
     /**
@@ -28,7 +38,6 @@ public interface IUserService {
      * Function: to create user
      * @return User
      */
-
     void createUser(User user);
 
     /**
@@ -38,7 +47,6 @@ public interface IUserService {
      * @param id
      * @return User
      */
-
     Optional<User> findUserById(int id);
 
     /**
@@ -94,6 +102,10 @@ public interface IUserService {
 
     void unlockUser(List<Integer> idList);
 
+<<<<<<< HEAD
     User findUserByAccount(Account account);
+=======
+
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
 }
 

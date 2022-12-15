@@ -1,14 +1,34 @@
 package com.project.controller.users;
 
+<<<<<<< HEAD
 import com.project.dto.UserListDto;
+=======
+import com.project.dto.user.UserCreateUpdateDto;
+import com.project.dto.user.UserDto;
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
 import com.project.dto.user.*;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import com.project.service.account.IAccountService;
+<<<<<<< HEAD
 import com.project.service.account.ILockAccountService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
+=======
+import com.project.service.users.IAddressService;
+import com.project.service.users.IUserService;
+import com.project.service.account.ILockAccountService;
+import com.project.service.users.IAddressService;
+import com.project.service.users.IUserService;
+import com.project.dto.UserListDto;
+import com.project.dto.user.UserTopDto;
+import com.project.model.users.User;
+import com.project.service.account.IAccountService;
+import com.project.service.users.IAddressService;
+import com.project.service.users.IUserService;
+import com.project.service.users.IUserTypeService;
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +43,12 @@ import java.util.List;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/user/v1")
+<<<<<<< HEAD
+=======
+@CrossOrigin("*")
+@RestController
+@RequestMapping("/api/v1/users")
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
 public class UserRestController {
 
     @Autowired
@@ -45,30 +71,31 @@ public class UserRestController {
      * @return HttpStatus.NOT_CONTENT, HttpStatus.NOT_MODIFIED
      */
     @PostMapping("/create")
-    public ResponseEntity<?> createUser(@Validated @RequestBody UserDto userDto, BindingResult bindingResult) {
+    public ResponseEntity<?> createUser(@Validated @RequestBody UserCreateUpdateDto userCreateUpdateDto, BindingResult bindingResult) {
         List<User> userList = userService.findAll();
         List<String> emailList = new ArrayList<>();
         for (User item : userList) {
             emailList.add(item.getEmail());
             emailList.add(item.getAccount().getUsername());
         }
-        userDto.setEmailList(emailList);
-        userDto.validate(userDto, bindingResult);
+        userCreateUpdateDto.setEmailList(emailList);
+        userCreateUpdateDto.validate(userCreateUpdateDto, bindingResult);
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NO_CONTENT);
         }
         User user = new User();
         Account account = new Account();
-        BeanUtils.copyProperties(userDto, account);
+        BeanUtils.copyProperties(userCreateUpdateDto, account);
         Address address = new Address();
-        BeanUtils.copyProperties(userDto, address);
+        BeanUtils.copyProperties(userCreateUpdateDto, address);
         Address address1 = addressService.createAddress(address);
         Account account1 = accountService.createAccount(account);
-        BeanUtils.copyProperties(userDto, user);
+        BeanUtils.copyProperties(userCreateUpdateDto, user);
         user.setAccount(account1);
         user.setAddress(address1);
         user.setDeleteStatus(true);
         userService.createUser(user);
+<<<<<<< HEAD
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -105,6 +132,15 @@ public class UserRestController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
+=======
+    private IAddressService addressService;
+    @Autowired
+    private IAccountService accountService;
+    @Autowired
+    private IUserTypeService userTypeService;
+    @Autowired
+    private ILockAccountService lockAccountService;
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
 
     /**
      * Create by: HaiNT
@@ -172,7 +208,45 @@ public class UserRestController {
 
 
     /**
+<<<<<<< HEAD
      * Create by: HaiNT
+=======
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to update user by id
+     *
+     * @return HttpStatus.OK, HttpStatus.NOT_MODIFIED
+     */
+    @PutMapping("/{id}/update")
+    public ResponseEntity<?> editUserById(@Validated @PathVariable() int id, @RequestBody UserCreateUpdateDto userCreateUpdateDto, BindingResult bindingResult) {
+        List<User> userList = userService.findAll();
+        List<String> emailList = new ArrayList<>();
+        for (User item : userList) {
+            emailList.add(item.getEmail());
+            emailList.add(item.getAccount().getUsername());
+        }
+        userCreateUpdateDto.setEmailList(emailList);
+        userCreateUpdateDto.validate(userCreateUpdateDto, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
+        } else {
+            User user = userService.findUserById(id).get();
+            Account account = new Account();
+            BeanUtils.copyProperties(userCreateUpdateDto, account);
+            Address address = new Address();
+            BeanUtils.copyProperties(userCreateUpdateDto, address);
+            Address address1 = addressService.updateAddress(address);
+            Account account1 = accountService.updateAccount(account);
+            BeanUtils.copyProperties(userCreateUpdateDto, user);
+            user.setAccount(account1);
+            user.setAddress(address1);
+            userService.updateUser(user);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
+
+     /** Create by: HaiNT
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca
      * Date created: 13/12/2022
      *
      * @param idList
