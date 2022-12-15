@@ -1,7 +1,7 @@
 package com.project.service.product;
 
 
-import com.project.dto.ProductSearchByRoleAdminDto;
+import com.project.dto.product.ProductSearchByRoleAdminDto;
 
 import com.project.dto.product.ProductSearchDto;
 

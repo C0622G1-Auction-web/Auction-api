@@ -25,15 +25,14 @@ public class AuctionRestController {
      * Date created: 13/12/2022
      * Function: to list and search transaction
      *
-     * @return HttpStatus.NO_CONTENT
      * @return HttpStatus.OK
      */
     @GetMapping("/transaction")
     public ResponseEntity<Page<Auction>> getTransactionList(
             @RequestBody TransactionSearchDto transactionSearchDto,
             @PageableDefault(value = 5) Pageable pageable
-    ){
-        Page<Auction> transactionPage = auctionService.findAllTransaction(transactionSearchDto,pageable);
+    ) {
+        Page<Auction> transactionPage = auctionService.findAllTransaction(transactionSearchDto, pageable);
         if (transactionPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -46,7 +45,6 @@ public class AuctionRestController {
      * Function: to delete transactions by idList
      *
      * @param idList
-     * @return HttpStatus.OK and removed transaction if remove successfully
      * @return HttpStatus.NOT_FOUND if exists not found transaction
      */
     @PutMapping("/delete")

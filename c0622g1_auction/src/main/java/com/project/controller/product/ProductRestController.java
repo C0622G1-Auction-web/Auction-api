@@ -1,7 +1,7 @@
 package com.project.controller.product;
 
 
-import com.project.dto.ProductSearchByRoleAdminDto;
+import com.project.dto.product.ProductSearchByRoleAdminDto;
 import com.project.dto.product.ProductDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;

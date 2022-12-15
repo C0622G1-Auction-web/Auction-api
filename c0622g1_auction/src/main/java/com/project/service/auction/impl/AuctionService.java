@@ -21,13 +21,13 @@ public class AuctionService implements IAuctionService {
      * Created by : HuyNV,
      * Date created: 13/12/2022
      * Function: to list and search transaction
-     * @return HttpStatus.NO_CONTENT
+     *
      * @return HttpStatus.OK
      */
 
     @Override
     public Page<Auction> findAllTransaction(TransactionSearchDto transactionSearchDto, Pageable pageable) {
-        return auctionRepository.findAllTransaction(transactionSearchDto,pageable);
+        return auctionRepository.findAllTransaction(transactionSearchDto, pageable);
     }
 
     /**

@@ -22,7 +22,6 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
      * Date created: 13/12/2022
      * Function: to list and search transaction
      *
-     * @return HttpStatus.NO_CONTENT
      * @return HttpStatus.OK
      */
 
@@ -38,7 +37,7 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
             "        and auc.current_price >= :#{#transactionSearchDto.currentPrice} " +
             "        and auc.pay_status like %:#{#transactionSearchDto.payStatus}% ", nativeQuery = true)
     Page<Auction> findAllTransaction(@Param("transactionSearchDto") TransactionSearchDto transactionSearchDto,
-            Pageable pageable);
+                                     Pageable pageable);
 
     /**
      * Created by : HuyNV

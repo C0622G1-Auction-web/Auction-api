@@ -1,4 +1,4 @@
-package com.project.dto;
+package com.project.dto.product;
 
 public class ProductSearchByRoleAdminDto {
     private String productName;
