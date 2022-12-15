@@ -1,6 +1,5 @@
 package com.project.controller.users;
 
-
 import com.project.dto.user.*;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
@@ -13,10 +12,6 @@ import com.project.service.users.IUserService;
 
 import com.project.dto.UserListDto;
 import com.project.dto.user.UserTopDto;
-import com.project.model.users.User;
-import com.project.service.account.IAccountService;
-import com.project.service.users.IAddressService;
-import com.project.service.users.IUserService;
 import com.project.service.users.IUserTypeService;
 
 import org.springframework.beans.BeanUtils;
@@ -30,7 +25,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/user/v2")
 public class UserRestController {
 
     @Autowired
@@ -62,9 +57,11 @@ public class UserRestController {
             @RequestParam(defaultValue = "") String name,
             @RequestParam(defaultValue = "") String email,
             @RequestParam(defaultValue = "") String address,
-            @RequestParam(defaultValue = "") String userTypeId
+            @RequestParam(defaultValue = "") String userTypeId,
+            @RequestParam(defaultValue = "0") Integer index
+
     ) {
-        List<User> userList = userService.getUserBy(id, name, email, userTypeId, address);
+        List<User> userList = userService.getUserBy(id, name, email, userTypeId, address, index);
         if (userList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -120,10 +117,9 @@ public class UserRestController {
         if (idList.size() != userList.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        userService.unlockUser(idList);
+        userService.unlockAccountByIdList(idList);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
     /**
      * Created: SangDD
