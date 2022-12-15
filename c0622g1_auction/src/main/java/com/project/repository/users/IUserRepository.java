@@ -62,7 +62,6 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
      * @param addressId,
      * @param userTypeId
      */
-
     @Modifying
     @Query(value = "insert into " +
             "user(avatar," +

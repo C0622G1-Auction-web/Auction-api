@@ -1,7 +1,7 @@
 package com.project.userCreateUpdate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.project.dto.user.UserCreateUpdateDto;
+import com.project.dto.user.UserDto;
 import com.project.model.users.UserType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_firstName_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("");
         userCreateUpdateDto.setLastName("Hai");
@@ -73,7 +73,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_firstName_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName(" ");
         userCreateUpdateDto.setLastName("Hai");
@@ -112,7 +112,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_firstName_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("truong$#%");
         userCreateUpdateDto.setLastName("Hai");
@@ -151,7 +151,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_firstName_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("aaa");
         userCreateUpdateDto.setLastName("Hai");
@@ -190,7 +190,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_firstName_23() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         userCreateUpdateDto.setLastName("Hai");
@@ -229,7 +229,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_lastName_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("");
@@ -268,7 +268,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_lastName_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("");
@@ -307,7 +307,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_lastName_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Truong#%$$");
@@ -346,7 +346,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_lastName_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("aaa");
@@ -385,7 +385,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_lastName_23() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
@@ -424,7 +424,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_email_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("Truong");
@@ -463,7 +463,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_email_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -502,7 +502,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_email_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -541,7 +541,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_email_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -580,7 +580,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_email_23() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -618,7 +618,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_phone_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("Truong");
@@ -657,7 +657,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_phone_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -696,7 +696,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_phone_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -735,7 +735,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_phone_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -774,7 +774,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_phone_23() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -812,7 +812,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_pointDedication_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("Truong");
@@ -851,7 +851,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_pointDedication_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -890,7 +890,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_pointDedication_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -929,7 +929,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_pointDedication_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -968,7 +968,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_birthDay_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("Truong");
@@ -1007,7 +1007,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_birthDay_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1046,7 +1046,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_birthDay_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1085,7 +1085,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_birthDay_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1124,7 +1124,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_birthDay_23() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1163,7 +1163,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_idCard_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("Truong");
@@ -1202,7 +1202,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_idCard_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1241,7 +1241,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_idCard_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1280,7 +1280,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_idCard_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1319,7 +1319,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_idCard_23() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1357,7 +1357,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_avatar_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("Truong");
@@ -1396,7 +1396,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_avatar_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1435,7 +1435,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_avatar_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1474,7 +1474,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_avatar_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1513,7 +1513,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_avatar_23() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1551,7 +1551,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_detailAddress_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("Truong");
@@ -1590,7 +1590,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_detailAddress_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1629,7 +1629,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_detailAddress_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1668,7 +1668,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_detailAddress_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1707,7 +1707,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_detailAddress_23() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1746,7 +1746,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_town_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("Truong");
@@ -1785,7 +1785,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_town_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1824,7 +1824,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_town_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1863,7 +1863,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_town_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1902,7 +1902,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_town_23() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -1941,7 +1941,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_district_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("Truong");
@@ -1980,7 +1980,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_district_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2019,7 +2019,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_district_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2058,7 +2058,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_district_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2097,7 +2097,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_district_23() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2136,7 +2136,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_city_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("Truong");
@@ -2175,7 +2175,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_city_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2214,7 +2214,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_city_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2253,7 +2253,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_city_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2292,7 +2292,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_city_23() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2331,7 +2331,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_country_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("Truong");
@@ -2370,7 +2370,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_country_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2409,7 +2409,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_country_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2448,7 +2448,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_country_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2487,7 +2487,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_country_23() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2526,7 +2526,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_username_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("Truong");
@@ -2565,7 +2565,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_username_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2604,7 +2604,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_username_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2643,7 +2643,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_username_30() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2682,7 +2682,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_username_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2721,7 +2721,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_username_23() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2760,7 +2760,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_password_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("Truong");
@@ -2799,7 +2799,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_password_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2838,7 +2838,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_password_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2877,7 +2877,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_password_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2916,7 +2916,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_password_23() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -2955,7 +2955,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_userTypeName_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("Truong");
@@ -2994,7 +2994,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_userTypeName_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -3033,7 +3033,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_userTypeName_21() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -3072,7 +3072,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_userTypeName_22() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -3111,7 +3111,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_userTypeName_23() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -3149,7 +3149,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_emailList_19() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Le Huu");
         userCreateUpdateDto.setLastName("Truong");
@@ -3188,7 +3188,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_emailList_20() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");
@@ -3227,7 +3227,7 @@ public class AuctionRestController_updateUser {
      */
     @Test
     public void updateUser_complete_24() throws Exception {
-        UserCreateUpdateDto userCreateUpdateDto = new UserCreateUpdateDto();
+        UserDto userCreateUpdateDto = new UserDto();
         userCreateUpdateDto.setId(1);
         userCreateUpdateDto.setFirstName("Lê Hữu");
         userCreateUpdateDto.setLastName("Trường");

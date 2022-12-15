@@ -9,7 +9,6 @@ import com.project.service.account.IAccountService;
 import com.project.service.account.ILockAccountService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
-import com.project.service.users.IUserTypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -173,23 +172,6 @@ public class UserRestController {
     }
 
 
-
-    /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-     * <<<<<<< HEAD
->>>>>>> b739c3f338c30618ded9c4a54577ffd7b4ea4f8c
-=======
-     * Create by: HaiNT
-=======
->>>>>>> 8a53852b3b92fb4dfc9ffe310dcaf37caf83d581
-     * Create by: TruongLH
-     * Date created: 13/12/2022
-     * Function: to update user by id
-     *
-     * @return HttpStatus.OK, HttpStatus.NOT_MODIFIED
-     */
     @PutMapping("/{id}/update")
     public ResponseEntity<?> editUserById(@Validated @PathVariable() int id, @RequestBody UserDto userCreateUpdateDto, BindingResult bindingResult) {
         List<User> userList = userService.findAll();
