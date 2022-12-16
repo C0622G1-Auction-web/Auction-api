@@ -17,7 +17,7 @@ public class GuideDto {
     @Size(min=10,max=300 , message ="Nội dung quá độ dài quy định")
     private String content;
     private Boolean deleteStatus;
-    private Set<ImgUrlGuide> images;
+    private String images;
 
     public GuideDto() {
     }
@@ -54,11 +54,18 @@ public class GuideDto {
         this.deleteStatus = deleteStatus;
     }
 
-    public Set<ImgUrlGuide> getImages() {
+    public String getImages() {
         return images;
     }
 
-    public void setImages(Set<ImgUrlGuide> images) {
+    public void setImages(String images) {
         this.images = images;
     }
+    //    public Set<ImgUrlGuide> getImages() {
+//        return images;
+//    }
+//
+//    public void setImages(Set<ImgUrlGuide> images) {
+//        this.images = images;
+//    }
 }

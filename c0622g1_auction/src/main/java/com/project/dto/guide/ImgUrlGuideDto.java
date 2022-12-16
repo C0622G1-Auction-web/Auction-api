@@ -1,13 +1,10 @@
 package com.project.dto.guide;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
 public class ImgUrlGuideDto {
     private Integer id;
     @NotBlank
     private String url;
-    @NotNull
     private Integer guideId;
 
     public ImgUrlGuideDto() {

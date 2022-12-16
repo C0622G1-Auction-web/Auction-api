@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,15 +63,15 @@ public class GuideRestController {
      */
 
     @PostMapping()
-    public ResponseEntity<List<FieldError>> createGuide(@Validated @RequestBody GuideDto guideDto,
+    public ResponseEntity<?> createGuide(@Validated @RequestBody GuideDto guideDto,
                                                         BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.NOT_ACCEPTABLE);
         }
         Guide guideObj = new Guide();
         BeanUtils.copyProperties(guideDto, guideObj);
-        guideService.createGuide(guideObj);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+         guideService.createGuide(guideObj);
+        return new ResponseEntity<>(guideObj,HttpStatus.CREATED);
     }
 
     /**

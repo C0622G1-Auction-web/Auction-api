@@ -11,4 +11,5 @@ public interface IGuideService {
     void createGuide(Guide guide);
 
     void updateGuide(Guide guide);
+
 }
