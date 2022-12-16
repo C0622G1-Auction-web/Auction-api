@@ -33,7 +33,7 @@ public class ProductRestController_historyAuction {
     @Test
     public void getListProduct_1() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/v1/auction/list?page=null"))
+                        .get("/api/v1/auction/list/{id}?page=null"))
                 .andDo(print())
                 .andExpect(status().isBadRequest());
     }
@@ -49,7 +49,7 @@ public class ProductRestController_historyAuction {
     @Test
     public void getListProduct_2() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/v1/auction/list?page="))
+                        .get("/api/v1/auction/list/{id}?page="))
                 .andDo(print())
                 .andExpect(status().isBadRequest());
     }
@@ -65,7 +65,7 @@ public class ProductRestController_historyAuction {
     @Test
     public void getListProduct_3() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/v1/auction/list?page=2"))
+                        .get("/api/v1/auction/list/{id}?page=2"))
                 .andDo(print())
                 .andExpect(status().isNoContent());
     }
@@ -81,7 +81,7 @@ public class ProductRestController_historyAuction {
     @Test
     public void getListProduct_4() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/v1/auction/list?page=0"))
+                        .get("/api/v1/auction/list/{id}?page=0"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("totalPages").value(2))
@@ -100,7 +100,7 @@ public class ProductRestController_historyAuction {
     @Test
     public void getListProduct_5() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/v3/auction/list?size=null"))
+                        .get("/api/v3/auction/list/{id}?size=null"))
                 .andDo(print())
                 .andExpect(status().isBadRequest());
     }
@@ -116,7 +116,7 @@ public class ProductRestController_historyAuction {
     @Test
     public void getListProduct_6() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/v1/auction/list?size="))
+                        .get("/api/v1/auction/list/{id}?size="))
                 .andDo(print())
                 .andExpect(status().isBadRequest());
     }
@@ -132,7 +132,7 @@ public class ProductRestController_historyAuction {
     @Test
     public void getListProduct_7() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/v1/auction/list?size=2"))
+                        .get("/api/v1/auction/list{id}?size=2"))
                 .andDo(print())
                 .andExpect(status().isNoContent());
     }
@@ -148,7 +148,7 @@ public class ProductRestController_historyAuction {
     @Test
     public void getLisProduct_8() throws Exception {
         this.mockMvc.perform(MockMvcRequestBuilders
-                        .get("/api/v1/auction/list?size=0"))
+                        .get("/api/v1/auction/list/{id}?size=0"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("totalPages").value(2))
