@@ -11,6 +11,8 @@ import com.project.repository.users.IUserRepository;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,8 +40,8 @@ public class UserService implements IUserService {
      * @return List of users by param
      */
     @Override
-    public List<User> getUserBy(String id, String name, String email, String userTypeId, String address, Integer index) {
-        return userRepository.getUserBy(id, name, email, userTypeId, address, index);
+    public Page<User> getUserBy(String id, String name, String email, String userTypeId, String address, Pageable pageable) {
+        return userRepository.getUserBy(id, name, email, userTypeId, address, pageable);
     }
 
     /**
@@ -88,6 +90,14 @@ public class UserService implements IUserService {
     public void updateAddressByRoleAdmin(User user) {
         userRepository.save(user);
     }
+
+//    @Override
+//    public void updateAddressByRoleAdmin(User user) {
+//        userRepository.updateAddress(user.getAddress().getId(),
+//                user.getAddress().getDetailAddress(), user.getAddress().getTown(),
+//                user.getAddress().getDistrict(), user.getAddress().getCity(),
+//                user.getAddress().getCountry());
+//    }
 
     /**
      * Create by: HaiNT
@@ -156,7 +166,7 @@ public class UserService implements IUserService {
     @Override
 
     public List<UserTopDto> getTopAuctionUser(String quality) {
-
         return userRepository.getTopAuctionUser(quality);
     }
+
 }

@@ -4,6 +4,8 @@ import com.project.dto.user.UserTopDto;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +20,7 @@ public interface IUserService {
     /**
      * By: HaiNT - Find list of users by param
      */
-    List<User> getUserBy(String id, String name, String email, String userTypeId, String address, Integer index);
+    Page<User> getUserBy(String id, String name, String email, String userTypeId, String address, Pageable pageable);
 
     /**
      * By: HaiNT - Find list of users by id

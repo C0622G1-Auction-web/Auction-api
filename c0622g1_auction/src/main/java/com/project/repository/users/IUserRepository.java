@@ -1,9 +1,10 @@
 package com.project.repository.users;
 
 import com.project.dto.user.UserTopDto;
-import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -30,25 +31,23 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param address
      * @return List User
      */
-    @Query(value = "SELECT * " +
-            "FROM user " +
-            "join address on address.id = user.address_id " +
-            "JOIN `account` on `account`.id = user.account_id " +
-            "JOIN user_type on user_type.id = user.user_type_id " +
-            "WHERE user.id like %:id% " +
-            "AND (user.first_name like %:name% or user.last_name like %:name%) " +
-            "AND (address.detail_address LIKE %:address% OR address.town LIKE %:address% or address.district LIKE %:address% or address.city LIKE %:address% or address.country LIKE %:address%) " +
-            "AND user.email like %:email% " +
-            "AND user.user_type_id like %:userTypeId% " +
-            "GROUP BY user.id LIMIT :index,5", nativeQuery = true)
-    List<User> getUserBy(
-            @Param("id") String id,
-            @Param("name") String name,
-            @Param("email") String email,
-            @Param("userTypeId") String userTypeId,
-            @Param("address") String address,
-            @Param("index") Integer index
-    );
+    @Query(value = " SELECT * " +
+            " FROM user " +
+            " JOIN address on address.id = user.address_id " +
+            " JOIN `account` on `account`.id = user.account_id " +
+            " JOIN user_type on user_type.id = user.user_type_id " +
+            " WHERE user.id like %:id% " +
+            " AND (user.first_name like %:name% or user.last_name like %:name%) " +
+            " AND (address.detail_address LIKE %:address% OR address.town LIKE %:address% or address.district LIKE %:address% or address.city LIKE %:address% or address.country LIKE %:address%) " +
+            " AND user.email like %:email% " +
+            " AND user.user_type_id like %:userTypeId% ", nativeQuery = true,
+            countQuery = "select count(*) from user")
+    Page<User> getUserBy(@Param("id") String id,
+                         @Param("name") String name,
+                         @Param("email") String email,
+                         @Param("userTypeId") String userTypeId,
+                         @Param("address") String address,
+                         Pageable pageable);
 
     /**
      * Create by: HaiNT
@@ -69,12 +68,12 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "district = :district, " +
             "town = :town" +
             " WHERE (`id` = :id) ", nativeQuery = true)
-    void updateAddress(@Param("id") Integer id,
-                       @Param("detailAddress") String detailAddress,
-                       @Param("town") String town,
-                       @Param("district") String district,
-                       @Param("city") String city,
-                       @Param("country") String country
+    Address updateAddress(@Param("id") Integer id,
+                          @Param("detailAddress") String detailAddress,
+                          @Param("town") String town,
+                          @Param("district") String district,
+                          @Param("city") String city,
+                          @Param("country") String country
     );
 
     /**
@@ -102,13 +101,13 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "phone = :phone " +
             "WHERE (`id` = :id) ", nativeQuery = true)
     void updateUserByRoleAdmin(@Param("id") Integer id,
-                    @Param("idCard") String idCard,
-                    @Param("avatar") String avatar,
-                    @Param("birthDay") String birthDay,
-                    @Param("email") String email,
-                    @Param("firstName") String firstName,
-                    @Param("lastName") String lastName,
-                    @Param("phone") String phone
+                               @Param("idCard") String idCard,
+                               @Param("avatar") String avatar,
+                               @Param("birthDay") String birthDay,
+                               @Param("email") String email,
+                               @Param("firstName") String firstName,
+                               @Param("lastName") String lastName,
+                               @Param("phone") String phone
     );
 
     /**
@@ -194,9 +193,9 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param id
      * @return Optional<User>
      */
-    @Query(value = "select * " +
-            "from user u " +
-            "where u.id= :id ",
+    @Query(value = " select * " +
+            " from user u " +
+            " where u.id= :id ",
             nativeQuery = true)
     Optional<User> findUserById(@Param("id") Integer id);
 

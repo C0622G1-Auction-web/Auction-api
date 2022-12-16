@@ -4,6 +4,7 @@ import com.project.dto.user.*;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
+import com.project.model.users.UserType;
 import com.project.service.account.IAccountService;
 import com.project.service.account.ILockAccountService;
 import com.project.service.users.IAddressService;
@@ -16,6 +17,9 @@ import com.project.service.users.IUserTypeService;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +29,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/user/v1")
+@RequestMapping("/api/v1/users")
 public class UserRestController {
 
     @Autowired
@@ -51,17 +55,15 @@ public class UserRestController {
      * @param userTypeId
      * @return List User by param if param is empty then return list all users
      */
-    @GetMapping("/user/list")
+    @GetMapping("/list")
     public ResponseEntity<List<UserListDto>> getAllUser(
-            @RequestParam(defaultValue = "") String id,
-            @RequestParam(defaultValue = "") String name,
-            @RequestParam(defaultValue = "") String email,
-            @RequestParam(defaultValue = "") String address,
-            @RequestParam(defaultValue = "") String userTypeId,
-            @RequestParam(defaultValue = "0") Integer index
-
-    ) {
-        List<User> userList = userService.getUserBy(id, name, email, userTypeId, address, index);
+            @RequestParam(required = false, defaultValue = "") String id,
+            @RequestParam(required = false, defaultValue = "") String name,
+            @RequestParam(required = false, defaultValue = "") String email,
+            @RequestParam(required = false, defaultValue = "") String address,
+            @RequestParam(required = false, defaultValue = "") String userTypeId,
+            @PageableDefault(value = 3) Pageable pageable) {
+        Page<User> userList = userService.getUserBy(id, name, email, userTypeId, address, pageable);
         if (userList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -89,6 +91,15 @@ public class UserRestController {
     public ResponseEntity<User> userById(@PathVariable() int id) {
         User user = userService.findById(id).orElse(null);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/usersType")
+    public ResponseEntity<List<UserType>> getAllUserTypes() {
+        List<UserType> userTypes = userTypeService.getAllUserTypes();
+        if (userTypes.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(userTypes, HttpStatus.OK);
     }
 
 
@@ -184,8 +195,6 @@ public class UserRestController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 
 
 }
