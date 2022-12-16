@@ -56,6 +56,12 @@ public class UserService implements IUserService {
      */
 
     @Override
+    public Optional<User> findUser(int id) {
+        return userRepository.findById(id);
+
+    }
+
+    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
     public void createUser(User user) {
         userRepository.createUser(
                 user.getAvatar(),

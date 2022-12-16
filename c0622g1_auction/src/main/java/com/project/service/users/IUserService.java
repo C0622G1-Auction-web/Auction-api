@@ -10,8 +10,11 @@ import com.project.model.users.User;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 
 public interface IUserService {
+    Optional<User> findUser(int id);
+
 
     /**
      * Create by: TruongLH
