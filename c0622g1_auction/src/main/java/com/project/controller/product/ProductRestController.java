@@ -1,7 +1,14 @@
 package com.project.controller.product;
 
 
+<<<<<<< HEAD
 import com.project.dto.product.ProductDtoCreate;
+=======
+
+import com.project.dto.product.ProductSearchByRoleAdminDto;
+
+
+>>>>>>> 801e665c1da45a3e3fe45a72182de87023e5ee32
 import com.project.model.product.*;
 import com.project.dto.product.ImgUrlProductDTO;
 import com.project.model.users.User;
@@ -23,7 +30,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-import com.project.dto.ProductSearchByRoleAdminDto;
+
 import com.project.dto.product.ProductDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;

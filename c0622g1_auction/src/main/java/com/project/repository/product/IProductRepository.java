@@ -1,7 +1,7 @@
 package com.project.repository.product;
 
 
-import com.project.dto.ProductSearchByRoleAdminDto;
+import com.project.dto.product.ProductSearchByRoleAdminDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
 import org.springframework.data.domain.Page;
