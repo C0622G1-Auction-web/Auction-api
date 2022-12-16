@@ -17,8 +17,23 @@ build/
 /src/test/java/com/project/controller
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+<<<<<<< HEAD
 
 >>>>>>> dev
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> dev
+>>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
+>>>>>>> 25b5aa6fad5671e6ad979ca4d7bde7f115716f31
+=======
+=======
+
+>>>>>>> dev
+>>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
+>>>>>>> 503fa03357badf99ebaebfdca637bc0cf1c5b5c5
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/

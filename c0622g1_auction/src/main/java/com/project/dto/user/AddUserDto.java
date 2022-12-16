@@ -21,6 +21,11 @@ public class AddUserDto {
     public AddUserDto() {
     }
 
+    public AddUserDto(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, AddressDto addressDto, AccountDto accountDto) {
+
+
+    }
+
 
     public String getFirstName() {
         return firstName;
