@@ -17,7 +17,7 @@ public class Product {
     private Double initialPrice;
     private String startTime;
     private String endTime;
-    @Column(columnDefinition = "boolean default true")
+    @Column(columnDefinition = "boolean default false")
     private Boolean deleteStatus;
     private String registerDay;
 

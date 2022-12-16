@@ -55,7 +55,6 @@ public interface IProductService {
      * @param productId
      * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
      */
-
     Optional<Product> findProductById(Integer productId);
 
 
