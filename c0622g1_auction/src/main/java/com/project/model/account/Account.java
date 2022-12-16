@@ -1,29 +1,50 @@
 package com.project.model.account;
 
+import com.project.model.account.AccountRole;
+import com.project.model.account.LockAccount;
+import com.project.model.account.PasswordResetToken;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.users.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
 public class Account {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String username;
+//    @NotBlank
+//    @NotEmpty
+//    @Size(min = 10, max = 30)
     private String password;
     @Column(columnDefinition = "boolean default true")
     private Boolean statusLock;
+
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
+
     @OneToMany(mappedBy = "account")
+    @JsonBackReference
     private Set<AccountRole> accountRoles;
+
     @OneToMany(mappedBy = "account")
+    @JsonBackReference
     private Set<PasswordResetToken> passwordResetTokens;
+
     @OneToOne(mappedBy = "account")
+    @JsonBackReference
     private User user;
+
     @OneToOne(mappedBy = "account")
+    @JsonBackReference
     private LockAccount lockAccount;
+
     public Account() {
     }
 
