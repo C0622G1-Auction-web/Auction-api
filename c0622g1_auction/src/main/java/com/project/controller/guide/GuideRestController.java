@@ -10,14 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.project.dto.guide.GuideDto;
-import com.project.model.guide.Guide;
-import com.project.service.guide.IGuideService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -75,15 +69,15 @@ public class GuideRestController {
      */
 
     @PostMapping()
-    public ResponseEntity<List<FieldError>> createGuide(@Validated @RequestBody GuideDto guideDto,
+    public ResponseEntity<?> createGuide(@Validated @RequestBody GuideDto guideDto,
                                                         BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.NOT_ACCEPTABLE);
         }
         Guide guideObj = new Guide();
         BeanUtils.copyProperties(guideDto, guideObj);
-        guideService.createGuide(guideObj);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+         guideService.createGuide(guideObj);
+        return new ResponseEntity<>(guideObj,HttpStatus.CREATED);
     }
 
     /**
