@@ -24,12 +24,10 @@ public class User {
     private String avatar;
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
-    @JsonBackReference
+
     @OneToOne
     @JoinColumn(name = "address_id",referencedColumnName = "id")
     private Address address;
-
-
 
     @ManyToOne
     @JoinColumn(name = "user_type_id",referencedColumnName = "id")
@@ -41,7 +39,7 @@ public class User {
     private Set<Auction> auctions;
 
 
-    @OneToOne()
+    @OneToOne
     @JoinColumn(name = "account_id",referencedColumnName = "id")
     @JsonBackReference
     private Account account;

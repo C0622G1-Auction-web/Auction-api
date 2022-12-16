@@ -1,8 +1,6 @@
-package com.project.dto;
+package com.project.dto.payment;
 
-import java.util.List;
-
-public interface IPaymentDTO {
+public interface IPaymentDto {
     Integer getCode();
 
     String getFirstName();
@@ -24,7 +22,5 @@ public interface IPaymentDTO {
     String getDescription();
 
     Integer getProductId();
-
-
 
 }
