@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IPriceStepService {
     List<PriceStep> getListPriceStep();
+
+    PriceStep getPriceStep(Integer priceStep);
 }

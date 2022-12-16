@@ -18,4 +18,9 @@ public class PriceStepService implements IPriceStepService {
     public List<PriceStep> getListPriceStep() {
         return priceStepRepository.getPriceStep();
     }
+
+    @Override
+    public PriceStep getPriceStep(Integer priceStep) {
+        return priceStepRepository.findById(priceStep).orElse(null);
+    }
 }

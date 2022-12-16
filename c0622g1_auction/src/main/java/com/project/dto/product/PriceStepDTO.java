@@ -1,4 +1,4 @@
-package com.project.model.product.dto;
+package com.project.dto.product;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;

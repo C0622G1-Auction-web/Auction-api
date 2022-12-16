@@ -1,7 +1,7 @@
 package com.project.service.product.impl;
 
 import com.project.model.product.ImgUrlProduct;
-import com.project.model.product.dto.ImgUrlProductDTO;
+import com.project.dto.product.ImgUrlProductDTO;
 import com.project.repository.product.IImgUrlProductRepository;
 import com.project.service.product.IImgUrlProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +20,8 @@ public class ImgUrlProductService implements IImgUrlProductService {
     }
 
     @Override
-    public void saveImgProduct(ImgUrlProductDTO imgUrlProductDTO) {
-        imgUrlProductRepository.saveImgProduct(imgUrlProductDTO.getUrl(), imgUrlProductDTO.getProductId());
+    public void saveImgProduct(ImgUrlProduct imgUrlProduct) {
+        imgUrlProductRepository.save(imgUrlProduct);
     }
 
 

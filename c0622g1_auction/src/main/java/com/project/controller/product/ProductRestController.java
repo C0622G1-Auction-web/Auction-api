@@ -1,17 +1,16 @@
 package com.project.controller.product;
 
 
-
+import com.project.dto.product.ProductDtoCreate;
 import com.project.model.product.*;
-import com.project.model.product.dto.ImgUrlProductDTO;
-import com.project.model.product.dto.ProductDTO;
-import com.project.service.product.ICategoryService;
-import com.project.service.product.IImgUrlProductService;
-import com.project.service.product.IPriceStepService;
-import com.project.service.product.IProductService;
+import com.project.dto.product.ImgUrlProductDTO;
+import com.project.model.users.User;
+import com.project.service.product.*;
+import com.project.service.users.IUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -19,6 +18,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,8 +30,9 @@ import com.project.model.product.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import java.util.function.Function;
+import sun.security.pkcs11.wrapper.Constants;
 
+import java.util.function.Function;
 
 
 @CrossOrigin("*")
@@ -42,7 +43,6 @@ public class ProductRestController {
     @Autowired
     private IProductService productService;
 
-
     @Autowired
     private ICategoryService categoryService;
 
@@ -52,6 +52,14 @@ public class ProductRestController {
     @Autowired
     private IImgUrlProductService iImgUrlProductService;
 
+    @Autowired
+    private IReviewStatusService reviewStatusService;
+
+    @Autowired
+    private IAuctionStatusService auctionStatusService;
+
+    @Autowired
+    private IUserService userService;
     /**
      * Create by: HungNV,
      * Date created: 15/12/2022
@@ -61,9 +69,9 @@ public class ProductRestController {
      */
 
     @GetMapping("category")
-    public ResponseEntity<List<Category>> getListCategory(){
+    public ResponseEntity<List<Category>> getListCategory() {
         List<Category> categoryList = categoryService.getListCategory();
-        if (categoryList.isEmpty()){
+        if (categoryList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(categoryList, HttpStatus.OK);
@@ -78,13 +86,14 @@ public class ProductRestController {
      */
 
     @GetMapping("priceStep")
-    public ResponseEntity<List<PriceStep>> getListPriceStep(){
+    public ResponseEntity<List<PriceStep>> getListPriceStep() {
         List<PriceStep> priceStepList = priceStepService.getListPriceStep();
-        if (priceStepList.isEmpty()){
+        if (priceStepList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(priceStepList, HttpStatus.OK);
     }
+
     /**
      * Create by: HungNV,
      * Date created: 14/12/2022
@@ -110,13 +119,30 @@ public class ProductRestController {
      * @param productDTO,bindingResult
      * @return HttpStatus.create or (bindingResult.getFieldErrors() and HttpStatus.NOT_ACCEPTABLE)
      */
-    @PostMapping("create")
-    public ResponseEntity<List<FieldError>> create(@RequestBody @Validated ProductDTO productDTO, BindingResult bindingResult) {
+
+    @PostMapping("/create")
+    public ResponseEntity<Product> create(@RequestBody @Validated ProductDtoCreate productDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
-        productService.saveProduct(productDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        Date date = new Date();
+        productDTO.setRegisterDay(String.valueOf(date));
+        Product product = new Product();
+
+        BeanUtils.copyProperties(productDTO, product);
+        PriceStep priceStep = priceStepService.getPriceStep(productDTO.getPriceStep());
+        product.setPriceStep(priceStep);
+        Category category = categoryService.getCategory(productDTO.getCategory());
+        product.setCategory(category);
+        ReviewStatus reviewStatus = reviewStatusService.getReviewStatus(1);
+        product.setReviewStatus(reviewStatus);
+        AuctionStatus auctionStatus = auctionStatusService.getAuctionStatus(1);
+        product.setAuctionStatus(auctionStatus);
+        User user = userService.getUser(productDTO.getUser());
+        product.setUser(user);
+        product.isDeleteStatus();
+        productService.saveProduct(product);
+        return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 
     /**
@@ -127,14 +153,17 @@ public class ProductRestController {
      * @param productDTO,bindingResult
      * @return HttpStatus.create or (bindingResult.getFieldErrors() and HttpStatus.NOT_ACCEPTABLE)
      */
-    @PutMapping("update")
-    public ResponseEntity<List<FieldError>> update(@RequestBody @Validated ProductDTO productDTO, BindingResult bindingResult) {
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@RequestBody @Validated ProductDto productDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
-        productService.update(productDTO);
+        Product product = new Product();
+        BeanUtils.copyProperties(productDTO, product);
+        productService.update(product);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     /**
      * Create by: HungNV,
      * Date created: 13/12/2022
@@ -161,12 +190,18 @@ public class ProductRestController {
      * @return HttpStatus.CREATED
      */
 
-    @RequestMapping("img/create")
-    public ResponseEntity<List<FieldError>> saveImgProduct(@Validated @RequestBody ImgUrlProductDTO imgUrlProductDTO,BindingResult bindingResult) {
-        if (bindingResult.hasErrors()){
+    @PostMapping(value = {"img/create"},
+            consumes = {MediaType.APPLICATION_JSON_VALUE}
+            , produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<FieldError>> saveImgProduct(@Validated @RequestBody ImgUrlProductDTO imgUrlProductDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
-        iImgUrlProductService.saveImgProduct(imgUrlProductDTO);
+        ImgUrlProduct imgUrlProduct = new ImgUrlProduct();
+        BeanUtils.copyProperties(imgUrlProductDTO, imgUrlProduct);
+        Product product = productService.getProduct(imgUrlProductDTO.getProduct());
+        imgUrlProduct.setProduct(product);
+        iImgUrlProductService.saveImgProduct(imgUrlProduct);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -285,14 +320,13 @@ public class ProductRestController {
     }
 
 
-
     /**
      * Created SangDD
      * Date created 13/12/2022
      * Function: search and filter product by name, rangePrice, categoryID productAuctionStatus
+     *
      * @param productSearchDto
      * @param pageable
-     * @return HttpStatus.NOT_FOUND if result is empty
      * @return HttpStatus.OK if result is not empty
      */
     @GetMapping("/search")
@@ -300,8 +334,8 @@ public class ProductRestController {
                                                             @PageableDefault(value = 5) Pageable pageable) {
 
         Page<Product> productPage = productService.getAllAndSearch(productSearchDto, pageable);
-        if(productPage.hasContent()) {
-            Page<ProductDto> productDtoPage  = productPage.map(new Function<Product, ProductDto>() {
+        if (productPage.hasContent()) {
+            Page<ProductDto> productDtoPage = productPage.map(new Function<Product, ProductDto>() {
                 @Override
                 public ProductDto apply(Product product) {
                     ProductDto productDto = new ProductDto();

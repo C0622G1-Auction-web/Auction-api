@@ -207,7 +207,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     @Query(value = "select * " +
             "from user u " +
             "where u.id= :id " +
-            "and u.delete_status=1 ",
+            "and u.delete_status= 0 ",
             nativeQuery = true)
     Optional<User> findUserById(@Param("id") Integer id);
 

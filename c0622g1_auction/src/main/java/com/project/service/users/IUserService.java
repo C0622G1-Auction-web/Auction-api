@@ -62,5 +62,6 @@ public interface IUserService {
     List<UserTopDto> getTopAuctionUser(String quality);
 
 
+    User getUser(Integer user);
 }
 

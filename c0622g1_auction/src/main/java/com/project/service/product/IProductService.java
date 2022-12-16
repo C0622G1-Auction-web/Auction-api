@@ -1,8 +1,9 @@
 package com.project.service.product;
 
 
+import com.project.dto.product.ProductDtoCreate;
 import com.project.model.product.Product;
-import com.project.model.product.dto.ProductDTO;
+
 
 import java.util.Optional;
 
@@ -21,9 +22,9 @@ public interface IProductService {
 
     Optional<Product> findById(Integer id);
 
-    void saveProduct(ProductDTO ProductDTO);
+    void saveProduct(Product product);
 
-    void update(ProductDTO ProductDTO);
+    void update(Product product);
 
 
     List<Product> findByListId(List<Integer> idList);
@@ -50,4 +51,12 @@ public interface IProductService {
      */
     Page<Product> getAllAndSearch(ProductSearchDto productSearchDto, Pageable pageable);
 
+    /**
+     * Created HungNV
+     * Date created 13/12/2022
+     * Function: get product by id
+     * @param id
+     * @return product
+     */
+    Product getProduct(Integer id);
 }

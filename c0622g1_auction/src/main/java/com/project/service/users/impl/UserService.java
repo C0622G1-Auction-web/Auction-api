@@ -142,4 +142,16 @@ public class UserService implements IUserService {
 
         return userRepository.getTopAuctionUser(quality);
     }
+    /**
+     * Created: HungNV
+     * Created date: 16/12/2022
+     * Function: get Top 10 users with the highest total money auction
+     *
+     * @param id
+     * @return User
+     */
+    @Override
+    public User getUser(Integer id) {
+        return userRepository.findById(id).orElse(null);
+    }
 }

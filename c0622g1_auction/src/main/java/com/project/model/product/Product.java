@@ -23,22 +23,18 @@ public class Product {
     private String registerDay;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "price_step_id",referencedColumnName = "id")
     private PriceStep priceStep;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "review_status_id",referencedColumnName = "id")
     private ReviewStatus reviewStatus;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "auction_status_id",referencedColumnName = "id")
     private AuctionStatus auctionStatus;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "category_id",referencedColumnName = "id")
     private Category category;
 
@@ -53,7 +49,6 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
-    @JsonBackReference
     private User user;
     public Product() {
     }
