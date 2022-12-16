@@ -2,6 +2,9 @@ package com.project.repository.guide;
 
 import com.project.model.guide.Guide;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import org.springframework.data.jpa.repository.Query;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,15 +15,26 @@ import java.util.List;
 @Repository
 public interface IGuideRepository extends JpaRepository<Guide, Integer> {
     /**
+
+     * Create by: SonPT,
+     * Date created: 13/12/2022
+     * Function: find all guide in Database
+
      * Create by: QuangND,
      * Date created: 13/12/2022
      * Function: find all guide in DB
+<<<<<<< HEAD
      *
+=======
+
+>>>>>>> add4b878c187060ab440b6aba8d1c0d71a564518
      * @return list of guide
      */
 
     @Query(value = "SELECT guide.id, guide.title, guide.content, guide.delete_status FROM guide WHERE guide.delete_status=true ", nativeQuery = true)
     List<Guide> findAllGuide();
+
+
 
     /**
      * Create by: QuangND,

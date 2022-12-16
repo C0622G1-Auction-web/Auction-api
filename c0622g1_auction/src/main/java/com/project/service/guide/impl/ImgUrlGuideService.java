@@ -17,10 +17,24 @@ public class ImgUrlGuideService implements IImgUrlGuideService {
     @Autowired
     private IImgUrlGuideRepository imgUrlGuideRepository;
 
+
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: display list Image Guide
+     * @param: ID
+     * @return: List<ImgUrlGuide>
+     */
+
+
+
+
     @Override
     public List<ImgUrlGuide> findImgByGuideId(Integer id) {
         return imgUrlGuideRepository.findImgByGuideId(id);
     }
+
+
 
     @Override
     public void createImgGuide(ImgUrlGuideDto imgUrlGuideDto) {
@@ -36,4 +50,5 @@ public class ImgUrlGuideService implements IImgUrlGuideService {
     public void updateImgGuie(ImgUrlGuideDto imgUrlGuideDto) {
         imgUrlGuideRepository.updateImgGuie(imgUrlGuideDto.getId(),imgUrlGuideDto.getUrl());
     }
+
 }

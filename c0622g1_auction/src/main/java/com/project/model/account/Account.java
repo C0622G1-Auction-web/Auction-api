@@ -1,4 +1,6 @@
 package com.project.model.account;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.users.User;
 
 import javax.persistence.*;
@@ -11,6 +13,7 @@ public class Account {
     private Integer id;
     private String username;
     private String password;
+    @Column(columnDefinition = "boolean default true")
     private Boolean statusLock;
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
@@ -19,6 +22,7 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private Set<PasswordResetToken> passwordResetTokens;
     @OneToOne(mappedBy = "account")
+    @JsonBackReference
     private User user;
     @OneToOne(mappedBy = "account")
     private LockAccount lockAccount;
