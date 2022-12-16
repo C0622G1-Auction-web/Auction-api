@@ -33,7 +33,7 @@ public class ProductRestController {
      */
     @GetMapping("/search")
     public ResponseEntity<Page<ProductDto>> getAllAndSearch(@RequestBody ProductSearchDto productSearchDto,
-                                                            @PageableDefault(value = 5) Pageable pageable) {
+                                                            @PageableDefault(value = 10) Pageable pageable) {
 
         Page<Product> productPage = productService.getAllAndSearch(productSearchDto, pageable);
         if(productPage.hasContent()) {
@@ -49,6 +49,4 @@ public class ProductRestController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
-
 }
