@@ -18,16 +18,15 @@ public class Auction {
     private Boolean payStatus;
     @Column(columnDefinition = "boolean default false")
     private Boolean auctionStatus;
+    private String auctionDay;
     @Column(columnDefinition = "boolean default false")
     private Boolean deleteStatus;
 
-    private String auctionDay;
-
-
 
     @JsonIgnore
+
     @ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonBackReference
     private User user;
 
@@ -35,13 +34,14 @@ public class Auction {
     @JsonBackReference
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "product_id",referencedColumnName = "id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
 
     @JsonBackReference
     @OneToOne(mappedBy = "auction")
     private Payment payment;
+
     public Auction() {
     }
 
@@ -123,5 +123,6 @@ public class Auction {
 
     public void setPayment(Payment payment) {
         this.payment = payment;
+
     }
 }

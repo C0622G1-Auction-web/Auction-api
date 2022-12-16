@@ -1,15 +1,13 @@
 package com.project.service.users;
-
 import com.project.dto.user.UserTopDto;
-
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.stereotype.Service;
 
-
 import java.util.List;
 import java.util.Optional;
+
 
 
 @Service
