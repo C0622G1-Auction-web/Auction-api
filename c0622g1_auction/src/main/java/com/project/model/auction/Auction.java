@@ -23,6 +23,7 @@ public class Auction {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JsonBackReference
     private User user;
 
     @JsonIgnore

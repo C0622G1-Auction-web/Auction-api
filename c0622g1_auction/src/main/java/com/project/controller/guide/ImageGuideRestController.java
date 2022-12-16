@@ -1,11 +1,14 @@
 
 package com.project.controller.guide;
 
+import com.project.dto.guide.ImgUrlGuideDto;
 import com.project.model.guide.ImgUrlGuide;
 import com.project.service.guide.IImgUrlGuideService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,8 +24,9 @@ public class ImageGuideRestController {
      * Create by: QuangND,
      * Date created: 13/12/2022
      * Function: find all image url by id of guide
-     * @Param: id of guide
+     *
      * @return list of image url and status code
+     * @Param: id of guide
      */
 
     @GetMapping("/find/{id}")
@@ -38,13 +42,17 @@ public class ImageGuideRestController {
      * Create by: QuangND,
      * Date created: 13/12/2022
      * Function: create a new image url for a guide
-     * @Param: a item of ImgUrlGuide
+     *
      * @return status code
+     * @Param: a item of ImgUrlGuide
      */
 
     @PostMapping()
-    public ResponseEntity<ImgUrlGuide> createImgGuide(@RequestBody ImgUrlGuide imgUrlGuide) {
-        imgUrlGuideService.createImgGuide(imgUrlGuide);
+    public ResponseEntity<ImgUrlGuide> createImgGuide(@Validated @RequestBody ImgUrlGuideDto imgUrlGuideDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+        imgUrlGuideService.createImgGuide(imgUrlGuideDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -52,18 +60,22 @@ public class ImageGuideRestController {
      * Create by: QuangND,
      * Date created: 13/12/2022
      * Function: update a image of guide
+     *
+     * @return status code
      * @Param: id of guide
      * @Param: a item of ImgUrlGuide
-     * @return status code
      */
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ImgUrlGuide> updateImgGuide(@PathVariable int id,
-                                                      @RequestBody ImgUrlGuide imgUrlGuide) {
-        if (imgUrlGuideService.findById(id) == null) {
+    @PutMapping()
+    public ResponseEntity<ImgUrlGuide> updateImgGuide(@Validated @RequestBody ImgUrlGuideDto imgUrlGuideDto,
+                                                      BindingResult bindingResult) {
+        if (imgUrlGuideService.findById(imgUrlGuideDto.getId()) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        imgUrlGuideService.updateImgGuie(imgUrlGuide);
+        if(bindingResult.hasErrors()){
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+        imgUrlGuideService.updateImgGuie(imgUrlGuideDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

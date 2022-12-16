@@ -13,10 +13,22 @@ public class GuideService implements IGuideService {
     @Autowired
     private IGuideRepository guideRepository;
 
+
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: display list guide
+     * @return: List<Guide>
+     */
+
+
+
     @Override
     public List<Guide> findAllGuide() {
         return guideRepository.findAllGuide();
     }
+
+
 
     @Override
     public Guide getGuideById(int id) {
@@ -32,4 +44,5 @@ public class GuideService implements IGuideService {
     public void updateGuide(Guide guide) {
         guideRepository.updateGuide(guide.getId(),guide.getTitle(),guide.getContent());
     }
+
 }

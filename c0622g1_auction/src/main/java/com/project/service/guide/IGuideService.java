@@ -3,6 +3,10 @@ import com.project.model.guide.Guide;
 
 import java.util.List;
 
+import com.project.model.guide.Guide;
+
+import java.util.List;
+
 public interface IGuideService {
     List<Guide> findAllGuide();
 
@@ -11,4 +15,5 @@ public interface IGuideService {
     void createGuide(Guide guide);
 
     void updateGuide(Guide guide);
+
 }
