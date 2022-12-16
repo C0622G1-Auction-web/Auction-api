@@ -24,7 +24,6 @@ public class AddUserDto {
     private Boolean deleteStatus;
     private AddressDto addressDto;
     private AccountDto accountDto;
-    private UserType userType;
 
     public AddUserDto(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, AddressDto addressDto, AccountDto accountDto) {
         this.firstName = firstName;

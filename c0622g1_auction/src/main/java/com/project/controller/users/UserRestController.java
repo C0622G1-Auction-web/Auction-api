@@ -30,7 +30,6 @@ public class UserRestController {
 
     @Autowired
     private IUserService userService;
-
     @Autowired
     private IAddressService addressService;
     @Autowired
@@ -145,7 +144,7 @@ public class UserRestController {
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
     @PostMapping("/add")
-    public ResponseEntity<?> addUser( @Validated @RequestBody FormAddUser formAddUser) {
+    public ResponseEntity<?> addUser(  @RequestBody FormAddUser formAddUser) {
 
        AddressDto addressDto= new AddressDto(formAddUser.getDetailAddress(),formAddUser.getTown(),formAddUser.getDistrict(),formAddUser.getCity(),formAddUser.getCountry());
         AccountDto accountDto = new AccountDto(formAddUser.getUsername(), formAddUser.getPassword(),formAddUser.getStatusLock(),formAddUser.getDeleteStatus());
@@ -177,7 +176,7 @@ public class UserRestController {
      * @return HttpStatus.OK if result is not empty
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
-    @PutMapping("/lockUser")
+    @PutMapping("/lockUser/{id}")
     public ResponseEntity<UserListDto> lockUser(@RequestBody List<Integer> id) {
         List<User> userList = userService.findByIdList(id);
         if (id.size() != userList.size()) {
@@ -186,4 +185,12 @@ public class UserRestController {
         userService.lockUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+//
+//    @PostMapping()
+//    public void createLockAccount(LockAccountDto lockAccountDto) {
+//
+//
+//
+//    }
+
 }

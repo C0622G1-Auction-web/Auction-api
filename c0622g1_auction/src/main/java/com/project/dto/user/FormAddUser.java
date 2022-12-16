@@ -32,8 +32,16 @@ public class FormAddUser implements Validator {
     private String avatar;
     private String username;
     private String password;
+    private String detailAddress;
+    private String town;
+    private String district;
+    private String city;
+    private String country;
+    private Boolean statusLock;
+    private Boolean deleteStatus;
 
-    public FormAddUser(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, String username, String password, String detailAddress, String town, String district, String city, String country, Boolean statusLock, Boolean deleteStatus, List<String> emailList) {
+
+    public FormAddUser(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, String username, String password, String detailAddress, String town, String district, String city, String country, Boolean statusLock, Boolean deleteStatus) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -51,21 +59,9 @@ public class FormAddUser implements Validator {
         this.country = country;
         this.statusLock = statusLock;
         this.deleteStatus = deleteStatus;
-        this.emailList = emailList;
     }
 
-    @NotEmpty(message = "Không được để trống")
-    private String detailAddress;
-    @NotEmpty(message = "Không được để trống")
-    private String town;
-    @NotEmpty(message = "Không được để trống")
-    private String district;
-    @NotEmpty(message ="Không được để trống")
-    private String city;
-    @NotEmpty(message ="Không được để trống")
-    private String  country;
-    private Boolean statusLock;
-    private Boolean deleteStatus;
+
 
 
 
