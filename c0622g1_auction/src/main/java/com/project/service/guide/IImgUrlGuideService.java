@@ -10,4 +10,5 @@ public interface IImgUrlGuideService {
     void createImgGuide(ImgUrlGuideDto imgUrlGuideDto);
     ImgUrlGuide findById(int id);
     void updateImgGuie(ImgUrlGuideDto imgUrlGuideDto);
+
 }

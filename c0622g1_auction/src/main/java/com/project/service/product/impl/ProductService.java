@@ -1,9 +1,7 @@
 package com.project.service.product.impl;
 
-import com.project.dto.ProductDto;
-
-import com.project.dto.ProductDto;
 import com.project.dto.ProductSearchByRoleAdminDto;
+import com.project.dto.product.ProductDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
 import com.project.repository.product.IProductRepository;
@@ -25,7 +23,7 @@ public class ProductService implements IProductService {
      * Created by: AnhTDQ,
      * Date created: 15/12/2022
      * Function: get page products Sign up for auctions by user id
-     * @param user id
+     * @param id
      * @param pageable
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
@@ -38,7 +36,7 @@ public class ProductService implements IProductService {
      * Created by: AnhTDQ,
      * Date created: 15/12/2022
      * Function: get page products Sign up for auctions by user id
-     * @param user id
+     * @param id
      * @return void
      */
 
