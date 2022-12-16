@@ -19,9 +19,9 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String username;
-    @NotBlank
-    @NotEmpty
-    @Size(min = 10, max = 30)
+//    @NotBlank
+//    @NotEmpty
+//    @Size(min = 10, max = 30)
     private String password;
     @Column(columnDefinition = "boolean default true")
     private Boolean statusLock;

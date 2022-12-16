@@ -1,16 +1,19 @@
 package com.project.service.users;
 
+
 import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.stereotype.Service;
 import com.project.model.account.Account;
-import com.project.model.users.User;
 
 import java.util.List;
 import java.util.Optional;
 
 
+
+
+@Service
 public interface IUserService {
 
     /**
@@ -19,7 +22,6 @@ public interface IUserService {
      * Function: to update user
      * @return User
      */
-
     void updateUser(User user);
 
     /**
@@ -28,7 +30,6 @@ public interface IUserService {
      * Function: to create user
      * @return User
      */
-
     void createUser(User user);
 
     /**
@@ -38,7 +39,6 @@ public interface IUserService {
      * @param id
      * @return User
      */
-
     Optional<User> findUserById(int id);
 
     /**
@@ -47,7 +47,7 @@ public interface IUserService {
      * Function: to find all user list
      * @return List<User>
      */
-    List<User> findAll();
+     List<User> findAll();
 
 
     void saveUser(User user, Integer addressId, Integer accountId, Integer Number);
@@ -93,6 +93,7 @@ public interface IUserService {
     void editUser(User user);
 
     void unlockUser(List<Integer> idList);
+
 
     User findUserByAccount(Account account);
 }

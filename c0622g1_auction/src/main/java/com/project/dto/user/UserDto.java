@@ -44,6 +44,8 @@ public class UserDto implements Validator {
     private String username;
     @NotEmpty(message = "Mật khẩu được để trống")
     private String password;
+    private Boolean deleteStatus;
+    private Boolean statusLock;
     private List<String> emailList;
     private UserType userType;
     public UserDto() {
@@ -150,7 +152,23 @@ public class UserDto implements Validator {
     public void setCountry(String country) {
         this.country = country;
     }
-    public UserType getUserType() {
+
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+
+    public Boolean getStatusLock() {
+        return statusLock;
+    }
+
+    public void setStatusLock(Boolean statusLock) {
+        this.statusLock = statusLock;
+    }
+        public UserType getUserType() {
         return userType;
     }
     public void setUserType(UserType userType) {

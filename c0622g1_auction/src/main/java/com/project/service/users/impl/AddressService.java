@@ -19,12 +19,13 @@ public class AddressService implements IAddressService {
      */
     @Override
     public Address createAddress(Address address) {
-        return addressRepository.createAddress(
-                address.getDetailAddress(),
-                address.getTown(),
-                address.getDistrict(),
-                address.getCity(),
-                address.getCountry());
+//        return addressRepository.createAddress(
+//                address.getDetailAddress(),
+//                address.getTown(),
+//                address.getDistrict(),
+//                address.getCity(),
+//                address.getCountry());
+        return  addressRepository.save(address);
     }
 
     /**
@@ -35,17 +36,23 @@ public class AddressService implements IAddressService {
      */
     @Override
     public Address updateAddress(Address address) {
-        return addressRepository.updateAddress(
-                address.getDetailAddress(),
-                address.getTown(),
-                address.getDistrict(),
-                address.getCity(),
-                address.getCountry());
+//        return addressRepository.updateAddress(
+//                address.getDetailAddress(),
+//                address.getTown(),
+//                address.getDistrict(),
+//                address.getCity(),
+//                address.getCountry());
+        return addressRepository.save(address);
     }
     @Override
     public Address saveAddress(Address address) {
         addressRepository.save(address);
         return address;
+    }
+
+    @Override
+    public Address findbyId(Integer id) {
+        return addressRepository.findById(id).get();
     }
 
 }
