@@ -1,6 +1,8 @@
 package com.project.controller.payment;
 
 
+import com.project.dto.payment.IPaymentAddressDto;
+import com.project.dto.payment.IPaymentTotalBillDto;
 import com.project.dto.payment.PaymentDtoGetShip;
 import com.project.model.payment.Payment;
 import com.project.service.payment.IPaymentService;
@@ -59,21 +61,49 @@ public class PaymentRestController {
     /**
      * Create by: BaoBC
      * Date created: 14/12/2022
-     * Function: to find payment by list id
+     * Function: to find payment by list id payment
      *
      * @param idList
      * @return HttpStatus.BAD_REQUEST if exists any payment not found/  HttpStatus.OK and payments found
      */
     @GetMapping("/find-by-list-id")
-    public ResponseEntity<List<Payment>> findByListId(@RequestBody List<Integer> idList) {
+    public ResponseEntity<List<IPaymentAddressDto>> findByListId() {
+         List<Integer> idList = new ArrayList<>();
+         idList.add(5);
+         idList.add(7);
+
         if (idList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        List<Payment> paymentList = paymentService.findByListId(idList);
+        List<IPaymentAddressDto> paymentList = paymentService.findByListId(idList);
+
         if (idList.size() != paymentList.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<List<Payment>>(paymentList, HttpStatus.OK);
+
+        return new ResponseEntity<List<IPaymentAddressDto>>(paymentList, HttpStatus.OK);
+    }
+
+    /**
+     * Create by: BaoBC
+     * Date created: 15/12/2022
+     * Function: get totalBill by list id payment
+     *
+     * @param idList
+     * @return HttpStatus.BAD_REQUEST if exists any payment not found/  HttpStatus.OK and payments found
+     */
+    @GetMapping("/get-total-bill")
+    public ResponseEntity<IPaymentTotalBillDto> getTotalBill() {
+        List<Integer> idList = new ArrayList<>();
+        idList.add(5);
+        idList.add(7);
+
+        if (idList.size() == 0) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        IPaymentTotalBillDto paymentTotalBillDto = paymentService.getTotalBill(idList);
+
+        return new ResponseEntity<IPaymentTotalBillDto>(paymentTotalBillDto,HttpStatus.OK);
     }
 
     /**
