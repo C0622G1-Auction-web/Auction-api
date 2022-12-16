@@ -5,18 +5,13 @@ import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.stereotype.Service;
 
-import com.project.model.users.User;
-
-import java.util.Optional;
-
-public interface IUserService {
-    Optional<User> findUser(int id);
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public interface IUserService {
+    Optional<User> findUser(int id);
+
 
     void saveUser(User user, Integer addressId, Integer accountId, Integer Number);
 

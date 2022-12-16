@@ -1,22 +1,7 @@
 package com.project.controller.auction;
 
-import com.project.service.auction.impl.AuctionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-@RequestMapping("/api/v1/auction")
-@CrossOrigin("*")
-public class AuctionRestController {
-
-    @Autowired
-    private AuctionService auctionService;
-
-
 import com.project.dto.AuctionDto;
-import com.project.dto.ProductDto;
+import com.project.dto.product.ProductDto;
 import com.project.model.auction.Auction;
 import com.project.model.product.Product;
 import com.project.service.auction.IAuctionService;
@@ -40,6 +25,7 @@ import java.util.function.Function;
 @RestController
 @RequestMapping("/api/v1/auction")
 public class AuctionRestController {
+
     @Autowired
     private IAuctionService auctionService;
 

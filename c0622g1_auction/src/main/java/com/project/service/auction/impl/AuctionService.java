@@ -20,6 +20,8 @@ public class AuctionService implements IAuctionService {
     @Override
     public List<Product> showProductAuctionById(int id) {
         return auctionRepository.showProductAuctionById(id);
+    }
+
     /**
      * Created by: TienBM,
      * Date created: 13/12/2022

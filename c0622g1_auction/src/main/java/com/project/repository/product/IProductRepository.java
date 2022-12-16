@@ -1,16 +1,9 @@
 package com.project.repository.product;
 
 
-import com.project.model.product.ImgUrlProduct;
 import com.project.dto.ProductSearchByRoleAdminDto;
+import com.project.dto.product.ProductDto;
 import com.project.dto.product.ProductSearchDto;
-import com.project.model.product.Product;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-
-import com.project.dto.ProductDto;
 import com.project.model.product.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,12 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import java.util.List;
-
-import java.util.Optional;
-
-
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -40,7 +27,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * Created by: AnhTDQ,
      * Date created: 15/12/2022
      * Function: get page products Sign up for auctions by user id
-     * @param user id
+     * @param id
      * @param pageable
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
@@ -62,14 +49,14 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * Created by: AnhTDQ,
      * Date created: 15/12/2022
      * Function: cancel Sign up for auctions by user id
-     * @param user id
+     * @param id
      * @return voice
      */
     @Modifying
     @Transactional
     @Query(value = " UPDATE  product set delete_status = 1 where product.id = :id ", nativeQuery = true)
     void cancelProduct(@Param("id") Integer id);
-     * Created by: SonPT
+     /** Created by: SonPT
      * Date created: 13-12-2022
      * @param: description, end_time, initial_price, name, register_day, start_time, category_id, price_step_id, user_id
      * Function: create Product
