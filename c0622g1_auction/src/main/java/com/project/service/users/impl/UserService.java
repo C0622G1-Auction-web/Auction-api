@@ -1,11 +1,24 @@
 package com.project.service.users.impl;
 
+<<<<<<< HEAD
+import com.project.model.account.Account;
+import com.project.model.users.Address;
+import com.project.model.users.User;
+import com.project.dto.user.UserTopDto;
+
+import com.project.repository.account.IAccountRepository;
+import com.project.repository.users.IAddressRepository;
+=======
 import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
 import com.project.model.users.User;
+>>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
 import com.project.repository.users.IUserRepository;
+import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +30,10 @@ public class UserService implements IUserService {
 
     @Autowired
     private IUserRepository userRepository;
+    @Autowired
+    private IAddressRepository addressRepository;
+    @Autowired
+    private IAccountRepository accountRepository;
 
     /**
      * Create by: VietNQ
@@ -60,8 +77,8 @@ public class UserService implements IUserService {
      * @return List of users by param
      */
     @Override
-    public List<User> getUserBy(String id, String name, String email, String userTypeId, String address, Integer index) {
-        return userRepository.getUserBy(id, name, email, userTypeId, address, index);
+    public Page<User> getUserBy(String id, String name, String email, String userTypeId, String address, Pageable pageable) {
+        return userRepository.getUserBy(id, name, email, userTypeId, address, pageable);
     }
 
     /**
@@ -85,7 +102,19 @@ public class UserService implements IUserService {
      */
     @Override
     public Optional<Address> findByAddressId(int id) {
-        return userRepository.findUserByAddressId(id);
+        return addressRepository.findById(id);
+    }
+
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param id
+     * @return Object Account by id
+     */
+    @Override
+    public Optional<Account> findByAccountId(int id) {
+        return accountRepository.findById(id);
     }
 
     /**
@@ -99,6 +128,15 @@ public class UserService implements IUserService {
         userRepository.save(user);
     }
 
+<<<<<<< HEAD
+//    @Override
+//    public void updateAddressByRoleAdmin(User user) {
+//        userRepository.updateAddress(user.getAddress().getId(),
+//                user.getAddress().getDetailAddress(), user.getAddress().getTown(),
+//                user.getAddress().getDistrict(), user.getAddress().getCity(),
+//                user.getAddress().getCountry());
+//    }
+=======
     @Override
     public void updateUser(User user) {
     }
@@ -107,6 +145,7 @@ public class UserService implements IUserService {
     public void unlockUser(List<Integer> idList) {
 
     }
+>>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
 
     /**
      * Create by: HaiNT
@@ -142,6 +181,29 @@ public class UserService implements IUserService {
         userRepository.unlockAccountByIdList(idList);
     }
 
+<<<<<<< HEAD
+
+    @Override
+    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
+        userRepository.createUser(
+                user.getAvatar(),
+                user.getBirthDay(),
+                user.getDeleteStatus(),
+                user.getEmail(),
+                user.getFirstName(),
+                user.getIdCard(),
+                user.getLastName(),
+                user.getPhone(),
+                user.getPointDedication(),
+                accountId,
+                addressId,
+                userType);
+
+    }
+
+
+=======
+>>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -153,4 +215,5 @@ public class UserService implements IUserService {
     public List<UserTopDto> getTopAuctionUser(String quality) {
         return userRepository.getTopAuctionUser(quality);
     }
+
 }

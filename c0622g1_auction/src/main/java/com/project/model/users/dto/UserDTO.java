@@ -28,6 +28,18 @@ public class UserDTO {
     public UserDTO() {
     }
 
+    public UserDto(String firstName, String lastName, String email, String phone, String birthDay, String idCard, AddressDto addressDto, AccountDto accountDto) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.birthDay = birthDay;
+        this.idCard = idCard;
+        this.addressDto = addressDto;
+        this.accountDto = accountDto;
+    }
+
+
     public Integer getId() {
         return id;
     }

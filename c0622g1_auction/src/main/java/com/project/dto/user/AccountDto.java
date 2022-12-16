@@ -26,6 +26,16 @@ public class AccountDto {
     public AccountDto() {
     }
 
+    public AccountDto(String username) {
+        this.username = username;
+    }
+
+
+    public AccountDto(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
@@ -34,7 +44,10 @@ public class AccountDto {
         this.id = id;
     }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
     public String getUsername() {
         return username;
     }

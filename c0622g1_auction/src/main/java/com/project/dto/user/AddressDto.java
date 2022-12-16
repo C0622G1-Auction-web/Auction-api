@@ -21,6 +21,13 @@ public class AddressDto {
         this.country = country;
     }
 
+    public AddressDto(String detailAddress, String town, String district, String city) {
+        this.detailAddress = detailAddress;
+        this.town = town;
+        this.district = district;
+        this.city = city;
+    }
+
     public Integer getId() {
         return id;
     }

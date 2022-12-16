@@ -6,12 +6,23 @@ import com.project.dto.user.*;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
+import com.project.model.users.UserType;
 import com.project.service.account.IAccountService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
+<<<<<<< HEAD
+
+
+import com.project.dto.user.UserListDto;
+import com.project.dto.user.UserTopDto;
+=======
+>>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
 import com.project.service.users.IUserTypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -48,17 +59,15 @@ public class UserRestController {
      * @param userTypeId
      * @return List User by param if param is empty then return list all users
      */
-    @GetMapping
+    @GetMapping("/list")
     public ResponseEntity<List<UserListDto>> getAllUser(
-            @RequestParam(defaultValue = "") String id,
-            @RequestParam(defaultValue = "") String name,
-            @RequestParam(defaultValue = "") String email,
-            @RequestParam(defaultValue = "") String address,
-            @RequestParam(defaultValue = "") String userTypeId,
-            @RequestParam(defaultValue = "0") Integer index
-
-    ) {
-        List<User> userList = userService.getUserBy(id, name, email, userTypeId, address, index);
+            @RequestParam(required = false, defaultValue = "") String id,
+            @RequestParam(required = false, defaultValue = "") String name,
+            @RequestParam(required = false, defaultValue = "") String email,
+            @RequestParam(required = false, defaultValue = "") String address,
+            @RequestParam(required = false, defaultValue = "") String userTypeId,
+            @PageableDefault(value = 3) Pageable pageable) {
+        Page<User> userList = userService.getUserBy(id, name, email, userTypeId, address, pageable);
         if (userList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -66,6 +75,9 @@ public class UserRestController {
         for (User user : userList) {
             UserListDto userListDto = new UserListDto();
             BeanUtils.copyProperties(user, userListDto);
+            userListDto.setAccount(user.getAccount());
+            userListDto.setAddress(user.getAddress());
+            userListDto.setUserType(user.getUserType());
             userListDto.setId(user.getId());
             userListDtos.add(userListDto);
         }
@@ -80,25 +92,19 @@ public class UserRestController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<User> userById(@PathVariable() int id) {
-        User user = userService.findById(id).get();
+        User user = userService.findById(id).orElse(null);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    /**
-     * Create by: HaiNT
-     * Date created: 13/12/2022
-     *
-     * @param id
-     * @param userListDto
-     * @return the user object is updated
-     */
-    @PutMapping("/{id}")
-    public ResponseEntity<UserListDto> updateUserByRoleAdmin(@PathVariable() int id, @RequestBody UserListDto userListDto) {
-        User user = userService.findById(id).get();
-        BeanUtils.copyProperties(userListDto, user);
-        userService.updateUserByRoleAdmin(user);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping("/usersType")
+    public ResponseEntity<List<UserType>> getAllUserTypes() {
+        List<UserType> userTypes = userTypeService.getAllUserTypes();
+        if (userTypes.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(userTypes, HttpStatus.OK);
     }
+
 
     /**
      * Create by: HaiNT
@@ -115,6 +121,28 @@ public class UserRestController {
         userService.unlockAccountByIdList(idList);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param id
+     * @param userEditDto
+     * @return the user object is updated
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<UserListDto> updateUserByRoleAdmin(@PathVariable() Integer id, @RequestBody UserEditDto userEditDto) {
+        User user = userService.findById(id).get();
+        Address address = userService.findByAddressId(user.getAddress().getId()).get();
+        Account account = userService.findByAccountId(user.getAccount().getId()).get();
+        BeanUtils.copyProperties(userEditDto, address);
+        BeanUtils.copyProperties(userEditDto, account);
+        BeanUtils.copyProperties(userEditDto, user);
+        userService.updateUserByRoleAdmin(user);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
     /**
      * Created: SangDD
@@ -140,7 +168,7 @@ public class UserRestController {
      * Created: VietNQ
      * Created date: 13/12/2022
      * Function: create user account
-     * @return HttpStatus.OK if result is not empty
+     *
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
     @PostMapping("/add")
@@ -168,6 +196,9 @@ public class UserRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+<<<<<<< HEAD
+
+=======
     /**
      * Create by: VietNQ
      * Date created: 13/12/2022
@@ -185,4 +216,5 @@ public class UserRestController {
         userService.lockUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+>>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
 }
