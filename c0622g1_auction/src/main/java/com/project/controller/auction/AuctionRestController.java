@@ -1,7 +1,6 @@
 package com.project.controller.auction;
 
-import com.project.dto.AuctionproductDto;
-import com.project.dto.ProductDto;
+import com.project.dto.IAuctionProductDto;
 import com.project.service.auction.impl.AuctionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,8 +21,8 @@ public class AuctionRestController {
     private AuctionService auctionService;
 
     @GetMapping("/list")
-    public ResponseEntity<Page<AuctionproductDto>> historyProduct(Integer id, Pageable pageable) {
-        Page<AuctionproductDto> productList = auctionService.showProductAuctionById(id,pageable);
+    public ResponseEntity<Page<IAuctionProductDto>> historyAuctionProduct(Integer userId, Pageable pageable) {
+        Page<IAuctionProductDto> productList = auctionService.getPageAuctionProductByUserId(1,pageable);
 
         if (productList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -31,7 +30,5 @@ public class AuctionRestController {
         return new ResponseEntity<>(productList, HttpStatus.OK);
 
     }
-
-
 
 }

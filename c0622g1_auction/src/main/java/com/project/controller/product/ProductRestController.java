@@ -1,9 +1,8 @@
 package com.project.controller.product;
 
-import com.project.dto.ProductDto;
+import com.project.dto.IProductDto;
 import com.project.model.product.Product;
 import com.project.model.product.ReviewStatus;
-import com.project.model.users.User;
 import com.project.service.product.IProductService;
 import com.project.service.product.IReviewStatusService;
 import com.project.service.users.IUserService;
@@ -15,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/product")
@@ -39,8 +37,8 @@ public class ProductRestController {
      */
 
     @GetMapping("/list")
-    public ResponseEntity<Page<ProductDto>> historyProduct(Integer id, Pageable pageable) {
-        Page<ProductDto> productList = productService.showProductById(1, pageable);
+    public ResponseEntity<Page<IProductDto>> historyProduct(Integer id, Pageable pageable) {
+        Page<IProductDto> productList = productService.showProductById(1, pageable);
 
         if (productList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

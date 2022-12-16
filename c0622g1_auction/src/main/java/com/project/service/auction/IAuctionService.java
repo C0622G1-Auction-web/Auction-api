@@ -1,10 +1,10 @@
 package com.project.service.auction;
 
-import com.project.model.product.Product;
-import org.springframework.data.repository.query.Param;
+import com.project.dto.IAuctionProductDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 
 public interface IAuctionService {
-    List<Product> showProductAuctionById(@Param("id") int id);
+    Page<IAuctionProductDto> getPageAuctionProductByUserId(Integer userId, Pageable pageable);
 }
