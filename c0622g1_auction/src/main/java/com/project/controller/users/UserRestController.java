@@ -1,20 +1,23 @@
 package com.project.controller.users;
 
+
+import com.project.dto.UserListDto;
 import com.project.dto.user.*;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import com.project.model.users.UserType;
 import com.project.service.account.IAccountService;
-import com.project.service.account.ILockAccountService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
+<<<<<<< HEAD
 
 
 import com.project.dto.user.UserListDto;
 import com.project.dto.user.UserTopDto;
+=======
+>>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
 import com.project.service.users.IUserTypeService;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +25,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -37,12 +41,12 @@ public class UserRestController {
 
     @Autowired
     private IAddressService addressService;
+
     @Autowired
     private IAccountService accountService;
+
     @Autowired
     private IUserTypeService userTypeService;
-    @Autowired
-    private ILockAccountService lockAccountService;
 
     /**
      * Create by: HaiNT
@@ -83,7 +87,6 @@ public class UserRestController {
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
-     *
      * @param id
      * @return Object user by id
      */
@@ -106,7 +109,6 @@ public class UserRestController {
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
-     *
      * @param idList
      * @return the user object is unlock
      */
@@ -169,14 +171,14 @@ public class UserRestController {
      *
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
-    @PostMapping("/create")
-    public ResponseEntity<?> addUser(@RequestBody AddUserDto addUserDto) {
+    @PostMapping("/add")
+    public ResponseEntity<?> addUser( @Validated @RequestBody FormAddUser formAddUser) {
 
-        AddressDto addressDto = new AddressDto(addUserDto.getDetailAddress(), addUserDto.getTown(), addUserDto.getDistrict(), addUserDto.getCity(), addUserDto.getCountry());
-        AccountDto accountDto = new AccountDto(addUserDto.getUsername(), addUserDto.getPassword());
-
-        UserDto userDto = new UserDto(addUserDto.getFirstName(), addUserDto.getLastName(), addUserDto.getEmail(),
-                addUserDto.getPhone(), addUserDto.getPointDedication(), addUserDto.getBirthDay(), addUserDto.getIdCard(), addUserDto.getAvatar(), addressDto, accountDto);
+       AddressDto addressDto= new AddressDto(formAddUser.getDetailAddress(),formAddUser.getTown(),formAddUser.getDistrict(),formAddUser.getCity(),formAddUser.getCountry());
+        AccountDto accountDto = new AccountDto(formAddUser.getUsername(), formAddUser.getPassword(),formAddUser.getStatusLock(),formAddUser.getDeleteStatus());
+        AddUserDto addUserDto = new AddUserDto(formAddUser.getFirstName(), formAddUser.getLastName(), formAddUser.getEmail(),
+                formAddUser.getPhone(), formAddUser.getPointDedication(), formAddUser.getBirthDay(),
+                formAddUser.getIdCard(), formAddUser.getAvatar(), addressDto, accountDto);
 
         User user = new User();
         Address address = new Address();
@@ -184,17 +186,35 @@ public class UserRestController {
 
         BeanUtils.copyProperties(addressDto, address);
         BeanUtils.copyProperties(accountDto, account);
-        BeanUtils.copyProperties(userDto, user);
+        BeanUtils.copyProperties(addUserDto, user);
 
         Address addressATBC = addressService.saveAddress(address);
         Account accountABT = accountService.saveAccount(account);
-        accountABT.setStatusLock(true);
-        accountABT.setDeleteStatus(true);
-        accountABT.setPassword("12345678");
+
         userService.saveUser(user, addressATBC.getId(), accountABT.getId(), 4);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+<<<<<<< HEAD
 
+=======
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     *Function: to lockAccount
+     * @param id
+     * @return HttpStatus.OK if result is not empty
+     * @return HttpStatus.NOT_FOUND if result is not empty
+     */
+    @PutMapping("/lockUser")
+    public ResponseEntity<UserListDto> lockUser(@RequestBody List<Integer> id) {
+        List<User> userList = userService.findByIdList(id);
+        if (id.size() != userList.size()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        userService.lockUser(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+>>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
 }

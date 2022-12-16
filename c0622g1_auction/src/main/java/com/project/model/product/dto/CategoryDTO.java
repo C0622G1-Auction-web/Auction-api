@@ -1,21 +1,15 @@
-package com.project.model.product;
+package com.project.model.product.dto;
 
+import com.project.model.product.Product;
 
-import javax.persistence.*;
 import java.util.Set;
 
-@Entity
-public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CategoryDTO {
     private Integer id;
     private String name;
-
-    @OneToMany(mappedBy = "category")
-
     private Set<Product> products;
 
-    public Category() {
+    public CategoryDTO() {
     }
 
     public Integer getId() {

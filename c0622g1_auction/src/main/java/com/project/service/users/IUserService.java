@@ -11,16 +11,25 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public interface IUserService {
-
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     * Function: to create user
+     *
+     * @return void
+     */
     void saveUser(User user, Integer addressId, Integer accountId, Integer Number);
 
     /**
      * By: HaiNT - Find list of users by param
      */
+<<<<<<< HEAD
     Page<User> getUserBy(String id, String name, String email, String userTypeId, String address, Pageable pageable);
+=======
+    List<User> getUserBy(String id, String name, String email, String userTypeId, String address, Integer index);
+>>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
 
     /**
      * By: HaiNT - Find list of users by id
@@ -51,15 +60,9 @@ public interface IUserService {
      */
     void updateAddressByRoleAdmin(User user);
 
-    /**
-     * By: HaiNT - Find list of address by AddressId
-     */
-    void updateUserByRoleAdmin(User user);
+    void updateUser(User user);
 
-    /**
-     * By: HaiNT - Find list of address by AddressId
-     */
-    void unlockAccountByIdList(List<Integer> idList);
+    void unlockUser(List<Integer> idList);
 
     /**
      * Created: SangDD
@@ -71,6 +74,16 @@ public interface IUserService {
      */
     List<UserTopDto> getTopAuctionUser(String quality);
 
+    /**
+     * By: HaiNT - Find list of address by AddressId
+     */
+    void updateUserByRoleAdmin(User user);
 
+    /**
+     * By: HaiNT - Find list of address by AddressId
+     */
+    void unlockAccountByIdList(List<Integer> idList);
+
+    void lockUser(List<Integer> id);
 }
 

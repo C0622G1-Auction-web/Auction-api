@@ -21,6 +21,63 @@ import java.util.Optional;
 public interface IUserRepository extends JpaRepository<User, Integer> {
 
     /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     * Function: to create user
+     * @return void
+     */
+    @Modifying
+    @Query(value = "insert into " +
+            "user(avatar," +
+            "birth_day," +
+            "delete_status," +
+            "email," +
+            "first_name," +
+            "id_card," +
+            "last_name," +
+            "phone," +
+            "point_dedication," +
+            "account_id," +
+            "address_id," +
+            "user_type_id)" +
+            " values (" +
+            ":avatar," +
+            ":birthDay," +
+            ":deleteStatus," +
+            ":email," +
+            ":fistName," +
+            ":idCard," +
+            ":lastName," +
+            ":phone," +
+            ":pointDedication," +
+            ":accountId," +
+            ":addressId," +
+            ":userTypeId)",
+            nativeQuery = true)
+    void addUser(@Param("avatar") String avatar,
+                 @Param("birthDay") String birthDay,
+                 @Param("deleteStatus") Boolean deleteStatus,
+                 @Param("email") String email,
+                 @Param("fistName") String fistName,
+                 @Param("idCard") String idCard,
+                 @Param("lastName") String lastName,
+                 @Param("phone") String phone,
+                 @Param("pointDedication") Double pointDedication,
+                 @Param("accountId") Integer accountId,
+                 @Param("addressId") Integer addressId,
+                 @Param("userTypeId") Integer userTypeId);
+
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     *Function: to lockAccount
+     * @param id
+     */
+    @Modifying
+    @Query(value = "UPDATE account SET status_lock = 0 WHERE (id = :id);", nativeQuery = true)
+    void lockAccount(@Param("id") List<Integer> id) ;
+
+    /**
      * Create by: HaiNT
      * Date created: 13/12/2022
      *
@@ -200,6 +257,9 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     Optional<User> findUserById(@Param("id") Integer id);
 
 
+
+
+
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -224,4 +284,17 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             nativeQuery = true)
     List<UserTopDto> getTopAuctionUser(@Param("quality") String quality);
 
+
+    /**
+     * Create by: VietNq
+     * Date created: 13/12/2022
+     *
+     * @param id
+     * @return List User by id
+     */
+    @Query(value = "select * " +
+            "from user u " +
+            "where u.id in :idList ",
+            nativeQuery = true)
+    User findUserByIdLock(Integer id);
 }

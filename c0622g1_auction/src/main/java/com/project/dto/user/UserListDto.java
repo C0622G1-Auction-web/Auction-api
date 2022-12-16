@@ -13,12 +13,19 @@ public class UserListDto {
     private Address address;
     private UserType userType;
     private Account account;
+<<<<<<< HEAD
     private Double pointDedication;
+=======
+>>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
 
     public UserListDto() {
     }
 
+<<<<<<< HEAD
     public UserListDto(Integer id, String firstName, String lastName, String email, String phone, Address address, UserType userType, Account account, Double pointDedication) {
+=======
+    public UserListDto(Integer id, String firstName, String lastName, String email, String phone, Address address, UserType userType, Account account) {
+>>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -27,7 +34,10 @@ public class UserListDto {
         this.address = address;
         this.userType = userType;
         this.account = account;
+<<<<<<< HEAD
         this.pointDedication = pointDedication;
+=======
+>>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
     }
 
     public Integer getId() {
@@ -93,6 +103,7 @@ public class UserListDto {
     public void setAccount(Account account) {
         this.account = account;
     }
+<<<<<<< HEAD
 
     public Double getPointDedication() {
         return pointDedication;
@@ -101,4 +112,6 @@ public class UserListDto {
     public void setPointDedication(Double pointDedication) {
         this.pointDedication = pointDedication;
     }
+=======
+>>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
 }

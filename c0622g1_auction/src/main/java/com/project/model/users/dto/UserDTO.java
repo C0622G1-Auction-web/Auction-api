@@ -1,10 +1,14 @@
-package com.project.dto.user;
+package com.project.model.users.dto;
 
 import com.project.model.account.Account;
+import com.project.model.auction.Auction;
+import com.project.model.product.Product;
 import com.project.model.users.Address;
+import com.project.model.users.UserType;
 
+import java.util.Set;
 
-public class UserDto {
+public class UserDTO {
     private Integer id;
     private String firstName;
     private String lastName;
@@ -15,23 +19,13 @@ public class UserDto {
     private String idCard;
     private String avatar;
     private Boolean deleteStatus;
-    private AddressDto addressDto;
-    private AccountDto accountDto;
+    private Address address;
+    private UserType userType;
+    private Set<Auction> auctions;
+    private Account account;
+    private Set<Product> products;
 
-    public UserDto( ) {
-    }
-
-    public UserDto(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, AddressDto addressDto, AccountDto accountDto) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.pointDedication = pointDedication;
-        this.birthDay = birthDay;
-        this.idCard = idCard;
-        this.avatar = avatar;
-        this.addressDto = addressDto;
-        this.accountDto = accountDto;
+    public UserDTO() {
     }
 
     public UserDto(String firstName, String lastName, String email, String phone, String birthDay, String idCard, AddressDto addressDto, AccountDto accountDto) {
@@ -126,19 +120,43 @@ public class UserDto {
         this.deleteStatus = deleteStatus;
     }
 
-    public AddressDto getAddressDto() {
-        return addressDto;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddressDto(AddressDto addressDto) {
-        this.addressDto = addressDto;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public AccountDto getAccountDto() {
-        return accountDto;
+    public UserType getUserType() {
+        return userType;
     }
 
-    public void setAccountDto(AccountDto accountDto) {
-        this.accountDto = accountDto;
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
+    public Set<Auction> getAuctions() {
+        return auctions;
+    }
+
+    public void setAuctions(Set<Auction> auctions) {
+        this.auctions = auctions;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 }
