@@ -268,10 +268,10 @@ public class ProductRestController {
      * @param pageable
      * @return HttpStatus.OK if result is not empty
      */
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ResponseEntity<Page<ProductDto>> getAllAndSearch(@RequestBody ProductSearchDto productSearchDto,
-                                                            @PageableDefault(value = 5) Pageable pageable) {
-
+                                                            @PageableDefault(value = 10) Pageable pageable) {
+        System.out.println("vo day");
         Page<Product> productPage = productService.getAllAndSearch(productSearchDto, pageable);
         if (productPage.hasContent()) {
             Page<ProductDto> productDtoPage = productPage.map(new Function<Product, ProductDto>() {
@@ -284,7 +284,7 @@ public class ProductRestController {
             });
             return new ResponseEntity<>(productDtoPage, HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     /**

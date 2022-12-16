@@ -164,20 +164,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * @param pageable
      * @return Page<Product>
      */
-    @Query(value = "SELECT " +
-            "id, " +
-            "name, " +
-            "delete_status, " +
-            "description, " +
-            "end_time, " +
-            "start_time, " +
-            "register_day, " +
-            "initial_price, " +
-            "auction_status_id, " +
-            "category_id, " +
-            "price_step_id, " +
-            "review_status_id, " +
-            "user_id " +
+    @Query(value = "SELECT * " +
             "FROM product " +
             "WHERE product.review_status_id = 2 " +
             "    AND product.delete_status = 0 " +
