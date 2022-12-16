@@ -8,7 +8,7 @@ public class AccountDto {
     private Boolean deleteStatus;
 
 
-    public AccountDto(String username, String password, Boolean statusLock , Boolean deleteStatus) {
+    public AccountDto(String username, String password, Boolean statusLock, Boolean deleteStatus) {
         this.username = username;
         this.password = password;
         this.statusLock = statusLock;
@@ -44,10 +44,6 @@ public class AccountDto {
         this.id = id;
     }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
     public String getUsername() {
         return username;
     }
@@ -63,6 +59,7 @@ public class AccountDto {
     public void setPassword(String password) {
         this.password = password;
     }
+
     public Boolean getDeleteStatus() {
         return deleteStatus;
     }

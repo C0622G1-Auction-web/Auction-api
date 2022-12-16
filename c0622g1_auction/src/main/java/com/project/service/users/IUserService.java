@@ -25,11 +25,7 @@ public interface IUserService {
     /**
      * By: HaiNT - Find list of users by param
      */
-<<<<<<< HEAD
     Page<User> getUserBy(String id, String name, String email, String userTypeId, String address, Pageable pageable);
-=======
-    List<User> getUserBy(String id, String name, String email, String userTypeId, String address, Integer index);
->>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
 
     /**
      * By: HaiNT - Find list of users by id
