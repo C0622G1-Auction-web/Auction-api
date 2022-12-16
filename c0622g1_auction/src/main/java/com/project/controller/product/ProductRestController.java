@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-//@RequestMapping("/api/v1/product")
+@RequestMapping("/api/v1/product")
 @CrossOrigin("*")
 public class ProductRestController {
     @Autowired
@@ -38,9 +38,9 @@ public class ProductRestController {
      * @return HttpStatus.NO_CONTENT if not found any product /  HttpStatus.OK and Products page if found
      */
 
-    @GetMapping("list")
+    @GetMapping("/list")
     public ResponseEntity<Page<ProductDto>> historyProduct(Integer id, Pageable pageable) {
-        Page<ProductDto> productList = productService.showProductById(5, pageable);
+        Page<ProductDto> productList = productService.showProductById(1, pageable);
 
         if (productList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
