@@ -1,11 +1,8 @@
 package com.project.dto.guide;
-
-import com.project.model.guide.ImgUrlGuide;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Set;
+
 
 
 public class GuideDto {
@@ -23,12 +20,6 @@ public class GuideDto {
     public GuideDto() {
     }
 
-    public GuideDto(Integer id, String title, String content, Set<ImgUrlGuide> images) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.images = images;
-    }
 
     public Integer getId() {
         return id;
@@ -55,22 +46,4 @@ public class GuideDto {
     }
 
 
-    public String getImages() {
-        return images;
-    }
-
-    public void setImages(String images) {
-        this.images = images;
-    }
-<<<<<<< HEAD
-    //    public Set<ImgUrlGuide> getImages() {
-//        return images;
-//    }
-//
-//    public void setImages(Set<ImgUrlGuide> images) {
-//        this.images = images;
-//    }
-=======
-
->>>>>>> add4b878c187060ab440b6aba8d1c0d71a564518
 }

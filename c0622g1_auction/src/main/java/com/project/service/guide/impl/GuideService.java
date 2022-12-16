@@ -50,8 +50,4 @@ public class GuideService implements IGuideService {
         guideRepository.updateGuide(guide.getId(),guide.getTitle(),guide.getContent());
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> add4b878c187060ab440b6aba8d1c0d71a564518
 }
