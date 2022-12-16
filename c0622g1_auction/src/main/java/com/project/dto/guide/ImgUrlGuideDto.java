@@ -29,10 +29,6 @@ public class ImgUrlGuideDto {
         this.url = url;
     }
 
-    public Integer getGuideId() {
-        return guideId;
-    }
-
     public void setGuideId(Integer guideId) {
         this.guideId = guideId;
    
