@@ -15,6 +15,7 @@ public class ImgUrlProduct {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JsonBackReference
     private Product product;
 
     public ImgUrlProduct() {

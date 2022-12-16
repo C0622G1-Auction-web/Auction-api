@@ -7,5 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public interface ILockAccountRepository extends JpaRepository<LockAccount,Integer> {
+public interface ILockAccountRepository extends JpaRepository<LockAccount, Integer> {
+
 }

@@ -1,5 +1,8 @@
 package com.project.model.account;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,9 +11,13 @@ public class AccountRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
+    @JsonBackReference
+    @JsonIgnore
     @JoinColumn(name = "role_id",referencedColumnName = "id")
     private Role role;
     @ManyToOne
+    @JsonBackReference
+    @JsonIgnore
     @JoinColumn(name = "account_id",referencedColumnName ="id")
     private Account account;
     public AccountRole() {
