@@ -48,7 +48,7 @@ public class ImageGuideRestController {
      */
 
     @PostMapping()
-    public ResponseEntity<ImgUrlGuide> createImgGuide(@Validated @RequestBody ImgUrlGuideDto imgUrlGuideDto, BindingResult bindingResult) {
+    public ResponseEntity<ImgUrlGuideDto> createImgGuide(@Validated @RequestBody ImgUrlGuideDto imgUrlGuideDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
