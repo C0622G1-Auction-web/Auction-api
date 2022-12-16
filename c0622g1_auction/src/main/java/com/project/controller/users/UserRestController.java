@@ -1,7 +1,6 @@
 package com.project.controller.users;
 
 
-import com.project.dto.UserListDto;
 import com.project.dto.user.*;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
@@ -10,13 +9,10 @@ import com.project.model.users.UserType;
 import com.project.service.account.IAccountService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
-<<<<<<< HEAD
 
 
 import com.project.dto.user.UserListDto;
 import com.project.dto.user.UserTopDto;
-=======
->>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
 import com.project.service.users.IUserTypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -196,9 +192,6 @@ public class UserRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-<<<<<<< HEAD
-
-=======
     /**
      * Create by: VietNQ
      * Date created: 13/12/2022
@@ -216,5 +209,4 @@ public class UserRestController {
         userService.lockUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
->>>>>>> b529c2b05fbb822ab7b98de68978be70b2e4f8a4
 }
