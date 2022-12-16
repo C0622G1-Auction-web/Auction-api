@@ -15,7 +15,6 @@ public interface IAuctionService {
      * @param pageable
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
-
     Page<Auction>getPageAuctionByProductId(Integer productId, Pageable pageable);
 
     /**
@@ -25,6 +24,5 @@ public interface IAuctionService {
      * @param auctionDto
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
-
     void addAuction(AuctionDto auctionDto);
 }

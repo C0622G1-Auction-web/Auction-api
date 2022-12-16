@@ -1,9 +1,5 @@
 package com.project.dto;
 
-import com.project.model.users.User;
-import com.project.service.auction.IAuctionService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -11,17 +7,17 @@ import javax.validation.constraints.NotNull;
 
 public class AuctionDto implements Validator {
 
-
     private Integer id;
     @NotNull(message = "Current price can not be null")
     private Double currentPrice;
     private String auctionTime;
-    //    private Integer userId;
+    private Integer userId;
     private Integer productId;
     private Double maxCurrentPrice;
-    private User user;
+    //    private User user;
     //    private Product product;
     private String fullName;
+    private Boolean deleteStatus = true;
 
     public AuctionDto() {
     }
@@ -34,13 +30,29 @@ public class AuctionDto implements Validator {
         this.maxCurrentPrice = maxCurrentPrice;
     }
 
-    public User getUser() {
-        return user;
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
     }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public Integer getProductId() {
         return productId;

@@ -23,7 +23,6 @@ public class AuctionService implements IAuctionService {
      * @param pageable
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
-
     @Override
     public Page<Auction> getPageAuctionByProductId(Integer productId, Pageable pageable) {
         return auctionRepository.getPageAuctionByProductId(productId, pageable);
@@ -37,12 +36,11 @@ public class AuctionService implements IAuctionService {
      * @param auctionDto
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
-
     @Override
     public void addAuction(AuctionDto auctionDto) {
         auctionRepository.addAuction(
                 auctionDto.getCurrentPrice(),
                 auctionDto.getProductId(),
-                auctionDto.getUser().getId());
+                auctionDto.getUserId());
     }
 }

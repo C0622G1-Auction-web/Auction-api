@@ -23,7 +23,6 @@ public class ProductService implements IProductService {
      * @param productId
      * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
      */
-
     public Optional<Product> findProductById(Integer productId) {
         return productRepository.findProductById(productId);
     }

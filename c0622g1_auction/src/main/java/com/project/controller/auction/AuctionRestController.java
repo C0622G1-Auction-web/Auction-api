@@ -6,6 +6,7 @@ import com.project.model.auction.Auction;
 import com.project.model.product.Product;
 import com.project.service.auction.IAuctionService;
 import com.project.service.product.IProductService;
+import com.project.service.users.IUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,9 +18,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -33,6 +31,9 @@ public class AuctionRestController {
     @Autowired
     private IProductService productService;
 
+    @Autowired
+    private IUserService userService;
+
     /**
      * Created by: TienBM,
      * Date created: 13/12/2022
@@ -41,7 +42,6 @@ public class AuctionRestController {
      * @param productId
      * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
      */
-
     @GetMapping("auction-detail/{productId}")
     public ResponseEntity<ProductDto> findProductById(@PathVariable(value = "productId") Integer productId) {
         Optional<Product> productOptional = productService.findProductById(productId);
@@ -56,6 +56,7 @@ public class AuctionRestController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+
     /**
      * Created by: TienBM,
      * Date created: 13/12/2022
@@ -65,7 +66,6 @@ public class AuctionRestController {
      * @param pageable
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
-
     @GetMapping("/product/{productId}")
     public ResponseEntity<Page<AuctionDto>> getPageAuctionByProductId(
             @PageableDefault(value = 3) Pageable pageable,
@@ -79,6 +79,8 @@ public class AuctionRestController {
             public AuctionDto apply(Auction auction) {
                 AuctionDto auctionDto = new AuctionDto();
                 auctionDto.setFullName(auction.getUser().getFirstName() + " " + auction.getUser().getLastName());
+                auctionDto.setUserId(auction.getUser().getId());
+                auctionDto.setProductId(auction.getProduct().getId());
                 BeanUtils.copyProperties(auction, auctionDto);
                 return auctionDto;
             }
@@ -94,11 +96,10 @@ public class AuctionRestController {
      * @param auctionDto
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
-
     @PostMapping
     public ResponseEntity<?> addAuction(@Validated @RequestBody AuctionDto auctionDto,
                                         BindingResult bindingResult) {
-        Double maxCurrentPrice = auctionService.getPageAuctionByProductId(auctionDto.getId(), Pageable.unpaged()).getContent().get(0).getCurrentPrice();
+        Double maxCurrentPrice = auctionService.getPageAuctionByProductId(auctionDto.getProductId(), Pageable.unpaged()).getContent().get(0).getCurrentPrice();
         auctionDto.setMaxCurrentPrice(maxCurrentPrice);
         new AuctionDto().validate(auctionDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
