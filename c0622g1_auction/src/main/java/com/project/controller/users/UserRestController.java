@@ -70,6 +70,7 @@ public class UserRestController {
         user.setAddress(address1);
         user.setDeleteStatus(true);
         userService.createUser(user);
+//        accountRoleSevice.createAccountRole(account.getId(),1);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -92,10 +93,10 @@ public class UserRestController {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
         } else {
-            User user = userService.findUserById(id).get();
-            Account account = new Account();
+            User user = userService.findById(id).get();
+            Account account = accountService.findByUserId(user.getAccount().getId()).get();
             BeanUtils.copyProperties(userDto, account);
-            Address address = new Address();
+            Address address =addressService.findbyId(user.getAddress().getId());
             BeanUtils.copyProperties(userDto, address);
             Address address1 = addressService.updateAddress(address);
             Account account1 = accountService.updateAccount(account);
@@ -105,7 +106,7 @@ public class UserRestController {
             userService.updateUser(user);
             return new ResponseEntity<>(HttpStatus.OK);
         }
-    }
+//    }
 
 
     /**

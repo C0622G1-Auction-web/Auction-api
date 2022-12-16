@@ -1,11 +1,13 @@
 package com.project.service.users;
 
-import antlr.collections.List;
+
 import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.stereotype.Service;
 import com.project.model.account.Account;
+
+import java.util.List;
 import java.util.Optional;
 
 
@@ -45,7 +47,7 @@ public interface IUserService {
      * Function: to find all user list
      * @return List<User>
      */
-    List<User> findAll();
+     List<User> findAll();
 
 
     void saveUser(User user, Integer addressId, Integer accountId, Integer Number);

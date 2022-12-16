@@ -23,4 +23,5 @@ public interface IAddressService {
 
     Address saveAddress(Address address);
 
+    Address findbyId(Integer id);
 }

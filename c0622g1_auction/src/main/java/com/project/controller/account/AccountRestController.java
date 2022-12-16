@@ -118,11 +118,11 @@ public class AccountRestController {
         if(bindingResult.hasErrors()){
             return new ResponseEntity<>(bindingResult.getFieldError(), HttpStatus.NOT_ACCEPTABLE);
         }
-        Account account = accountService.findById(Integer.valueOf(id));
+//        Account account = accountService.findById(Integer.valueOf(id));
 //        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 //        String encryptPass = passwordEncoder.encode(password);
 //        account.setPassword(encryptPass);
-        accountService.save(account);
+//        accountService.save(account);
         return new ResponseEntity<>("Cập nhật mật khẩu thành công", HttpStatus.OK);
     }
 }

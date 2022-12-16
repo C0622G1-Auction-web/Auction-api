@@ -29,20 +29,21 @@ public class UserService implements IUserService {
      */
     @Override
     public void updateUser(User user) {
-        userRepository.updateUser(
-                user.getAvatar(),
-                user.getBirthDay(),
-                user.getDeleteStatus(),
-                user.getEmail(),
-                user.getFirstName(),
-                user.getIdCard(),
-                user.getLastName(),
-                user.getPhone(),
-                user.getPointDedication(),
-                user.getAccount(),
-                user.getAddress(),
-                user.getUserType(),
-                user.getId());
+//        userRepository.updateUser(
+//                user.getAvatar(),
+//                user.getBirthDay(),
+//                user.getDeleteStatus(),
+//                user.getEmail(),
+//                user.getFirstName(),
+//                user.getIdCard(),
+//                user.getLastName(),
+//                user.getPhone(),
+//                user.getPointDedication(),
+//                user.getAccount(),
+//                user.getAddress(),
+//                user.getUserType(),
+//                user.getId());
+        userRepository.save(user);
     }
 
     /**
@@ -116,15 +117,17 @@ public class UserService implements IUserService {
         return userRepository.getUserBy(id, name, email, userTypeId, address);
     }
 
+    @Override
+    public Optional<User> findById(Integer id) {
+        return userRepository.findById(id);
+    }
+
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
-     *
-     * @param id
+     * @param
      * @return User object by id
      */
-
-
 
     @Override
     public void saveUser(User user, Integer addressId, Integer accountId, Integer Number) {
@@ -169,10 +172,10 @@ public class UserService implements IUserService {
                 user.getFirstName(), user.getLastName(), user.getPhone());
     }
 
-    @Override
-    public void unlockUser(antlr.collections.List<Integer> idList) {
-
-    }
+//    @Override
+//      public void unlockUser(List<Integer> idList) {
+//
+//    }
 
     /**
      * Create by: HaiNT
