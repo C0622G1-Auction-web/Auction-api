@@ -15,10 +15,8 @@ public class ImgUrlProductDTO {
     @NotBlank
     @NotNull
     private String url;
-
-
     @NotNull
-    private Integer productId;
+    private Integer product;
 
     public ImgUrlProductDTO() {
     }
@@ -39,11 +37,11 @@ public class ImgUrlProductDTO {
         this.url = url;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Integer getProduct() {
+        return product;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setProduct(Integer product) {
+        this.product = product;
     }
 }
