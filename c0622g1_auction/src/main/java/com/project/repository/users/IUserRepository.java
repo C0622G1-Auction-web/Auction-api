@@ -20,10 +20,41 @@ import java.util.Optional;
 @Transactional
 public interface IUserRepository extends JpaRepository<User, Integer> {
 
+
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param id
+     * @param name
+     * @param email
+     * @param userTypeId
+     * @param address
+     * @return List User
+     */
+    @Query(value = " SELECT * " +
+            " FROM user " +
+            " JOIN address on address.id = user.address_id " +
+            " JOIN `account` on `account`.id = user.account_id " +
+            " JOIN user_type on user_type.id = user.user_type_id " +
+            " WHERE user.id like %:id% " +
+            " AND (user.first_name like %:name% or user.last_name like %:name%) " +
+            " AND (address.detail_address LIKE %:address% OR address.town LIKE %:address% or address.district LIKE %:address% or address.city LIKE %:address% or address.country LIKE %:address%) " +
+            " AND user.email like %:email% " +
+            " AND user.user_type_id like %:userTypeId% ", nativeQuery = true,
+            countQuery = "select count(*) from user")
+    Page<User> getUserBy(@Param("id") String id,
+                         @Param("name") String name,
+                         @Param("email") String email,
+                         @Param("userTypeId") String userTypeId,
+                         @Param("address") String address,
+                         Pageable pageable);
+
     /**
      * Create by: VietNQ
      * Date created: 13/12/2022
      * Function: to create user
+     *
      * @return void
      */
     @Modifying
@@ -70,41 +101,13 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     /**
      * Create by: VietNQ
      * Date created: 13/12/2022
-     *Function: to lockAccount
+     * Function: to lockAccount
+     *
      * @param id
      */
     @Modifying
     @Query(value = "UPDATE account SET status_lock = 0 WHERE (id = :id);", nativeQuery = true)
-    void lockAccount(@Param("id") List<Integer> id) ;
-
-    /**
-     * Create by: HaiNT
-     * Date created: 13/12/2022
-     *
-     * @param id
-     * @param name
-     * @param email
-     * @param userTypeId
-     * @param address
-     * @return List User
-     */
-    @Query(value = " SELECT * " +
-            " FROM user " +
-            " JOIN address on address.id = user.address_id " +
-            " JOIN `account` on `account`.id = user.account_id " +
-            " JOIN user_type on user_type.id = user.user_type_id " +
-            " WHERE user.id like %:id% " +
-            " AND (user.first_name like %:name% or user.last_name like %:name%) " +
-            " AND (address.detail_address LIKE %:address% OR address.town LIKE %:address% or address.district LIKE %:address% or address.city LIKE %:address% or address.country LIKE %:address%) " +
-            " AND user.email like %:email% " +
-            " AND user.user_type_id like %:userTypeId% ", nativeQuery = true,
-            countQuery = "select count(*) from user")
-    Page<User> getUserBy(@Param("id") String id,
-                         @Param("name") String name,
-                         @Param("email") String email,
-                         @Param("userTypeId") String userTypeId,
-                         @Param("address") String address,
-                         Pageable pageable);
+    void lockAccount(@Param("id") List<Integer> id);
 
     /**
      * Create by: HaiNT
@@ -255,9 +258,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             " where u.id= :id ",
             nativeQuery = true)
     Optional<User> findUserById(@Param("id") Integer id);
-
-
-
 
 
     /**
