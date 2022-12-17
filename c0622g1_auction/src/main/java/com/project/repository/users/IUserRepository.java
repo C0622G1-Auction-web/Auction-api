@@ -400,6 +400,7 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
             "LIMIT :quality ",
             nativeQuery = true)
     List<UserTopDto> getTopAuctionUser(@Param("quality") String quality);
+
     /**Created by UyenNC
      * Date created 13/12/2022
      * Function Find user by account
@@ -410,5 +411,18 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
     @Query(value = "select * from user " +
             "where account_id =:accountId and delete_status = 0;", nativeQuery = true)
     User findUserByAccount(@Param("accountId") String accountId);
+
+    /**
+     * Create by: DucDH
+     * Date: 17/12/2022
+     * Function: To get a User by email
+     * @Param: email
+     * @return: User if email found, null otherwise
+     */
+
+    @Query(
+            value = " select * from user where email = :email ", nativeQuery = true
+    )
+    User getUserByEmail(@Param("email") String email);
 
 }

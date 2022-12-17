@@ -1,4 +1,5 @@
 package com.project.service.users.impl;
+
 import com.project.dto.user.UserTopDto;
 import com.project.model.account.Account;
 import com.project.model.users.User;
@@ -83,6 +84,21 @@ public class UserService implements IUserService {
                 user.getAddress(),
                 user.getUserType());
     }
+//    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
+//        userRepository.createUser(
+//                user.getAvatar(),
+//                user.getBirthDay(),
+//                user.getDeleteStatus(),
+//                user.getEmail(),
+//                user.getFirstName(),
+//                user.getIdCard(),
+//                user.getLastName(),
+//                user.getPhone(),
+//                user.getPointDedication(),
+//                user.getAccount(),
+//                user.getAddress(),
+//                user.getUserType());
+//    }
 
     /**
      * Create by: TruongLH
@@ -117,16 +133,17 @@ public class UserService implements IUserService {
 
 
     /**
-     * Create by: TruongLH
-     * Date created: 13/12/2022
-     * Function: to find all user list
+     * Create by: DucDH
+     * Date: 17/12/2022
+     * Function: To get a User by email
      *
-     * @return List<User>
+     * @Param: email
+     * @return: User if email found, null otherwise
      */
 
     @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public User getUserByEmail(String email) {
+        return userRepository.getUserByEmail(email);
     }
 
 
@@ -138,34 +155,73 @@ public class UserService implements IUserService {
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
+     *
      * @param
      * @return User object by id
      */
 
     @Override
-    public void saveUser(User user, Integer addressId, Integer accountId, Integer Number) {}
+    public void saveUser(User user, Integer addressId, Integer accountId, Integer Number) {
+    }
 
 
-        /**
-         * Create by: HaiNT
-         * Date created: 13/12/2022
-         *
-         * @param user
-         */
-        @Override
-        public void updateAddress (User user){
-            userRepository.save(user);
-        }
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param user
+     */
+
+    @Override
+    public void updateAddress(User user) {
+        userRepository.save(user);
+    }
 
     @Override
     public Optional<User> findById(int id) {
         return userRepository.findById(id);
     }
 
+
 //    @Override
 //      public void unlockUser(List<Integer> idList) {
 //
 //    }
+
+
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param id
+     * @return User object by id
+     */
+
+    @Override
+    public List<User> findByIdList(List<Integer> id) {
+        return userRepository.findUserByIdList(id);
+    }
+
+
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param idList
+     */
+    @Override
+    public void unlockUser(List<Integer> idList) {
+        userRepository.unlockAccount(idList);
+    }
+
+    /**
+     * Created: SangDD
+     * Created date: 13/12/2022
+     * Function: get Top 10 users with the highest total money auction
+     *
+     * @param quality user quality
+     * @return List<User>
+     */
 
         /**
          * Create by: HaiNT

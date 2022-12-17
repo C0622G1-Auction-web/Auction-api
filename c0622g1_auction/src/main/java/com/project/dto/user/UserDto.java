@@ -44,18 +44,18 @@ public class UserDto {
     private String username;
 //    @NotEmpty(message = "Mật khẩu được để trống")
     private String password;
-    private Boolean deleteStatus;
-    private Boolean statusLock;
+//    private Boolean deleteStatus;
+//    private Boolean statusLock;
 //    private List<String> emailList;
 //    private UserType userType;
     public UserDto() {
     }
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
+//    public Integer getId() {
+//        return id;
+//    }
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
     public String getFirstName() {
         return firstName;
     }
@@ -168,6 +168,7 @@ public class UserDto {
     public void setStatusLock(Boolean statusLock) {
         this.statusLock = statusLock;
     }
+
 //        public UserType getUserType() {
 //        return userType;
 //    }
@@ -178,11 +179,14 @@ public class UserDto {
 //    public boolean supports(Class<?> clazz) {
 //        return false;
 //    }
+
 //    /**
 //     * Create by: TruongLH
 //     * Date created: 13/12/2022
 //     * Function: to validate all field in user
 //     */
+
+
 //    @Override
 //    public void validate(Object target, Errors errors) {
 //        UserDto userDto = (UserDto) target;
@@ -268,3 +272,4 @@ public class UserDto {
 //        }
 //    }
 }
+
