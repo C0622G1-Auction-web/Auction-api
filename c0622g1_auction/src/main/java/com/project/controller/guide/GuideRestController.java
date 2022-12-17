@@ -22,11 +22,11 @@ import java.util.List;
 @RequestMapping("auction/api/guide")
 @CrossOrigin("*")
 public class GuideRestController {
+
     @Autowired
     private IGuideService guideService;
 
     /**
-
      * Create by: SonPT,
      * Date created: 13/12/2022
      * Function: find all guide
@@ -41,9 +41,7 @@ public class GuideRestController {
         }
         return new ResponseEntity<>(guideList, HttpStatus.OK);
     }
-
-
-
+    
     /**
      * Create by: QuangND,
      * Date created: 13/12/2022

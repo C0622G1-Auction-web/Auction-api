@@ -15,6 +15,7 @@ public class ImgUrlGuideDto {
     public ImgUrlGuideDto() {
     }
 
+
     public Integer getGuideId() {
         return guideId;
     }
@@ -37,7 +38,7 @@ public class ImgUrlGuideDto {
 
     public void setGuideId(Integer guideId) {
         this.guideId = guideId;
-
+   
 
     }
 }

@@ -22,11 +22,10 @@ public class ImgUrlGuideService implements IImgUrlGuideService {
      * Created by: SonPT
      * Date created: 13-12-2022
      * Function: display list Image Guide
+     *
      * @param: ID
      * @return: List<ImgUrlGuide>
      */
-
-
 
 
     @Override
@@ -35,10 +34,9 @@ public class ImgUrlGuideService implements IImgUrlGuideService {
     }
 
 
-
     @Override
     public void createImgGuide(ImgUrlGuideDto imgUrlGuideDto) {
-        imgUrlGuideRepository.createImgGuide(imgUrlGuideDto.getUrl(),imgUrlGuideDto.getGuideId());
+        imgUrlGuideRepository.createImgGuide(imgUrlGuideDto.getUrl(), imgUrlGuideDto.getGuideId());
     }
 
     @Override
@@ -48,7 +46,7 @@ public class ImgUrlGuideService implements IImgUrlGuideService {
 
     @Override
     public void updateImgGuie(ImgUrlGuideDto imgUrlGuideDto) {
-        imgUrlGuideRepository.updateImgGuie(imgUrlGuideDto.getId(),imgUrlGuideDto.getUrl());
+        imgUrlGuideRepository.updateImgGuie(imgUrlGuideDto.getId(), imgUrlGuideDto.getUrl());
     }
 
     @Override
