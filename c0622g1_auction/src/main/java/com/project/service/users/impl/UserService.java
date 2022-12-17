@@ -51,7 +51,7 @@ public class UserService implements IUserService {
      * Date created: 13/12/2022
      * Function: to create user
      *
-     * @param user
+     * @param 'user'
      * @return User
      */
 
