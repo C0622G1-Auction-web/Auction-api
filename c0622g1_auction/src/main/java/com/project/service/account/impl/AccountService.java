@@ -3,12 +3,14 @@ package com.project.service.account.impl;
 import com.project.model.account.Account;
 import com.project.repository.account.IAccountRepository;
 import com.project.service.account.IAccountService;
+import jdk.nashorn.internal.runtime.options.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AccountService implements IAccountService {
@@ -29,9 +31,10 @@ public class AccountService implements IAccountService {
 
     @Override
     public Account createAccount(Account account) {
-        return accountRepository.createAccount(
-                account.getUsername(),
-                account.getPassword());
+//        return accountRepository.createAccount(
+//                account.getUsername(),
+//                account.getPassword());
+        return  accountRepository.save(account);
     }
 
     /**
@@ -44,9 +47,10 @@ public class AccountService implements IAccountService {
 
     @Override
     public Account updateAccount(Account account) {
-        return accountRepository.updateAccount(
-                account.getUsername(),
-                account.getPassword());
+//        return accountRepository.updateAccount(
+//                account.getUsername(),
+//                account.getPassword());
+        return accountRepository.save(account);
     }
 
 
@@ -105,18 +109,23 @@ public class AccountService implements IAccountService {
         javaMailSender.send(mailMessage);
     }
 
+    @Override
+    public Optional<Account> findByUserId(Integer id) {
+        return accountRepository.findById(id);
+    }
+
     /**
      * Created by UyenNC
      * Date created 13/12/2022
      * Function Find account by account id
      *
-     * @param id
+     * @param
      * @return Account
      */
-    @Override
-    public Account findById(Integer id) {
-        return accountRepository.findAccountById(id);
-    }
+//    @Override
+//    public Account findById(Integer id) {
+//        return accountRepository.findAccountById(id);
+//    }
 
     /**
      * Created by UyenNC

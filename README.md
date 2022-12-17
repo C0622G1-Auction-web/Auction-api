@@ -1,5 +1,6 @@
 # BE-Auction-web
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 <<<<<<< HEAD
@@ -16,3 +17,5 @@ DucDH test1
 tien
 >>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
 >>>>>>> 503fa03357badf99ebaebfdca637bc0cf1c5b5c5
+=======
+>>>>>>> 85dec02c67d3f7e9a7374c9ce5721ba3e53f47ca

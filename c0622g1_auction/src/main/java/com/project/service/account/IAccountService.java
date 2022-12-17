@@ -2,6 +2,7 @@ package com.project.service.account;
 import com.project.model.account.Account;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IAccountService {
 
@@ -32,7 +33,7 @@ public interface IAccountService {
 
     void sendMail(String email, String username, String passwordResetToken);
 
-    Account findById(Integer id);
+    Optional<Account> findByUserId(Integer id);
 
     void save(Account account);
 }
