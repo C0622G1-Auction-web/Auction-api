@@ -78,7 +78,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      */
     @Query(value = "select p.*"+
             "from product p\n" +
-            "where p.id=:productId and p.delete_status = 0 and p.auction_status_id = 2", nativeQuery = true)
+            "where p.id=:productId and p.delete_status = 0 and p.auction_status_id < 4", nativeQuery = true)
     Optional<Product> findProductById(@Param("productId") Integer productId);
     /**
      * Create by: GiangLBH
