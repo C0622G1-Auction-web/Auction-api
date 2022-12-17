@@ -1,48 +1,22 @@
-package com.project.model.product.dto;
+package com.project.dto.product;
 
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
-
-public class ProductDTO{
+public class ProductDtoCreate {
 
     private int id;
-
-    @NotBlank(message = "Không để trống")
-    @NotNull(message = "Không để trống")
-    @Pattern(regexp = "^\\p{Lu}\\p{Ll}+(\\s\\p{Lu}\\p{Ll}+)*$[0-9]")
-    @Size(min = 5, max =255)
     private String name;
-
-    @NotBlank
-    @NotNull
-    @Size(min = 5, max = 255)
     private String description;
-
-
-    @NotNull
     private Double initialPrice;
-
-    @NotBlank
     private String startTime;
-
-    @NotBlank
     private String endTime;
-
-    private Boolean deleteStatus;
+    private Boolean deleteStatus = false;
     private String registerDay;
     private Integer priceStep;
     private Integer reviewStatus;
     private Integer auctionStatus;
     private Integer category;
-
-    @NotNull
     private Integer user;
 
-    public ProductDTO() {
+    public ProductDtoCreate() {
     }
 
     public int getId() {

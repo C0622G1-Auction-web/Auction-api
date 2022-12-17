@@ -1,12 +1,15 @@
 package com.project.dto.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.auction.Auction;
 import com.project.model.product.*;
 import com.project.model.users.User;
 
+import javax.persistence.*;
 import java.util.Set;
 
 public class ProductDto {
+
     private int id;
     private String name;
     private String description;
@@ -15,12 +18,33 @@ public class ProductDto {
     private String endTime;
     private Boolean deleteStatus;
     private String registerDay;
+
+
+
     private PriceStep priceStep;
+
+
+
     private ReviewStatus reviewStatus;
+
+
+
     private AuctionStatus auctionStatus;
+
+
+
     private Category category;
+
+
+
+
     private Set<ImgUrlProduct> imgUrlProducts;
+
+
+
     private Set<Auction> auctions;
+
+
     private User user;
 
     public ProductDto() {

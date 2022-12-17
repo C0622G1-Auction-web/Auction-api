@@ -17,4 +17,9 @@ public class CategoryService implements ICategoryService {
     public List<Category> getListCategory() {
         return categoryRepository.listCategory();
     }
+
+    @Override
+    public Category getCategory(Integer category) {
+        return categoryRepository.findById(category).orElse(null);
+    }
 }
