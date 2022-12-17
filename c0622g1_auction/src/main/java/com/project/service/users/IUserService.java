@@ -6,16 +6,8 @@ import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.stereotype.Service;
 import com.project.model.account.Account;
-<<<<<<< HEAD
-=======
-
->>>>>>> 07e46fdae1efaea385175b35d221c529510bb65a
 import java.util.List;
 import java.util.Optional;
-
-@Service
-
-
 
 @Service
 public interface IUserService {
@@ -85,11 +77,15 @@ public interface IUserService {
 
     void updateAddress(User user);
 
-    Optional<Object> findById(int id);
+    Optional<User> findById(int id);
 
     void unlockUser(List<Integer> idList);
 
 
     User findUserByAccount(Account account);
+
+    void updateUserById(User user);
+
+    void updateUserByIdServer(User user);
 }
 

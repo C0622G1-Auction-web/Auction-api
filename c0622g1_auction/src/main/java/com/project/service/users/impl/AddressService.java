@@ -6,6 +6,9 @@ import com.project.service.users.IAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.OptionalInt;
+
 @Service
 public class AddressService implements IAddressService {
     @Autowired
@@ -50,8 +53,12 @@ public class AddressService implements IAddressService {
         return address;
     }
 
+//    @Override
+//    public Optional<Address> findAddressById(Integer id) {
+//        return addressRepository.findById(id);
+//    }
     @Override
-    public Address findbyId(Integer id) {
+    public Address findAddressById(Integer id) {
         return addressRepository.findById(id).get();
     }
 

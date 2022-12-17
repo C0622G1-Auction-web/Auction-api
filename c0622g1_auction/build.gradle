@@ -27,6 +27,9 @@ dependencies {
 
     implementation('io.jsonwebtoken:jjwt:0.9.1')
 
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation group: 'com.google.api-client', name: 'google-api-client', version: '1.30.9'
+
 
     
 
