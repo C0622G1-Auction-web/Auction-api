@@ -334,4 +334,5 @@ public class UserRestController {
         userService.lockUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 }

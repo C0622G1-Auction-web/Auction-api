@@ -63,7 +63,6 @@ public class UserService implements IUserService {
      * Date created: 13/12/2022
      * Function: to create user
      *
-     * @param
      * @return User
      */
 
@@ -80,7 +79,6 @@ public class UserService implements IUserService {
                 user.getLastName(),
                 user.getPhone(),
                 user.getPointDedication(),
-
                 accountId,
                 addressId,
                 userType);
@@ -102,7 +100,6 @@ public class UserService implements IUserService {
     public Optional<User> findUserById(int id) {
         return userRepository.findUserById(id);
     }
-
 
     /**
      * Create by: HaiNT
@@ -158,9 +155,6 @@ public class UserService implements IUserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
-
-
-
 
     /**
      * Create by: HaiNT
@@ -221,7 +215,6 @@ public class UserService implements IUserService {
         userRepository.unlockAccountByIdList(idList);
     }
 
-
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -247,6 +240,7 @@ public class UserService implements IUserService {
      */
 
     @Override
+
     public User findUserByAccount(Account account) {
         String id = account.getId() + "";
         return userRepository.findUserByAccount(id);
@@ -255,6 +249,16 @@ public class UserService implements IUserService {
     @Override
     public Optional<Address> findByAddressId(Integer id) {
         return addressRepository.findById(id);
+    }
+
+    @Override
+    public void updateAddress(User user) {
+        
+    }
+
+    @Override
+    public Optional<Object> findById(int id) {
+        return Optional.empty();
     }
 
     /**

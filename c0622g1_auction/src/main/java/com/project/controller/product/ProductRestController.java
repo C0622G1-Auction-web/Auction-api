@@ -1,10 +1,14 @@
 package com.project.controller.product;
 
 import com.project.dto.product.*;
+import com.project.model.product.ReviewStatus;
 import com.project.model.product.*;
 import com.project.model.users.User;
 import com.project.service.product.*;
+import com.project.service.product.impl.AuctionStatusService;
+import com.project.service.product.impl.ReviewStatusService;
 import com.project.service.users.IUserService;
+import com.project.service.users.impl.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -38,16 +42,19 @@ public class ProductRestController {
     private IPriceStepService priceStepService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ReviewStatusService reviewStatusService;
+
+    @Autowired
+    private AuctionStatusService auctionStatusService;
+
+
+
+    @Autowired
     private IImgUrlProductService iImgUrlProductService;
 
-    @Autowired
-    private IReviewStatusService reviewStatusService;
-
-    @Autowired
-    private IAuctionStatusService auctionStatusService;
-
-    @Autowired
-    private IUserService userService;
 
 
     /**
@@ -94,7 +101,7 @@ public class ProductRestController {
      */
 
     @PostMapping("/create")
-    public ResponseEntity<Product> create(@RequestBody @Validated ProductDtoCreate productDTO, BindingResult bindingResult) {
+    public ResponseEntity<Product> create(@Validated @RequestBody ProductDtoCreate productDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
@@ -146,6 +153,7 @@ public class ProductRestController {
     }
 
 
+
     /**
      * Create by AnhTDQ
      * Date created: 15/12/2022
@@ -154,9 +162,9 @@ public class ProductRestController {
      * @return HttpStatus.NO_CONTENT if not found any product /  HttpStatus.OK and Products page if found
      */
 
-    @GetMapping("list")
-    public ResponseEntity<Page<ProductDto>> historyProduct(Integer id, Pageable pageable) {
-        Page<ProductDto> productList = productService.showProductById(5, pageable);
+    @GetMapping("/list/{id}")
+    public ResponseEntity<Page<IProductDto>> historyProduct(Integer id, Pageable pageable) {
+        Page<IProductDto> productList = productService.showProductById(1, pageable);
 
         if (productList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -196,6 +204,7 @@ public class ProductRestController {
         }
         return new ResponseEntity<>(reviewStatusList,HttpStatus.OK);
     }
+
 
     /**
      * Created by: SonPT

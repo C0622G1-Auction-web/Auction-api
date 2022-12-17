@@ -6,10 +6,24 @@ import com.project.service.product.IAuctionStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AuctionStatusService implements IAuctionStatusService {
     @Autowired
     private IAuctionStatusRepository auctionStatusRepository;
+
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: find all Auction status of Auction
+     * @return: List Auction Status of Auction
+     */
+
+    @Override
+    public List<AuctionStatus> findAuctionStatus() {
+        return auctionStatusRepository.listAuctionStatus();
+    }
 
     @Override
     public AuctionStatus getAuctionStatus(Integer auctionStatus) {

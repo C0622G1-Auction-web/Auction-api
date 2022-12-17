@@ -3,7 +3,13 @@ package com.project.dto.product;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class ImgUrlProductDTO {
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+public class ImgUrlProductDTO implements Validator {
     private Integer id;
     @NotBlank
     @NotNull
@@ -36,5 +42,15 @@ public class ImgUrlProductDTO {
 
     public void setProduct(Integer product) {
         this.product = product;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+
     }
 }

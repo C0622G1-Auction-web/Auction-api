@@ -2,6 +2,7 @@ package com.project.repository.product;
 
 
 import com.project.dto.product.ProductSearchByRoleAdminDto;
+import com.project.dto.product.IProductDto;
 import com.project.dto.product.ProductDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
@@ -23,29 +24,23 @@ import java.util.Optional;
 @Transactional
 public interface IProductRepository extends JpaRepository<Product, Integer> {
 
-    /**
-     * Create by: HungNV
-     * Date created: 14/12/2022
-     * Function: to find product by id
-     *
-     * @param id
-     * @return Optional<Product>
-     */
-    @Query(value = "select * from product where delete_status = 0 and product.id = :id", nativeQuery = true)
-    Optional<Product> findProductById(@Param("id") Integer id);
+//    /**
+//     * Create by: HungNV
+//     * Date created: 14/12/2022
+//     * Function: to find product by id
+//     *
+//     * @param id
+//     * @return Optional<Product>
+//     */
+//    @Query(value = "select * from product where delete_status = 0 and product.id = :id", nativeQuery = true)
+//    Optional<Product> findProductById(@Param("id") Integer id);
 
     /**
      * Create by: HungNV
      * Date created: 14/12/2022
      * Function: create new product
      *
-<<<<<<< HEAD
-     * @param name,         initialPrice,  id,  category,  description,  stepPrice,  startTime,  endTime, registerDay, auctionStatus, reviewStatus
-     * @param auctionStatus
-     * @param reviewStatus
-=======
      * @param  name,  initialPrice,  id,  category,  description,  stepPrice,  startTime,  endTime, registerDay
->>>>>>> 526bef3fb831c0a63074a264d7eb16f67a1d35e1
      * @return Optional<Product>
      */
     @Modifying
@@ -81,11 +76,15 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     *Date created:15/12/2022
     *Function:get page products Sign up for auctions by user id
      * @param id
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function: get page products Sign up for auctions by user id
+     * @param 'user id'
      * @param pageable
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus OK if result is not empty
      */
-    @Query(value = "select product.`name` as nameProduct, product.description as description, " +
-            "product.register_day as registerDay , review_status.`name` as review , product.delete_status as isDelete " +
+    @Query(value = "select user.id as user ,product.`name` as name, product.description as description, " +
+            "product.register_day as registerDay , review_status.`name` as reviewStatus , product.delete_status as isDelete " +
             "from product " +
             "join user on product.user_id = user.id " +
             "join review_status on review_status.id = product.review_status_id " +
@@ -94,7 +93,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
                     "join user on product.user_id = user.id " +
                     "join review_status on review_status.id = product.review_status_id " +
                     "where product.user_id = :id  ", nativeQuery = true)
-    Page<ProductDto> showProductById(@Param("id") Integer id, Pageable pageable);
+    Page<IProductDto> showProductById(@Param("id") Integer id, Pageable pageable);
 
 
     /**
@@ -103,14 +102,41 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * Function: cancel Sign up for auctions by user id
      *
      * @param id
+     * @param 'user id'
      * @return voice
      */
     @Modifying
-    @Transactional
     @Query(value = " UPDATE  product set delete_status = 1 where product.id = :id ", nativeQuery = true)
     void cancelProduct(@Param("id") Integer id);
 
 
+     /** Created by: SonPT
+     * Date created: 13-12-2022
+     * @param: description, end_time, initial_price, name, register_day, start_time, category_id, price_step_id, user_id
+     * Function: create Product
+     */
+    @Modifying
+    @Query(value = "INSERT INTO product " +
+            "(`description`, `end_time`, `initial_price`, `name`, `start_time`, `category_id`, `price_step_id`, `user_id`) VALUES " +
+            "( :description, :end_time, :initial_price, :name, :start_time, :category_id, :price_step_id, :user_id);",
+            nativeQuery = true)
+    void createProduct(@Param("description") String description, @Param("end_time") String endTime,
+                          @Param("initial_price") Double initialPrice, @Param("name") String name,
+                          @Param("start_time") String startTime, @Param("category_id") Integer categoryId,
+                          @Param("price_step_id") Integer priceStepId, @Param("user_id") Integer user_id);
+
+
+
+    /** Created by: TienBM,
+     * Date created: 13/12/2022
+     * Function: find product by id
+     * @param productId
+     * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
+     */
+    @Query(value = "select p.*"+
+            "from product p\n" +
+            "where p.id=:productId and p.delete_status = 0 and p.auction_status_id < 4", nativeQuery = true)
+    Optional<Product> findProductById(@Param("productId") Integer productId);
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
