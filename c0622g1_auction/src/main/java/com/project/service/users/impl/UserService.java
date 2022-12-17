@@ -7,8 +7,8 @@ import com.project.dto.user.UserTopDto;
 
 import com.project.repository.account.IAccountRepository;
 import com.project.repository.users.IAddressRepository;
-
 import com.project.repository.users.IUserRepository;
+import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,7 +21,6 @@ import java.util.Optional;
 
 @Service
 public class UserService implements IUserService {
-
     @Autowired
     private IUserRepository userRepository;
     @Autowired
@@ -30,54 +29,19 @@ public class UserService implements IUserService {
     private IAccountRepository accountRepository;
 
     /**
-     * Create by: VietNQ
+     * Create by: HaiNT
      * Date created: 13/12/2022
-     * Function: to create user
      *
-     * @return void
-     */
-    @Override
-    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
-        userRepository.addUser(
-                user.getAvatar(),
-                user.getBirthDay(),
-                user.getDeleteStatus(),
-                user.getEmail(),
-                user.getFirstName(),
-                user.getIdCard(),
-                user.getLastName(),
-                user.getPhone(),
-                user.getPointDedication(),
-                accountId,
-                addressId,
-                userType);
-    }
-
-
-
-    /**
-     * Create by: VietNQ
-     * Date created: 13/12/2022
-     * Function: to lockAccount
-     *
-     * @param id
-     */
-    public void lockUser(List<Integer> id) {
-        userRepository.lockAccount(id);
-    }
-
-    /* Create by: HaiNT
-     * Date created: 13/12/2022
      * @param id
      * @param name
      * @param email
-     * @param userTypeId
+     * @param userType
      * @param address
      * @return List of users by param
      */
     @Override
-    public Page<User> getUserBy(String id, String name, String email, String userTypeId, String address, Pageable pageable) {
-        return userRepository.getUserBy(id, name, email, userTypeId, address, pageable);
+    public Page<User> getUserBy(String id, String name, String email, String userType, String address, Pageable pageable) {
+        return userRepository.getUserBy(id, name, email, userType, address, pageable);
     }
 
     /**
@@ -127,15 +91,13 @@ public class UserService implements IUserService {
         userRepository.save(user);
     }
 
-
-    @Override
-    public void updateUser(User user) {
-    }
-
-    @Override
-    public void unlockUser(List<Integer> idList) {
-
-    }
+//    @Override
+//    public void updateAddressByRoleAdmin(User user) {
+//        userRepository.updateAddress(user.getAddress().getId(),
+//                user.getAddress().getDetailAddress(), user.getAddress().getTown(),
+//                user.getAddress().getDistrict(), user.getAddress().getCity(),
+//                user.getAddress().getCountry());
+//    }
 
     /**
      * Create by: HaiNT
@@ -173,6 +135,9 @@ public class UserService implements IUserService {
         userRepository.unlockAccountByIdList(idList);
     }
 
+
+
+
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -182,6 +147,7 @@ public class UserService implements IUserService {
      * @return List<User>
      */
     @Override
+
     public List<UserTopDto> getTopAuctionUser(String quality) {
         return userRepository.getTopAuctionUser(quality);
     }

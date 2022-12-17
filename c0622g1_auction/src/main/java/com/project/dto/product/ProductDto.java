@@ -3,7 +3,6 @@ package com.project.dto.product;
 import com.project.model.auction.Auction;
 import com.project.model.product.*;
 import com.project.model.users.User;
-
 import java.util.Set;
 
 public class ProductDto {

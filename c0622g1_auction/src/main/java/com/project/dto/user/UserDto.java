@@ -1,6 +1,11 @@
 package com.project.dto.user;
 
-public class AddUserDto {
+import com.project.model.account.Account;
+import com.project.model.users.Address;
+
+
+public class UserDto {
+    private Integer id;
     private String firstName;
     private String lastName;
     private String email;
@@ -10,17 +15,44 @@ public class AddUserDto {
     private String idCard;
     private String avatar;
     private Boolean deleteStatus;
-    private String detailAddress;
-    private String town;
-    private String district;
-    private String city;
-    private String  country;
-    private String username;
-    private String password;
+    private AddressDto addressDto;
+    private AccountDto accountDto;
 
-    public AddUserDto() {
+    public UserDto( ) {
     }
 
+    public UserDto(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, AddressDto addressDto, AccountDto accountDto) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.pointDedication = pointDedication;
+        this.birthDay = birthDay;
+        this.idCard = idCard;
+        this.avatar = avatar;
+        this.addressDto = addressDto;
+        this.accountDto = accountDto;
+    }
+
+    public UserDto(String firstName, String lastName, String email, String phone, String birthDay, String idCard, AddressDto addressDto, AccountDto accountDto) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.birthDay = birthDay;
+        this.idCard = idCard;
+        this.addressDto = addressDto;
+        this.accountDto = accountDto;
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -94,59 +126,19 @@ public class AddUserDto {
         this.deleteStatus = deleteStatus;
     }
 
-    public String getDetailAddress() {
-        return detailAddress;
+    public AddressDto getAddressDto() {
+        return addressDto;
     }
 
-    public void setDetailAddress(String detailAddress) {
-        this.detailAddress = detailAddress;
+    public void setAddressDto(AddressDto addressDto) {
+        this.addressDto = addressDto;
     }
 
-    public String getTown() {
-        return town;
+    public AccountDto getAccountDto() {
+        return accountDto;
     }
 
-    public void setTown(String town) {
-        this.town = town;
-    }
-
-    public String getDistrict() {
-        return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAccountDto(AccountDto accountDto) {
+        this.accountDto = accountDto;
     }
 }
