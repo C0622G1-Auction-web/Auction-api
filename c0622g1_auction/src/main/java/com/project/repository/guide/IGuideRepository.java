@@ -23,11 +23,7 @@ public interface IGuideRepository extends JpaRepository<Guide, Integer> {
      * Create by: QuangND,
      * Date created: 13/12/2022
      * Function: find all guide in DB
-<<<<<<< HEAD
-     *
-=======
 
->>>>>>> add4b878c187060ab440b6aba8d1c0d71a564518
      * @return list of guide
      */
 

@@ -1,6 +1,7 @@
 package com.project.controller.auction;
 
 import com.project.dto.AuctionDto;
+import com.project.dto.product.ProductDto;
 import com.project.dto.product.IAuctionProductDto;
 import com.project.dto.product.ProductDto;
 import com.project.model.auction.Auction;

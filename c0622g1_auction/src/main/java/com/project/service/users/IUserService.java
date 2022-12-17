@@ -1,6 +1,7 @@
 package com.project.service.users;
 
 import com.project.dto.user.UserTopDto;
+import com.project.model.product.PriceStep;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
@@ -63,6 +64,14 @@ public interface IUserService {
 
     void saveUser(User user, Integer addressId, Integer accountId, Integer Number);
 
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: Save User
+     */
+
+    User saveUser(User user);
+
 
     /**
      * Created: SangDD
@@ -95,7 +104,14 @@ public interface IUserService {
 
     void unlockUser(List<Integer> idList);
 
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * @Param: int ID of User
+     * Function: get User
+     */
     User findUserByAccount(Account account);
 
+    User getUser(Integer user);
 }
 

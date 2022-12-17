@@ -52,25 +52,56 @@ public class ProductDto implements Validator {
 
 
     private Boolean deleteStatus;
+
+    @NotNull(message = "End Time of product not null")
+    @NotBlank(message = "Please input end time to auction Product")
     private String registerDay;
+
+    @NotBlank(message = "Please input step price to auction Product")
     private PriceStep priceStep;
+
+    @NotBlank(message = "Please select options category to auction Product")
+    private Category category;
+
+    private User user;
+
     private ReviewStatus reviewStatus;
     private AuctionStatus auctionStatus;
-    private Category category;
     private Set<ImgUrlProduct> imgUrlProducts;
     private Set<Auction> auctions;
-    private User user;
 
     public ProductDto() {
     }
 
     public ProductDto(int id, String name, String description, Double initialPrice, String startTime, String endTime, PriceStepDto priceStepDto, CategoryDto categoryDto, UserDto userDto) {
-
+        this.id = id;
+        this.name = name;
         this.description = description;
         this.initialPrice = initialPrice;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.deleteStatus = deleteStatus;
+        this.registerDay = registerDay;
+        this.priceStep = priceStep;
+        this.category = category;
+        this.user = user;
+        this.reviewStatus = reviewStatus;
+        this.auctionStatus = auctionStatus;
+        this.imgUrlProducts = imgUrlProducts;
+        this.auctions = auctions;
+    }
 
+    public ProductDto(String name, String description, Double initialPrice, String startTime, String endTime, Boolean deleteStatus, String registerDay, CategoryDto categoryDto, PriceStepDto priceStepDto, UserDto userDto) {
+        this.name = name;
+        this.description = description;
+        this.initialPrice = initialPrice;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.deleteStatus = deleteStatus;
+        this.registerDay = registerDay;
+        this.categoryDto = categoryDto;
+        this.priceStepDto = priceStepDto;
+        this.userDto = userDto;
     }
 
     public int getId() {
@@ -216,10 +247,6 @@ public class ProductDto implements Validator {
 
     public User getUser() {
         return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getFullName() {

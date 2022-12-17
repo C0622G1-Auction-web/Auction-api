@@ -22,6 +22,10 @@ public class CategoryDto implements Validator {
     public CategoryDto() {
     }
 
+    public CategoryDto(String name) {
+        this.name = name;
+    }
+
     public CategoryDto(int id, String name, Set<Product> products) {
         this.id = id;
         this.name = name;

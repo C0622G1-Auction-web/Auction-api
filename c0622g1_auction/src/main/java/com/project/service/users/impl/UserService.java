@@ -97,6 +97,17 @@ public class UserService implements IUserService {
 
 
     /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: Save User
+     */
+
+    @Override
+    public User saveUser(User user) {
+      return userRepository.save(user);
+    }
+
+    /**
      * Create by: HaiNT
      * Date created: 13/12/2022
      *
@@ -126,7 +137,7 @@ public class UserService implements IUserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
-    
+
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -167,6 +178,20 @@ public class UserService implements IUserService {
     @Override
     public void unlockUser(List<Integer> idList) {
         userRepository.unlockAccount(idList);
+    }
+
+
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * @Param: int ID of User
+     * Function: get User
+     * @Return: User
+     */
+
+    @Override
+    public User getUser(Integer user) {
+        return userRepository.findUserById(user).orElse(null);
     }
 
 

@@ -74,4 +74,12 @@ public interface IProductService {
      * @return Page<Product>
      */
     Page<Product> getAllAndSearch(ProductSearchDto productSearchDto, Pageable pageable);
+
+    /**
+     * Created SonPT
+     * Date created 13/12/2022
+     * Function: get product by id
+     * @param id
+     */
+    Product getProduct(Integer id);
 }
