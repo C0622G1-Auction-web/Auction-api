@@ -45,34 +45,34 @@ public class UserRestController {
      *
      * @return HttpStatus.NOT_CONTENT, HttpStatus.OK
      */
-    @PostMapping("/create")
-    public ResponseEntity<?> createUser(@Validated @RequestBody UserDto userDto, BindingResult bindingResult) {
-        List<User> userList = userService.findAll();
-        List<String> emailList = new ArrayList<>();
-        for (User item : userList) {
-            emailList.add(item.getEmail());
-            emailList.add(item.getAccount().getUsername());
-        }
-        userDto.setEmailList(emailList);
-        userDto.validate(userDto, bindingResult);
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NO_CONTENT);
-        }
-        User user = new User();
-        Account account = new Account();
-        BeanUtils.copyProperties(userDto, account);
-        Address address = new Address();
-        BeanUtils.copyProperties(userDto, address);
-        Address address1 = addressService.createAddress(address);
-        Account account1 = accountService.createAccount(account);
-        BeanUtils.copyProperties(userDto, user);
-        user.setAccount(account1);
-        user.setAddress(address1);
-        user.setDeleteStatus(true);
-        userService.createUser(user);
-//        accountRoleSevice.createAccountRole(account.getId(),1);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
+//    @PostMapping("/create")
+//    public ResponseEntity<?> createUser(@Validated @RequestBody UserDto userDto, BindingResult bindingResult) {
+//        List<User> userList = userService.findAll();
+//        List<String> emailList = new ArrayList<>();
+//        for (User item : userList) {
+//            emailList.add(item.getEmail());
+//            emailList.add(item.getAccount().getUsername());
+//        }
+//        userDto.setEmailList(emailList);
+//        userDto.validate(userDto, bindingResult);
+//        if (bindingResult.hasErrors()) {
+//            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NO_CONTENT);
+//        }
+//        User user = new User();
+//        Account account = new Account();
+//        BeanUtils.copyProperties(userDto, account);
+//        Address address = new Address();
+//        BeanUtils.copyProperties(userDto, address);
+//        Address address1 = addressService.createAddress(address);
+//        Account account1 = accountService.createAccount(account);
+//        BeanUtils.copyProperties(userDto, user);
+//        user.setAccount(account1);
+//        user.setAddress(address1);
+//        user.setDeleteStatus(true);
+//        userService.createUser(user);
+////        accountRoleSevice.createAccountRole(account.getId(),1);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
 
     /**
      * Create by: TruongLH
@@ -81,19 +81,19 @@ public class UserRestController {
      * @return HttpStatus.OK, HttpStatus.NOT_MODIFIED
      */
     @PutMapping("/{id}/update")
-    public ResponseEntity<?> editUserById(@Validated @PathVariable() int id, @RequestBody UserDto userDto, BindingResult bindingResult) {
-        List<User> userList = userService.findAll();
-        List<String> emailList = new ArrayList<>();
-        for (User item : userList) {
-            emailList.add(item.getEmail());
-            emailList.add(item.getAccount().getUsername());
-        }
-        userDto.setEmailList(emailList);
-        userDto.validate(userDto, bindingResult);
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
-        } else {
-            User user = userService.findById(id).get();
+    public ResponseEntity<?> editUserById(@PathVariable() int id, @RequestBody UserDto userDto) {
+//        List<User> userList = userService.findAll();
+//        List<String> emailList = new ArrayList<>();
+//        for (User item : userList) {
+//            emailList.add(item.getEmail());
+//            emailList.add(item.getAccount().getUsername());
+//        }
+//        userDto.setEmailList(emailList);
+////        userDto.validate(userDto, bindingResult);
+//        if (bindingResult.hasErrors()) {
+//            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
+//        } else {
+            User user = (User) userService.findById(id).get();
             Account account = accountService.findByUserId(user.getAccount().getId()).get();
             BeanUtils.copyProperties(userDto, account);
             Address address =addressService.findbyId(user.getAddress().getId());
@@ -105,9 +105,7 @@ public class UserRestController {
             user.setAddress(address1);
             userService.updateUser(user);
             return new ResponseEntity<>(HttpStatus.OK);
-        }
-//    }
-
+    }
 
     /**
      * Create by: HaiNT

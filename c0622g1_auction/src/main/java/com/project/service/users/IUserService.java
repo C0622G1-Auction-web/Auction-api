@@ -6,16 +6,8 @@ import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.stereotype.Service;
 import com.project.model.account.Account;
-<<<<<<< HEAD
-=======
-
->>>>>>> 07e46fdae1efaea385175b35d221c529510bb65a
 import java.util.List;
 import java.util.Optional;
-
-@Service
-
-
 
 @Service
 public interface IUserService {
@@ -89,7 +81,18 @@ public interface IUserService {
 
     void unlockUser(List<Integer> idList);
 
-
     User findUserByAccount(Account account);
+
+    /**
+     * Create by: DucDH
+     * Date: 17/12/2022
+     * Function: To get a User by email
+     * @Param: email
+     * @return: User if email found, null otherwise
+     */
+    User getUserByEmail(String email);
+
+
+
 }
 

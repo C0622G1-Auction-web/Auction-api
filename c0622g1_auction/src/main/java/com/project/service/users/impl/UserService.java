@@ -1,4 +1,5 @@
 package com.project.service.users.impl;
+
 import com.project.dto.user.UserTopDto;
 import com.project.model.account.Account;
 import com.project.model.users.User;
@@ -58,21 +59,21 @@ public class UserService implements IUserService {
      */
 
 
-    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
-        userRepository.createUser(
-                user.getAvatar(),
-                user.getBirthDay(),
-                user.getDeleteStatus(),
-                user.getEmail(),
-                user.getFirstName(),
-                user.getIdCard(),
-                user.getLastName(),
-                user.getPhone(),
-                user.getPointDedication(),
-                user.getAccount(),
-                user.getAddress(),
-                user.getUserType());
-    }
+//    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
+//        userRepository.createUser(
+//                user.getAvatar(),
+//                user.getBirthDay(),
+//                user.getDeleteStatus(),
+//                user.getEmail(),
+//                user.getFirstName(),
+//                user.getIdCard(),
+//                user.getLastName(),
+//                user.getPhone(),
+//                user.getPointDedication(),
+//                user.getAccount(),
+//                user.getAddress(),
+//                user.getUserType());
+//    }
 
     /**
      * Create by: TruongLH
@@ -119,38 +120,37 @@ public class UserService implements IUserService {
         return userRepository.getUserBy(id, name, email, userTypeId, address);
     }
 
-<<<<<<< HEAD
-
     /**
-     * Create by: TruongLH
-     * Date created: 13/12/2022
-     * Function: to find all user list
+     * Create by: DucDH
+     * Date: 17/12/2022
+     * Function: To get a User by email
      *
-     * @return List<User>
+     * @Param: email
+     * @return: User if email found, null otherwise
      */
 
     @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public User getUserByEmail(String email) {
+        return userRepository.getUserByEmail(email);
     }
 
-=======
-    @Override
-    public Optional<User> findById(Integer id) {
-        return userRepository.findById(id);
-    }
+
+//    @Override
+//    public Optional<User> findById(Integer id) {
+//        return userRepository.findById(id);
+//    }
 
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
+     *
      * @param
      * @return User object by id
      */
 
     @Override
     public void saveUser(User user, Integer addressId, Integer accountId, Integer Number) {
->>>>>>> 07e46fdae1efaea385175b35d221c529510bb65a
-
+    }
 
 
     /**
@@ -159,6 +159,7 @@ public class UserService implements IUserService {
      *
      * @param user
      */
+
     @Override
     public void updateAddress(User user) {
         userRepository.save(user);
@@ -169,13 +170,11 @@ public class UserService implements IUserService {
         return Optional.empty();
     }
 
-<<<<<<< HEAD
-=======
+
 //    @Override
 //      public void unlockUser(List<Integer> idList) {
 //
 //    }
->>>>>>> 07e46fdae1efaea385175b35d221c529510bb65a
 
     /**
      * Create by: HaiNT

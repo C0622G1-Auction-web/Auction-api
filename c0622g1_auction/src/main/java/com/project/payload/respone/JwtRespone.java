@@ -1,5 +1,7 @@
 package com.project.payload.respone;
 
+import com.project.model.account.Account;
+import com.project.model.users.User;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
@@ -8,23 +10,20 @@ public class JwtRespone {
 
     private Integer id;
     private String token;
-    private String username;
     private Collection<? extends GrantedAuthority> roles;
-    private Integer accountId;
-    private Boolean statusLock;
-    private Boolean deleteStauts;
+    private String email;
+    private Account account;
+    private User user;
 
-    public JwtRespone() {
+    public JwtRespone(String token, Collection<? extends GrantedAuthority> roles,
+                      Account account, User user) {
+        this.token = token;
+        this.roles = roles;
+        this.account = account;
+        this.user = user;
     }
 
-    public JwtRespone(String token, String username, Collection<? extends GrantedAuthority> roles,
-                      Integer accountId, Boolean statusLock, Boolean deleteStauts) {
-        this.token = token;
-        this.username = username;
-        this.roles = roles;
-        this.accountId = accountId;
-        this.statusLock = statusLock;
-        this.deleteStauts = deleteStauts;
+    public JwtRespone() {
     }
 
     public Integer getId() {
@@ -43,14 +42,6 @@ public class JwtRespone {
         this.token = token;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public Collection<? extends GrantedAuthority> getRoles() {
         return roles;
     }
@@ -59,11 +50,27 @@ public class JwtRespone {
         this.roles = roles;
     }
 
-    public Integer getAccountId() {
-        return accountId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
