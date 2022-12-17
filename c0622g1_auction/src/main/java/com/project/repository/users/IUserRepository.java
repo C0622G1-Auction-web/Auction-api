@@ -38,7 +38,7 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
      * @return Optional<User>
      */
 
-    @Query(value = "select * " +
+    @Query(value = "select *" +
             "from user u " +
             "where u.id= :id " +
             "and u.delete_status=1",

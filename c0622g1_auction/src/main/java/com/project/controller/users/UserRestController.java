@@ -3,9 +3,9 @@ package com.project.controller.users;
 import com.project.dto.UserListDto;
 import com.project.dto.user.*;
 import com.project.model.account.Account;
+import com.project.model.account.AccountRole;
 import com.project.model.users.Address;;
 import com.project.model.users.User;
-import com.project.model.users.UserType;
 import com.project.service.account.IAccountService;
 import com.project.service.account.ILockAccountService;
 import com.project.service.users.IAddressService;
@@ -38,6 +38,7 @@ public class UserRestController {
     @Autowired
     private ILockAccountService lockAccountService;
 
+
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
@@ -62,15 +63,19 @@ public class UserRestController {
         Account account = new Account();
         BeanUtils.copyProperties(userDto, account);
         Address address = new Address();
+
         BeanUtils.copyProperties(userDto, address);
         Address address1 = addressService.createAddress(address);
+
         Account account1 = accountService.createAccount(account);
         BeanUtils.copyProperties(userDto, user);
+
         user.setAccount(account1);
         user.setAddress(address1);
         user.setDeleteStatus(true);
         userService.createUser(user);
-//        accountRoleService.createAccountRole(account.getId(),1);
+        AccountRole accountRole = new AccountRole();
+//        userService.createAccountRole(accountRole);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -81,7 +86,7 @@ public class UserRestController {
      *
      * @return HttpStatus.OK, HttpStatus.NOT_MODIFIED
      */
-    @PutMapping("/{id}/update")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> editUserById(@PathVariable() int id, @RequestBody UserDto userDto, BindingResult bindingResult) {
 //        List<User> userList = userService.findAll();
 //        List<String> emailList = new ArrayList<>();
@@ -108,7 +113,6 @@ public class UserRestController {
         user.setId(userId);
         user.setAccount(account);
         user.setAddress(address);
-//       user.setDeleteStatus(true);
         userService.updateUserByIdServer(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -149,6 +153,18 @@ public class UserRestController {
     }
 
     /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     *
+     * @param
+     * @return Object user by id
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<?> userByIdServer(@PathVariable() int id) {
+        User user = userService.findById(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+    /**
      * Create by: HaiNT
      * Date created: 13/12/2022
      *
@@ -157,7 +173,7 @@ public class UserRestController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<User> userById(@PathVariable() int id) {
-        User user = (User) userService.findById(id).get();
+        User user = (User) userService.findUserById(id).get();
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
@@ -171,7 +187,7 @@ public class UserRestController {
      */
     @PutMapping("/{id}")
     public ResponseEntity<UserListDto> updateUser(@PathVariable() int id, @RequestBody UserListDto userListDto) {
-        User user = (User) userService.findById(id).get();
+        User user = (User) userService.findUserById(id).get();
         BeanUtils.copyProperties(userListDto, user);
         userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.OK);

@@ -47,7 +47,7 @@ public class UserDto {
     private Boolean deleteStatus;
     private Boolean statusLock;
 //    private List<String> emailList;
-//    private UserType userType;
+    private Integer userTypeId;
     public UserDto() {
     }
     public Integer getId() {
@@ -163,6 +163,14 @@ public class UserDto {
 
     public Boolean getStatusLock() {
         return statusLock;
+    }
+
+    public Integer getUserTypeId() {
+        return userTypeId;
+    }
+
+    public void setUserTypeId(Integer userTypeId) {
+        this.userTypeId = userTypeId;
     }
 
     public void setStatusLock(Boolean statusLock) {
