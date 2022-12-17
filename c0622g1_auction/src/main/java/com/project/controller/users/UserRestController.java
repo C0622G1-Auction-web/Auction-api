@@ -147,12 +147,12 @@ public class UserRestController {
      * Create by: HaiNT
      * Date created: 13/12/2022
      *
-     * @param id
+     * @param
      * @return Object user by id
      */
     @GetMapping("/{id}")
     public ResponseEntity<User> userById(@PathVariable() int id) {
-        User user = userService.findById(id).get();
+        User user = (User) userService.findById(id).get();
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
@@ -160,13 +160,13 @@ public class UserRestController {
      * Create by: HaiNT
      * Date created: 13/12/2022
      *
-     * @param id
-     * @param userListDto
+     * @param
+     * @param
      * @return the user object is updated
      */
     @PutMapping("/{id}")
     public ResponseEntity<UserListDto> updateUser(@PathVariable() int id, @RequestBody UserListDto userListDto) {
-        User user = userService.findById(id).get();
+        User user = (User) userService.findById(id).get();
         BeanUtils.copyProperties(userListDto, user);
         userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.OK);

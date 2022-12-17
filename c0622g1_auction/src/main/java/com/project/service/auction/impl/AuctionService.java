@@ -1,5 +1,6 @@
 package com.project.service.auction.impl;
 
+import com.project.model.product.Product;
 import com.project.dto.AuctionDto;
 import com.project.model.auction.Auction;
 import com.project.repository.auction.IAuctionRepository;
@@ -9,10 +10,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AuctionService implements IAuctionService {
     @Autowired
     private IAuctionRepository auctionRepository;
+
+    @Override
+    public List<Product> showProductAuctionById(int id) {
+        return auctionRepository.showProductAuctionById(id);
+    }
 
     /**
      * Created by: TienBM,
@@ -23,7 +31,6 @@ public class AuctionService implements IAuctionService {
      * @param pageable
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
-
     @Override
     public Page<Auction> getPageAuctionByProductId(Integer productId, Pageable pageable) {
         return auctionRepository.getPageAuctionByProductId(productId, pageable);
@@ -37,7 +44,6 @@ public class AuctionService implements IAuctionService {
      * @param auctionDto
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
-
     @Override
     public void addAuction(AuctionDto auctionDto) {
         auctionRepository.addAuction(

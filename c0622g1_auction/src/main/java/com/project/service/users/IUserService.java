@@ -6,15 +6,20 @@ import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.stereotype.Service;
 import com.project.model.account.Account;
+<<<<<<< HEAD
+=======
 
+>>>>>>> 07e46fdae1efaea385175b35d221c529510bb65a
 import java.util.List;
 import java.util.Optional;
 
+@Service
 
 
 
 @Service
 public interface IUserService {
+
 
     /**
      * Create by: TruongLH
@@ -69,12 +74,6 @@ public interface IUserService {
      */
     List<User> getUserBy(String id, String name, String email, String userTypeId, String address);
 
-    /**
-     * By: HaiNT - Find list of users by id
-     *
-     * @param id
-     */
-    Optional<User> findById(Integer id);
 
     /**
      * By: HaiNT - Find list of users by idList
@@ -83,14 +82,10 @@ public interface IUserService {
      */
     List<User> findByIdList(List<Integer> id);
 
-    /**
-     * By: HaiNT - Find list of address by AddressId
-     */
-    Optional<Address> findByAddressId(int id);
 
     void updateAddress(User user);
 
-    void editUser(User user);
+    Optional<Object> findById(int id);
 
     void unlockUser(List<Integer> idList);
 

@@ -1,9 +1,6 @@
 package com.project.service.users.impl;
-
-
 import com.project.dto.user.UserTopDto;
 import com.project.model.account.Account;
-import com.project.model.users.Address;
 import com.project.model.users.User;
 import com.project.repository.users.IUserRepository;
 import com.project.service.users.IUserService;
@@ -46,17 +43,22 @@ public class UserService implements IUserService {
         userRepository.save(user);
     }
 
+    @Override
+    public void createUser(User user) {
+        userRepository.save(user);
+    }
+
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to create user
      *
-     * @param user
+     * @param
      * @return User
      */
 
-    @Override
-    public void createUser(User user) {
+
+    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
         userRepository.createUser(
                 user.getAvatar(),
                 user.getBirthDay(),
@@ -117,6 +119,22 @@ public class UserService implements IUserService {
         return userRepository.getUserBy(id, name, email, userTypeId, address);
     }
 
+<<<<<<< HEAD
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find all user list
+     *
+     * @return List<User>
+     */
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+=======
     @Override
     public Optional<User> findById(Integer id) {
         return userRepository.findById(id);
@@ -131,21 +149,9 @@ public class UserService implements IUserService {
 
     @Override
     public void saveUser(User user, Integer addressId, Integer accountId, Integer Number) {
+>>>>>>> 07e46fdae1efaea385175b35d221c529510bb65a
 
-    }
 
-    /**
-     * Create by: HaiNT
-     * Date created: 13/12/2022
-     *
-     * @param id
-     * @return Object Address by id
-     */
-
-    @Override
-    public Optional<Address> findByAddressId(int id) {
-        return userRepository.findUserByAddressId(id);
-    }
 
     /**
      * Create by: HaiNT
@@ -158,24 +164,18 @@ public class UserService implements IUserService {
         userRepository.save(user);
     }
 
-    /**
-     * Create by: HaiNT
-     * Date created: 13/12/2022
-     *
-     * @param user
-     */
-
     @Override
-    public void editUser(User user) {
-        updateAddress(user);
-        userRepository.updateUser(user.getId(), user.getIdCard(), user.getAvatar(), user.getBirthDay(), user.getEmail(),
-                user.getFirstName(), user.getLastName(), user.getPhone());
+    public Optional<Object> findById(int id) {
+        return Optional.empty();
     }
 
+<<<<<<< HEAD
+=======
 //    @Override
 //      public void unlockUser(List<Integer> idList) {
 //
 //    }
+>>>>>>> 07e46fdae1efaea385175b35d221c529510bb65a
 
     /**
      * Create by: HaiNT

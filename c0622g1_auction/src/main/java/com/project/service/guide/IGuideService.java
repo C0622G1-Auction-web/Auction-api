@@ -10,8 +10,6 @@ import java.util.List;
 public interface IGuideService {
     List<Guide> findAllGuide();
 
-
-
     Guide getGuideById(int id);
 
     void createGuide(Guide guide);
