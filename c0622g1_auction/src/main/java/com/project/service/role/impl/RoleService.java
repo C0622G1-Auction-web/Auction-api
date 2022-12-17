@@ -24,6 +24,6 @@ public class RoleService implements IRoleService {
 
     @Override
     public List<Role> getListRoleByAccountId(Integer accountId) {
-        return null;
+        return roleRepository.getListRoleByAccountId(accountId);
     }
 }
