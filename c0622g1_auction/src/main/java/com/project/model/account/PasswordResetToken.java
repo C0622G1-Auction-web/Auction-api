@@ -1,7 +1,7 @@
 package com.project.model.account;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+
 
 @Entity
 public class PasswordResetToken {
