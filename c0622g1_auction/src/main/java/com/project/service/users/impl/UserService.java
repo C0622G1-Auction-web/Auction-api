@@ -62,6 +62,9 @@ public class UserService implements IUserService {
     }
 
     public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
+
+    }
+
     public void createUser(User user) {
         userRepository.createUser(
                 user.getAvatar(),
@@ -136,10 +139,6 @@ public class UserService implements IUserService {
         return userRepository.findAll();
     }
 
-    @Override
-    public void saveUser(User user, Integer addressId, Integer accountId, Integer Number) {
-
-    }
 
     /**
      * Create by: HaiNT
