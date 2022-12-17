@@ -1,17 +1,16 @@
 package com.project.dto.guide;
-
-
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
 public class ImgUrlGuideDto {
     private Integer id;
     @NotBlank
     private String url;
-    @NotNull
     private Integer guideId;
 
     public ImgUrlGuideDto() {
+    }
+
+    public Integer getGuideId() {
+        return guideId;
     }
 
     public Integer getId() {
@@ -36,6 +35,7 @@ public class ImgUrlGuideDto {
 
     public void setGuideId(Integer guideId) {
         this.guideId = guideId;
-    }
+   
 
+    }
 }
