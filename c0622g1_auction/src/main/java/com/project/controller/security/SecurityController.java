@@ -64,8 +64,10 @@ public class SecurityController {
 
         String token = jwtProvider.createToken(authentication);
 
-        return new ResponseEntity<>(new JwtRespone(token, myUserDetail.getUsername(),
-                myUserDetail.getAuthorities()), HttpStatus.OK);
+        return new ResponseEntity<>(new JwtRespone(token, myUserDetail.getAccount().getUsername(),
+                myUserDetail.getAuthorities(), myUserDetail.getAccount().getId(),
+                myUserDetail.getAccount().getStatusLock(),
+                myUserDetail.getAccount().getDeleteStatus()), HttpStatus.OK);
     }
 
 
