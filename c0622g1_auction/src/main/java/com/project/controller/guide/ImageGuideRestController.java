@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("auction/api/guide/image")
+@RequestMapping("auction/api/v1/guide/image")
 @CrossOrigin("*")
 public class ImageGuideRestController {
     @Autowired
