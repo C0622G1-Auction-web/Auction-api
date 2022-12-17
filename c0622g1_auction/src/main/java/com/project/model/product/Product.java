@@ -1,5 +1,4 @@
 package com.project.model.product;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.auction.Auction;
 import com.project.model.users.User;
@@ -17,26 +16,29 @@ public class Product {
     private Double initialPrice;
     private String startTime;
     private String endTime;
-    @Column(columnDefinition = "boolean default true")
+    @Column(columnDefinition = "boolean default false")
     private Boolean deleteStatus;
     private String registerDay;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "price_step_id", referencedColumnName = "id")
     private PriceStep priceStep;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "review_status_id", referencedColumnName = "id")
     private ReviewStatus reviewStatus;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "auction_status_id", referencedColumnName = "id")
     private AuctionStatus auctionStatus;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
-
 
     @JsonBackReference
     @OneToMany(mappedBy = "product")
@@ -46,36 +48,12 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<Auction> auctions;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @JsonBackReference
     private User user;
 
     public Product() {
-    }
-
-    public Boolean getDeleteStatus() {
-        return deleteStatus;
-    }
-
-    public void setDeleteStatus(Boolean deleteStatus) {
-        this.deleteStatus = deleteStatus;
-    }
-
-    public String getRegisterDay() {
-        return registerDay;
-    }
-
-    public void setRegisterDay(String registerDay) {
-        this.registerDay = registerDay;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public int getId() {
@@ -126,12 +104,20 @@ public class Product {
         this.endTime = endTime;
     }
 
-    public boolean isDeleteStatus() {
+    public Boolean getDeleteStatus() {
         return deleteStatus;
     }
 
-    public void setDeleteStatus(boolean deleteStatus) {
+    public void setDeleteStatus(Boolean deleteStatus) {
         this.deleteStatus = deleteStatus;
+    }
+
+    public String getRegisterDay() {
+        return registerDay;
+    }
+
+    public void setRegisterDay(String registerDay) {
+        this.registerDay = registerDay;
     }
 
     public PriceStep getPriceStep() {
@@ -180,5 +166,13 @@ public class Product {
 
     public void setAuctions(Set<Auction> auctions) {
         this.auctions = auctions;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

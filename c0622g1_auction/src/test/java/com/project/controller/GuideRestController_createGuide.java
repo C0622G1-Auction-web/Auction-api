@@ -28,7 +28,6 @@ public class GuideRestController_createGuide {
      * Function: create guide with no item title
      * @return error status code
      */
-
     @Test
     public void createGuide_title_13() throws Exception {
         GuideDto guideDto = new GuideDto();
@@ -61,6 +60,7 @@ public class GuideRestController_createGuide {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
@@ -80,6 +80,7 @@ public class GuideRestController_createGuide {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
@@ -99,6 +100,7 @@ public class GuideRestController_createGuide {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
@@ -120,6 +122,7 @@ public class GuideRestController_createGuide {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
@@ -138,6 +141,7 @@ public class GuideRestController_createGuide {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
@@ -157,6 +161,7 @@ public class GuideRestController_createGuide {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
@@ -176,6 +181,7 @@ public class GuideRestController_createGuide {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022

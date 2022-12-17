@@ -36,4 +36,15 @@ public class ReviewStatusService implements IReviewStatusService {
     public ReviewStatus getReviewStatus(Integer reviewStatus) {
         return reviewStatusRepository.findById(reviewStatus).orElse(null);
     }
+
+    /**
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function: get list review Status of products Sign up for auctions
+     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
+     */
+    @Override
+    public List<ReviewStatus> findAll() {
+        return reviewStatusRepository.findAll();
+    }
 }

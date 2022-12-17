@@ -21,9 +21,9 @@ public class GuideRestController_getGuideById {
      * Create by: QuangND,
      * Date created: 14/12/2022
      * Function: get a guide with item id == null
+     *
      * @return error status code
      */
-
     @Test
     public void getGuideById_id_1() throws Exception {
         this.mockMvc.perform(
@@ -31,13 +31,14 @@ public class GuideRestController_getGuideById {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
      * Function: get a guide with item id empty
+     *
      * @return error status code
      */
-
     @Test
     public void getGuideById_id_2() throws Exception {
         this.mockMvc.perform(
@@ -45,13 +46,14 @@ public class GuideRestController_getGuideById {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
      * Function: get a guide with item id not have in database
+     *
      * @return error status code
      */
-
     @Test
     public void getGuideById_id_3() throws Exception {
         this.mockMvc.perform(
@@ -59,13 +61,14 @@ public class GuideRestController_getGuideById {
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
+
     /**
      * Create by: QuangND,
      * Date created: 14/12/2022
      * Function: get a guide with item id valid (exists in dabatabase)
+     *
      * @return a guide with valid infor
      */
-
     @Test
     public void getGuideById_4() throws Exception {
         this.mockMvc.perform(
@@ -73,7 +76,7 @@ public class GuideRestController_getGuideById {
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("id").value(2))
-                .andExpect(jsonPath("title").value("Cach tinh tien"))
+                .andExpect(jsonPath("url").value("Cach tinh tien"))
                 .andExpect(jsonPath("content").value("Tinh tien bang paypal"));
     }
 }

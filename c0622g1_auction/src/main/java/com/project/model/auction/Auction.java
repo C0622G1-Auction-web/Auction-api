@@ -15,51 +15,27 @@ public class Auction {
     private Integer id;
     private Double currentPrice;
     private String auctionTime;
-    private Boolean payStatus;
     @Column(columnDefinition = "boolean default false")
     private Boolean auctionStatus;
+    private String auctionDay;
     @Column(columnDefinition = "boolean default false")
     private Boolean deleteStatus;
-
+    @JsonBackReference
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
-    @JsonBackReference
     private User user;
-
+    @JsonBackReference
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "product_id",referencedColumnName = "id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
     @JsonBackReference
     @OneToOne(mappedBy = "auction")
     private Payment payment;
+
     public Auction() {
-    }
-
-    public Boolean getDeleteStatus() {
-        return deleteStatus;
-    }
-
-    public void setDeleteStatus(Boolean deleteStatus) {
-        this.deleteStatus = deleteStatus;
-    }
-
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 
     public Integer getId() {
@@ -86,6 +62,14 @@ public class Auction {
         this.auctionTime = auctionTime;
     }
 
+//    public Boolean getPayStatus() {
+//        return payStatus;
+//    }
+
+//    public void setPayStatus(Boolean payStatus) {
+//        this.payStatus = payStatus;
+//    }
+
     public Boolean getAuctionStatus() {
         return auctionStatus;
     }
@@ -94,11 +78,44 @@ public class Auction {
         this.auctionStatus = auctionStatus;
     }
 
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+
+    public String getAuctionDay() {
+        return auctionDay;
+    }
+
+    public void setAuctionDay(String auctionDay) {
+        this.auctionDay = auctionDay;
+    }
+
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+
     }
 }
