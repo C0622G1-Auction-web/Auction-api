@@ -15,18 +15,20 @@ public class Auction {
     private Integer id;
     private Double currentPrice;
     private String auctionTime;
-    private Boolean payStatus;
     @Column(columnDefinition = "boolean default false")
     private Boolean auctionStatus;
     @Column(columnDefinition = "boolean default false")
     private Boolean deleteStatus;
 
+    private String auctionDay;
+
+    @JsonBackReference
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
-    @JsonBackReference
     private User user;
 
+    @JsonBackReference
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_id",referencedColumnName = "id")

@@ -1,4 +1,13 @@
 package com.project.dto.product;
+<<<<<<< HEAD
+=======
+
+import com.project.model.auction.Auction;
+import com.project.model.product.*;
+import com.project.model.users.User;
+
+import java.util.Set;
+>>>>>>> d9627a690292327b68a518cbd50cd346503713c6
 
 import com.project.dto.user.UserDto;
 import com.project.model.auction.Auction;
@@ -13,6 +22,8 @@ import java.util.Set;
 
 public class ProductDto implements Validator {
     private int id;
+    private String fullName;
+    private Double maxCurrentPrice;
 
     @NotNull(message = "Name of product not null")
     @NotBlank(message = "Please input Name of Product")
@@ -42,6 +53,10 @@ public class ProductDto implements Validator {
 
     private UserDto userDto;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d9627a690292327b68a518cbd50cd346503713c6
     private Boolean deleteStatus;
     private String registerDay;
     private PriceStep priceStep;
@@ -211,5 +226,45 @@ public class ProductDto implements Validator {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public PriceStepDto getPriceStepDto() {
+        return priceStepDto;
+    }
+
+    public void setPriceStepDto(PriceStepDto priceStepDto) {
+        this.priceStepDto = priceStepDto;
+    }
+
+    public CategoryDto getCategoryDto() {
+        return categoryDto;
+    }
+
+    public void setCategoryDto(CategoryDto categoryDto) {
+        this.categoryDto = categoryDto;
+    }
+
+    public UserDto getUserDto() {
+        return userDto;
+    }
+
+    public void setUserDto(UserDto userDto) {
+        this.userDto = userDto;
+    }
+
+    public Double getMaxCurrentPrice() {
+        return maxCurrentPrice;
+    }
+
+    public void setMaxCurrentPrice(Double maxCurrentPrice) {
+        this.maxCurrentPrice = maxCurrentPrice;
     }
 }

@@ -10,11 +10,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Repository
-@Transactional
 public interface IGuideRepository extends JpaRepository<Guide, Integer> {
     /**
 
@@ -25,7 +23,11 @@ public interface IGuideRepository extends JpaRepository<Guide, Integer> {
      * Create by: QuangND,
      * Date created: 13/12/2022
      * Function: find all guide in DB
+<<<<<<< HEAD
+     *
+=======
 
+>>>>>>> add4b878c187060ab440b6aba8d1c0d71a564518
      * @return list of guide
      */
 
@@ -38,8 +40,9 @@ public interface IGuideRepository extends JpaRepository<Guide, Integer> {
      * Create by: QuangND,
      * Date created: 13/12/2022
      * Function: find a guide in DB by id of guide
-     * @Param id
+     *
      * @return a guide match with id
+     * @Param id
      */
 
     @Query(value = "SELECT * FROM `guide` WHERE `guide`.id=:id AND guide.delete_status=true", nativeQuery = true)
@@ -49,12 +52,12 @@ public interface IGuideRepository extends JpaRepository<Guide, Integer> {
      * Create by: QuangND,
      * Date created: 13/12/2022
      * Function: Create a new guide insert to DB
-     * @Param title, content
      *
+     * @Param title, content
      */
-
     @Modifying
-    @Query(value = "INSERT INTO guide (title,content) VALUES (:title,:content)", nativeQuery = true)
+    @Transactional
+    @Query(value = "INSERT INTO guide (title,content) VALUES (:title,:content) ON DUPLICATE KEY UPDATE", nativeQuery = true)
     void createGuide(@Param("title") String title,
                      @Param("content") String content);
 
@@ -62,8 +65,8 @@ public interface IGuideRepository extends JpaRepository<Guide, Integer> {
      * Create by: QuangND,
      * Date created: 13/12/2022
      * Function: Update a guide with id in DB
-     * @Param id, title, content
      *
+     * @Param id, title, content
      */
 
     @Modifying

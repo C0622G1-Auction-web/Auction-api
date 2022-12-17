@@ -17,26 +17,28 @@ public class Product {
     private Double initialPrice;
     private String startTime;
     private String endTime;
-    @Column(columnDefinition = "boolean default true")
+    @Column(columnDefinition = "boolean default false")
     private Boolean deleteStatus;
     private String registerDay;
-
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "price_step_id", referencedColumnName = "id")
     private PriceStep priceStep;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "review_status_id", referencedColumnName = "id")
     private ReviewStatus reviewStatus;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "auction_status_id", referencedColumnName = "id")
     private AuctionStatus auctionStatus;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
-
 
     @JsonBackReference
     @OneToMany(mappedBy = "product")
@@ -46,9 +48,9 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<Auction> auctions;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @JsonBackReference
     private User user;
 
     public Product() {

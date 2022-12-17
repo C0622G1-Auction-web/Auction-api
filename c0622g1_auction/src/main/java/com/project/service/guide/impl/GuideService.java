@@ -1,5 +1,9 @@
-package com.project.service.guide.impl;
+/**Create By QuangND
+Service: Guide Service
+create Dat:16/12/2022
+**/
 
+package com.project.service.guide.impl;
 import com.project.model.guide.Guide;
 import com.project.repository.guide.IGuideRepository;
 import com.project.service.guide.IGuideService;
@@ -37,8 +41,9 @@ public class GuideService implements IGuideService {
 
     @Override
     public void createGuide(Guide guide) {
-        guideRepository.createGuide(guide.getTitle(),guide.getContent());
+        guideRepository.save(guide);
     }
+
 
     @Override
     public void updateGuide(Guide guide) {

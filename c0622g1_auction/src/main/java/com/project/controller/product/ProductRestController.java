@@ -1,9 +1,8 @@
 package com.project.controller.product;
 
-import com.project.dto.ProductDto;
+import com.project.dto.product.IProductDto;
 import com.project.model.product.Product;
 import com.project.model.product.ReviewStatus;
-import com.project.model.users.User;
 import com.project.service.product.IProductService;
 import com.project.service.product.IReviewStatusService;
 import com.project.service.users.IUserService;
@@ -14,30 +13,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.project.dto.product.ProductDto;
-import com.project.model.product.Product;
-import com.project.service.product.IProductService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 import com.project.dto.ProductSearchByRoleAdminDto;
-import com.project.dto.product.ProductDto;
 import com.project.dto.product.ProductSearchDto;
-import com.project.model.product.Product;
-import com.project.service.product.IProductService;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+
 import java.util.function.Function;
 
 
@@ -54,10 +38,8 @@ public class ProductRestController {
     private IProductService productService;
 
     @Autowired
-    private IUserService iUserService;
-
-    @Autowired
     private IReviewStatusService iReviewStatusService;
+
 
     /**
      * Create by AnhTDQ
@@ -67,9 +49,9 @@ public class ProductRestController {
      * @return HttpStatus.NO_CONTENT if not found any product /  HttpStatus.OK and Products page if found
      */
 
-    @GetMapping("list")
-    public ResponseEntity<Page<ProductDto>> historyProduct(Integer id, Pageable pageable) {
-        Page<ProductDto> productList = productService.showProductById(5, pageable);
+    @GetMapping("/list/{id}")
+    public ResponseEntity<Page<IProductDto>> historyProduct(Integer id, Pageable pageable) {
+        Page<IProductDto> productList = productService.showProductById(1, pageable);
 
         if (productList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -109,6 +91,7 @@ public class ProductRestController {
         }
         return new ResponseEntity<>(reviewStatusList,HttpStatus.OK);
     }
+
 
     /**
      * Created by: SonPT

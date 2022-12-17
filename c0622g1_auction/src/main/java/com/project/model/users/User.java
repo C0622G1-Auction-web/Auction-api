@@ -23,20 +23,17 @@ public class User {
     private String avatar;
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "address_id",referencedColumnName = "id")
-    @JsonBackReference
     private Address address;
-
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_type_id",referencedColumnName = "id")
-    @JsonBackReference
     private UserType userType;
-
     @JsonBackReference
     @OneToMany(mappedBy="user")
     private Set<Auction> auctions;
-
     @OneToOne
     @JoinColumn(name = "account_id",referencedColumnName = "id")
     @JsonBackReference
