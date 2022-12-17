@@ -46,8 +46,26 @@ public class UserDto implements Validator {
     private String password;
     private List<String> emailList;
     private UserType userType;
+    private AddressDto addressDto;
+    private AccountDto accountDto;
     public UserDto() {
     }
+
+    public UserDto(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, AddressDto addressDto, AccountDto accountDto) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.pointDedication = pointDedication;
+        this.birthDay = birthDay;
+        this.idCard = idCard;
+        this.avatar = avatar;
+        this.addressDto = addressDto;
+        this.accountDto = accountDto;
+
+    }
+
+
     public Integer getId() {
         return id;
     }

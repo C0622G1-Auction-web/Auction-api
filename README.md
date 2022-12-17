@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+# BE-Auction-web
+
+HuyNV: test commit
+=======
+Hello tiến huy
+>>>>>>> 36e019559080780e3aa592ba0c210420f2b24902
+=======
 # BE-Auction-web
 <<<<<<< HEAD
 =======
@@ -16,3 +25,4 @@ DucDH test1
 tien
 >>>>>>> 14a5abf94087479d86462c46f3e7e5fff1310c4b
 >>>>>>> 503fa03357badf99ebaebfdca637bc0cf1c5b5c5
+>>>>>>> dev

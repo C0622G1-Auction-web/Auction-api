@@ -4,6 +4,7 @@ import com.project.model.account.AccountRole;
 import com.project.model.account.LockAccount;
 import com.project.model.account.PasswordResetToken;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.model.users.User;
 
 import javax.persistence.*;

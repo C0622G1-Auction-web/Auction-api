@@ -30,4 +30,5 @@ public interface ICategoryService {
 
     Category getCategory(Integer categoryInteger);
 
+    List<Category> getListCategory();
 }

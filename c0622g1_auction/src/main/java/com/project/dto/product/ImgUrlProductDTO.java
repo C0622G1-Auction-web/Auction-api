@@ -1,5 +1,8 @@
 package com.project.dto.product;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 

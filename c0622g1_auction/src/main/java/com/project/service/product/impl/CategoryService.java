@@ -25,6 +25,11 @@ public class CategoryService implements ICategoryService {
         return categoryRepository.findAll();
     }
 
+    @Override
+    public List<Category> getListCategory() {
+        return categoryRepository.listCategory();
+    }
+
     /**
      * Created by: SonPT
      * Date created: 13-12-2022
@@ -44,7 +49,7 @@ public class CategoryService implements ICategoryService {
      */
 
     @Override
-    public Category getCategory(Integer categoryInteger) {
-        return categoryRepository.findById(categoryInteger).orElse(null);
+    public Category getCategory(Integer category) {
+        return categoryRepository.findById(category).orElse(null);
     }
 }

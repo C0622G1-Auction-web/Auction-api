@@ -1,32 +1,23 @@
 package com.project.dto.product;
 
-
 import com.project.model.product.Product;
-import org.springframework.validation.Errors;
-import org.springframework.validation.Validator;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
-public class CategoryDto implements Validator {
-
-    private int id;
-
-    @NotBlank(message = "Please input name category")
+public class CategoryDTO {
+    private Integer id;
     private String name;
-
     private Set<Product> products;
 
-    public CategoryDto() {
+    public CategoryDTO() {
     }
 
-    public CategoryDto(String name) {
+    public CategoryDTO(String name) {
         this.name = name;
     }
 
-    public CategoryDto(int id, String name, Set<Product> products) {
+
+    public CategoryDTO(int id, String name, Set<Product> products) {
         this.id = id;
         this.name = name;
         this.products = products;
@@ -36,7 +27,7 @@ public class CategoryDto implements Validator {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -54,15 +45,5 @@ public class CategoryDto implements Validator {
 
     public void setProducts(Set<Product> products) {
         this.products = products;
-    }
-
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return false;
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
-
     }
 }

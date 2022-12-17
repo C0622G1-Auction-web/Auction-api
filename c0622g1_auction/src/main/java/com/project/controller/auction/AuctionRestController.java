@@ -1,11 +1,13 @@
 package com.project.controller.auction;
 
 import com.project.dto.AuctionDto;
+import com.project.dto.auction.TransactionSearchDto;
 import com.project.dto.product.ProductDto;
 import com.project.dto.product.IAuctionProductDto;
 import com.project.dto.product.ProductDto;
 import com.project.model.auction.Auction;
 import com.project.model.product.Product;
+import com.project.service.auction.IAuctionService;
 import com.project.service.auction.impl.AuctionService;
 import com.project.service.product.IProductService;
 import com.project.service.users.IUserService;
@@ -20,6 +22,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -27,15 +30,51 @@ import java.util.function.Function;
 @RequestMapping("/api/v1/auction")
 @CrossOrigin("*")
 public class AuctionRestController {
-
     @Autowired
-    private AuctionService auctionService;
+    private IAuctionService auctionService;
 
     @Autowired
     private IProductService productService;
 
     @Autowired
     private IUserService userService;
+
+    /**
+     * Created by : HuyNV,
+     * Date created: 13/12/2022
+     * Function: to list and search transaction
+     *
+     * @return HttpStatus.OK
+     */
+    @GetMapping("/transaction")
+    public ResponseEntity<Page<Auction>> getTransactionList(
+            @RequestBody TransactionSearchDto transactionSearchDto,
+            @PageableDefault(value = 5) Pageable pageable
+    ) {
+        Page<Auction> transactionPage = auctionService.findAllTransaction(transactionSearchDto, pageable);
+        if (transactionPage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(transactionPage, HttpStatus.OK);
+    }
+
+    /**
+     * Created by : HuyNV,
+     * Date created: 14/12/2022
+     * Function: to delete transactions by idList
+     *
+     * @param idList
+     * @return HttpStatus.NOT_FOUND if exists not found transaction
+     */
+    @PutMapping("/delete")
+    public ResponseEntity<List<Auction>> remove(@RequestBody List<Integer> idList) {
+        List<Auction> transactionList = auctionService.findByListId(idList);
+        if (idList.size() != transactionList.size()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        auctionService.removeByListId(idList);
+        return new ResponseEntity<>(transactionList, HttpStatus.OK);
+    }
 
     /**
      * Created by: TienBM,
