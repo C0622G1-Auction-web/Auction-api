@@ -42,7 +42,6 @@ public class Product {
     @JoinColumn(name = "category_id",referencedColumnName = "id")
     private Category category;
 
-
     @OneToMany(mappedBy = "product")
     @JsonBackReference
     private Set<ImgUrlProduct> imgUrlProducts;

@@ -4,6 +4,7 @@ package com.project.repository.product;
 import com.project.dto.product.ProductSearchByRoleAdminDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
+import com.project.model.product.dto.ProductDtoAdminList;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -124,11 +125,26 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * @param pageable
      * @return product page
      */
-    @Query(value = "select pt.* " +
+    @Query(value = "select " +
+            "pt.id as id, " +
+            "pt.delete_status as deleteStatus, " +
+            "pt.description , " +
+            "pt.end_time as endTime, " +
+            "pt.initial_price as initialPrice, " +
+            "pt.name, " +
+            "pt.register_day as registerDay, " +
+            "pt.start_time as startTime, " +
+            "aus.name as auctionStatus, " +
+            "cy.name as category, " +
+            "pp.step as priceStep, " +
+            "rs.name as reviewStatus, " +
+            "concat(ur.first_name,' ',ur.last_name) as userName " +
             "from `product` pt " +
             "join `category` cy on pt.category_id = cy.id " +
             "join `user` ur on pt.user_id = ur.id " +
             "join `auction_status` aus on pt.auction_status_id = aus.id " +
+            "join `price_step` pp on pt.price_step_id = pp.id " +
+            "join `review_status` rs on pt.review_status_id = rs.id " +
             "where pt.delete_status = 0 " +
             "and pt.name like %:#{#productSearchByRoleAdminDto.productName}% " +
             "and cy.name like %:#{#productSearchByRoleAdminDto.categoryName}% " +
@@ -137,8 +153,8 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "and pt.initial_price <= :#{#productSearchByRoleAdminDto.maxPrice}) " +
             "and aus.name like %:#{#productSearchByRoleAdminDto.auctionStatusName}% "
             ,nativeQuery = true)
-    Page<Product> searchByRoleAdmin(@Param("productSearchByRoleAdminDto") ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
-                                    Pageable pageable);
+    Page<ProductDtoAdminList> searchByRoleAdmin(@Param("productSearchByRoleAdminDto") ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
+                                                Pageable pageable);
 
 
     /**
@@ -152,8 +168,6 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     @Query(value = "select * from product where id = :id and delete_status = 0", nativeQuery = true)
     Optional<Product> findById(@Param("id") Integer id);
 
-
-
      /**
      * Created SangDD
      * Date created 13/12/2022
@@ -164,7 +178,6 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * @param pageable
      * @return Page<Product>
      */
-
     @Query(value = "SELECT " +
             "id, " +
             "name, " +

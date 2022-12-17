@@ -5,8 +5,8 @@ import com.project.dto.product.ProductSearchByRoleAdminDto;
 import com.project.model.product.Product;
 import com.project.model.product.dto.ProductDTO;
 import com.project.dto.product.ProductSearchDto;
-import com.project.model.product.Product;
 
+import com.project.model.product.dto.ProductDtoAdminList;
 import com.project.repository.product.IProductRepository;
 import com.project.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,7 +101,7 @@ public class ProductService implements IProductService {
      * @return product page
      */
     @Override
-    public Page<Product> searchByRoleAdmin(ProductSearchByRoleAdminDto productSearchByRoleAdminDto, Pageable
+    public Page<ProductDtoAdminList> searchByRoleAdmin(ProductSearchByRoleAdminDto productSearchByRoleAdminDto, Pageable
             pageable) {
         return productRepository.searchByRoleAdmin(productSearchByRoleAdminDto, pageable);
     }

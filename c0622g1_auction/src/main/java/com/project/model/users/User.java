@@ -25,8 +25,8 @@ public class User {
     private String avatar;
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
-    @OneToOne
 
+    @OneToOne
     @JsonIgnore
     @JoinColumn(name = "address_id",referencedColumnName = "id")
     @JsonBackReference

@@ -10,6 +10,7 @@ import com.project.model.product.PriceStep;
 import com.project.model.product.Product;
 import com.project.model.product.dto.ImgUrlProductDTO;
 import com.project.model.product.dto.ProductDTO;
+import com.project.model.product.dto.ProductDtoAdminList;
 import com.project.service.product.ICategoryService;
 import com.project.service.product.IImgUrlProductService;
 import com.project.service.product.IPriceStepService;
@@ -297,14 +298,13 @@ public class ProductRestController {
      * @param pageable
      * @return HttpStatus.NO_CONTENT if not found any product /  HttpStatus.OK and Products page if found
      */
-    @GetMapping("/search-by-admin")
-    public ResponseEntity<Page<Product>> searchByRoleAdmin(@RequestBody ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
-                                                           @PageableDefault(value = 5) Pageable pageable) {
-        Page<Product> productPage = productService.searchByRoleAdmin(productSearchByRoleAdminDto, pageable);
-        if (productPage.isEmpty()) {
+    @PostMapping("/search-by-admin")
+    public ResponseEntity<Page<ProductDtoAdminList>> searchByRoleAdmin(@RequestBody ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
+                                                                       @PageableDefault(value = 5) Pageable pageable) {
+        Page<ProductDtoAdminList> productDtoPage = productService.searchByRoleAdmin(productSearchByRoleAdminDto, pageable);
+        if (productDtoPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<Page<Product>>(productPage, HttpStatus.OK);
+        return new ResponseEntity<Page<ProductDtoAdminList>>(productDtoPage, HttpStatus.OK);
     }
-
 }
