@@ -1,15 +1,15 @@
-package com.project.model.product.dto;
+package com.project.dto.product;
 
 import com.project.model.product.Product;
 
 import java.util.Set;
 
-public class CategoryDTO {
+public class AuctionStatusDTO {
     private Integer id;
     private String name;
     private Set<Product> products;
 
-    public CategoryDTO() {
+    public AuctionStatusDTO() {
     }
 
     public Integer getId() {

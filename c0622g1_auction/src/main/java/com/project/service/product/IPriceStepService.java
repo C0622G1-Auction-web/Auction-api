@@ -32,4 +32,6 @@ public interface IPriceStepService {
 
     PriceStep getPriceStep(Integer priceStep);
 
+    List<PriceStep> getListPriceStep();
+
 }

@@ -114,6 +114,12 @@ public interface IUserService {
     void updateUserByRoleAdmin(User user);
 
     /**
+     * By: HungNV - Find user id
+     */
+    User getUser(Integer id);
+
+
+    /**
      * By: HaiNT - Find list of address by AddressId
      */
     void unlockAccountByIdList(List<Integer> idList);
@@ -124,6 +130,5 @@ public interface IUserService {
 
     Optional<Address> findByAddressId(Integer id);
 
-    User getUser(Integer user);
 }
 

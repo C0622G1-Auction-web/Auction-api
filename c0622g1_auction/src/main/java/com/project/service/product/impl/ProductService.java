@@ -1,11 +1,23 @@
 package com.project.service.product.impl;
 
 
+
+import com.project.dto.product.ProductDtoCreate;
+
 import com.project.dto.product.ProductSearchByRoleAdminDto;
 import com.project.dto.product.ProductDto;
+
+
+import com.project.model.product.Product;
+
+
+
+import com.project.dto.product.ProductSearchDto;
+
+
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
-import com.project.model.product.dto.ProductDTO;
+
 import com.project.repository.product.IProductRepository;
 import com.project.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +57,6 @@ public class ProductService implements IProductService {
     @Override
     public void cancelProduct(Integer id) {
         productRepository.cancelProduct(id);
-    }
-
-    @Override
-    public void saveProduct(Product product) {
-
     }
 
     /**
@@ -92,18 +99,13 @@ public class ProductService implements IProductService {
         return productRepository.findProductById(productId);
     }
     @Override
-    public void saveProduct(ProductDTO productDTO) {
-        productRepository.saveProduct(productDTO.getName(), productDTO.getInitialPrice(), productDTO.getUser(),
-                productDTO.getCategory(), productDTO.getDescription(), productDTO.getPriceStep(),
-                productDTO.getStartTime(), productDTO.getEndTime(), productDTO.getRegisterDay(),productDTO.getAuctionStatus(),productDTO.getReviewStatus());
+    public void saveProduct(Product product) {
+        productRepository.save(product);
     }
 
     @Override
-    public void update(ProductDTO productDTO) {
-        productRepository.updateProduct(productDTO.getName(), productDTO.getInitialPrice(), productDTO.getUser(),
-                productDTO.getCategory(), productDTO.getDescription(), productDTO.getPriceStep(),
-                productDTO.getStartTime(), productDTO.getEndTime(), productDTO.getRegisterDay(), productDTO.getId());
-
+    public void update(Product product) {
+        productRepository.save(product);
     }
 
     /**
@@ -198,6 +200,20 @@ public class ProductService implements IProductService {
     public Page<Product> getAllAndSearch(ProductSearchDto productSearchDto, Pageable pageable) {
         return productRepository.getAllAndSearch(productSearchDto, pageable);
 
+    }
+
+
+    /**
+     * Created HungNV
+     * Date created 16/12/2022
+     * Function: get product by id
+     *
+     * @param id
+     * @return Product
+     */
+    @Override
+    public Product getProduct(Integer id) {
+        return productRepository.findById(id).orElse(null);
     }
 
 }

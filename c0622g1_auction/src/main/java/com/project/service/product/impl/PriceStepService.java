@@ -50,4 +50,9 @@ public class PriceStepService implements IPriceStepService {
     public PriceStep getPriceStep(Integer priceStep) {
         return priceStepRepository.findById(priceStep).orElse(null);
     }
+
+    @Override
+    public List<PriceStep> getListPriceStep() {
+        return null;
+    }
 }

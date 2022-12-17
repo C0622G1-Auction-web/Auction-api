@@ -1,9 +1,11 @@
 package com.project.dto.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.auction.Auction;
 import com.project.model.product.*;
 import com.project.model.users.User;
 
+import javax.persistence.*;
 import java.util.Set;
 
 import com.project.dto.user.UserDto;
@@ -40,28 +42,49 @@ public class ProductDto implements Validator {
     private String endTime;
 
     @NotBlank(message = "Please input step price to auction Product")
-    private PriceStepDto priceStepDto;
+    private PriceStepDTO priceStepDto;
 
     @NotBlank(message = "Please select options category to auction Product")
-    private CategoryDto categoryDto;
+    private CategoryDTO categoryDto;
 
     private UserDto userDto;
 
 
     private Boolean deleteStatus;
     private String registerDay;
+
+
+
     private PriceStep priceStep;
+
+
+
     private ReviewStatus reviewStatus;
+
+
+
     private AuctionStatus auctionStatus;
+
+
+
     private Category category;
+
+
+
+
     private Set<ImgUrlProduct> imgUrlProducts;
+
+
+
     private Set<Auction> auctions;
+
+
     private User user;
 
     public ProductDto() {
     }
 
-    public ProductDto(int id, String name, String description, Double initialPrice, String startTime, String endTime, PriceStepDto priceStepDto, CategoryDto categoryDto, UserDto userDto) {
+    public ProductDto(int id, String name, String description, Double initialPrice, String startTime, String endTime, PriceStepDTO priceStepDto, CategoryDTO categoryDto, UserDto userDto) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -122,12 +145,15 @@ public class ProductDto implements Validator {
     }
 
 
-    public void setPriceStep(PriceStepDto priceStepDto) {
+    public void setPriceStepDto(PriceStepDTO priceStepDto) {
         this.priceStepDto = priceStepDto;
     }
 
+    public void setCategoryDto(CategoryDTO categoryDto) {
+        this.categoryDto = categoryDto;
+    }
 
-    public void setCategory(CategoryDto categoryDto) {
+    public void setCategory(CategoryDTO categoryDto) {
         this.categoryDto = categoryDto;
     }
 
@@ -230,20 +256,13 @@ public class ProductDto implements Validator {
         this.fullName = fullName;
     }
 
-    public PriceStepDto getPriceStepDto() {
+    public PriceStepDTO getPriceStepDto() {
         return priceStepDto;
     }
 
-    public void setPriceStepDto(PriceStepDto priceStepDto) {
-        this.priceStepDto = priceStepDto;
-    }
 
-    public CategoryDto getCategoryDto() {
+    public CategoryDTO getCategoryDto() {
         return categoryDto;
-    }
-
-    public void setCategoryDto(CategoryDto categoryDto) {
-        this.categoryDto = categoryDto;
     }
 
     public UserDto getUserDto() {

@@ -39,15 +39,30 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * Date created: 14/12/2022
      * Function: create new product
      *
+<<<<<<< HEAD
      * @param name,         initialPrice,  id,  category,  description,  stepPrice,  startTime,  endTime, registerDay, auctionStatus, reviewStatus
      * @param auctionStatus
      * @param reviewStatus
+=======
+     * @param  name,  initialPrice,  id,  category,  description,  stepPrice,  startTime,  endTime, registerDay
+>>>>>>> 526bef3fb831c0a63074a264d7eb16f67a1d35e1
      * @return Optional<Product>
      */
     @Modifying
     @Query(value = "insert into product (name,initial_price,user_id,category_id, description, price_step_id,start_time, end_time, register_day, auction_status_id, review_status_id) " +
-            "values (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)", nativeQuery = true)
-    void saveProduct(String name, Double initialPrice, Integer user, Integer category, String description, Integer stepPrice, String startTime, String endTime, String registerDay, Integer auctionStatus, Integer reviewStatus);
+            "values (?1,?2,?3,?4,?5,?6,?7,?8,?9,1,1)", nativeQuery = true)
+    void saveProduct(String name, Double initialPrice, Integer user, Integer category, String description, Integer stepPrice, String startTime, String endTime, String registerDay);
+
+
+    /**
+     * Create by: HungNV
+     * Date created: 16/12/2022
+     * Function: get last id
+     *
+     * @return Optional<Product>
+     */
+    @Query(value ="select last_insert_id()",nativeQuery = true)
+    Integer getLastId();
 
     /**
      * Create by: HungNV
@@ -214,6 +229,4 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "ORDER BY product.start_time DESC",
             nativeQuery = true)
     Page<Product> getAllAndSearch(@Param("productSearchDto") ProductSearchDto productSearchDto, Pageable pageable);
-
-
 }

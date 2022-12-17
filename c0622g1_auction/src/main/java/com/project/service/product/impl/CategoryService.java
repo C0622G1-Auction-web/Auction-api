@@ -49,7 +49,7 @@ public class CategoryService implements ICategoryService {
      */
 
     @Override
-    public Category getCategory(Integer categoryInteger) {
-        return categoryRepository.findById(categoryInteger).orElse(null);
+    public Category getCategory(Integer category) {
+        return categoryRepository.findById(category).orElse(null);
     }
 }

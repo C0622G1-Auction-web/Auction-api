@@ -484,7 +484,10 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param id
      * @return Optional<Address>
      */
-    @Query(value = "SELECT * FROM auction_api.address WHERE id = :id ",
+    @Query(value = "select * " +
+            "from user u " +
+            "where u.id= :id " +
+            "and u.delete_status= 0 ",
             nativeQuery = true)
     Optional<Address> findUserByAddressId(@Param("id") Integer id);
 

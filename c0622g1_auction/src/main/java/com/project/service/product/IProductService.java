@@ -1,10 +1,10 @@
 package com.project.service.product;
 
-import com.project.dto.product.ProductSearchByRoleAdminDto;
+
 import com.project.dto.product.ProductDto;
+import com.project.dto.product.ProductSearchByRoleAdminDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
-import com.project.model.product.dto.ProductDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -52,10 +52,6 @@ public interface IProductService {
     Optional<Product> findProductById(Integer productId);
 
 
-
-
-
-
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
@@ -66,9 +62,7 @@ public interface IProductService {
      */
     Optional<Product> findById(Integer id);
 
-    void saveProduct(ProductDTO ProductDTO);
-
-    void update(ProductDTO ProductDTO);
+    void update(Product product);
 
     /**
      * Create by: GiangLBH
@@ -139,4 +133,16 @@ public interface IProductService {
      * @return Page<Product>
      */
     Page<Product> getAllAndSearch(ProductSearchDto productSearchDto, Pageable pageable);
+
+
+    /**
+     * Created HungNV
+     * Date created 13/12/2022
+     * Function: get product by id
+     *
+     * @param id
+     * @return product
+     */
+    Product getProduct(Integer id);
+
 }
