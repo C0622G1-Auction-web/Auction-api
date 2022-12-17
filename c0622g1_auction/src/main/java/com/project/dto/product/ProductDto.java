@@ -6,13 +6,48 @@ import com.project.model.users.User;
 
 import java.util.Set;
 
-public class ProductDto {
+import com.project.dto.user.UserDto;
+import com.project.model.users.User;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+public class ProductDto implements Validator {
     private int id;
+    private String fullName;
+    private Double maxCurrentPrice;
+
+    @NotNull(message = "Name of product not null")
+    @NotBlank(message = "Please input Name of Product")
     private String name;
+
+    @NotNull(message = "Description of product not null")
+    @NotBlank(message = "Please input Description of Product")
     private String description;
+
+    @NotNull(message = "Initial Price of product not null")
+    @NotBlank(message = "Please input initial Price of Product")
     private Double initialPrice;
+
+    @NotNull(message = "Start Time of product not null")
+    @NotBlank(message = "Please input start time to auction Product")
     private String startTime;
+
+    @NotNull(message = "End Time of product not null")
+    @NotBlank(message = "Please input end time to auction Product")
     private String endTime;
+
+    @NotBlank(message = "Please input step price to auction Product")
+    private PriceStepDto priceStepDto;
+
+    @NotBlank(message = "Please select options category to auction Product")
+    private CategoryDto categoryDto;
+
+    private UserDto userDto;
+
+
     private Boolean deleteStatus;
     private String registerDay;
     private PriceStep priceStep;
@@ -24,6 +59,18 @@ public class ProductDto {
     private User user;
 
     public ProductDto() {
+    }
+
+    public ProductDto(int id, String name, String description, Double initialPrice, String startTime, String endTime, PriceStepDto priceStepDto, CategoryDto categoryDto, UserDto userDto) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.initialPrice = initialPrice;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.priceStepDto = priceStepDto;
+        this.categoryDto = categoryDto;
+        this.userDto = userDto;
     }
 
     public int getId() {
@@ -72,6 +119,35 @@ public class ProductDto {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+
+    public void setPriceStep(PriceStepDto priceStepDto) {
+        this.priceStepDto = priceStepDto;
+    }
+
+
+    public void setCategory(CategoryDto categoryDto) {
+        this.categoryDto = categoryDto;
+    }
+
+
+    public void setUser(UserDto userDto) {
+        this.userDto = userDto;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        ProductDto productDto = (ProductDto) target;
+
+        if (!productDto.name.matches("[A-Za-z ]+")) {
+            errors.rejectValue("name", "name.invalidFormat");
+        }
     }
 
     public Boolean getDeleteStatus() {
@@ -144,5 +220,45 @@ public class ProductDto {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public PriceStepDto getPriceStepDto() {
+        return priceStepDto;
+    }
+
+    public void setPriceStepDto(PriceStepDto priceStepDto) {
+        this.priceStepDto = priceStepDto;
+    }
+
+    public CategoryDto getCategoryDto() {
+        return categoryDto;
+    }
+
+    public void setCategoryDto(CategoryDto categoryDto) {
+        this.categoryDto = categoryDto;
+    }
+
+    public UserDto getUserDto() {
+        return userDto;
+    }
+
+    public void setUserDto(UserDto userDto) {
+        this.userDto = userDto;
+    }
+
+    public Double getMaxCurrentPrice() {
+        return maxCurrentPrice;
+    }
+
+    public void setMaxCurrentPrice(Double maxCurrentPrice) {
+        this.maxCurrentPrice = maxCurrentPrice;
     }
 }

@@ -11,8 +11,50 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+
+
+
 public interface IUserService {
+
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to update user
+     * @return User
+     */
+
+    void updateUser(User user);
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to create user
+     * @return User
+     */
+
+    void createUser(User user);
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user by id
+     * @param id
+     * @return User
+     */
+
+    Optional<User> findUserById(int id);
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find all user list
+     * @return List<User>
+     */
+    List<User> findAll();
+
+
+
     /**
      * Create by: VietNQ
      * Date created: 13/12/2022
@@ -27,12 +69,6 @@ public interface IUserService {
      */
     Page<User> getUserBy(String id, String name, String email, String userTypeId, String address, Pageable pageable);
 
-    /**
-     * By: HaiNT - Find list of users by id
-     *
-     * @param id
-     */
-    Optional<User> findById(Integer id);
 
     /**
      * By: HaiNT - Find list of users by idList
@@ -41,10 +77,6 @@ public interface IUserService {
      */
     List<User> findByIdList(List<Integer> id);
 
-    /**
-     * By: HaiNT - Find list of address by AddressId
-     */
-    Optional<Address> findByAddressId(int id);
 
     /**
      * By: HaiNT - Find list of address by AddressId
@@ -56,7 +88,13 @@ public interface IUserService {
      */
     void updateAddressByRoleAdmin(User user);
 
-    void updateUser(User user);
+
+    /**
+     * By: HaiNT - Find list of users by id
+     *
+     * @param id
+     */
+    Optional<User> findById(Integer id);
 
     void unlockUser(List<Integer> idList);
 
@@ -81,5 +119,11 @@ public interface IUserService {
     void unlockAccountByIdList(List<Integer> idList);
 
     void lockUser(List<Integer> id);
+    User findUserByAccount(Account account);
+
+
+    Optional<Address> findByAddressId(Integer id);
+
+    User getUser(Integer user);
 }
 

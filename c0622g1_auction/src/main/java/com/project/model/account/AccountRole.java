@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Entity
 public class AccountRole {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -46,4 +47,5 @@ public class AccountRole {
     public void setRole(Role role) {
         this.role = role;
     }
+
 }
