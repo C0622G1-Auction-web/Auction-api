@@ -1,13 +1,20 @@
 package com.project.controller.security;
 
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
 import com.project.model.account.Account;
 import com.project.payload.request.LoginForm;
+import com.project.payload.request.TokenDto;
 import com.project.payload.respone.JwtRespone;
 import com.project.payload.respone.MessageRespone;
 import com.project.security.jwt.JwtProvider;
 import com.project.security.user_detail.MyUserDetail;
 import com.project.service.account.IAccountService;
+import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,10 +25,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.util.Collections;
+
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/v1/auth")
 public class SecurityController {
+
+    @Value("${google.client-id}")
+    private String googleClientId;
 
     @Autowired
     private IAccountService accountService;
@@ -31,6 +44,9 @@ public class SecurityController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private IUserService userService;
 
     /**
      * Created by DucDH,
@@ -67,5 +83,27 @@ public class SecurityController {
         return new ResponseEntity<>(new JwtRespone(token, myUserDetail.getUsername(),
                 myUserDetail.getAuthorities()), HttpStatus.OK);
     }
+
+    @PostMapping("/google")
+    public ResponseEntity<?> loginWithGoogle(@RequestBody TokenDto tokenDto) throws IOException {
+
+        final NetHttpTransport transport = new NetHttpTransport();
+        final JacksonFactory jacksonFactory = JacksonFactory.getDefaultInstance();
+
+        GoogleIdTokenVerifier.Builder verifier = new GoogleIdTokenVerifier.Builder(transport, jacksonFactory)
+                .setAudience(Collections.singletonList(googleClientId));
+
+        final GoogleIdToken googleIdToken = GoogleIdToken.parse(verifier.getJsonFactory(), tokenDto.getValue());
+        final GoogleIdToken.Payload payload = googleIdToken.getPayload();
+
+        String email = payload.getEmail();
+
+
+
+        JwtRespone jwtRespone = new JwtRespone();
+
+        return null;
+    }
+
 
 }
