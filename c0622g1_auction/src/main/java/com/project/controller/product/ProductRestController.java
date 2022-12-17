@@ -1,14 +1,8 @@
 package com.project.controller.product;
 
 
-<<<<<<< HEAD
 import com.project.dto.product.ProductDtoCreate;
-=======
-
 import com.project.dto.product.ProductSearchByRoleAdminDto;
-
-
->>>>>>> 801e665c1da45a3e3fe45a72182de87023e5ee32
 import com.project.model.product.*;
 import com.project.dto.product.ImgUrlProductDTO;
 import com.project.model.users.User;
@@ -28,7 +22,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 
 
 import com.project.dto.product.ProductDto;
@@ -67,6 +60,7 @@ public class ProductRestController {
 
     @Autowired
     private IUserService userService;
+
     /**
      * Create by: HungNV,
      * Date created: 15/12/2022
@@ -135,7 +129,6 @@ public class ProductRestController {
         Date date = new Date();
         productDTO.setRegisterDay(String.valueOf(date));
         Product product = new Product();
-
         BeanUtils.copyProperties(productDTO, product);
         PriceStep priceStep = priceStepService.getPriceStep(productDTO.getPriceStep());
         product.setPriceStep(priceStep);
@@ -147,7 +140,6 @@ public class ProductRestController {
         product.setAuctionStatus(auctionStatus);
         User user = userService.getUser(productDTO.getUser());
         product.setUser(user);
-        product.isDeleteStatus();
         productService.saveProduct(product);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
@@ -160,15 +152,25 @@ public class ProductRestController {
      * @param productDTO,bindingResult
      * @return HttpStatus.create or (bindingResult.getFieldErrors() and HttpStatus.NOT_ACCEPTABLE)
      */
-    @PutMapping("/update")
-    public ResponseEntity<?> update(@RequestBody @Validated ProductDto productDTO, BindingResult bindingResult) {
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@RequestBody @Validated ProductDtoCreate productDTO, BindingResult bindingResult, @PathVariable Integer id) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
-        Product product = new Product();
+        Product product = productService.getProduct(id);
         BeanUtils.copyProperties(productDTO, product);
+        PriceStep priceStep = priceStepService.getPriceStep(productDTO.getPriceStep());
+        product.setPriceStep(priceStep);
+        Category category = categoryService.getCategory(productDTO.getCategory());
+        product.setCategory(category);
+        ReviewStatus reviewStatus = reviewStatusService.getReviewStatus(productDTO.getReviewStatus());
+        product.setReviewStatus(reviewStatus);
+        AuctionStatus auctionStatus = auctionStatusService.getAuctionStatus(productDTO.getAuctionStatus());
+        product.setAuctionStatus(auctionStatus);
+        User user = userService.getUser(productDTO.getUser());
+        product.setUser(user);
         productService.update(product);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 
     /**
@@ -197,9 +199,7 @@ public class ProductRestController {
      * @return HttpStatus.CREATED
      */
 
-    @PostMapping(value = {"img/create"},
-            consumes = {MediaType.APPLICATION_JSON_VALUE}
-            , produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping("img/create")
     public ResponseEntity<List<FieldError>> saveImgProduct(@Validated @RequestBody ImgUrlProductDTO imgUrlProductDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
@@ -210,6 +210,42 @@ public class ProductRestController {
         imgUrlProduct.setProduct(product);
         iImgUrlProductService.saveImgProduct(imgUrlProduct);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
+     * Create by: HungNV,
+     * Date created: 17/12/2022
+     * Function: update img product of product
+     *
+     * @param imgUrlProductDTO
+     * @return imgUrlProduct and HttpStatus.CREATED / bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE
+     */
+    @PutMapping("img/update/{id}")
+    public ResponseEntity<?> updateImageProduct(@Validated @RequestBody ImgUrlProductDTO imgUrlProductDTO, BindingResult bindingResult, @PathVariable Integer id) {
+        if (bindingResult.hasErrors()) {
+            return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
+        }
+        ImgUrlProduct imgUrlProduct = iImgUrlProductService.getImgUrlProduct(id);
+        BeanUtils.copyProperties(imgUrlProductDTO, imgUrlProduct);
+        Product product = productService.getProduct(imgUrlProductDTO.getProduct());
+        imgUrlProduct.setProduct(product);
+        iImgUrlProductService.update(imgUrlProduct);
+        return new ResponseEntity<>(imgUrlProduct, HttpStatus.CREATED);
+    }
+
+    /**
+     * Create by: HungNV,
+     * Date created: 17/12/2022
+     * Function: delete image
+     *
+     * @param id
+     * @return imgUrlProduct and HttpStatus.CREATED / bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE
+     */
+    @DeleteMapping("img/delete/{id}")
+    public ResponseEntity<?> updateImageProduct(@PathVariable Integer id) {
+        ImgUrlProduct imgUrlProduct = iImgUrlProductService.getImgUrlProduct(id);
+        iImgUrlProductService.delete(imgUrlProduct);
+        return new ResponseEntity<>(imgUrlProduct, HttpStatus.OK);
     }
 
     /**

@@ -154,4 +154,5 @@ public class UserService implements IUserService {
     public User getUser(Integer id) {
         return userRepository.findById(id).orElse(null);
     }
+
 }

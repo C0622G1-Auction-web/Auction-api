@@ -10,4 +10,9 @@ public interface IImgUrlProductService {
 
     void saveImgProduct(ImgUrlProduct imgUrlProduct);
 
+    ImgUrlProduct getImgUrlProduct(Integer id);
+
+    void update(ImgUrlProduct imgUrlProduct);
+
+    void delete(ImgUrlProduct imgUrlProduct);
 }

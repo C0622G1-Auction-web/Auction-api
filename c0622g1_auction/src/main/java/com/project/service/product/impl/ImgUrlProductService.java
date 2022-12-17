@@ -24,5 +24,18 @@ public class ImgUrlProductService implements IImgUrlProductService {
         imgUrlProductRepository.save(imgUrlProduct);
     }
 
+    @Override
+    public ImgUrlProduct getImgUrlProduct(Integer id) {
+        return imgUrlProductRepository.findById(id).orElse(null);
+    }
 
+    @Override
+    public void update(ImgUrlProduct imgUrlProduct) {
+        imgUrlProductRepository.save(imgUrlProduct);
+    }
+
+    @Override
+    public void delete(ImgUrlProduct imgUrlProduct) {
+        imgUrlProductRepository.delete(imgUrlProduct);
+    }
 }

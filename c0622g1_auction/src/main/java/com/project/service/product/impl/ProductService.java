@@ -1,12 +1,12 @@
 package com.project.service.product.impl;
 
 
-<<<<<<< HEAD
+
 import com.project.dto.product.ProductDtoCreate;
-=======
+
 import com.project.dto.product.ProductSearchByRoleAdminDto;
 
->>>>>>> 801e665c1da45a3e3fe45a72182de87023e5ee32
+
 import com.project.model.product.Product;
 
 

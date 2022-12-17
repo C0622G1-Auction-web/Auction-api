@@ -74,6 +74,21 @@ public class UserRestController {
         }
         return new ResponseEntity<>(userListDtos, HttpStatus.OK);
     }
+    /**
+     * Create by: HungNV
+     * Date created: 16/12/2022
+     *
+     * @param id
+     * @return Object user by id
+     */
+    @GetMapping("/find/{id}")
+    public ResponseEntity<User> findUserById(@PathVariable() int id) {
+        User user = userService.getUser(id);
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 
     /**
      * Create by: HaiNT
@@ -145,7 +160,7 @@ public class UserRestController {
      * Created: VietNQ
      * Created date: 13/12/2022
      * Function: create user account
-     * @return HttpStatus.OK if result is not empty
+     *
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
     @PostMapping("/create")
