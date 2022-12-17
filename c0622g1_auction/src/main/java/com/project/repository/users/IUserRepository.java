@@ -3,6 +3,8 @@ package com.project.repository.users;
 import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
 import com.project.model.users.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -18,6 +20,7 @@ import java.util.Optional;
 @Transactional
 public interface IUserRepository extends JpaRepository<User, Integer> {
 
+
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -29,25 +32,82 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param address
      * @return List User
      */
-    @Query(value = "SELECT * " +
-            "FROM user " +
-            "join address on address.id = user.address_id " +
-            "JOIN `account` on `account`.id = user.account_id " +
-            "JOIN user_type on user_type.id = user.user_type_id " +
-            "WHERE user.id like %:id% " +
-            "AND (user.first_name like %:name% or user.last_name like %:name%) " +
-            "AND (address.detail_address LIKE %:address% OR address.town LIKE %:address% or address.district LIKE %:address% or address.city LIKE %:address% or address.country LIKE %:address%) " +
-            "AND user.email like %:email% " +
-            "AND user.user_type_id like %:userTypeId% " +
-            "GROUP BY user.id LIMIT :index,5", nativeQuery = true)
-    List<User> getUserBy(
-            @Param("id") String id,
-            @Param("name") String name,
-            @Param("email") String email,
-            @Param("userTypeId") String userTypeId,
-            @Param("address") String address,
-            @Param("index") Integer index
-    );
+    @Query(value = " SELECT * " +
+            " FROM user " +
+            " JOIN address on address.id = user.address_id " +
+            " JOIN `account` on `account`.id = user.account_id " +
+            " JOIN user_type on user_type.id = user.user_type_id " +
+            " WHERE user.id like %:id% " +
+            " AND (user.first_name like %:name% or user.last_name like %:name%) " +
+            " AND (address.detail_address LIKE %:address% OR address.town LIKE %:address% or address.district LIKE %:address% or address.city LIKE %:address% or address.country LIKE %:address%) " +
+            " AND user.email like %:email% " +
+            " AND user.user_type_id like %:userTypeId% ", nativeQuery = true,
+            countQuery = "select count(*) from user")
+    Page<User> getUserBy(@Param("id") String id,
+                         @Param("name") String name,
+                         @Param("email") String email,
+                         @Param("userTypeId") String userTypeId,
+                         @Param("address") String address,
+                         Pageable pageable);
+
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     * Function: to create user
+     *
+     * @return void
+     */
+    @Modifying
+    @Query(value = "insert into " +
+            "user(avatar," +
+            "birth_day," +
+            "delete_status," +
+            "email," +
+            "first_name," +
+            "id_card," +
+            "last_name," +
+            "phone," +
+            "point_dedication," +
+            "account_id," +
+            "address_id," +
+            "user_type_id)" +
+            " values (" +
+            ":avatar," +
+            ":birthDay," +
+            ":deleteStatus," +
+            ":email," +
+            ":fistName," +
+            ":idCard," +
+            ":lastName," +
+            ":phone," +
+            ":pointDedication," +
+            ":accountId," +
+            ":addressId," +
+            ":userTypeId)",
+            nativeQuery = true)
+    void addUser(@Param("avatar") String avatar,
+                 @Param("birthDay") String birthDay,
+                 @Param("deleteStatus") Boolean deleteStatus,
+                 @Param("email") String email,
+                 @Param("fistName") String fistName,
+                 @Param("idCard") String idCard,
+                 @Param("lastName") String lastName,
+                 @Param("phone") String phone,
+                 @Param("pointDedication") Double pointDedication,
+                 @Param("accountId") Integer accountId,
+                 @Param("addressId") Integer addressId,
+                 @Param("userTypeId") Integer userTypeId);
+
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     * Function: to lockAccount
+     *
+     * @param id
+     */
+    @Modifying
+    @Query(value = "UPDATE account SET status_lock = 0 WHERE (id = :id);", nativeQuery = true)
+    void lockAccount(@Param("id") List<Integer> id);
 
     /**
      * Create by: HaiNT
@@ -61,19 +121,19 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "UPDATE auction_api.address " +
+    @Query(value = "UPDATE address " +
             "SET city = :city, " +
             "country = :country, " +
             "detail_address = :detailAddress, " +
             "district = :district, " +
             "town = :town" +
             " WHERE (`id` = :id) ", nativeQuery = true)
-    void updateAddress(@Param("id") Integer id,
-                       @Param("detailAddress") String detailAddress,
-                       @Param("town") String town,
-                       @Param("district") String district,
-                       @Param("city") String city,
-                       @Param("country") String country
+    Address updateAddress(@Param("id") Integer id,
+                          @Param("detailAddress") String detailAddress,
+                          @Param("town") String town,
+                          @Param("district") String district,
+                          @Param("city") String city,
+                          @Param("country") String country
     );
 
     /**
@@ -91,7 +151,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "UPDATE auction_api.user " +
+    @Query(value = "UPDATE user " +
             "SET avatar = :avatar, " +
             "birth_day = :birthDay , " +
             "email = :email, " +
@@ -101,13 +161,13 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "phone = :phone " +
             "WHERE (`id` = :id) ", nativeQuery = true)
     void updateUserByRoleAdmin(@Param("id") Integer id,
-                    @Param("idCard") String idCard,
-                    @Param("avatar") String avatar,
-                    @Param("birthDay") String birthDay,
-                    @Param("email") String email,
-                    @Param("firstName") String firstName,
-                    @Param("lastName") String lastName,
-                    @Param("phone") String phone
+                               @Param("idCard") String idCard,
+                               @Param("avatar") String avatar,
+                               @Param("birthDay") String birthDay,
+                               @Param("email") String email,
+                               @Param("firstName") String firstName,
+                               @Param("lastName") String lastName,
+                               @Param("phone") String phone
     );
 
     /**
@@ -132,20 +192,8 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "UPDATE auction_api.account SET status_lock = 1 WHERE (id in :idList);", nativeQuery = true)
+    @Query(value = "UPDATE account SET status_lock = 1 WHERE (id in :idList);", nativeQuery = true)
     void unlockAccountByIdList(@Param("idList") List<Integer> idList);
-
-    /**
-     * Create by: HaiNT
-     * Date created: 13/12/2022
-     * Function: to  find Address by id
-     *
-     * @param id
-     * @return Optional<Address>
-     */
-    @Query(value = "SELECT * FROM auction_api.address WHERE id = :id ",
-            nativeQuery = true)
-    Optional<Address> findUserByAddressId(@Param("id") Integer id);
 
     /**
      * Create by: VietNQ
@@ -154,6 +202,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      *
      * @return HttpStatus.OK
      */
+    @Transactional
     @Modifying
     @Query(value = "insert into " +
             "user(avatar," +
@@ -204,6 +253,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param id
      * @return Optional<User>
      */
+
     @Query(value = "select * " +
             "from user u " +
             "where u.id= :id " +
@@ -236,4 +286,17 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             nativeQuery = true)
     List<UserTopDto> getTopAuctionUser(@Param("quality") String quality);
 
+
+    /**
+     * Create by: VietNq
+     * Date created: 13/12/2022
+     *
+     * @param id
+     * @return List User by id
+     */
+    @Query(value = "select * " +
+            "from user u " +
+            "where u.id in :idList ",
+            nativeQuery = true)
+    User findUserByIdLock(Integer id);
 }

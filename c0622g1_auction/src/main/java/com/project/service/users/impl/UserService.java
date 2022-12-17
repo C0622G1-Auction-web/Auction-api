@@ -1,12 +1,18 @@
 package com.project.service.users.impl;
 
+import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import com.project.dto.user.UserTopDto;
 
+import com.project.repository.account.IAccountRepository;
+import com.project.repository.users.IAddressRepository;
+
 import com.project.repository.users.IUserRepository;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,13 +21,53 @@ import java.util.Optional;
 
 @Service
 public class UserService implements IUserService {
+
     @Autowired
     private IUserRepository userRepository;
+    @Autowired
+    private IAddressRepository addressRepository;
+    @Autowired
+    private IAccountRepository accountRepository;
 
     /**
-     * Create by: HaiNT
+     * Create by: VietNQ
      * Date created: 13/12/2022
+     * Function: to create user
      *
+     * @return void
+     */
+    @Override
+    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
+        userRepository.addUser(
+                user.getAvatar(),
+                user.getBirthDay(),
+                user.getDeleteStatus(),
+                user.getEmail(),
+                user.getFirstName(),
+                user.getIdCard(),
+                user.getLastName(),
+                user.getPhone(),
+                user.getPointDedication(),
+                accountId,
+                addressId,
+                userType);
+    }
+
+
+
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     * Function: to lockAccount
+     *
+     * @param id
+     */
+    public void lockUser(List<Integer> id) {
+        userRepository.lockAccount(id);
+    }
+
+    /* Create by: HaiNT
+     * Date created: 13/12/2022
      * @param id
      * @param name
      * @param email
@@ -30,8 +76,8 @@ public class UserService implements IUserService {
      * @return List of users by param
      */
     @Override
-    public List<User> getUserBy(String id, String name, String email, String userTypeId, String address, Integer index) {
-        return userRepository.getUserBy(id, name, email, userTypeId, address, index);
+    public Page<User> getUserBy(String id, String name, String email, String userTypeId, String address, Pageable pageable) {
+        return userRepository.getUserBy(id, name, email, userTypeId, address, pageable);
     }
 
     /**
@@ -55,7 +101,19 @@ public class UserService implements IUserService {
      */
     @Override
     public Optional<Address> findByAddressId(int id) {
-        return userRepository.findUserByAddressId(id);
+        return addressRepository.findById(id);
+    }
+
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param id
+     * @return Object Account by id
+     */
+    @Override
+    public Optional<Account> findByAccountId(int id) {
+        return accountRepository.findById(id);
     }
 
     /**
@@ -67,6 +125,16 @@ public class UserService implements IUserService {
     @Override
     public void updateAddressByRoleAdmin(User user) {
         userRepository.save(user);
+    }
+
+
+    @Override
+    public void updateUser(User user) {
+    }
+
+    @Override
+    public void unlockUser(List<Integer> idList) {
+
     }
 
     /**
@@ -105,29 +173,6 @@ public class UserService implements IUserService {
         userRepository.unlockAccountByIdList(idList);
     }
 
-
-
-
-    @Override
-    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
-        userRepository.createUser(
-                user.getAvatar(),
-                user.getBirthDay(),
-                user.getDeleteStatus(),
-                user.getEmail(),
-                user.getFirstName(),
-                user.getIdCard(),
-                user.getLastName(),
-                user.getPhone(),
-                user.getPointDedication(),
-                accountId,
-                addressId,
-                userType);
-
-    }
-
-
-
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -137,11 +182,10 @@ public class UserService implements IUserService {
      * @return List<User>
      */
     @Override
-
     public List<UserTopDto> getTopAuctionUser(String quality) {
-
         return userRepository.getTopAuctionUser(quality);
     }
+
     /**
      * Created: HungNV
      * Created date: 16/12/2022
@@ -154,5 +198,6 @@ public class UserService implements IUserService {
     public User getUser(Integer id) {
         return userRepository.findById(id).orElse(null);
     }
+
 
 }

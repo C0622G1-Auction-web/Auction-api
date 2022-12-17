@@ -1,10 +1,7 @@
 package com.project.dto.product;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.model.product.Product;
 
-import javax.persistence.OneToMany;
 import java.util.Set;
 
 public class AuctionStatusDTO {

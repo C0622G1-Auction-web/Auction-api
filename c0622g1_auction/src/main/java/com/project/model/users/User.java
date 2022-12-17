@@ -2,7 +2,6 @@ package com.project.model.users;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import com.project.model.account.Account;
 import com.project.model.auction.Auction;
 import com.project.model.product.Product;
