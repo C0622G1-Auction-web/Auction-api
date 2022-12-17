@@ -1,6 +1,6 @@
-package com.project.dto;
+package com.project.dto.payment;
 
-public interface IPaymentDTO {
+public interface IPaymentDto {
     Integer getCode();
 
     String getFirstName();
@@ -20,5 +20,7 @@ public interface IPaymentDTO {
     Double getProductPrice();
 
     String getDescription();
+
+    Integer getProductId();
 
 }

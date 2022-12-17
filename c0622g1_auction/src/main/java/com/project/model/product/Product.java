@@ -1,5 +1,4 @@
 package com.project.model.product;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.auction.Auction;
 import com.project.model.users.User;
@@ -20,6 +19,7 @@ public class Product {
     @Column(columnDefinition = "boolean default false")
     private Boolean deleteStatus;
     private String registerDay;
+
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "price_step_id", referencedColumnName = "id")
@@ -54,30 +54,6 @@ public class Product {
     private User user;
 
     public Product() {
-    }
-
-    public Boolean getDeleteStatus() {
-        return deleteStatus;
-    }
-
-    public void setDeleteStatus(Boolean deleteStatus) {
-        this.deleteStatus = deleteStatus;
-    }
-
-    public String getRegisterDay() {
-        return registerDay;
-    }
-
-    public void setRegisterDay(String registerDay) {
-        this.registerDay = registerDay;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public int getId() {
@@ -128,12 +104,20 @@ public class Product {
         this.endTime = endTime;
     }
 
-    public boolean isDeleteStatus() {
+    public Boolean getDeleteStatus() {
         return deleteStatus;
     }
 
-    public void setDeleteStatus(boolean deleteStatus) {
+    public void setDeleteStatus(Boolean deleteStatus) {
         this.deleteStatus = deleteStatus;
+    }
+
+    public String getRegisterDay() {
+        return registerDay;
+    }
+
+    public void setRegisterDay(String registerDay) {
+        this.registerDay = registerDay;
     }
 
     public PriceStep getPriceStep() {
@@ -182,5 +166,13 @@ public class Product {
 
     public void setAuctions(Set<Auction> auctions) {
         this.auctions = auctions;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

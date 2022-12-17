@@ -3,9 +3,13 @@ package com.project.repository.account;
 
 import com.project.model.account.PasswordResetToken;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 public interface IResetPassTokenRepository extends JpaRepository<PasswordResetToken, Integer> {
@@ -26,10 +30,22 @@ public interface IResetPassTokenRepository extends JpaRepository<PasswordResetTo
      * Function Save new token to database
      * @param token
      * @param expiry
-     * @param status
      * @param accountId
      */
-    @Query(value = "insert into `password_reset_token` (`expiry_date`, `status`, `token`, `account_id`) " +
-            "values (:expiry, :status, :token, :accountId);", nativeQuery = true)
-    void createToken(@Param("token") String token, @Param("expiry") String expiry, @Param("status") Boolean status, @Param("accountId") String accountId);
+    @Modifying
+    @Query(value = "insert into password_reset_token (expiry_date, status, token, account_id) " +
+            "values (:expiry, 0, :token, :accountId )", nativeQuery = true)
+    @Transactional
+    void createToken( @Param("expiry") String expiry,
+                      @Param("token") String token,
+                      @Param("accountId") String accountId);
+
+    /**Created by UyenNC
+     * Date created 15/12/2022
+     * Function Find all token of a given account id
+     * @param accountId
+     * @return
+     */
+    @Query(value = "select* from password_reset_token where account_id =:accountId and status = 0;", nativeQuery = true)
+    List<PasswordResetToken> findTokenByAccountId(String accountId);
 }
