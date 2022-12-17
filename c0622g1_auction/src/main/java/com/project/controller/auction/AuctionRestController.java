@@ -24,10 +24,7 @@ import java.util.function.Function;
 
 @RestController
 @RequestMapping("/api/v1/auction")
-<<<<<<< HEAD
 @CrossOrigin("*")
-=======
->>>>>>> d9627a690292327b68a518cbd50cd346503713c6
 public class AuctionRestController {
 
     @Autowired
@@ -47,10 +44,7 @@ public class AuctionRestController {
      * @param productId
      * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
      */
-<<<<<<< HEAD
 
-=======
->>>>>>> d9627a690292327b68a518cbd50cd346503713c6
     @GetMapping("auction-detail/{productId}")
     public ResponseEntity<ProductDto> findProductById(@PathVariable(value = "productId") Integer productId) {
         Optional<Product> productOptional = productService.findProductById(productId);

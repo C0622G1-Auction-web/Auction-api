@@ -1,13 +1,10 @@
 package com.project.dto.product;
-<<<<<<< HEAD
-=======
 
 import com.project.model.auction.Auction;
 import com.project.model.product.*;
 import com.project.model.users.User;
 
 import java.util.Set;
->>>>>>> d9627a690292327b68a518cbd50cd346503713c6
 
 import com.project.dto.user.UserDto;
 import com.project.model.auction.Auction;
@@ -53,10 +50,7 @@ public class ProductDto implements Validator {
 
     private UserDto userDto;
 
-<<<<<<< HEAD
-=======
 
->>>>>>> d9627a690292327b68a518cbd50cd346503713c6
     private Boolean deleteStatus;
     private String registerDay;
     private PriceStep priceStep;

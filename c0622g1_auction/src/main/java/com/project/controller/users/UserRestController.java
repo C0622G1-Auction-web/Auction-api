@@ -9,6 +9,8 @@ import com.project.service.account.IAccountService;
 import com.project.service.account.ILockAccountService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
+
+import com.project.service.users.IUserTypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -111,12 +113,12 @@ public class UserRestController {
      * Create by: HaiNT
      * Date created: 13/12/2022
      *
-     * @param id
+     * @param
      * @return Object user by id
      */
     @GetMapping("/{id}")
     public ResponseEntity<User> userById(@PathVariable() int id) {
-        User user = userService.findById(id).get();
+        User user = (User) userService.findById(id).get();
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
@@ -124,13 +126,13 @@ public class UserRestController {
      * Create by: HaiNT
      * Date created: 13/12/2022
      *
-     * @param id
-     * @param userListDto
+     * @param
+     * @param
      * @return the user object is updated
      */
     @PutMapping("/{id}")
     public ResponseEntity<UserListDto> updateUser(@PathVariable() int id, @RequestBody UserListDto userListDto) {
-        User user = userService.findById(id).get();
+        User user = (User) userService.findById(id).get();
         BeanUtils.copyProperties(userListDto, user);
         userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.OK);

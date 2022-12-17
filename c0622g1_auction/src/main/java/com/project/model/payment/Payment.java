@@ -15,7 +15,7 @@ public class Payment {
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
 
-    @JsonBackReference
+
     @OneToOne
     @JoinColumn(name = "auction_id",referencedColumnName = "id")
     private Auction auction;
