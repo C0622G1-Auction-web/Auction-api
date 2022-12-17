@@ -33,7 +33,6 @@ public interface IAccountService {
 
     Account findByUsername(String username);
 
-
     void sendMail(String email, String username, String passwordResetToken);
 
     //    Optional<Account> findByUserId(Integer id);

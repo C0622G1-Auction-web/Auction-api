@@ -10,6 +10,8 @@ import com.project.service.account.IAccountService;
 import com.project.service.account.ILockAccountService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
+
+import com.project.service.users.IUserTypeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
