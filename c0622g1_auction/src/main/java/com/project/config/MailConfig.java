@@ -26,5 +26,6 @@ public class MailConfig {
         props.put("mail.debug", "true");
 
         return mailSender;
+//        return new JavaMailSenderImpl();
     }
 }

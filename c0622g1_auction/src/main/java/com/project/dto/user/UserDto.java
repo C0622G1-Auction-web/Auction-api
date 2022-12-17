@@ -11,38 +11,38 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class UserDto {
-//    private Integer id;
-    @NotEmpty(message = "Họ không được để trống")
+    private Integer id;
+//    @NotEmpty(message = "Họ không được để trống")
     private String firstName;
-    @NotEmpty(message = "Tên không được để trống")
+//    @NotEmpty(message = "Tên không được để trống")
     private String lastName;
-    @NotEmpty(message = "Email không được để trống")
+//    @NotEmpty(message = "Email không được để trống")
     private String email;
-    @NotEmpty(message = "Số điện thoại không được để trống")
+//    @NotEmpty(message = "Số điện thoại không được để trống")
     private String phone;
-    @NotNull(message = "Điểm cống hiến không được bỏ trống")
+//    @NotNull(message = "Điểm cống hiến không được bỏ trống")
 //    @Min(value = 0, message = "Điểm cống hiến không được bé thua 0")
 //    @Max(value = 500, message = "Điểm cống hiến không được lớn hơn 500")
     private Double pointDedication;
-    @NotEmpty(message = "Ngày sinh không được để trống")
+//    @NotEmpty(message = "Ngày sinh không được để trống")
     private String birthDay;
-    @NotEmpty(message = "CMND không được để trống")
+//    @NotEmpty(message = "CMND không được để trống")
     private String idCard;
-    @NotEmpty(message = "Avatar được để trống")
+//    @NotEmpty(message = "Avatar được để trống")
     private String avatar;
-    @NotEmpty(message = "Địa chỉ được để trống")
+//    @NotEmpty(message = "Địa chỉ được để trống")
     private String detailAddress;
-    @NotEmpty(message = "Phường xã được để trống")
+//    @NotEmpty(message = "Phường xã được để trống")
     private String town;
-    @NotEmpty(message = "Quận huyên được để trống")
+//    @NotEmpty(message = "Quận huyên được để trống")
     private String district;
-    @NotEmpty(message = "Tỉnh được để trống")
+//    @NotEmpty(message = "Tỉnh được để trống")
     private String city;
-    @NotEmpty(message = "Đất nước được để trống")
+//    @NotEmpty(message = "Đất nước được để trống")
     private String country;
-    @NotEmpty(message = "Tên đăng nhập được để trống")
+//    @NotEmpty(message = "Tên đăng nhập được để trống")
     private String username;
-    @NotEmpty(message = "Mật khẩu được để trống")
+//    @NotEmpty(message = "Mật khẩu được để trống")
     private String password;
 //    private Boolean deleteStatus;
 //    private Boolean statusLock;
@@ -153,21 +153,22 @@ public class UserDto {
         this.country = country;
     }
 
-//    public Boolean getDeleteStatus() {
-//        return deleteStatus;
-//    }
-//
-//    public void setDeleteStatus(Boolean deleteStatus) {
-//        this.deleteStatus = deleteStatus;
-//    }
-//
-//    public Boolean getStatusLock() {
-//        return statusLock;
-//    }
-//
-//    public void setStatusLock(Boolean statusLock) {
-//        this.statusLock = statusLock;
-//    }
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+
+    public Boolean getStatusLock() {
+        return statusLock;
+    }
+
+    public void setStatusLock(Boolean statusLock) {
+        this.statusLock = statusLock;
+    }
+
 //        public UserType getUserType() {
 //        return userType;
 //    }
@@ -178,11 +179,14 @@ public class UserDto {
 //    public boolean supports(Class<?> clazz) {
 //        return false;
 //    }
-    /**
-     * Create by: TruongLH
-     * Date created: 13/12/2022
-     * Function: to validate all field in user
-     */
+
+//    /**
+//     * Create by: TruongLH
+//     * Date created: 13/12/2022
+//     * Function: to validate all field in user
+//     */
+
+
 //    @Override
 //    public void validate(Object target, Errors errors) {
 //        UserDto userDto = (UserDto) target;
@@ -268,3 +272,4 @@ public class UserDto {
 //        }
 //    }
 }
+

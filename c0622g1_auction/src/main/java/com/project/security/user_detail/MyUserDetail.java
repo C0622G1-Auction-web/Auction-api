@@ -3,7 +3,6 @@ package com.project.security.user_detail;
 
 import com.project.model.account.Account;
 import com.project.model.account.AccountRole;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

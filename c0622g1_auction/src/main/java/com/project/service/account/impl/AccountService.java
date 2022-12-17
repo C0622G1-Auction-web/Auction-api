@@ -109,9 +109,13 @@ public class AccountService implements IAccountService {
         javaMailSender.send(mailMessage);
     }
 
+//    @Override
+//    public Optional<Account> findByUserId(Integer id) {
+//        return accountRepository.findById(id);
+//    }
     @Override
-    public Optional<Account> findByUserId(Integer id) {
-        return accountRepository.findById(id);
+    public Account findByUserId(Integer id) {
+        return accountRepository.findById(id).get();
     }
 
     /**
@@ -140,5 +144,6 @@ public class AccountService implements IAccountService {
         String password = account.getPassword();
         accountRepository.updateAccount(accountId, password);
     }
+
 
 }

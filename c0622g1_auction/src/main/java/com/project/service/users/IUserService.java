@@ -77,13 +77,17 @@ public interface IUserService {
 
     void updateAddress(User user);
 
-    Optional<Object> findById(int id);
+    Optional<User> findById(int id);
 
     void unlockUser(List<Integer> idList);
 
     User findUserByAccount(Account account);
 
-    /**
+    void updateUserById(User user);
+
+    void updateUserByIdServer(User user);
+   
+   /**
      * Create by: DucDH
      * Date: 17/12/2022
      * Function: To get a User by email
@@ -91,8 +95,6 @@ public interface IUserService {
      * @return: User if email found, null otherwise
      */
     User getUserByEmail(String email);
-
-
 
 }
 
