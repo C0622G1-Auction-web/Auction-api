@@ -49,5 +49,9 @@ public class ImgUrlGuideService implements IImgUrlGuideService {
         imgUrlGuideRepository.updateImgGuie(imgUrlGuideDto.getId(), imgUrlGuideDto.getUrl());
     }
 
+    @Override
+    public void deleteImgGuide(int id) {
+        imgUrlGuideRepository.deleteImgGuide(id);
+    }
 
 }

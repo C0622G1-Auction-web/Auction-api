@@ -1,26 +1,41 @@
 package com.project.controller.product;
 
+import com.project.dto.product.IProductDto;
 import com.project.model.product.Product;
 import com.project.model.product.ReviewStatus;
+import com.project.dto.product.*;
+import com.project.dto.user.UserDto;
+import com.project.model.product.*;
+import com.project.model.users.User;
+import com.project.service.product.ICategoryService;
+import com.project.service.product.IPriceStepService;
 import com.project.service.product.IProductService;
 import com.project.service.product.IReviewStatusService;
 import com.project.service.users.IUserService;
+import com.project.service.product.impl.AuctionStatusService;
+import com.project.service.product.impl.ReviewStatusService;
+import com.project.service.users.impl.UserService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.project.dto.product.ProductDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.validation.BindingResult;
 
-import javax.validation.Valid;
-
 import com.project.dto.ProductSearchByRoleAdminDto;
 import com.project.dto.product.ProductSearchDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 
+
+import java.util.Date;
 import java.util.function.Function;
 
 
@@ -37,10 +52,24 @@ public class ProductRestController {
     private IProductService productService;
 
     @Autowired
-    private IUserService iUserService;
+    private ICategoryService categoryService;
+
+    @Autowired
+    private IPriceStepService priceStepService;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ReviewStatusService reviewStatusService;
+
+    @Autowired
+    private AuctionStatusService auctionStatusService;
+
 
     @Autowired
     private IReviewStatusService iReviewStatusService;
+
 
     /**
      * Create by AnhTDQ
@@ -50,9 +79,9 @@ public class ProductRestController {
      * @return HttpStatus.NO_CONTENT if not found any product /  HttpStatus.OK and Products page if found
      */
 
-    @GetMapping("list")
-    public ResponseEntity<Page<ProductDto>> historyProduct(Integer id, Pageable pageable) {
-        Page<ProductDto> productList = productService.showProductById(5, pageable);
+    @GetMapping("/list/{id}")
+    public ResponseEntity<Page<IProductDto>> historyProduct(Integer id, Pageable pageable) {
+        Page<IProductDto> productList = productService.showProductById(1, pageable);
 
         if (productList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -93,6 +122,7 @@ public class ProductRestController {
         return new ResponseEntity<>(reviewStatusList,HttpStatus.OK);
     }
 
+
     /**
      * Created by: SonPT
      * Date created: 13-12-2022
@@ -105,20 +135,29 @@ public class ProductRestController {
      */
 
     @PostMapping("/create")
-    public ResponseEntity<Product> createProduct(@RequestBody @Valid ProductDto productDto, BindingResult bindingResult) {
-
-        new ProductDto().validate(productDto, bindingResult);
-
+    public ResponseEntity<Product> create(@RequestBody @Validated ProductDtoCreate productDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
-
+        Date date = new Date();
+        productDTO.setRegisterDay(String.valueOf(date));
         Product product = new Product();
-        BeanUtils.copyProperties(productDto, product);
+        BeanUtils.copyProperties(productDTO, product);
+        PriceStep priceStep = priceStepService.getPriceStep(productDTO.getPriceStep());
+        product.setPriceStep(priceStep);
+        Category category = categoryService.getCategory(productDTO.getCategory());
+        product.setCategory(category);
+        ReviewStatus reviewStatus = reviewStatusService.getReviewStatus(1);
+        product.setReviewStatus(reviewStatus);
+        AuctionStatus auctionStatus = auctionStatusService.getAuctionStatus(1);
+        product.setAuctionStatus(auctionStatus);
+        User user = userService.getUser(productDTO.getUser());
+        product.setUser(user);
+        product.setDeleteStatus(false);
         productService.saveProduct(product);
-
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
+
     /**
      * Create by GiangLBH
      * Date created: 13/12/2022

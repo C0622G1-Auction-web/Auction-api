@@ -2,9 +2,11 @@ package com.project.controller.auction;
 
 import com.project.dto.AuctionDto;
 import com.project.dto.product.ProductDto;
+import com.project.dto.product.IAuctionProductDto;
+import com.project.dto.product.ProductDto;
 import com.project.model.auction.Auction;
 import com.project.model.product.Product;
-import com.project.service.auction.IAuctionService;
+import com.project.service.auction.impl.AuctionService;
 import com.project.service.product.IProductService;
 import com.project.service.users.IUserService;
 import org.springframework.beans.BeanUtils;
@@ -21,13 +23,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import java.util.function.Function;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/auction")
+@CrossOrigin("*")
 public class AuctionRestController {
 
     @Autowired
-    private IAuctionService auctionService;
+    private AuctionService auctionService;
 
     @Autowired
     private IProductService productService;
@@ -43,6 +45,7 @@ public class AuctionRestController {
      * @param productId
      * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
      */
+
     @GetMapping("auction-detail/{productId}")
     public ResponseEntity<ProductDto> findProductById(@PathVariable(value = "productId") Integer productId) {
         Optional<Product> productOptional = productService.findProductById(productId);
@@ -67,7 +70,7 @@ public class AuctionRestController {
      * @param pageable
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
-    @GetMapping("/product/{productId}")
+    @GetMapping("/tien/{productId}")
     public ResponseEntity<Page<AuctionDto>> getPageAuctionByProductId(
             @PageableDefault(value = 3) Pageable pageable,
             @PathVariable(value = "productId") Integer productId) {
@@ -108,6 +111,26 @@ public class AuctionRestController {
         }
         auctionService.addAuction(auctionDto);
         return new ResponseEntity(auctionDto, HttpStatus.OK);
+    }
+
+    /**
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function: find auction product by id
+     *
+     * @param 'user Id'
+     * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
+     */
+
+    @GetMapping("/list/{id}")
+    public ResponseEntity<Page<IAuctionProductDto>> historyAuctionProduct(Integer userId, Pageable pageable) {
+        Page<IAuctionProductDto> productList = auctionService.getPageAuctionProductByUserId(1,pageable);
+
+        if (productList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(productList, HttpStatus.OK);
+
     }
 
 }

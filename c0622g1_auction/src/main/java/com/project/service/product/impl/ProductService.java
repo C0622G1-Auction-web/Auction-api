@@ -2,6 +2,8 @@ package com.project.service.product.impl;
 
 import com.project.dto.ProductSearchByRoleAdminDto;
 import com.project.dto.product.ProductDto;
+import com.project.dto.product.IProductDto;
+import com.project.dto.product.ProductDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
 import com.project.repository.product.IProductRepository;
@@ -23,12 +25,12 @@ public class ProductService implements IProductService {
      * Created by: AnhTDQ,
      * Date created: 15/12/2022
      * Function: get page products Sign up for auctions by user id
-     * @param id
+     * @param 'user id'
      * @param pageable
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
     @Override
-    public Page<ProductDto> showProductById(Integer id, Pageable pageable) {
+    public Page<IProductDto> showProductById(Integer id, Pageable pageable) {
         return productRepository.showProductById(id, pageable);
     }
 
@@ -36,7 +38,7 @@ public class ProductService implements IProductService {
      * Created by: AnhTDQ,
      * Date created: 15/12/2022
      * Function: get page products Sign up for auctions by user id
-     * @param id
+     * @param 'user id'
      * @return void
      */
 
@@ -55,8 +57,7 @@ public class ProductService implements IProductService {
 
     @Override
     public void saveProduct(Product product) {
-        productRepository.createProduct(product.getDescription(), product.getEndTime(), product.getInitialPrice(), product.getName(), product.getStartTime(), product.getCategory().getId(), product.getPriceStep().getId(), product.getUser().getId());
-
+        productRepository.save(product);
     }
 
     /**
@@ -121,5 +122,10 @@ public class ProductService implements IProductService {
     @Override
     public Page<Product> getAllAndSearch(ProductSearchDto productSearchDto, Pageable pageable) {
         return productRepository.getAllAndSearch(productSearchDto, pageable);
+    }
+
+    @Override
+    public Product getProduct(Integer id) {
+        return productRepository.findById(id).orElse(null);
     }
 }
