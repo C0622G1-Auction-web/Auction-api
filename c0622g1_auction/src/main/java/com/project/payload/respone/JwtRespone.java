@@ -1,5 +1,7 @@
 package com.project.payload.respone;
 
+import com.project.model.account.Account;
+import com.project.model.users.User;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
@@ -8,16 +10,20 @@ public class JwtRespone {
 
     private Integer id;
     private String token;
-    private String username;
     private Collection<? extends GrantedAuthority> roles;
+    private String email;
+    private Account account;
+    private User user;
 
-    public JwtRespone() {
+    public JwtRespone(String token, Collection<? extends GrantedAuthority> roles,
+                      Account account, User user) {
+        this.token = token;
+        this.roles = roles;
+        this.account = account;
+        this.user = user;
     }
 
-    public JwtRespone(String token, String username, Collection<? extends GrantedAuthority> roles) {
-        this.token = token;
-        this.username = username;
-        this.roles = roles;
+    public JwtRespone() {
     }
 
     public Integer getId() {
@@ -36,19 +42,35 @@ public class JwtRespone {
         this.token = token;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public Collection<? extends GrantedAuthority> getRoles() {
         return roles;
     }
 
     public void setRoles(Collection<? extends GrantedAuthority> roles) {
         this.roles = roles;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

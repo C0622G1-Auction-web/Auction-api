@@ -1,6 +1,8 @@
 package com.project.model.product;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -10,8 +12,13 @@ public class AuctionStatus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    @JsonBackReference
     @OneToMany(mappedBy = "auctionStatus")
     private Set<Product> products;
+
+    public AuctionStatus() {
+    }
 
     public Set<Product> getProducts() {
         return products;
@@ -20,10 +27,6 @@ public class AuctionStatus {
     public void setProducts(Set<Product> products) {
         this.products = products;
     }
-
-    public AuctionStatus() {
-    }
-
     public Integer getId() {
         return id;
     }

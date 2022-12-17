@@ -5,6 +5,8 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.project.model.account.Account;
+import com.project.model.account.Role;
+import com.project.model.users.User;
 import com.project.payload.request.LoginForm;
 import com.project.payload.request.TokenDto;
 import com.project.payload.respone.JwtRespone;
@@ -12,6 +14,7 @@ import com.project.payload.respone.MessageRespone;
 import com.project.security.jwt.JwtProvider;
 import com.project.security.user_detail.MyUserDetail;
 import com.project.service.account.IAccountService;
+import com.project.service.role.IRoleService;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,13 +23,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @CrossOrigin("*")
 @RestController
@@ -47,6 +54,9 @@ public class SecurityController {
 
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private IRoleService roleService;
 
     /**
      * Created by DucDH,
@@ -80,9 +90,22 @@ public class SecurityController {
 
         String token = jwtProvider.createToken(authentication);
 
-        return new ResponseEntity<>(new JwtRespone(token, myUserDetail.getUsername(),
-                myUserDetail.getAuthorities()), HttpStatus.OK);
+        return new ResponseEntity<>(new JwtRespone(token,
+                myUserDetail.getAuthorities(),
+                myUserDetail.getAccount(),
+                myUserDetail.getAccount().getUser()), HttpStatus.OK);
     }
+
+
+    /**
+     * Created by DucDH,
+     * Date Created: 17/12/2022
+     * Function: to Authenticate a LoginForm and return to the server a Token
+     *
+     * @param tokenDto
+     * @return ResponseEntity that contains an instance of JwtRespone and HttpStatus.200_OK if successful
+     *         ResponseEntity that contains HttpStatus.NO_CONTENT if nothing happens
+     */
 
     @PostMapping("/google")
     public ResponseEntity<?> loginWithGoogle(@RequestBody TokenDto tokenDto) throws IOException {
@@ -98,11 +121,36 @@ public class SecurityController {
 
         String email = payload.getEmail();
 
-
+        User user = userService.getUserByEmail(email);
 
         JwtRespone jwtRespone = new JwtRespone();
 
-        return null;
+        if (user == null || user.getAccount() == null) {
+
+            jwtRespone.setEmail(email);
+
+            return new ResponseEntity<>(jwtRespone, HttpStatus.OK);
+        }
+
+        Account account = user.getAccount();
+        if (account != null) {
+            jwtRespone.setAccount(account);
+            jwtRespone.setUser(user);
+
+            List<Role> roles = roleService.getListRoleByAccountId(account.getId());
+            List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
+
+            for (Role x : roles) {
+                grantedAuthorityList.add(new SimpleGrantedAuthority(x.getName()));
+            }
+
+            jwtRespone.setRoles(grantedAuthorityList);
+            jwtRespone.setToken(jwtProvider.createTokenWithUsername(account.getUsername()));
+
+            return new ResponseEntity<>(jwtRespone, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 
