@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 
 public class ProductDto implements Validator {
     private int id;
+    private String fullName;
 
     @NotNull(message = "Name of product not null")
     @NotBlank(message = "Please input Name of Product")
@@ -35,39 +36,72 @@ public class ProductDto implements Validator {
     @NotBlank(message = "Please input end time to auction Product")
     private String endTime;
 
+    private Boolean deleteStatus;
+
+    @NotNull(message = "End Time of product not null")
+    @NotBlank(message = "Please input end time to auction Product")
+    private String registerDay;
+
     @NotBlank(message = "Please input step price to auction Product")
-    private PriceStepDto priceStepDto;
+    private PriceStep priceStep;
 
     @NotBlank(message = "Please select options category to auction Product")
+    private Category category;
+
+    private User user;
+
+    private ReviewStatus reviewStatus;
+    private AuctionStatus auctionStatus;
+    private Set<ImgUrlProduct> imgUrlProducts;
+    private Set<Auction> auctions;
+
     private CategoryDto categoryDto;
+
+    private PriceStepDto priceStepDto;
 
     private UserDto userDto;
 
 
-
-    private Boolean deleteStatus;
-    private String registerDay;
-    private PriceStep priceStep;
-    private ReviewStatus reviewStatus;
-    private AuctionStatus auctionStatus;
-    private Category category;
-    private Set<ImgUrlProduct> imgUrlProducts;
-    private Set<Auction> auctions;
-    private User user;
-
     public ProductDto() {
     }
 
-    public ProductDto(int id, String name, String description, Double initialPrice, String startTime, String endTime, PriceStepDto priceStepDto, CategoryDto categoryDto, UserDto userDto) {
+    public ProductDto(int id, String name, String description, Double initialPrice, String startTime, String endTime, Boolean deleteStatus, String registerDay, PriceStep priceStep, Category category, User user, ReviewStatus reviewStatus, AuctionStatus auctionStatus, Set<ImgUrlProduct> imgUrlProducts, Set<Auction> auctions) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.initialPrice = initialPrice;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.priceStepDto = priceStepDto;
+        this.deleteStatus = deleteStatus;
+        this.registerDay = registerDay;
+        this.priceStep = priceStep;
+        this.category = category;
+        this.user = user;
+        this.reviewStatus = reviewStatus;
+        this.auctionStatus = auctionStatus;
+        this.imgUrlProducts = imgUrlProducts;
+        this.auctions = auctions;
+    }
+
+    public ProductDto(String name, String description, Double initialPrice, String startTime, String endTime, Boolean deleteStatus, String registerDay, CategoryDto categoryDto, PriceStepDto priceStepDto, UserDto userDto) {
+        this.name = name;
+        this.description = description;
+        this.initialPrice = initialPrice;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.deleteStatus = deleteStatus;
+        this.registerDay = registerDay;
         this.categoryDto = categoryDto;
+        this.priceStepDto = priceStepDto;
         this.userDto = userDto;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public int getId() {
@@ -118,34 +152,6 @@ public class ProductDto implements Validator {
         this.endTime = endTime;
     }
 
-
-    public void setPriceStep(PriceStepDto priceStepDto) {
-        this.priceStepDto = priceStepDto;
-    }
-
-
-    public void setCategory(CategoryDto categoryDto) {
-        this.categoryDto = categoryDto;
-    }
-
-
-    public void setUser(UserDto userDto) {
-        this.userDto = userDto;
-    }
-
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return false;
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
-        ProductDto productDto = (ProductDto) target;
-
-        if (!productDto.name.matches("[A-Za-z ]+")) {
-            errors.rejectValue("name", "name.invalidFormat");
-        }
-    }
     public Boolean getDeleteStatus() {
         return deleteStatus;
     }
@@ -170,6 +176,22 @@ public class ProductDto implements Validator {
         this.priceStep = priceStep;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public ReviewStatus getReviewStatus() {
         return reviewStatus;
     }
@@ -184,14 +206,6 @@ public class ProductDto implements Validator {
 
     public void setAuctionStatus(AuctionStatus auctionStatus) {
         this.auctionStatus = auctionStatus;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public Set<ImgUrlProduct> getImgUrlProducts() {
@@ -210,11 +224,13 @@ public class ProductDto implements Validator {
         this.auctions = auctions;
     }
 
-    public User getUser() {
-        return user;
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    @Override
+    public void validate(Object target, Errors errors) {
+
     }
 }

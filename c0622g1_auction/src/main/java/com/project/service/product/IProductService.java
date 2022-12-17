@@ -1,6 +1,7 @@
 package com.project.service.product;
 
 
+import com.project.dto.product.ProductDto;
 import com.project.model.product.Product;
 import com.project.dto.ProductSearchByRoleAdminDto;
 
@@ -22,8 +23,8 @@ public interface IProductService {
      * Date created: 13-12-2022
      * Function: save Product
      */
-    void saveProduct(Product product);
 
+    void saveProduct(Product product);
     /**
      * Created by: TienBM,
      * Date created: 13/12/2022
@@ -58,4 +59,12 @@ public interface IProductService {
      * @return Page<Product>
      */
     Page<Product> getAllAndSearch(ProductSearchDto productSearchDto, Pageable pageable);
+
+    /**
+     * Created SonPT
+     * Date created 13/12/2022
+     * Function: get product by id
+     * @param id
+     */
+    Product getProduct(Integer id);
 }

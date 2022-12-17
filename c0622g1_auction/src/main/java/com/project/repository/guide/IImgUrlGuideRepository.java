@@ -24,10 +24,6 @@ public interface IImgUrlGuideRepository extends JpaRepository<ImgUrlGuide,Intege
      * Create by: SonPT,
      * Date created: 13/12/2022
      * Function: find all image url of guide in Database
-     * Create by: QuangND,
-     * Date created: 13/12/2022
-     * Function: find all image url of guide in DB
-     * @return list of image url
      */
 
     @Query(value = "SELECT * FROM img_url_guide WHERE guide_id=:id",nativeQuery=true)

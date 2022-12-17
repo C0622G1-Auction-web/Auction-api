@@ -65,6 +65,10 @@ public class UserDto implements Validator {
         this.accountDto = accountDto;
     }
 
+    public UserDto(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }

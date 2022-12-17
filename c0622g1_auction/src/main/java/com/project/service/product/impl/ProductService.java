@@ -1,8 +1,8 @@
 package com.project.service.product.impl;
 
 
-import com.project.dto.ProductDto;
 import com.project.dto.ProductSearchByRoleAdminDto;
+import com.project.dto.product.ProductDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
 import com.project.repository.product.IProductRepository;
@@ -30,8 +30,7 @@ public class ProductService implements IProductService {
 
     @Override
     public void saveProduct(Product product) {
-        productRepository.createProduct(product.getDescription(), product.getEndTime(), product.getInitialPrice(), product.getName(), product.getStartTime(), product.getCategory().getId(), product.getPriceStep().getId(), product.getUser().getId());
-
+        productRepository.save(product);
     }
 
     /**
@@ -96,5 +95,10 @@ public class ProductService implements IProductService {
     @Override
     public Page<Product> getAllAndSearch(ProductSearchDto productSearchDto, Pageable pageable) {
         return productRepository.getAllAndSearch(productSearchDto, pageable);
+    }
+
+    @Override
+    public Product getProduct(Integer id) {
+        return productRepository.findById(id).orElse(null);
     }
 }

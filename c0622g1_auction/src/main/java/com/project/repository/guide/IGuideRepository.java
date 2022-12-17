@@ -22,10 +22,6 @@ public interface IGuideRepository extends JpaRepository<Guide, Integer> {
      * Date created: 13/12/2022
      * Function: find all guide in Database
 
-     * Create by: QuangND,
-     * Date created: 13/12/2022
-     * Function: find all guide in DB
-
      * @return list of guide
      */
 

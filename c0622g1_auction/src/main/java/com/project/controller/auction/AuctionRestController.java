@@ -1,7 +1,7 @@
 package com.project.controller.auction;
 
 import com.project.dto.AuctionDto;
-import com.project.dto.ProductDto;
+import com.project.dto.product.ProductDto;
 import com.project.model.auction.Auction;
 import com.project.model.product.Product;
 import com.project.service.auction.IAuctionService;
@@ -17,8 +17,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.Optional;
 import java.util.function.Function;
 

@@ -1,6 +1,7 @@
 package com.project.service.users;
 
 import com.project.dto.user.UserTopDto;
+import com.project.model.product.PriceStep;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,14 @@ import java.util.Optional;
 public interface IUserService {
 
     void saveUser(User user, Integer addressId, Integer accountId, Integer Number);
+
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: Save User
+     */
+
+    User saveUser(User user);
 
 
     /**
@@ -56,6 +65,13 @@ public interface IUserService {
 
     void unlockUser(List<Integer> idList);
 
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * @Param: int ID of User
+     * Function: get User
+     */
 
+    User getUser(Integer user);
 }
 
