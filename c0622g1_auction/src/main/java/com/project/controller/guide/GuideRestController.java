@@ -22,10 +22,6 @@ import java.util.List;
 @RequestMapping("auction/api/guide")
 @CrossOrigin("*")
 public class GuideRestController {
-
-
-
-
     @Autowired
     private IGuideService guideService;
 
@@ -35,12 +31,6 @@ public class GuideRestController {
      * Date created: 13/12/2022
      * Function: find all guide
      * @return list of guide status code OK
-
-     * Create by: QuangND,
-     * Date created: 13/12/2022
-     * Function: find all guide
-     * @return list of guide
-
      */
 
     @GetMapping()
@@ -61,7 +51,6 @@ public class GuideRestController {
      * @Param: Id of guide want to get
      * @return an item guide
      */
-
     @GetMapping("/find/{id}")
     public ResponseEntity<Guide> getGuideById(@PathVariable int id) {
 
@@ -79,7 +68,6 @@ public class GuideRestController {
      * @Param: an item Guide
      * @return a status code
      */
-
     @PostMapping()
     public ResponseEntity<?> createGuide(@Validated @RequestBody GuideDto guideDto,
                                                         BindingResult bindingResult) {
@@ -100,7 +88,6 @@ public class GuideRestController {
      * @Param: an item Guide need to update
      * @return a status code
      */
-
     @PutMapping("")
     public ResponseEntity <GuideDto> updateGuide(@Validated @RequestBody GuideDto guideDto,
                                                  BindingResult bindingResult) {

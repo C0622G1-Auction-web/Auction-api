@@ -1,5 +1,11 @@
 package com.project.dto.guide;
 import javax.validation.constraints.NotBlank;
+
+/**
+ * Create by: QuangND,
+ * Date created: 13/12/2022
+ * Function: create a guide Dto model
+ */
 public class ImgUrlGuideDto {
     private Integer id;
     @NotBlank
