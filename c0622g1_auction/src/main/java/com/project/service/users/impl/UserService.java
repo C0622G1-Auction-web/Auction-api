@@ -126,8 +126,7 @@ public class UserService implements IUserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
-
-
+    
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022

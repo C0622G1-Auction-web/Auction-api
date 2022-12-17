@@ -96,6 +96,6 @@ public interface IUserService {
     void unlockUser(List<Integer> idList);
 
     User findUserByAccount(Account account);
-    
+
 }
 
