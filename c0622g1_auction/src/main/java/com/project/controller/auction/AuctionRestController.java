@@ -68,7 +68,7 @@ public class AuctionRestController {
      * @param pageable
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
-    @GetMapping("/tien/{productId}")
+    @GetMapping("/auction-product/{productId}")
     public ResponseEntity<Page<AuctionDto>> getPageAuctionByProductId(
             @PageableDefault(value = 3) Pageable pageable,
             @PathVariable(value = "productId") Integer productId) {
