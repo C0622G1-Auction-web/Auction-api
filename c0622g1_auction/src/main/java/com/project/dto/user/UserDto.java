@@ -1,50 +1,56 @@
 package com.project.dto.user;
 
-import com.project.model.account.Account;
-import com.project.model.users.Address;
+import com.project.model.users.UserType;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
-public class UserDto {
+public class UserDto implements Validator {
     private Integer id;
+    //    @NotEmpty(message = "Họ không được để trống")
     private String firstName;
+    //    @NotEmpty(message = "Tên không được để trống")
     private String lastName;
+    //    @NotEmpty(message = "Email không được để trống")
     private String email;
+    //    @NotEmpty(message = "Số điện thoại không được để trống")
     private String phone;
+    //    @NotNull(message = "Điểm cống hiến không được bỏ trống")
+//    @Min(value = 0, message = "Điểm cống hiến không được bé thua 0")
+//    @Max(value = 500, message = "Điểm cống hiến không được lớn hơn 500")
     private Double pointDedication;
+    //    @NotEmpty(message = "Ngày sinh không được để trống")
     private String birthDay;
+    //    @NotEmpty(message = "CMND không được để trống")
     private String idCard;
+    //    @NotEmpty(message = "Avatar được để trống")
     private String avatar;
+    //    @NotEmpty(message = "Địa chỉ được để trống")
+    private String detailAddress;
+    //    @NotEmpty(message = "Phường xã được để trống")
+    private String town;
+    //    @NotEmpty(message = "Quận huyên được để trống")
+    private String district;
+    //    @NotEmpty(message = "Tỉnh được để trống")
+    private String city;
+    //    @NotEmpty(message = "Đất nước được để trống")
+    private String country;
+    //    @NotEmpty(message = "Tên đăng nhập được để trống")
+    private String username;
+    //    @NotEmpty(message = "Mật khẩu được để trống")
+    private String password;
     private Boolean deleteStatus;
-    private AddressDto addressDto;
-    private AccountDto accountDto;
+    private Boolean statusLock;
+    private List<String> emailList;
+    private Integer userTypeId;
 
-    public UserDto( ) {
+    public UserDto() {
     }
-
-    public UserDto(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, AddressDto addressDto, AccountDto accountDto) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.pointDedication = pointDedication;
-        this.birthDay = birthDay;
-        this.idCard = idCard;
-        this.avatar = avatar;
-        this.addressDto = addressDto;
-        this.accountDto = accountDto;
-    }
-
-    public UserDto(String firstName, String lastName, String email, String phone, String birthDay, String idCard, AddressDto addressDto, AccountDto accountDto) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.birthDay = birthDay;
-        this.idCard = idCard;
-        this.addressDto = addressDto;
-        this.accountDto = accountDto;
-    }
-
 
     public Integer getId() {
         return id;
@@ -118,6 +124,70 @@ public class UserDto {
         this.avatar = avatar;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<String> getEmailList() {
+        return emailList;
+    }
+
+    public void setEmailList(List<String> emailList) {
+        this.emailList = emailList;
+    }
+
+    public String getDetailAddress() {
+        return detailAddress;
+    }
+
+    public void setDetailAddress(String detailAddress) {
+        this.detailAddress = detailAddress;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     public Boolean getDeleteStatus() {
         return deleteStatus;
     }
@@ -126,19 +196,115 @@ public class UserDto {
         this.deleteStatus = deleteStatus;
     }
 
-    public AddressDto getAddressDto() {
-        return addressDto;
+    public Boolean getStatusLock() {
+        return statusLock;
     }
 
-    public void setAddressDto(AddressDto addressDto) {
-        this.addressDto = addressDto;
+    public Integer getUserTypeId() {
+        return userTypeId;
     }
 
-    public AccountDto getAccountDto() {
-        return accountDto;
+    public void setUserTypeId(Integer userTypeId) {
+        this.userTypeId = userTypeId;
     }
 
-    public void setAccountDto(AccountDto accountDto) {
-        this.accountDto = accountDto;
+    public void setStatusLock(Boolean statusLock) {
+        this.statusLock = statusLock;
+    }
+
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to validate all field in user
+     */
+    @Override
+    public void validate(Object target, Errors errors) {
+        UserDto userDto = (UserDto) target;
+        if (userDto.getFirstName().equals("")) {
+            errors.rejectValue("firstName", "firstName", "Họ không được bỏ trống");
+        } else {
+            if (!userDto.getFirstName().matches("^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{2,30}$")) {
+                errors.rejectValue("firstName", "firstName", "Họ không đúng định dạng !");
+            }
+        }
+        if (userDto.getLastName().equals("")) {
+            errors.rejectValue("lastName", "lastName", "Tên không được bỏ trống");
+        } else {
+            if (!userDto.getLastName().matches("^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{2,30}$")) {
+                errors.rejectValue("lastName", "lastName", "Tên không đúng định dạng !");
+            }
+        }
+        for (String email : userDto.emailList) {
+            if (email.equals(userDto.getEmail())) {
+                errors.rejectValue("email", "email", "Email đã tồn tại");
+            }
+        }
+        if (userDto.getEmail().equals("")) {
+            errors.rejectValue("email", "email", "Email không được bỏ trông");
+        } else {
+            if (!userDto.getEmail().matches("^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
+                errors.rejectValue("email", "email", "Email must be valid");
+            }
+        }
+        if (userDto.getIdCard().equals("")) {
+            errors.rejectValue("idCard", "idCard", "CMND không được bỏ trống");
+        } else {
+            if (!(userDto.getIdCard().matches("\\d{9}") ||
+                    userDto.getIdCard().matches("\\d{12}"))) {
+                errors.rejectValue("idCard", "idCard", "CMND chỉ có 9 số hoặc 12 số");
+            }
+        }
+        if (userDto.getPhone().equals("")) {
+            errors.rejectValue("phoneNumber", "phoneNumber", "Số điện thoại không được để trống");
+        } else {
+            if (!(userDto.getPhone().matches("[0][9][0]\\d{7}") ||
+                    userDto.getPhone().matches("[0][9][1]\\d{7}") ||
+                    userDto.getPhone().matches("[(][8][4][)][+][9][0]\\d{7}") ||
+                    userDto.getPhone().matches("[(][8][4][)][+][9][1]\\d{7}"))) {
+                errors.rejectValue("phone", "phone", "Số điện thoại có định dang  (090xxxxxxx) hoặc (091xxxxxxx) hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx");
+            }
+        }
+        if (userDto.getAvatar().equals("")) {
+            errors.rejectValue("avatar", "avatar", "Avatar không được để trống");
+        }
+        for (String username : userDto.emailList) {
+            if (username.equals(userDto.getUsername())) {
+                errors.rejectValue("username", "username", "Tên đăng nhập đã tồn tại đã tồn tại");
+            }
+        }
+        if (userDto.getTown().equals("")) {
+            errors.rejectValue("town", "town", "Phường xã không được để trống");
+        } else {
+            if (!(userDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+                errors.rejectValue("town", "town", "Phường xã nhập từ 5 tới 30 kí tự");
+            }
+        }
+        if (userDto.getDistrict().equals("")) {
+            errors.rejectValue("district", "district", "Quận huyện không được để trống");
+        } else {
+            if (!(userDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+                errors.rejectValue("district", "district", "Quận huyện nhập từ 5 tới 30 kí tự");
+            }
+        }
+        if (userDto.getCity().equals("")) {
+            errors.rejectValue("city", "city", "Tỉnh thành không được để trống");
+        } else {
+            if (!(userDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+                errors.rejectValue("city", "city", "Tỉnh thành nhập từ 5 tới 30 kí tự");
+            }
+        }
+        if (userDto.getCountry().equals("")) {
+            errors.rejectValue("country", "country", "Đất Nước không được để trống");
+        } else {
+            if (!(userDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+                errors.rejectValue("country", "country", "Quốc gia nhập từ 5 tới 30 kí tự");
+            }
+        }
     }
 }

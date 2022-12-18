@@ -13,6 +13,7 @@ public class AuctionStatus {
     private Integer id;
     private String name;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "auctionStatus")
     private Set<Product> products;
 
