@@ -1,8 +1,4 @@
 package com.project.service.users.impl;
-<<<<<<< HEAD
-
-=======
->>>>>>> d3bd5434618c40e2cd8ecdf37cc9e5f5bb88fbdc
 import com.project.model.users.Address;
 import com.project.repository.users.IAddressRepository;
 import com.project.service.users.IAddressService;

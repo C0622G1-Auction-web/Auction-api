@@ -1,16 +1,15 @@
 package com.project.service.users.impl;
-<<<<<<< HEAD
+
 import com.project.dto.user.UserTopDto;
 import com.project.model.account.Account;
 import com.project.model.users.User;
-=======
+
 
 import com.project.model.users.User;
 import com.project.dto.user.UserTopDto;
 import com.project.model.users.Address;
 import com.project.model.account.Account;
 
->>>>>>> d3bd5434618c40e2cd8ecdf37cc9e5f5bb88fbdc
 import com.project.repository.users.IUserRepository;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class UserService implements IUserService {
      */
 
     @Override
-<<<<<<< HEAD
+
     public void updateUser(User user) {
         userRepository.updateUser(
                 user.getAvatar(),
@@ -68,12 +67,7 @@ public class UserService implements IUserService {
 
 
     public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
-=======
 
-
-    public void saveUser(User user, Integer addressId, Integer accountId,Integer userType) {
-
->>>>>>> d3bd5434618c40e2cd8ecdf37cc9e5f5bb88fbdc
         userRepository.createUser(
                 user.getAvatar(),
                 user.getBirthDay(),
@@ -84,15 +78,10 @@ public class UserService implements IUserService {
                 user.getLastName(),
                 user.getPhone(),
                 user.getPointDedication(),
-<<<<<<< HEAD
                 user.getAccount(),
                 user.getAddress(),
                 user.getUserType());
-=======
-                accountId,
-                addressId,
-                userType);
->>>>>>> d3bd5434618c40e2cd8ecdf37cc9e5f5bb88fbdc
+
     }
 
     /**
@@ -186,10 +175,7 @@ public class UserService implements IUserService {
         userRepository.unlockAccount(idList);
     }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> d3bd5434618c40e2cd8ecdf37cc9e5f5bb88fbdc
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -206,7 +192,6 @@ public class UserService implements IUserService {
         return userRepository.getTopAuctionUser(quality);
     }
 
-<<<<<<< HEAD
     /**
      * Created by UyenNC
      * Date created 13/12/2022
@@ -216,8 +201,6 @@ public class UserService implements IUserService {
      * @return User
      */
 
-=======
-
     /**
      * Created by UyenNC
      * Date created 13/12/2022
@@ -227,7 +210,6 @@ public class UserService implements IUserService {
      * @return User
      */
 
->>>>>>> d3bd5434618c40e2cd8ecdf37cc9e5f5bb88fbdc
     @Override
     public User findUserByAccount(Account account) {
         String id = account.getId() + "";
