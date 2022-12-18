@@ -1,6 +1,7 @@
 package com.project.service.users.impl;
 
 import com.project.dto.user.UserTopDto;
+import com.project.dto.user.UserUnlockDto;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
@@ -129,6 +130,11 @@ public class UserService implements IUserService {
         return userRepository.getUserBy(id, name, email, userType, address, pageable);
     }
 
+    @Override
+    public List<User> findByIdList(List<Integer> id) {
+        return null;
+    }
+
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -178,6 +184,11 @@ public class UserService implements IUserService {
         return userRepository.findUserById(id);
     }
 
+    @Override
+    public List<UserUnlockDto> findByListId(List<Integer> idList) {
+        return userRepository.findByListId(idList);
+    }
+
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -192,18 +203,17 @@ public class UserService implements IUserService {
     }
 
 
-    /**
-     * Create by: HaiNT
-     * Date created: 13/12/2022
-     *
-     * @param id
-     * @return User object by id
-     */
-
-    @Override
-    public List<User> findByIdList(List<Integer> id) {
-        return userRepository.findUserByIdList(id);
-    }
+//    /**
+//     * Create by: HaiNT
+//     * Date created: 13/12/2022
+//     *
+//     * @param id
+//     * @return User object by id
+//     */
+//    @Override
+//    public List<User> findByIdList(List<Integer> id) {
+//        return userRepository.findUserByIdList(id);
+//    }
 
     /**
      * Create by: HaiNT

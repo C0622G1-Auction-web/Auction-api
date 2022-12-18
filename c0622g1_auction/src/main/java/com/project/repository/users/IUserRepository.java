@@ -1,6 +1,7 @@
 package com.project.repository.users;
 
 import com.project.dto.user.UserTopDto;
+import com.project.dto.user.UserUnlockDto;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
@@ -200,7 +201,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      *
      * @param idList
      */
-    @Transactional
     @Modifying
     @Query(value = "UPDATE account SET status_lock = 1 WHERE (id in :idList);", nativeQuery = true)
     void unlockAccountByIdList(@Param("idList") List<Integer> idList);
@@ -392,7 +392,8 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "from user u " +
             "where u.id in :idList ",
             nativeQuery = true)
-    List<User> findUserByIdList(List<Integer> idList);
+    List<UserUnlockDto> findByListId(List<Integer> idList);
+
 
     /**
      * Create by: HaiNT

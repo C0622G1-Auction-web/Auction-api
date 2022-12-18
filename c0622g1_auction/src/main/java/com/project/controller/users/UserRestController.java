@@ -174,7 +174,6 @@ public class UserRestController {
 
 
     /**
-     * <<<<<<< HEAD
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to update user by id
@@ -208,6 +207,25 @@ public class UserRestController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     * Function: to find product by list id
+     *
+     * @param idList
+     * @return HttpStatus.NO_CONTENT if exists any product not found/  HttpStatus.OK and products found
+     */
+    @PostMapping("/find-by-list-id")
+    public ResponseEntity<List<UserUnlockDto>> findByListId(@RequestBody List<Integer> idList) {
+        if (idList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        List<UserUnlockDto> productDeleteDtos = userService.findByListId(idList);
+        if (idList.size() != productDeleteDtos.size()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(productDeleteDtos, HttpStatus.OK);
+    }
 
     /**
      * Create by: HaiNT
@@ -217,16 +235,18 @@ public class UserRestController {
      * @return the user object is unlock
      */
 
-    @PutMapping("/unlockUser")
-    public ResponseEntity<UserListDto> unlockUser(@RequestBody List<Integer> idList) {
-        List<User> userList = userService.findByIdList(idList);
-        if (idList.size() != userList.size()) {
+    @PostMapping("/unlockUser")
+    public ResponseEntity<?> unlockUser(@RequestBody List<Integer> idList) {
+        if (idList.size() == 0 ) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        List<UserUnlockDto> userUnlockDtos = userService.findByListId(idList);
+        if (idList.size() != userUnlockDtos.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         userService.unlockAccountByIdList(idList);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 
     /**
      * Create by: HaiNT

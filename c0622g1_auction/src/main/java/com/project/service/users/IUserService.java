@@ -1,6 +1,7 @@
 package com.project.service.users;
 
 import com.project.dto.user.UserTopDto;
+import com.project.dto.user.UserUnlockDto;
 import com.project.model.product.PriceStep;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
@@ -110,6 +111,14 @@ public interface IUserService {
      * @param id
      */
     Optional<User> findById(Integer id);
+
+    /**
+     * By: HaiNT - Find list of users by id
+     *
+     * @param idList
+     */
+    List<UserUnlockDto> findByListId(List<Integer> idList);
+
 
     /**
      * Created: SangDD
