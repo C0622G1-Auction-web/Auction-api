@@ -51,6 +51,7 @@ public class UserService implements IUserService {
     public void lockUser(List<Integer> id) {
         userRepository.lockAccount(id);
     }
+
      /* Create by: HaiNT
      * Date created: 13/12/2022
      * @param id

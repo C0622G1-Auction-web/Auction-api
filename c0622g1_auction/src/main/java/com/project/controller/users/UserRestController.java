@@ -17,7 +17,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -176,7 +175,7 @@ public class UserRestController {
      * @return HttpStatus.OK if result is not empty
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
-    @PutMapping("/lockUser/{id}")
+    @PutMapping("/lockUser")
     public ResponseEntity<UserListDto> lockUser(@RequestBody List<Integer> id) {
         List<User> userList = userService.findByIdList(id);
         if (id.size() != userList.size()) {
@@ -185,12 +184,8 @@ public class UserRestController {
         userService.lockUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-//
 //    @PostMapping()
 //    public void createLockAccount(LockAccountDto lockAccountDto) {
-//
-//
-//
-//    }
+
 
 }
