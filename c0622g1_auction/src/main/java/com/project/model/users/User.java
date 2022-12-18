@@ -27,7 +27,9 @@ public class User {
     @OneToOne
     @JoinColumn(name = "address_id",referencedColumnName = "id")
     private Address address;
-    @JsonBackReference
+    private String message;
+
+
     @ManyToOne
     @JoinColumn(name = "user_type_id",referencedColumnName = "id")
     private UserType userType;
@@ -167,4 +169,11 @@ public class User {
         this.userType = userType;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

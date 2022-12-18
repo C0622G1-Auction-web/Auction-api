@@ -44,10 +44,7 @@ public class ProductDto implements Validator {
 
     @NotBlank(message = "Please select options category to auction Product")
     private CategoryDto categoryDto;
-
     private UserDto userDto;
-
-
     private Boolean deleteStatus;
     private String registerDay;
     private PriceStep priceStep;
