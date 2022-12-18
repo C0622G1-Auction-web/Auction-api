@@ -3,12 +3,17 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+/**
+ * Create by: QuangND,
+ * Date created: 13/12/2022
+ * Function: create a guide Dto model
+ */
 
 
 public class GuideDto {
     private Integer id;
     @NotBlank(message = "Không được để trống tên chủ đề")
-    @Size(min = 10, max = 30, message = "Tên chủ đề quá dài hoặc quá ngắn")
+    @Size(min = 10, max = 100, message = "Tên chủ đề quá dài hoặc quá ngắn")
     @Pattern(regexp = "^[a-zA-Z0-9 ]*$", message = "Vui lòng nhập đúng định dạng")
     private String title;
     @NotBlank(message = "Không được để trống nội dung")
@@ -20,6 +25,21 @@ public class GuideDto {
     public GuideDto() {
     }
 
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+
+    public String getImages() {
+        return images;
+    }
+
+    public void setImages(String images) {
+        this.images = images;
+    }
 
     public Integer getId() {
         return id;

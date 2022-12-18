@@ -14,11 +14,14 @@ build/
 .springBeans
 .sts4-cache
 /src/main/resources/application.properties
+<<<<<<< HEAD
+=======
 /src/test/java/com/project/controller
 <<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+>>>>>>> dev
 
 >>>>>>> dev
 =======

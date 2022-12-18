@@ -72,10 +72,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .anyRequest()
                 .authenticated()
+
+
                 .and().cors()
-//                .and()
-//                .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
                 .and()
+//                .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
+//                .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

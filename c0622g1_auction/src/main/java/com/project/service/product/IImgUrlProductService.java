@@ -1,10 +1,16 @@
 package com.project.service.product;
 
 import com.project.model.product.ImgUrlProduct;
+import com.project.dto.product.ImgUrlProductDTO;
 
 import java.util.List;
 
 public interface IImgUrlProductService {
+
+    void saveImgProduct(ImgUrlProduct imgUrlProduct);
+
+    ImgUrlProduct getImgUrlProduct(Integer id);
+
 
     /**
      * Created by: SonPT
@@ -28,5 +34,7 @@ public interface IImgUrlProductService {
      * Function: save image of product
      */
 
-    void saveImgProduct(ImgUrlProduct imgUrlProduct);
+    void update(ImgUrlProduct imgUrlProduct);
+
+    void delete(ImgUrlProduct imgUrlProduct);
 }

@@ -30,18 +30,19 @@ public class Product {
     @JoinColumn(name = "review_status_id", referencedColumnName = "id")
     private ReviewStatus reviewStatus;
 
-    @JsonBackReference
+
     @ManyToOne
-    @JoinColumn(name = "auction_status_id", referencedColumnName = "id")
+    @JoinColumn(name = "auction_status_id",referencedColumnName = "id")
     private AuctionStatus auctionStatus;
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @JoinColumn(name = "category_id",referencedColumnName = "id")
     private Category category;
 
-    @JsonBackReference
+
     @OneToMany(mappedBy = "product")
+    @JsonBackReference
     private Set<ImgUrlProduct> imgUrlProducts;
 
     @JsonBackReference
@@ -50,7 +51,7 @@ public class Product {
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
 
     public Product() {

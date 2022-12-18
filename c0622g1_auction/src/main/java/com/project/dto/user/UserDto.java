@@ -44,18 +44,34 @@ public class UserDto {
     private String username;
 //    @NotEmpty(message = "Mật khẩu được để trống")
     private String password;
-//    private Boolean deleteStatus;
-//    private Boolean statusLock;
-//    private List<String> emailList;
-//    private UserType userType;
+    private List<String> emailList;
+    private UserType userType;
+    private AddressDto addressDto;
+    private AccountDto accountDto;
     public UserDto() {
     }
-//    public Integer getId() {
-//        return id;
-//    }
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
+
+    public UserDto(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, AddressDto addressDto, AccountDto accountDto) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.pointDedication = pointDedication;
+        this.birthDay = birthDay;
+        this.idCard = idCard;
+        this.avatar = avatar;
+        this.addressDto = addressDto;
+        this.accountDto = accountDto;
+
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public String getFirstName() {
         return firstName;
     }
