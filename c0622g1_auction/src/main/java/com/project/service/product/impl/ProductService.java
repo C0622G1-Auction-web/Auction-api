@@ -1,15 +1,21 @@
 package com.project.service.product.impl;
 
 
+
+import com.project.dto.product.ProductDtoCreate;
+
 import com.project.dto.product.ProductSearchByRoleAdminDto;
+import com.project.dto.product.ProductDto;
+
 
 import com.project.model.product.Product;
-import com.project.model.product.dto.ProductDTO;
+
 
 
 import com.project.dto.product.ProductSearchDto;
-import com.project.model.product.Product;
 
+
+import com.project.dto.product.IProductDto;
 import com.project.repository.product.IProductRepository;
 import com.project.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +24,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 import java.util.Optional;
 
 @Service
@@ -26,27 +31,78 @@ public class ProductService implements IProductService {
 
     @Autowired
     private IProductRepository productRepository;
-
+    /**
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function: get page products Sign up for auctions by user id
+     * @param 'user id'
+     * @param pageable
+     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
+     */
     @Override
-    public Optional<Product> findById(Integer id) {
-        return productRepository.findProductById(id);
+    public Page<IProductDto> showProductById(Integer id, Pageable pageable) {
+        return productRepository.showProductById(id, pageable);
     }
 
-    @Override
-    public void saveProduct(ProductDTO productDTO) {
-        productRepository.saveProduct(productDTO.getName(), productDTO.getInitialPrice(), productDTO.getUser(),
-                productDTO.getCategory(), productDTO.getDescription(), productDTO.getPriceStep(),
-                productDTO.getStartTime(), productDTO.getEndTime(), productDTO.getRegisterDay(),productDTO.getAuctionStatus(),productDTO.getReviewStatus());
-    }
+    /**
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function: get page products Sign up for auctions by user id
+     * @param 'user id'
+     * @return void
+     */
 
     @Override
-    public void update(ProductDTO productDTO) {
-        productRepository.updateProduct(productDTO.getName(), productDTO.getInitialPrice(), productDTO.getUser(),
-                productDTO.getCategory(), productDTO.getDescription(), productDTO.getPriceStep(),
-                productDTO.getStartTime(), productDTO.getEndTime(), productDTO.getRegisterDay(), productDTO.getId());
-
+    public void cancelProduct(Integer id) {
+        productRepository.cancelProduct(id);
     }
 
+
+
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: save Product
+     */
+
+//    @Override
+//    public void saveProduct(Product product) {
+//        productRepository.createProduct(product.getDescription(), product.getEndTime(), product.getInitialPrice(), product.getName(), product.getStartTime(), product.getCategory().getId(), product.getPriceStep().getId(), product.getUser().getId());
+//
+//    }
+    @Override
+    public void saveProduct(Product product) {
+        productRepository.save(product);
+    }
+
+    /**
+     * Created by: TienBM,
+     * Date created: 13/12/2022
+     * Function: find product by id
+     *
+     * @param productId
+     * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
+     */
+
+    @Override
+    public Optional<Product> findProductById(Integer productId) {
+        return productRepository.findProductById(productId);
+    }
+
+
+    @Override
+    public void update(Product product) {
+        productRepository.save(product);
+    }
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to find products list by List ids
+     *
+     * @param idList
+     * @return product list
+     */
     @Override
     public List<Product> findByListId(List<Integer> idList) {
         return productRepository.findByListId(idList);
@@ -63,11 +119,14 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Page<Product> searchByRoleAdmin(ProductSearchByRoleAdminDto productSearchByRoleAdminDto, Pageable
-            pageable) {
+    public Page<Product> searchByRoleAdmin(ProductSearchByRoleAdminDto productSearchByRoleAdminDto, Pageable pageable) {
         return productRepository.searchByRoleAdmin(productSearchByRoleAdminDto, pageable);
     }
 
+    @Override
+    public Optional<Product> findById(Integer id) {
+        return productRepository.findById(id);
+    }
 
     @Override
     public void review(Integer id) {
@@ -93,7 +152,20 @@ public class ProductService implements IProductService {
     @Override
     public Page<Product> getAllAndSearch(ProductSearchDto productSearchDto, Pageable pageable) {
         return productRepository.getAllAndSearch(productSearchDto, pageable);
+    }
 
+
+    /**
+     * Created HungNV
+     * Date created 16/12/2022
+     * Function: get product by id
+     *
+     * @param id
+     * @return Product
+     */
+    @Override
+    public Product getProduct(Integer id) {
+        return productRepository.findById(id).orElse(null);
     }
 
 }
