@@ -1,7 +1,6 @@
 package com.project.service.users;
-
-
 import com.project.dto.user.UserTopDto;
+import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.stereotype.Service;
@@ -77,13 +76,15 @@ public interface IUserService {
 
     void updateAddress(User user);
 
-    Optional<Object> findById(int id);
+    Optional<User> findById(int id);
 
     void unlockUser(List<Integer> idList);
 
-    User findUserByAccount(Account account);
+    void updateUserById(User user);
 
-    /**
+    void updateUserByIdServer(User user);
+   
+   /**
      * Create by: DucDH
      * Date: 17/12/2022
      * Function: To get a User by email
@@ -92,7 +93,7 @@ public interface IUserService {
      */
     User getUserByEmail(String email);
 
-
+    User findUserByAccount(Account account);
 
 }
 

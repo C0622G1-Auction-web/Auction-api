@@ -17,6 +17,7 @@ public class AccountService implements IAccountService {
 
     @Autowired
     private IAccountRepository accountRepository;
+<<<<<<< HEAD
 
     @Autowired
     JavaMailSender javaMailSender;
@@ -66,6 +67,11 @@ public class AccountService implements IAccountService {
     public Account findAccountByUsername(String username) {
         return accountRepository.findAccountByUsername(username);
     }
+=======
+
+   @Autowired
+   JavaMailSender javaMailSender;
+>>>>>>> d3bd5434618c40e2cd8ecdf37cc9e5f5bb88fbdc
 
     @Override
     public Account saveAccount(Account account) {
@@ -117,9 +123,13 @@ public class AccountService implements IAccountService {
         javaMailSender.send(mailMessage);
     }
 
+//    @Override
+//    public Optional<Account> findByUserId(Integer id) {
+//        return accountRepository.findById(id);
+//    }
     @Override
-    public Optional<Account> findByUserId(Integer id) {
-        return accountRepository.findById(id);
+    public Account findByUserId(Integer id) {
+        return accountRepository.findById(id).get();
     }
 
     /**
@@ -148,5 +158,6 @@ public class AccountService implements IAccountService {
         String password = account.getPassword();
         accountRepository.updateAccount(accountId, password);
     }
+
 
 }

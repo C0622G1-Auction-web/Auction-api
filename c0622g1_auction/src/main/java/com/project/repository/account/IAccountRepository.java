@@ -14,6 +14,7 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface IAccountRepository extends JpaRepository<Account, Integer> {
+
     /**
      * Created by UyenNC
      * Date created: 13/12/2022
@@ -42,10 +43,12 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
      * @param accountId
      * @param password
      */
+    @Modifying
     @Query(value = "update `account` " +
             "set `password` =:password " +
             "where (`id` =:accountId );", nativeQuery = true)
-    void updateAccount(@Param(value = "accountId") Integer accountId, @Param(value = "password") String password);
+    void updateAccount(@Param(value = "accountId") Integer accountId,
+                       @Param(value = "password") String password);
 
     /**Created by UyenNC
      * Date created 13/12/2022
@@ -67,7 +70,7 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
      * @return Account if username found
      *         Null if username not found
      */
-
+     
     @Query(
             value = " select * " +
                     " from account " +
@@ -108,5 +111,6 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
             nativeQuery = true)
     Account updateAccount(@Param("username") String username,
                           @Param("password") String password);
+
 
 }

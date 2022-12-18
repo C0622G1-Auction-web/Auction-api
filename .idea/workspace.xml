@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="97c12ac2-8c35-4917-9e27-9ce5c6de3987" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_boot_spring_boot_starter_security_2_7_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_config_5_7_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_core_5_7_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_crypto_5_7_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_test_5_7_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_springframework_security_spring_security_web_5_7_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_thymeleaf_extras_thymeleaf_extras_springsecurity5_3_0_4_RELEASE.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/auction.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/auction.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/com.example.auction.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/com.example.auction.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/com.example.auction.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/com.example.auction.test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/config/MailConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/config/MailConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/security/SecurityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/security/SecurityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/users/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/users/UserRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/user/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/user/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/security/user_detail/MyUserDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/security/user_detail/MyUserDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/IUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/impl/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/impl/UserService.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/c0622g1_auction">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2IwHKq6nD3KpoapCT6EGQJZeMez" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/c0622g1_auction/src/main/resources" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\CODEGYM\module_6_back_end\Auction-api\c0622g1_auction\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="AuctionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="com.example.auction.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.project.AuctionApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="97c12ac2-8c35-4917-9e27-9ce5c6de3987" name="Default Changelist" comment="" />
+      <created>1671085665056</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1671085665056</updated>
+      <workItem from="1671085667161" duration="2477000" />
+      <workItem from="1671113401017" duration="908000" />
+      <workItem from="1671153824800" duration="268000" />
+      <workItem from="1671154179446" duration="181000" />
+      <workItem from="1671154394518" duration="174000" />
+      <workItem from="1671156057962" duration="4529000" />
+      <workItem from="1671161185824" duration="77000" />
+      <workItem from="1671161303254" duration="14224000" />
+      <workItem from="1671187123616" duration="47000" />
+      <workItem from="1671241334072" duration="3557000" />
+      <workItem from="1671244974016" duration="717000" />
+      <workItem from="1671245765847" duration="722000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="488" y="70" key="#com.intellij.ide.util.MemberChooser" timestamp="1671243086058">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="488" y="70" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1671243086058" />
+    <state x="447" y="233" width="472" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1671086225979">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="447" y="233" width="472" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1671086225979" />
+    <state x="413" y="111" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1671114080395">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="111" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1366.728@0.0.1366.728" timestamp="1671114080395" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1671163132134">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1671163132134" />
+    <state width="1323" height="344" key="GridCell.Tab.0.bottom" timestamp="1671244924502">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="344" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1671244924502" />
+    <state width="1323" height="344" key="GridCell.Tab.0.center" timestamp="1671244924502">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="344" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1671244924502" />
+    <state width="1323" height="344" key="GridCell.Tab.0.left" timestamp="1671244924502">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="344" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1671244924502" />
+    <state width="1323" height="344" key="GridCell.Tab.0.right" timestamp="1671244924502">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="344" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1671244924502" />
+    <state width="1323" height="344" key="GridCell.Tab.1.bottom" timestamp="1671244924502">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="344" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1671244924502" />
+    <state width="1323" height="344" key="GridCell.Tab.1.center" timestamp="1671244924502">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="344" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1671244924502" />
+    <state width="1323" height="344" key="GridCell.Tab.1.left" timestamp="1671244924502">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="344" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1671244924502" />
+    <state width="1323" height="344" key="GridCell.Tab.1.right" timestamp="1671244924502">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="344" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1671244924502" />
+    <state width="1323" height="344" key="GridCell.Tab.2.bottom" timestamp="1671244924503">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="344" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1671244924503" />
+    <state width="1323" height="344" key="GridCell.Tab.2.center" timestamp="1671244924503">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="344" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1671244924503" />
+    <state width="1323" height="344" key="GridCell.Tab.2.left" timestamp="1671244924503">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="344" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1671244924503" />
+    <state width="1323" height="344" key="GridCell.Tab.2.right" timestamp="1671244924503">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="344" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1671244924503" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/users/UserRestController.java</url>
+          <line>94</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

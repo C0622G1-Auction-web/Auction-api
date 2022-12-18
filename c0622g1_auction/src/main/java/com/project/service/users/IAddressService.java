@@ -2,6 +2,8 @@ package com.project.service.users;
 
 import com.project.model.users.Address;
 
+import java.util.Optional;
+
 public interface IAddressService {
 
     /**
@@ -23,5 +25,6 @@ public interface IAddressService {
 
     Address saveAddress(Address address);
 
-    Address findbyId(Integer id);
+//    Optional<Address> findAddressById(Integer id);
+    Address findAddressById(Integer id);
 }

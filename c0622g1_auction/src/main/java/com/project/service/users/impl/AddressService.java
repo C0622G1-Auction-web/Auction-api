@@ -1,10 +1,16 @@
 package com.project.service.users.impl;
+<<<<<<< HEAD
 
+=======
+>>>>>>> d3bd5434618c40e2cd8ecdf37cc9e5f5bb88fbdc
 import com.project.model.users.Address;
 import com.project.repository.users.IAddressRepository;
 import com.project.service.users.IAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+import java.util.OptionalInt;
 
 @Service
 public class AddressService implements IAddressService {
@@ -50,8 +56,12 @@ public class AddressService implements IAddressService {
         return address;
     }
 
+//    @Override
+//    public Optional<Address> findAddressById(Integer id) {
+//        return addressRepository.findById(id);
+//    }
     @Override
-    public Address findbyId(Integer id) {
+    public Address findAddressById(Integer id) {
         return addressRepository.findById(id).get();
     }
 

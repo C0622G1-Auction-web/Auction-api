@@ -1,4 +1,5 @@
 package com.project.service.account;
+
 import com.project.model.account.Account;
 
 import java.util.List;
@@ -10,6 +11,7 @@ public interface IAccountService {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to create account
+     *
      * @return Account
      */
     Account createAccount(Account account);
@@ -18,6 +20,7 @@ public interface IAccountService {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to update account
+     *
      * @return Account
      */
     Account updateAccount(Account account);
@@ -39,10 +42,11 @@ public interface IAccountService {
 
     Account findByUsername(String username);
 
-
     void sendMail(String email, String username, String passwordResetToken);
 
-    Optional<Account> findByUserId(Integer id);
+    //    Optional<Account> findByUserId(Integer id);
+    Account findByUserId(Integer id);
 
     void save(Account account);
+
 }
