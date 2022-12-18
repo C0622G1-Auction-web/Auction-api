@@ -1,5 +1,6 @@
 package com.project.model.users;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.model.account.Account;
@@ -11,35 +12,53 @@ import java.util.Set;
 
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
+
     private String phone;
+
     private Double pointDedication;
+
     private String birthDay;
+
     private String idCard;
+
     private String avatar;
+
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
-    @JsonBackReference
+
+    @JsonManagedReference
     @OneToOne
 
     @JsonIgnore
     @JoinColumn(name = "address_id",referencedColumnName = "id")
     private Address address;
 
-
+    @JsonManagedReference
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "user_type_id",referencedColumnName = "id")
     private UserType userType;
-    @JsonBackReference
+
+    @JsonManagedReference
     @OneToMany(mappedBy="user")
     private Set<Auction> auctions;
+
     @OneToOne
+    @JoinColumn(name = "account_id",referencedColumnName = "id")
+    @JsonManagedReference
+    private Account account;
+
+    @JsonManagedReference
     @JsonBackReference
     @JsonIgnore
     @JoinColumn(name = "account_id",referencedColumnName = "id")
@@ -53,7 +72,6 @@ public class User {
     @JsonBackReference
     @OneToMany(mappedBy = "user")
     private Set<Product> products;
-
     public User() {
     }
 

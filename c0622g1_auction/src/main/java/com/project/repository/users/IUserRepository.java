@@ -1,4 +1,5 @@
 package com.project.repository.users;
+
 import com.project.dto.user.UserTopDto;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
@@ -19,7 +20,6 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface IUserRepository extends JpaRepository<User, Integer> {
-
 
     /**
      * Create by: HaiNT
@@ -72,10 +72,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @return Optional<User>
      */
 
-    @Query(value = "select * " +
-            "from user u " +
-            "where u.id= :id " +
-            "and u.delete_status=1",
+    @Query(value = " select * from user where user.id = :id and user.delete_status = 1 ",
             nativeQuery = true)
     Optional<User> findUserById(@Param("id") int id);
 
@@ -97,6 +94,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param addressId,
      * @param userTypeId
      */
+
     @Modifying
     @Query(value = "insert into " +
             "user(avatar," +
@@ -141,6 +139,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to update user
+     *
      * @param avatar,
      * @param birthDay,
      * @param deleteStatus,
@@ -189,7 +188,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Create by: VietNQ
      * Date created: 13/12/2022
      * Function: to create user
-     * @return HttpStatus.NotFound
+     *
      * @return HttpStatus.OK
      */
     @Modifying
@@ -206,7 +205,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "account_id," +
             "address_id," +
             "user_type_id)" +
-            " values(:avatar, "+
+            " values(:avatar, " +
             ":birthDay," +
             ":deleteStatus," +
             ":email," +
@@ -220,17 +219,17 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             ":userTypeId)",
             nativeQuery = true)
     void addUser(@Param("avatar") String avatar,
-                    @Param("birthDay") String birthDay,
-                    @Param("deleteStatus") Boolean deleteStatus,
-                    @Param("email") String email,
-                    @Param("fistName") String fistName,
-                    @Param("idCard") String idCard,
-                    @Param("lastName") String lastName,
-                    @Param("phone") String phone,
-                    @Param("pointDedication") Double pointDedication,
-                    @Param("accountId") Account accountId,
-                    @Param("addressId") Address addressId,
-                    @Param("userTypeId") UserType userTypeId);
+                 @Param("birthDay") String birthDay,
+                 @Param("deleteStatus") Boolean deleteStatus,
+                 @Param("email") String email,
+                 @Param("fistName") String fistName,
+                 @Param("idCard") String idCard,
+                 @Param("lastName") String lastName,
+                 @Param("phone") String phone,
+                 @Param("pointDedication") Double pointDedication,
+                 @Param("accountId") Account accountId,
+                 @Param("addressId") Address addressId,
+                 @Param("userTypeId") UserType userTypeId);
 
 
     /**
@@ -238,7 +237,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Date created: 13/12/2022
      * Function: to create user
      *
-<<<<<<< HEAD
      * @return void
      */
     @Modifying
@@ -526,11 +524,9 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param userTypeId
      * @param id
      */
-//<<<<<<< HEAD
 //    @Query(value = " select * " +
 //            " from user u " +
 //            " where u.id= :id ",
-//=======
 
     @Modifying
     @Query(value = " update `user` " +
@@ -609,7 +605,9 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             nativeQuery = true)
     List<UserTopDto> getTopAuctionUser(@Param("quality") String quality);
 
-
+    /**
+     * Created by UyenNC
+    /**Created by UyenNC
     /**
      * Create by: VietNq
      * Date created: 13/12/2022

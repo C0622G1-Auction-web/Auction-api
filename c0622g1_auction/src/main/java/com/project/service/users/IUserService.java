@@ -1,6 +1,7 @@
 package com.project.service.users;
 
 import com.project.dto.user.UserTopDto;
+import com.project.model.account.AccountRole;
 import com.project.model.product.PriceStep;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
@@ -24,7 +25,7 @@ public interface IUserService {
      *
      * @return User
      */
-    void updateUser(User user);
+     void updateUser(User user);
 
     /**
      * Create by: TruongLH
@@ -33,7 +34,7 @@ public interface IUserService {
      *
      * @return User
      */
-    void createUser(User user);
+     void createUser(User user);
 
     /**
      * Create by: TruongLH
@@ -43,7 +44,7 @@ public interface IUserService {
      * @param id
      * @return User
      */
-    Optional<User> findUserById(int id);
+     User findUserById(int id);
 
     /**
      * Create by: TruongLH
@@ -55,7 +56,25 @@ public interface IUserService {
      List<User> findAll();
 
 
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user
+     *
+     * @return List<User>
+     */
+     void updateUserByIdServer(User user);
 
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user by id
+     *
+     * @return List<User>
+     */
+     Optional<User> findById(int id);
+
+    void saveUser(User user, Integer addressId, Integer accountId, Integer Number);
 
     /**
      * By: HaiNT - Find list of users by param
@@ -117,18 +136,17 @@ public interface IUserService {
 
     void lockUser(List<Integer> id);
 
-
     Optional<Address> findByAddressId(Integer id);
 
     void updateAddress(User user);
-
-    Optional<User> findById(int id);
 
     void unlockUser(List<Integer> idList);
 
     void updateUserById(User user);
 
-    void updateUserByIdServer(User user);
+
+//    void createAccountRole(AccountRole accountRole);
+//    void updateUserByIdServer(User user);
    
    /**
      * Create by: DucDH

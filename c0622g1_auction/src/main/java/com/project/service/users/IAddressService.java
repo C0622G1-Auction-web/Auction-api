@@ -13,8 +13,17 @@ public interface IAddressService {
      * Function: to create address
      * @return HttpStatus.OK
      */
+
     Address createAddress(Address address);
 
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find address by id
+     * @return HttpStatus.OK
+     */
+
+    Address findAddressById(Integer id);
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
@@ -26,6 +35,5 @@ public interface IAddressService {
 
     Address saveAddress(Address address);
 
-//    Optional<Address> findAddressById(Integer id);
-    Address findAddressById(Integer id);
+
 }

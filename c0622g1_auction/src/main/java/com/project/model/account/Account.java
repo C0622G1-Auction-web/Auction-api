@@ -1,5 +1,6 @@
 package com.project.model.account;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.model.account.AccountRole;
 import com.project.model.account.LockAccount;
 import com.project.model.account.PasswordResetToken;

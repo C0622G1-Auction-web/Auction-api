@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class UserTypeService implements IUserTypeService {
+
     @Autowired
     private IUserTypeRepository userRepository;
 

@@ -1,6 +1,8 @@
 package com.project.model.auction;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.model.payment.Payment;
 import com.project.model.product.Product;
 import com.project.model.users.User;
@@ -9,11 +11,15 @@ import javax.persistence.*;
 
 @Entity
 public class Auction {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private Double currentPrice;
+
     private String auctionTime;
+
     @Column(columnDefinition = "boolean default false")
     private Boolean auctionStatus;
     private String auctionDay;

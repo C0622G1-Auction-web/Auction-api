@@ -26,6 +26,15 @@ public interface IAccountService {
     Account updateAccount(Account account);
 
     /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user by id
+     *
+     * @return Account
+     */
+
+    Account findByUserId(Integer id);
+
      * Created by: DucDH
      * Date created: 18/12/2022
      * Function: To find an account by username
@@ -43,9 +52,6 @@ public interface IAccountService {
     Account findByUsername(String username);
 
     void sendMail(String email, String username, String passwordResetToken);
-
-    //    Optional<Account> findByUserId(Integer id);
-    Account findByUserId(Integer id);
 
     void save(Account account);
 

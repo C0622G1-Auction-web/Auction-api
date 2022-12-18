@@ -52,19 +52,42 @@ public class UserService implements IUserService {
                 user.getAddress(),
                 user.getUserType(),
                 user.getId());
-//        userRepository.save(user);
     }
 
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user by id
+     * @param user
+     * @return User
+     */
     @Override
     public void updateUserById(User user) {
         userRepository.save(user);
     }
 
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user by id
+     *
+     * @param user
+     * @return User
+     */
     @Override
     public void updateUserByIdServer(User user) {
         userRepository.save(user);
     }
 
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user by id
+     *
+     * @param user
+     * @return User
+     */
     @Override
     public void createUser(User user) {
         userRepository.save(user);
@@ -78,10 +101,9 @@ public class UserService implements IUserService {
      * @return User
      */
 
-
+    public void createUser(User user, Integer addressId, Integer accountId, Integer userType) {
 
     public void saveUser(User user, Integer addressId, Integer accountId,Integer userType) {
-
         userRepository.createUser(
                 user.getAvatar(),
                 user.getBirthDay(),
@@ -124,8 +146,13 @@ public class UserService implements IUserService {
      */
 
     @Override
-    public Optional<User> findUserById(int id) {
-        return userRepository.findUserById(id);
+    public User findUserById(int id) {
+        return userRepository.findUserById(id).get();
+    }
+
+    @Override
+    public List<User> findAll() {
+        return null;
     }
 
 @Override
@@ -224,8 +251,15 @@ public class UserService implements IUserService {
         userRepository.save(user);
     }
 
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     *
+     * @param
+     */
     @Override
     public Optional<User> findById(int id) {
+       return userRepository.findUserById(id);
         return userRepository.findById(id);
 
     public Optional<User> findById(Integer id) {
@@ -270,7 +304,6 @@ public class UserService implements IUserService {
 //        return userRepository.findUserByIdList(id);
 //    }
 
-
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -310,6 +343,11 @@ public class UserService implements IUserService {
      *
      * @param idList
      */
+     
+//    @Override
+//    public void unlockUser(List<Integer> idList) {
+//        userRepository.unlockAccount(idList);
+//    }
     @Override
     public void unlockAccountByIdList(List<Integer> idList) {
         userRepository.unlockAccountByIdList(idList);
@@ -324,6 +362,52 @@ public class UserService implements IUserService {
      * @return List<User>
      */
 
+        /**
+         * Create by: HaiNT
+         * Date created: 13/12/2022
+         *
+         * @param id
+         * @return User object by id
+         */
+
+    @Override
+    public List<User> findByIdList(List<Integer> id) {
+        return userRepository.findUserByIdList(id);
+    }
+
+
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param idList
+     */
+    @Override
+    public void unlockUser(List<Integer> idList) {
+        userRepository.unlockAccount(idList);
+    }
+
+    /**
+     * Created: SangDD
+     * Created date: 13/12/2022
+     * Function: get Top 10 users with the highest total money auction
+     *
+     * @param quality user quality
+     * @return List<User>
+     */
+
+    @Override
+    public List<UserTopDto> getTopAuctionUser(String quality) {
+
+        return userRepository.getTopAuctionUser(quality);
+    }
+
+    /**
+     * Created by UyenNC
+     * Date created 13/12/2022
+     * Function Find user by account
+     *
+     * @param account
 //    @Override
 //    public List<UserTopDto> getTopAuctionUser(String quality) {
 //
@@ -390,6 +474,9 @@ public class UserService implements IUserService {
      */
 
     @Override
+    public User findUserByAccount(Account account) {
+        String id = account.getId() + "";
+        return userRepository.findUserByAccount(id);
     public User getUser(Integer id) {
         return userRepository.findById(id).orElse(null);
     }
