@@ -1,6 +1,6 @@
 package com.project.model.users;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.model.account.Account;
 import com.project.model.auction.Auction;
 import com.project.model.product.Product;
@@ -10,39 +10,52 @@ import java.util.Set;
 
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
+
     private String phone;
+
     private Double pointDedication;
+
     private String birthDay;
+
     private String idCard;
+
     private String avatar;
+
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
-    @JsonBackReference
+
+    @JsonManagedReference
     @OneToOne
     @JoinColumn(name = "address_id",referencedColumnName = "id")
     private Address address;
-    @JsonBackReference
+
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "user_type_id",referencedColumnName = "id")
     private UserType userType;
-    @JsonBackReference
+
+    @JsonManagedReference
     @OneToMany(mappedBy="user")
     private Set<Auction> auctions;
+
     @OneToOne
     @JoinColumn(name = "account_id",referencedColumnName = "id")
-    @JsonBackReference
+    @JsonManagedReference
     private Account account;
 
-    @JsonBackReference
+    @JsonManagedReference
     @OneToMany(mappedBy = "user")
     private Set<Product> products;
-
     public User() {
     }
 
@@ -167,4 +180,4 @@ public class User {
         this.userType = userType;
     }
 
-}
+   }

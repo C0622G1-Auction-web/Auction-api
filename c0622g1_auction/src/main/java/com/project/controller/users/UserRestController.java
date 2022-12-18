@@ -3,17 +3,18 @@ package com.project.controller.users;
 import com.project.dto.UserListDto;
 import com.project.dto.user.*;
 import com.project.model.account.Account;
-import com.project.model.account.AccountRole;
 import com.project.model.users.Address;;
 import com.project.model.users.User;
 import com.project.service.account.IAccountService;
 import com.project.service.account.ILockAccountService;
+import com.project.service.account_role.IAccountRoleService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +39,11 @@ public class UserRestController {
     @Autowired
     private ILockAccountService lockAccountService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private IAccountRoleService accountRoleService;
 
     /**
      * Create by: TruongLH
@@ -46,6 +52,7 @@ public class UserRestController {
      *
      * @return HttpStatus.NOT_CONTENT, HttpStatus.OK
      */
+
     @PostMapping("/create")
     public ResponseEntity<?> createUser(@RequestBody UserDto userDto, BindingResult bindingResult) {
 //        List<User> userList = userService.findAll();
@@ -62,20 +69,22 @@ public class UserRestController {
         User user = new User();
         Account account = new Account();
         BeanUtils.copyProperties(userDto, account);
+
         Address address = new Address();
-
         BeanUtils.copyProperties(userDto, address);
-        Address address1 = addressService.createAddress(address);
 
+        Address address1 = addressService.createAddress(address);
+        account.setPassword(passwordEncoder.encode(userDto.getPassword()));
         Account account1 = accountService.createAccount(account);
+
         BeanUtils.copyProperties(userDto, user);
 
         user.setAccount(account1);
         user.setAddress(address1);
         user.setDeleteStatus(true);
+
         userService.createUser(user);
-        AccountRole accountRole = new AccountRole();
-//        userService.createAccountRole(accountRole);
+        accountRoleService.createAccountRole(user.getAccount().getId(), 2);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -99,7 +108,7 @@ public class UserRestController {
 //        if (bindingResult.hasErrors()) {
 //            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
 //        } else {
-        User user = userService.findUserById(id).get();
+        User user = userService.findUserById(id);
         Integer userId = user.getId();
         Address address = addressService.findAddressById(user.getAddress().getId());
         Integer addressId = user.getAddress().getId();
@@ -117,6 +126,20 @@ public class UserRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     //    }
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     *
+     * @param
+     * @return Object user by id
+     */
+
+    @GetMapping("/find/{id}")
+    public ResponseEntity<?> userByIdServer(@PathVariable() int id) {
+        User user = userService.findById(id).get();
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 
     /**
      * Create by: HaiNT
@@ -152,18 +175,7 @@ public class UserRestController {
         return new ResponseEntity<>(userListDtos, HttpStatus.OK);
     }
 
-    /**
-     * Create by: TruongLH
-     * Date created: 13/12/2022
-     *
-     * @param
-     * @return Object user by id
-     */
-    @GetMapping("/{id}")
-    public ResponseEntity<?> userByIdServer(@PathVariable() int id) {
-        User user = userService.findById(id);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
+
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -173,7 +185,7 @@ public class UserRestController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<User> userById(@PathVariable() int id) {
-        User user = (User) userService.findUserById(id).get();
+        User user = (User) userService.findUserById(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
@@ -187,7 +199,7 @@ public class UserRestController {
      */
     @PutMapping("/{id}")
     public ResponseEntity<UserListDto> updateUser(@PathVariable() int id, @RequestBody UserListDto userListDto) {
-        User user = (User) userService.findUserById(id).get();
+        User user = (User) userService.findUserById(id);
         BeanUtils.copyProperties(userListDto, user);
         userService.updateUser(user);
         return new ResponseEntity<>(HttpStatus.OK);

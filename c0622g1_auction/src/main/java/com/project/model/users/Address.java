@@ -1,18 +1,25 @@
 package com.project.model.users;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
 @Entity
 public class Address {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String detailAddress;
+
     private String town;
+
     private String district;
+
     private String city;
+
     private String country;
     @OneToOne(mappedBy = "address")
     @JsonBackReference

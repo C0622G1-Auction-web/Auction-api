@@ -1,6 +1,7 @@
 package com.project.model.product;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.model.auction.Auction;
 import com.project.model.users.User;
 
@@ -9,17 +10,26 @@ import java.util.Set;
 
 @Entity
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
+
     private String description;
+
     private Double initialPrice;
+
     private String startTime;
+
     private String endTime;
+
     @Column(columnDefinition = "boolean default false")
     private Boolean deleteStatus;
+
     private String registerDay;
+
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "price_step_id", referencedColumnName = "id")

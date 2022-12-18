@@ -2,9 +2,7 @@ package com.project.service.users.impl;
 
 import com.project.dto.user.UserTopDto;
 import com.project.model.account.Account;
-import com.project.model.account.AccountRole;
 import com.project.model.users.User;
-import com.project.repository.account.IAccountRoleRepository;
 import com.project.repository.users.IUserRepository;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +17,6 @@ public class UserService implements IUserService {
     @Autowired
     private IUserRepository userRepository;
 
-    @Autowired
-    private IAccountRoleRepository accountRoleRepository;
 
     /**
      * Create by: TruongLH
@@ -46,24 +42,42 @@ public class UserService implements IUserService {
                 user.getAddress(),
                 user.getUserType(),
                 user.getId());
-//        userRepository.save(user);
     }
 
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user by id
+     * @param user
+     * @return User
+     */
     @Override
     public void updateUserById(User user) {
         userRepository.save(user);
     }
 
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user by id
+     *
+     * @param user
+     * @return User
+     */
     @Override
     public void updateUserByIdServer(User user) {
         userRepository.save(user);
     }
 
-//    @Override
-//    public void createAccountRole(AccountRole accountRole) {
-//        accountRoleRepository.createAccountRole(accountRole.setAccount();, accountRole.getRole().getId());
-//    }
 
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user by id
+     *
+     * @param user
+     * @return User
+     */
     @Override
     public void createUser(User user) {
         userRepository.save(user);
@@ -77,7 +91,6 @@ public class UserService implements IUserService {
      * @param
      * @return User
      */
-
 
     public void createUser(User user, Integer addressId, Integer accountId, Integer userType) {
         userRepository.createUser(
@@ -105,8 +118,8 @@ public class UserService implements IUserService {
      */
 
     @Override
-    public Optional<User> findUserById(int id) {
-        return userRepository.findById(id);
+    public User findUserById(int id) {
+        return userRepository.findUserById(id).get();
     }
 
     /**
@@ -177,8 +190,8 @@ public class UserService implements IUserService {
      * @param
      */
     @Override
-    public User findById(int id) {
-       return userRepository.findById(id).get();
+    public Optional<User> findById(int id) {
+       return userRepository.findUserById(id);
     }
 
 //    @Override

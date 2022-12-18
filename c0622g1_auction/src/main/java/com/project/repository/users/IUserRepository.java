@@ -1,4 +1,5 @@
 package com.project.repository.users;
+
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
@@ -16,12 +17,13 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface IUserRepository extends JpaRepository<User,Integer> {
+public interface IUserRepository extends JpaRepository<User, Integer> {
 
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to find all user list
+     *
      * @return List<User>
      */
 
@@ -34,14 +36,12 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to find by id
+     *
      * @param id
      * @return Optional<User>
      */
 
-    @Query(value = "select *" +
-            "from user u " +
-            "where u.id= :id " +
-            "and u.delete_status=1",
+    @Query(value = " select * from user where user.id = :id and user.delete_status = 1 ",
             nativeQuery = true)
     Optional<User> findUserById(@Param("id") int id);
 
@@ -49,6 +49,7 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to create user
+     *
      * @param avatar,
      * @param birthDay,
      * @param deleteStatus,
@@ -62,6 +63,7 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
      * @param addressId,
      * @param userTypeId
      */
+
     @Modifying
     @Query(value = "insert into " +
             "user(avatar," +
@@ -106,6 +108,7 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to update user
+     *
      * @param avatar,
      * @param birthDay,
      * @param deleteStatus,
@@ -154,7 +157,7 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
      * Create by: VietNQ
      * Date created: 13/12/2022
      * Function: to create user
-     * @return HttpStatus.NotFound
+     *
      * @return HttpStatus.OK
      */
     @Modifying
@@ -171,7 +174,7 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
             "account_id," +
             "address_id," +
             "user_type_id)" +
-            " values(:avatar, "+
+            " values(:avatar, " +
             ":birthDay," +
             ":deleteStatus," +
             ":email," +
@@ -185,24 +188,24 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
             ":userTypeId)",
             nativeQuery = true)
     void addUser(@Param("avatar") String avatar,
-                    @Param("birthDay") String birthDay,
-                    @Param("deleteStatus") Boolean deleteStatus,
-                    @Param("email") String email,
-                    @Param("fistName") String fistName,
-                    @Param("idCard") String idCard,
-                    @Param("lastName") String lastName,
-                    @Param("phone") String phone,
-                    @Param("pointDedication") Double pointDedication,
-                    @Param("accountId") Account accountId,
-                    @Param("addressId") Address addressId,
-                    @Param("userTypeId") UserType userTypeId);
+                 @Param("birthDay") String birthDay,
+                 @Param("deleteStatus") Boolean deleteStatus,
+                 @Param("email") String email,
+                 @Param("fistName") String fistName,
+                 @Param("idCard") String idCard,
+                 @Param("lastName") String lastName,
+                 @Param("phone") String phone,
+                 @Param("pointDedication") Double pointDedication,
+                 @Param("accountId") Account accountId,
+                 @Param("addressId") Address addressId,
+                 @Param("userTypeId") UserType userTypeId);
 
 
     /**
      * Create by: VietNQ
      * Date created: 13/12/2022
      * Function: to create user
-     * @return HttpStatus.NotFound
+     *
      * @return HttpStatus.OK
      */
     @Modifying
@@ -376,7 +379,6 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
     Optional<Address> findUserByAddressId(@Param("id") Integer id);
 
 
-
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -400,9 +402,12 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
             "LIMIT :quality ",
             nativeQuery = true)
     List<UserTopDto> getTopAuctionUser(@Param("quality") String quality);
-    /**Created by UyenNC
+
+    /**
+     * Created by UyenNC
      * Date created 13/12/2022
      * Function Find user by account
+     *
      * @param accountId
      * @return User
      */

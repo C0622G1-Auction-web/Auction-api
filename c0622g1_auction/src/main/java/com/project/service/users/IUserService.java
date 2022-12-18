@@ -7,6 +7,7 @@ import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.stereotype.Service;
 import com.project.model.account.Account;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -18,35 +19,57 @@ public interface IUserService {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to update user
+     *
      * @return User
      */
-    void updateUser(User user);
+     void updateUser(User user);
 
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to create user
+     *
      * @return User
      */
-    void createUser(User user);
+     void createUser(User user);
 
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to find user by id
+     *
      * @param id
      * @return User
      */
-    Optional<User> findUserById(int id);
+     User findUserById(int id);
 
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to find all user list
+     *
      * @return List<User>
      */
      List<User> findAll();
 
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user
+     *
+     * @return List<User>
+     */
+     void updateUserByIdServer(User user);
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user by id
+     *
+     * @return List<User>
+     */
+     Optional<User> findById(int id);
 
     void saveUser(User user, Integer addressId, Integer accountId, Integer Number);
 
@@ -75,19 +98,16 @@ public interface IUserService {
      */
     List<User> findByIdList(List<Integer> id);
 
-
     void updateAddress(User user);
 
-   User findById(int id);
+
 
     void unlockUser(List<Integer> idList);
-
 
     User findUserByAccount(Account account);
 
     void updateUserById(User user);
 
-    void updateUserByIdServer(User user);
 
 //    void createAccountRole(AccountRole accountRole);
 }
