@@ -9,7 +9,6 @@ import com.project.model.product.Product;
 import javax.persistence.*;
 import java.util.Set;
 
-
 @Entity
 public class User {
     @Id
@@ -25,13 +24,13 @@ public class User {
     private String avatar;
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
-
+    @JsonBackReference
     @OneToOne
 
     @JsonIgnore
     @JoinColumn(name = "address_id",referencedColumnName = "id")
     private Address address;
-    @JsonBackReference
+
 
     @ManyToOne
     @JsonIgnore
@@ -40,7 +39,6 @@ public class User {
     @JsonBackReference
     @OneToMany(mappedBy="user")
     private Set<Auction> auctions;
-
     @OneToOne
     @JsonBackReference
     @JsonIgnore
@@ -178,4 +176,5 @@ public class User {
     public void setProducts(Set<Product> products) {
         this.products = products;
     }
+
 }

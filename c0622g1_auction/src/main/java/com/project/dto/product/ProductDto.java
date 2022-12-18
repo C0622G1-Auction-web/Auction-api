@@ -276,4 +276,8 @@ public class ProductDto implements Validator {
     public void setMaxCurrentPrice(Double maxCurrentPrice) {
         this.maxCurrentPrice = maxCurrentPrice;
     }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
