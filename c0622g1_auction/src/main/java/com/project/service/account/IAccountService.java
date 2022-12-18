@@ -3,7 +3,6 @@ package com.project.service.account;
 import com.project.model.account.Account;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IAccountService {
 
@@ -35,12 +34,13 @@ public interface IAccountService {
 
     Account findByUserId(Integer id);
 
+    /**
      * Created by: DucDH
      * Date created: 18/12/2022
      * Function: To find an account by username
      * @param username
      * @return Account if username found
-     *         Null if username not found
+     * Null if username not found
      */
 
     Account findAccountByUsername(String username);

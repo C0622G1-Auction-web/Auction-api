@@ -58,11 +58,11 @@ public class User {
     @JsonManagedReference
     private Account account;
 
-    @JsonManagedReference
-    @JsonBackReference
-    @JsonIgnore
-    @JoinColumn(name = "account_id",referencedColumnName = "id")
-    private Account account;
+//    @JsonManagedReference
+//    @JsonBackReference
+//    @JsonIgnore
+//    @JoinColumn(name = "account_id",referencedColumnName = "id")
+//    private Acc account;
 
     @OneToOne(mappedBy = "user")
     @JsonIgnore

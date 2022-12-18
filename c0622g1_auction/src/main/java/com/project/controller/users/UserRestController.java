@@ -4,6 +4,7 @@ import com.project.dto.user.*;
 import com.project.model.account.Account;
 import com.project.model.users.Address;;
 import com.project.model.users.User;
+import com.project.model.users.UserType;
 import com.project.service.account.IAccountService;
 import com.project.service.account.ILockAccountService;
 import com.project.service.account_role.IAccountRoleService;
@@ -87,7 +88,7 @@ public class UserRestController {
         BeanUtils.copyProperties(userDto, address);
 
         Address address1 = addressService.createAddress(address);
-        account.setPassword(passwordEncoder.encode(userDto.getPassword()));
+//        account.setPassword(passwordEncoder.encode(userDto.getPassword()));
         Account account1 = accountService.createAccount(account);
 
         BeanUtils.copyProperties(userDto, user);
@@ -206,21 +207,22 @@ public class UserRestController {
         }
         return new ResponseEntity<>(userListDtos, HttpStatus.OK);
     }
-    /**
-     * Create by: HungNV
-     * Date created: 16/12/2022
-     *
-     * @param id
-     * @return Object user by id
-     */
-    @GetMapping("/find/{id}")
-    public ResponseEntity<User> findUserById(@PathVariable() int id) {
-        User user = userService.getUser(id);
-        if (user == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
+
+//    /**
+//     * Create by: HungNV
+//     * Date created: 16/12/2022
+//     *
+//     * @param id
+//     * @return Object user by id
+//     */
+//    @GetMapping("/find/{id}")
+//    public ResponseEntity<User> findUserById(@PathVariable() int id) {
+//        User user = userService.getUser(id);
+//        if (user == null) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(user, HttpStatus.OK);
+//    }
 
 //    /**
 //     * Create by: HaiNT
@@ -246,8 +248,8 @@ public class UserRestController {
     @GetMapping("/{id}")
     public ResponseEntity<User> userById(@PathVariable() int id) {
         User user = (User) userService.findUserById(id);
-    public ResponseEntity<User> userById(@PathVariable() Integer id) {
-        User user = userService.findById(id).orElse(null);
+//    public ResponseEntity<User> userById(@PathVariable() Integer id) {
+//        User user = userService.findById(id).orElse(null);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

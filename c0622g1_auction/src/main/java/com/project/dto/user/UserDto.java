@@ -129,12 +129,12 @@ public class UserDto {
     public void setUsername(String username) {
         this.username = username;
     }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//    public String getPassword() {
+//        return password;
+//    }
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
 //    public List<String> getEmailList() {
 //        return emailList;
 //    }
@@ -172,17 +172,17 @@ public class UserDto {
         this.country = country;
     }
 
-    public Boolean getDeleteStatus() {
-        return deleteStatus;
-    }
-
-    public void setDeleteStatus(Boolean deleteStatus) {
-        this.deleteStatus = deleteStatus;
-    }
-
-    public Boolean getStatusLock() {
-        return statusLock;
-    }
+//    public Boolean getDeleteStatus() {
+//        return deleteStatus;
+//    }
+//
+//    public void setDeleteStatus(Boolean deleteStatus) {
+//        this.deleteStatus = deleteStatus;
+//    }
+//
+//    public Boolean getStatusLock() {
+//        return statusLock;
+//    }
 
     public Integer getUserTypeId() {
         return userTypeId;
@@ -192,9 +192,9 @@ public class UserDto {
         this.userTypeId = userTypeId;
     }
 
-    public void setStatusLock(Boolean statusLock) {
-        this.statusLock = statusLock;
-    }
+//    public void setStatusLock(Boolean statusLock) {
+//        this.statusLock = statusLock;
+//    }
 
 
 //        public UserType getUserType() {
