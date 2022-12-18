@@ -30,5 +30,11 @@ public interface ProductDtoAdminList {
 
     String getReviewStatus();
 
+    Integer getReviewStatusId();
+
     String getUserName();
+
+    String getUserEmail();
+
+    Integer getUserId();
 }

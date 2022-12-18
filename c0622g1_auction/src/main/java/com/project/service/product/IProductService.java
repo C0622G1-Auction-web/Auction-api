@@ -22,7 +22,9 @@ public interface IProductService {
      * @param id
      * @return Optional product
      */
-    Optional<Product> findById(Integer id);
+    Optional<ProductDtoAdminList> findById(Integer id);
+
+    Optional<Product> findByProductId(Integer id);
 
     void saveProduct(ProductDTO ProductDTO);
 

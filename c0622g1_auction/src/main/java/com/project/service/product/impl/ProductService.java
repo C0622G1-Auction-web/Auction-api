@@ -34,7 +34,12 @@ public class ProductService implements IProductService {
      * @return Optional product
      */
     @Override
-    public Optional<Product> findById(Integer id) {
+    public Optional<ProductDtoAdminList> findById(Integer id) {
+        return productRepository.findDtoById(id);
+    }
+
+    @Override
+    public Optional<Product> findByProductId(Integer id) {
         return productRepository.findProductById(id);
     }
 

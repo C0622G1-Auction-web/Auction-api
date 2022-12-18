@@ -88,7 +88,7 @@ public class ProductRestController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Product> findById(@PathVariable Integer id) {
-        Optional<Product> product = productService.findById(id);
+        Optional<Product> product = productService.findByProductId(id);
         if (!product.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -209,9 +209,9 @@ public class ProductRestController {
      * @param id
      * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK if found
      */
-    @PutMapping("/review/{id}")
-    public ResponseEntity<Product> review(@PathVariable("id") Integer id) {
-        Optional<Product> optionalProduct = productService.findById(id);
+    @GetMapping("/review/{id}")
+    public ResponseEntity<?> review(@PathVariable("id") Integer id) {
+        Optional<ProductDtoAdminList> optionalProduct = productService.findById(id);
         if (!optionalProduct.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -227,9 +227,9 @@ public class ProductRestController {
      * @param id
      * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK if found
      */
-    @PutMapping("/do-not-review/{id}")
-    public ResponseEntity<Product> doNotReview(@PathVariable("id") Integer id) {
-        Optional<Product> optionalProduct = productService.findById(id);
+    @GetMapping("/do-not-review/{id}")
+    public ResponseEntity<?> doNotReview(@PathVariable("id") Integer id) {
+        Optional<ProductDtoAdminList> optionalProduct = productService.findById(id);
         if (!optionalProduct.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -256,6 +256,23 @@ public class ProductRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<List<ProductDeleteDto>>(productDeleteDtos, HttpStatus.OK);
+    }
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to find product by id
+     *
+     * @param id
+     * @return HttpStatus.NO_CONTENT if null found/  HttpStatus.OK and product found
+     */
+    @GetMapping("/find-by-id/{id}")
+    public ResponseEntity<ProductDtoAdminList> findByListId(@PathVariable Integer id) {
+        Optional<ProductDtoAdminList> optionalProduct = productService.findById(id);
+        if (!optionalProduct.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<ProductDtoAdminList>(optionalProduct.get(), HttpStatus.OK);
     }
 
     /**
@@ -312,5 +329,33 @@ public class ProductRestController {
         }
         return new ResponseEntity<Page<ProductDtoAdminList>>(productDtoPage, HttpStatus.OK);
     }
+    /**
+     * Create by: GiangLBH
+     * Date created: 17/12/2022
+     * Function: to write Reason when do not review
+     * @Return reason
+     */
+    @PostMapping("/reason")
+    public ResponseEntity<?> writeReason(
+            @RequestBody Reason reason) {
+        productPropertiesService.addReason(reason);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 17/12/2022
+     * Function: to get Reason when do not review
+     * @Return reason
+     */
+    @GetMapping("/reason/{id}")
+    public ResponseEntity<Reason> getReason(@PathVariable Integer id) {
+        Optional<Reason> reason = productPropertiesService.getReason(id);
+        if (!reason.isPresent()) {
+            return new ResponseEntity<>(new Reason(),HttpStatus.CREATED);
+        }
+        return new ResponseEntity<Reason>(reason.get(), HttpStatus.OK);
+    }
+
 }
 
