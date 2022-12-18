@@ -9,25 +9,35 @@ import javax.persistence.*;
 
 @Entity
 public class Auction {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private Double currentPrice;
+
     private String auctionTime;
+
     @Column(columnDefinition = "boolean default false")
     private Boolean auctionStatus;
+
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
+
     @ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonBackReference
     private User user;
+
     @ManyToOne
-    @JoinColumn(name = "product_id",referencedColumnName = "id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     @JsonBackReference
     private Product product;
+
     @OneToOne(mappedBy = "auction")
+    @JsonBackReference
     private Payment payment;
+
     public Auction() {
     }
 

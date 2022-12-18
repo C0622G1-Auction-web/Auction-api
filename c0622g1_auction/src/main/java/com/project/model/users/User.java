@@ -10,34 +10,49 @@ import java.util.Set;
 
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
+
     private String phone;
+
     private Double pointDedication;
+
     private String birthDay;
+
     private String idCard;
+
     private String avatar;
+
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
+
     @OneToOne
     @JoinColumn(name = "address_id",referencedColumnName = "id")
     @JsonBackReference
     private Address address;
+
     @ManyToOne
     @JoinColumn(name = "user_type_id",referencedColumnName = "id")
     @JsonBackReference
     private UserType userType;
+
     @OneToMany(mappedBy="user")
     @JsonBackReference
     private Set<Auction> auctions;
+
     @OneToOne
     @JoinColumn(name = "account_id",referencedColumnName = "id")
     @JsonBackReference
     private Account account;
+
     @OneToMany(mappedBy = "user")
     @JsonBackReference
     private Set<Product> products;

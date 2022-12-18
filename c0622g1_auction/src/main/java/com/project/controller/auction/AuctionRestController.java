@@ -1,8 +1,12 @@
 package com.project.controller.auction;
 
+import com.project.dto.auction.TransactionListDto;
 import com.project.dto.auction.TransactionSearchDto;
+import com.project.dto.product.ProductDto;
 import com.project.model.auction.Auction;
+import com.project.model.product.Product;
 import com.project.service.auction.IAuctionService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,13 +16,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.function.Function;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/auction/api")
+@RequestMapping("/api/v1/auction")
 public class AuctionRestController {
     @Autowired
     private IAuctionService auctionService;
+
+
+    @GetMapping("/list")
+    public ResponseEntity<Page<TransactionListDto>> getList(@PageableDefault(value = 5) Pageable pageable,
+                                                            @RequestBody TransactionListDto transactionListDto){
+        Page<TransactionListDto> list = auctionService.findAll(transactionListDto, pageable);
+        if (list.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<Page<TransactionListDto>>(list, HttpStatus.OK);
+
+    }
 
     /**
      * Created by : HuyNV,

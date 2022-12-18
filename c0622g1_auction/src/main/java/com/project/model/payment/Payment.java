@@ -1,5 +1,6 @@
 package com.project.model.payment;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.model.auction.Auction;
 
 import javax.persistence.*;

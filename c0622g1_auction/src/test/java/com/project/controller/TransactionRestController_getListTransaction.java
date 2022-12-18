@@ -43,7 +43,7 @@ public class TransactionRestController_getListTransaction {
      * @throws Exception
      */
     @Test
-    public void getListStudent_6() throws Exception {
+    public void getListTransaction_6() throws Exception {
 
         this.mockMvc.perform(
                         MockMvcRequestBuilders

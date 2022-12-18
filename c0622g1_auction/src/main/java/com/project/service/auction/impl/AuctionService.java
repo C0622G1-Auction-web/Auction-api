@@ -1,5 +1,6 @@
 package com.project.service.auction.impl;
 
+import com.project.dto.auction.TransactionListDto;
 import com.project.dto.auction.TransactionSearchDto;
 import com.project.model.auction.Auction;
 import com.project.repository.auction.IAuctionRepository;
@@ -16,6 +17,12 @@ public class AuctionService implements IAuctionService {
     @Autowired
     private IAuctionRepository auctionRepository;
 
+
+
+    @Override
+    public Page<TransactionListDto> findAll(TransactionListDto transactionListDto, Pageable pageable) {
+        return auctionRepository.findAll( transactionListDto,pageable);
+    }
 
     /**
      * Created by : HuyNV,

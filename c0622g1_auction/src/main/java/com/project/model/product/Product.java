@@ -1,6 +1,7 @@
 package com.project.model.product;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.model.auction.Auction;
 import com.project.model.users.User;
 
@@ -40,7 +41,8 @@ public class Product {
     @JsonBackReference
     @OneToMany(mappedBy = "product")
     private Set<ImgUrlProduct> imgUrlProducts;
-    @JsonBackReference
+
+
     @OneToMany(mappedBy = "product")
     private Set<Auction> auctions;
 

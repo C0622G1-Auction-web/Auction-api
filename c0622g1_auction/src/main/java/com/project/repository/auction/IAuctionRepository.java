@@ -1,5 +1,6 @@
 package com.project.repository.auction;
 
+import com.project.dto.auction.TransactionListDto;
 import com.project.dto.auction.TransactionSearchDto;
 import com.project.model.auction.Auction;
 import org.springframework.data.domain.Page;
@@ -40,6 +41,16 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
     Page<Auction> findAllTransaction(@Param("transactionSearchDto") TransactionSearchDto transactionSearchDto,
             Pageable pageable);
 
+    @Query(value = "select auction.id ,auction.auction_day,product.name,auction.auction_time,auction.current_price,auction.auction_status,concat(`user`.first_name, \" \", `user`.last_name) as \"Người đăng\", \n" +
+            "concat(view_user.first_name, \" \", view_user.last_name) as \"Người mua\"\n" +
+            "        from auction_web.auction join product \n" +
+            "        on `auction`.product_id = product.id \n" +
+            "        join `user` on product.user_id = `user`.id \n" +
+            "        join view_user on `auction`.user_id = view_user.id \n" +
+            "        where `auction`.delete_status = 0 ",nativeQuery = true)
+    Page<TransactionListDto> findAll(TransactionListDto transactionListDto, Pageable pageable);
+
+
     /**
      * Created by : HuyNV
      * Date created: 14/12/2022
@@ -61,4 +72,6 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
      */
     @Query(value = "select * from auction_web.auction where id in :idList and delete_status = 0 ", nativeQuery = true)
     List<Auction> findByListId(@Param("idList") List<Integer> idList);
+
+
 }
