@@ -4,12 +4,12 @@ import com.project.model.product.Product;
 
 import java.util.Set;
 
-public class CategoryDTO {
+public class CategoryDto {
     private Integer id;
     private String name;
     private Set<Product> products;
 
-    public CategoryDTO() {
+    public CategoryDto() {
     }
 
     public Integer getId() {
