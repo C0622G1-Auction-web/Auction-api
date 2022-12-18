@@ -110,5 +110,16 @@ public interface IUserService {
 
 
 //    void createAccountRole(AccountRole accountRole);
+//    void updateUserByIdServer(User user);
+   
+   /**
+     * Create by: DucDH
+     * Date: 17/12/2022
+     * Function: To get a User by email
+     * @Param: email
+     * @return: User if email found, null otherwise
+     */
+    User getUserByEmail(String email);
+
 }
 

@@ -55,6 +55,8 @@ public class UserRestController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createUser(@RequestBody UserDto userDto, BindingResult bindingResult) {
+//    @PostMapping("/create")
+//    public ResponseEntity<?> createUser(@Validated @RequestBody UserDto userDto, BindingResult bindingResult) {
 //        List<User> userList = userService.findAll();
 //        List<String> emailList = new ArrayList<>();
 //        for (User item : userList) {
@@ -87,6 +89,24 @@ public class UserRestController {
         accountRoleService.createAccountRole(user.getAccount().getId(), 2);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
+//        User user = new User();
+//        Account account = new Account();
+//        BeanUtils.copyProperties(userDto, account);
+//        Address address = new Address();
+//        BeanUtils.copyProperties(userDto, address);
+//        Address address1 = addressService.createAddress(address);
+//        Account account1 = accountService.createAccount(account);
+//        BeanUtils.copyProperties(userDto, user);
+//        user.setAccount(account1);
+//        user.setAddress(address1);
+//        user.setDeleteStatus(true);
+//        userService.createUser(user);
+////        accountRoleSevice.createAccountRole(account.getId(),1);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
+
 
     /**
      * Create by: TruongLH
@@ -125,7 +145,6 @@ public class UserRestController {
         userService.updateUserByIdServer(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    //    }
 
     /**
      * Create by: TruongLH
