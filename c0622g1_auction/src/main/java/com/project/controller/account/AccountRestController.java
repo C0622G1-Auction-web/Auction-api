@@ -35,7 +35,6 @@ public class AccountRestController {
      * Date created: 13/12/2022
      * Function: Show Account List
      *
-     * @return List<Account> + HttpStatus.OK
      * @return HttpStatus.NO_CONTENT
      */
     @GetMapping("")
@@ -125,8 +124,8 @@ public class AccountRestController {
         if (passwordResetToken == null) {
             return new ResponseEntity<>("Token không đúng", HttpStatus.NOT_FOUND);
         }
-        
-     Account account = accountService.findById(Integer.valueOf(id));
+
+//        Account account = accountService.findById(Integer.valueOf(id));
 
         String date = passwordResetToken.getExpiryDate();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");

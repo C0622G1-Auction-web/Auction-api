@@ -153,21 +153,21 @@ public class UserDto {
         this.country = country;
     }
 
-    public Boolean getDeleteStatus() {
-        return deleteStatus;
-    }
-
-    public void setDeleteStatus(Boolean deleteStatus) {
-        this.deleteStatus = deleteStatus;
-    }
-
-    public Boolean getStatusLock() {
-        return statusLock;
-    }
-
-    public void setStatusLock(Boolean statusLock) {
-        this.statusLock = statusLock;
-    }
+//    public Boolean getDeleteStatus() {
+//        return deleteStatus;
+//    }
+//
+//    public void setDeleteStatus(Boolean deleteStatus) {
+//        this.deleteStatus = deleteStatus;
+//    }
+//
+//    public Boolean getStatusLock() {
+//        return statusLock;
+//    }
+//
+//    public void setStatusLock(Boolean statusLock) {
+//        this.statusLock = statusLock;
+//    }
 
 //        public UserType getUserType() {
 //        return userType;
