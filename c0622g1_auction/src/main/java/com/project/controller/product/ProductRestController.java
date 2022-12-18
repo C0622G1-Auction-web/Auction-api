@@ -4,17 +4,12 @@ package com.project.controller.product;
 import com.project.dto.product.ProductDto;
 import com.project.dto.product.ProductSearchByRoleAdminDto;
 import com.project.dto.product.ProductSearchDto;
-import com.project.model.product.Category;
-import com.project.model.product.ImgUrlProduct;
-import com.project.model.product.PriceStep;
-import com.project.model.product.Product;
+import com.project.model.product.*;
 import com.project.model.product.dto.ImgUrlProductDTO;
 import com.project.model.product.dto.ProductDTO;
+import com.project.model.product.dto.ProductDeleteDto;
 import com.project.model.product.dto.ProductDtoAdminList;
-import com.project.service.product.ICategoryService;
-import com.project.service.product.IImgUrlProductService;
-import com.project.service.product.IPriceStepService;
-import com.project.service.product.IProductService;
+import com.project.service.product.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -47,6 +42,9 @@ public class ProductRestController {
 
     @Autowired
     private IImgUrlProductService iImgUrlProductService;
+
+    @Autowired
+    private IProductPropertiesService productPropertiesService;
 
     /**
      * Create by: HungNV,
@@ -190,17 +188,17 @@ public class ProductRestController {
      * @param idList
      * @return HttpStatus.OK if remove successfully / HttpStatus.NOT_FOUND if exists not found product
      */
-    @PutMapping("/remove")
-    public ResponseEntity<List<Product>> remove(@RequestBody List<Integer> idList) {
+    @PostMapping("/remove")
+    public ResponseEntity<?> remove(@RequestBody List<Integer> idList) {
         if (idList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        List<Product> productList = productService.findByListId(idList);
+        List<ProductDeleteDto> productList = productService.findByListId(idList);
         if (idList.size() != productList.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         productService.removeByListId(idList);
-        return new ResponseEntity<List<Product>>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
@@ -248,16 +246,16 @@ public class ProductRestController {
      * @param idList
      * @return HttpStatus.NO_CONTENT if exists any product not found/  HttpStatus.OK and products found
      */
-    @GetMapping("/find-by-list-id")
-    public ResponseEntity<List<Product>> findByListId(@RequestBody List<Integer> idList) {
-        if (idList.size() == 0) {
+    @PostMapping("/find-by-list-id")
+    public ResponseEntity<List<ProductDeleteDto>> findByListId(@RequestBody List<Integer> idList) {
+        if (idList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        List<Product> productList = productService.findByListId(idList);
-        if (idList.size() != productList.size()) {
+        List<ProductDeleteDto> productDeleteDtos = productService.findByListId(idList);
+        if (idList.size() != productDeleteDtos.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
+        return new ResponseEntity<List<ProductDeleteDto>>(productDeleteDtos, HttpStatus.OK);
     }
 
     /**
@@ -301,6 +299,13 @@ public class ProductRestController {
     @PostMapping("/search-by-admin")
     public ResponseEntity<Page<ProductDtoAdminList>> searchByRoleAdmin(@RequestBody ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
                                                                        @PageableDefault(value = 5) Pageable pageable) {
+        List<SearchProductRange> searchRanges = productPropertiesService.getListSearchProductRange();
+        for (SearchProductRange searchRange : searchRanges) {
+            if (searchRange.getId().equals(productSearchByRoleAdminDto.getPriceRange())) {
+                productSearchByRoleAdminDto.setMinPrice(searchRange.getMin());
+                productSearchByRoleAdminDto.setMaxPrice(searchRange.getMax());
+            }
+        }
         Page<ProductDtoAdminList> productDtoPage = productService.searchByRoleAdmin(productSearchByRoleAdminDto, pageable);
         if (productDtoPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -308,3 +313,4 @@ public class ProductRestController {
         return new ResponseEntity<Page<ProductDtoAdminList>>(productDtoPage, HttpStatus.OK);
     }
 }
+

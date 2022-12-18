@@ -4,6 +4,7 @@ package com.project.repository.product;
 import com.project.dto.product.ProductSearchByRoleAdminDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
+import com.project.model.product.dto.ProductDeleteDto;
 import com.project.model.product.dto.ProductDtoAdminList;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -90,8 +91,8 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * @return product list
      */
     @Modifying
-    @Query(value = "select * from product where id in :idList and delete_status = 0", nativeQuery = true)
-    List<Product> findByListId(@Param("idList") List<Integer> idList);
+    @Query(value = "select id, name from product where id in :idList and delete_status = 0", nativeQuery = true)
+    List<ProductDeleteDto> findByListId(@Param("idList") List<Integer> idList);
 
     /**
      * Create by: GiangLBH

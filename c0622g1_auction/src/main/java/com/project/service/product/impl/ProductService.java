@@ -6,6 +6,7 @@ import com.project.model.product.Product;
 import com.project.model.product.dto.ProductDTO;
 import com.project.dto.product.ProductSearchDto;
 
+import com.project.model.product.dto.ProductDeleteDto;
 import com.project.model.product.dto.ProductDtoAdminList;
 import com.project.repository.product.IProductRepository;
 import com.project.service.product.IProductService;
@@ -61,7 +62,7 @@ public class ProductService implements IProductService {
      * @return product list
      */
     @Override
-    public List<Product> findByListId(List<Integer> idList) {
+    public List<ProductDeleteDto> findByListId(List<Integer> idList) {
         return productRepository.findByListId(idList);
     }
 

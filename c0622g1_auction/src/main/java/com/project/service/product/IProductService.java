@@ -4,6 +4,7 @@ import com.project.dto.product.ProductSearchByRoleAdminDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
 import com.project.model.product.dto.ProductDTO;
+import com.project.model.product.dto.ProductDeleteDto;
 import com.project.model.product.dto.ProductDtoAdminList;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,7 +36,7 @@ public interface IProductService {
      * @param idList
      * @return product list
      */
-    List<Product> findByListId(List<Integer> idList);
+    List<ProductDeleteDto> findByListId(List<Integer> idList);
 
     /**
      * Create by: GiangLBH
