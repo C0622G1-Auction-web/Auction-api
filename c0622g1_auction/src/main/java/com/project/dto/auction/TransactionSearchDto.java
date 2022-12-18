@@ -5,7 +5,7 @@ public class TransactionSearchDto {
     private String userBuying;
     private String nameProduct;
     private Double currentPrice;
-    private String payStatus;
+    private String auctionStatus;
 
     public TransactionSearchDto() {
     }
@@ -42,11 +42,11 @@ public class TransactionSearchDto {
         this.currentPrice = currentPrice;
     }
 
-    public String getPayStatus() {
-        return payStatus;
+    public String getAuctionStatus() {
+        return auctionStatus;
     }
 
-    public void setPayStatus(String payStatus) {
-        this.payStatus = payStatus;
+    public void setAuctionStatus(String auctionStatus) {
+        this.auctionStatus = auctionStatus;
     }
 }

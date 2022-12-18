@@ -34,35 +34,13 @@ public class Auction {
     @JsonBackReference
     private Product product;
 
+    private String auctionDay;
+
     @OneToOne(mappedBy = "auction")
     @JsonBackReference
     private Payment payment;
 
     public Auction() {
-    }
-
-    public Boolean getDeleteStatus() {
-        return deleteStatus;
-    }
-
-    public void setDeleteStatus(Boolean deleteStatus) {
-        this.deleteStatus = deleteStatus;
-    }
-
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 
     public Integer getId() {
@@ -89,6 +67,7 @@ public class Auction {
         this.auctionTime = auctionTime;
     }
 
+
     public Boolean getAuctionStatus() {
         return auctionStatus;
     }
@@ -97,11 +76,44 @@ public class Auction {
         this.auctionStatus = auctionStatus;
     }
 
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+
+    public String getAuctionDay() {
+        return auctionDay;
+    }
+
+    public void setAuctionDay(String auctionDay) {
+        this.auctionDay = auctionDay;
+    }
+
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+
     }
 }

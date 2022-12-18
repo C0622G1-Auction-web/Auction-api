@@ -3,6 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Auction-api.iml" filepath="$PROJECT_DIR$/.idea/Auction-api.iml" />
+<<<<<<< HEAD
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/auction.iml" filepath="$PROJECT_DIR$/.idea/modules/auction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/auction.main.iml" filepath="$PROJECT_DIR$/.idea/modules/auction.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/auction.test.iml" filepath="$PROJECT_DIR$/.idea/modules/auction.test.iml" />
+>>>>>>> f7304b7247cb226bde4278a786d7f77823ddb859
     </modules>
   </component>
 </project>

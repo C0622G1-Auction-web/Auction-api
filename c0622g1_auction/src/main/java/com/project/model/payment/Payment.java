@@ -1,6 +1,5 @@
 package com.project.model.payment;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.model.auction.Auction;
 
 import javax.persistence.*;
@@ -14,8 +13,10 @@ public class Payment {
     private Boolean paymentStatus;
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
+
+
     @OneToOne
-    @JoinColumn(name = "auction_id",referencedColumnName = "id")
+    @JoinColumn(name = "auction_id", referencedColumnName = "id")
     private Auction auction;
 
     public Payment() {

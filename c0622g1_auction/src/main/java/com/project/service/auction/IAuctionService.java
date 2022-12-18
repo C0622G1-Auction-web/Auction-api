@@ -1,7 +1,10 @@
 package com.project.service.auction;
 
+import com.project.dto.AuctionDto;
+import com.project.dto.auction.ITransactionDto;
 import com.project.dto.auction.TransactionListDto;
 import com.project.dto.auction.TransactionSearchDto;
+import com.project.dto.product.IAuctionProductDto;
 import com.project.model.auction.Auction;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,8 +12,6 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface IAuctionService {
-
-    Page<TransactionListDto> findAll(TransactionListDto transactionListDto, Pageable pageable);
 
 
     /**
@@ -21,7 +22,7 @@ public interface IAuctionService {
      * @param pageable
      * @return
      */
-    Page<Auction> findAllTransaction(TransactionSearchDto transactionSearchDto, Pageable pageable);
+    Page<ITransactionDto> findAllTransaction(TransactionSearchDto transactionSearchDto, Pageable pageable);
 
     /**
      * Created by : HuyNV
@@ -40,5 +41,38 @@ public interface IAuctionService {
      * @param idList
      * @return
      */
-    List<Auction> findByListId(List<Integer> idList);
+    List<ITransactionDto> findByListId(List<Integer> idList);
+
+    /**
+     * Created by: TienBM,
+     * Date created: 13/12/2022
+     * Function: get page auction by product id
+     *
+     * @param productId
+     * @param pageable
+     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus. OK if result is not empty
+     */
+    Page<Auction> getPageAuctionByProductId(Integer productId, Pageable pageable);
+
+    /**
+     * Created by: TienBM,
+     * Date created: 13/12/2022
+     * Function: Add Auction
+     *
+     * @param auctionDto
+     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus. OK if result is not error
+     */
+    void addAuction(AuctionDto auctionDto);
+
+
+    /**
+     * Created by: AnhTDQ,
+     * Date created: 13/12/2022
+     * Function: get page auction product by product id
+     *
+     * @param 'userId'
+     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
+     */
+
+    Page<IAuctionProductDto> getPageAuctionProductByUserId(Integer userId, Pageable pageable);
 }

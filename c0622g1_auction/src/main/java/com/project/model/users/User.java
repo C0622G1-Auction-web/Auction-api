@@ -1,12 +1,14 @@
 package com.project.model.users;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.model.account.Account;
 import com.project.model.auction.Auction;
 import com.project.model.product.Product;
 
 import javax.persistence.*;
 import java.util.Set;
+
 
 @Entity
 public class User {
@@ -35,62 +37,39 @@ public class User {
     private Boolean deleteStatus;
 
     @OneToOne
+
+    @JsonIgnore
     @JoinColumn(name = "address_id",referencedColumnName = "id")
-    @JsonBackReference
     private Address address;
 
-    @ManyToOne
-    @JoinColumn(name = "user_type_id",referencedColumnName = "id")
     @JsonBackReference
+
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "user_type_id",referencedColumnName = "id")
     private UserType userType;
 
-    @OneToMany(mappedBy="user")
     @JsonBackReference
+    @OneToMany(mappedBy="user")
     private Set<Auction> auctions;
 
     @OneToOne
-    @JoinColumn(name = "account_id",referencedColumnName = "id")
     @JsonBackReference
+    @JsonIgnore
+    @JoinColumn(name = "account_id",referencedColumnName = "id")
     private Account account;
 
-    @OneToMany(mappedBy = "user")
+//    @OneToMany(mappedBy = "user")
+    @OneToOne(mappedBy = "user")
+    @JsonIgnore
     @JsonBackReference
+    private Account account1;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "user")
     private Set<Product> products;
 
     public User() {
-    }
-
-    public Boolean getDeleteStatus() {
-        return deleteStatus;
-    }
-
-    public void setDeleteStatus(Boolean deleteStatus) {
-        this.deleteStatus = deleteStatus;
-    }
-
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-
-    public Set<Auction> getAuctions() {
-        return auctions;
-    }
-
-    public void setAuctions(Set<Auction> auctions) {
-        this.auctions = auctions;
     }
 
     public Integer getId() {
@@ -133,7 +112,7 @@ public class User {
         this.phone = phone;
     }
 
-    public double getPointDedication() {
+    public Double getPointDedication() {
         return pointDedication;
     }
 
@@ -165,6 +144,14 @@ public class User {
         this.avatar = avatar;
     }
 
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+
     public Address getAddress() {
         return address;
     }
@@ -181,4 +168,27 @@ public class User {
         this.userType = userType;
     }
 
+    public Set<Auction> getAuctions() {
+        return auctions;
+    }
+
+    public void setAuctions(Set<Auction> auctions) {
+        this.auctions = auctions;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 }

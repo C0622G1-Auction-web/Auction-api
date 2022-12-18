@@ -1,4 +1,4 @@
-package com.project.dto;
+package com.project.dto.user;
 
 import com.project.model.account.Account;
 import com.project.model.users.Address;
@@ -13,11 +13,12 @@ public class UserListDto {
     private Address address;
     private UserType userType;
     private Account account;
+    private Double pointDedication;
 
     public UserListDto() {
     }
 
-    public UserListDto(Integer id, String firstName, String lastName, String email, String phone, Address address, UserType userType, Account account) {
+    public UserListDto(Integer id, String firstName, String lastName, String email, String phone, Address address, UserType userType, Account account, Double pointDedication) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -26,6 +27,7 @@ public class UserListDto {
         this.address = address;
         this.userType = userType;
         this.account = account;
+        this.pointDedication = pointDedication;
     }
 
     public Integer getId() {
@@ -90,5 +92,13 @@ public class UserListDto {
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public Double getPointDedication() {
+        return pointDedication;
+    }
+
+    public void setPointDedication(Double pointDedication) {
+        this.pointDedication = pointDedication;
     }
 }
