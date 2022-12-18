@@ -1,5 +1,11 @@
 package com.project.dto.guide;
 import javax.validation.constraints.NotBlank;
+
+/**
+ * Create by: QuangND,
+ * Date created: 13/12/2022
+ * Function: create a guide Dto model
+ */
 public class ImgUrlGuideDto {
     private Integer id;
     @NotBlank
@@ -10,6 +16,9 @@ public class ImgUrlGuideDto {
     }
 
 
+    public Integer getGuideId() {
+        return guideId;
+    }
 
     public Integer getId() {
         return id;
@@ -25,10 +34,6 @@ public class ImgUrlGuideDto {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public Integer getGuideId() {
-        return guideId;
     }
 
     public void setGuideId(Integer guideId) {

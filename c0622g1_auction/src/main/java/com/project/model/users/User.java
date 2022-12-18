@@ -27,7 +27,6 @@ public class User {
     @OneToOne
     @JoinColumn(name = "address_id",referencedColumnName = "id")
     private Address address;
-    private String message;
 
 
     @ManyToOne
@@ -169,11 +168,5 @@ public class User {
         this.userType = userType;
     }
 
-    public String getMessage() {
-        return message;
-    }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }

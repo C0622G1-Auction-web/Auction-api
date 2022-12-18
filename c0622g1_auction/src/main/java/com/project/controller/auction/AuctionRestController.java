@@ -1,11 +1,12 @@
 package com.project.controller.auction;
 
 import com.project.dto.AuctionDto;
+import com.project.dto.product.ProductDto;
 import com.project.dto.product.IAuctionProductDto;
 import com.project.dto.product.ProductDto;
 import com.project.model.auction.Auction;
 import com.project.model.product.Product;
-import com.project.service.auction.IAuctionService;
+import com.project.service.auction.impl.AuctionService;
 import com.project.service.product.IProductService;
 import com.project.service.users.IUserService;
 import org.springframework.beans.BeanUtils;
@@ -22,13 +23,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import java.util.function.Function;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/auction")
+@CrossOrigin("*")
 public class AuctionRestController {
 
     @Autowired
-    private IAuctionService auctionService;
+    private AuctionService auctionService;
 
     @Autowired
     private IProductService productService;
@@ -44,6 +45,7 @@ public class AuctionRestController {
      * @param productId
      * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
      */
+
     @GetMapping("auction-detail/{productId}")
     public ResponseEntity<ProductDto> findProductById(@PathVariable(value = "productId") Integer productId) {
         Optional<Product> productOptional = productService.findProductById(productId);

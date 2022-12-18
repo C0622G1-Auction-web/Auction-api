@@ -1,11 +1,10 @@
 package com.project.repository.users;
 
+import com.project.dto.user.UserTopDto;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import com.project.model.users.UserType;
-
-import com.project.dto.user.UserTopDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -18,17 +17,18 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface IUserRepository extends JpaRepository<User,Integer> {
+public interface IUserRepository extends JpaRepository<User, Integer> {
 
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to find all user list
+     *
      * @return List<User>
      */
 
     @Query(value = "select * " +
-                   "from user",
+            "from user",
             nativeQuery = true)
     List<User> findAll();
 
@@ -36,6 +36,7 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to find by id
+     *
      * @param id
      * @return Optional<User>
      */
@@ -51,6 +52,7 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to create user
+     *
      * @param avatar,
      * @param birthDay,
      * @param deleteStatus,
@@ -110,6 +112,7 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
      * Create by: VietNQ
      * Date created: 13/12/2022
      * Function: to create user
+     *
      * @return HttpStatus.NotFound
      * @return HttpStatus.OK
      */
@@ -274,6 +277,7 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to update user
+     *
      * @param avatar,
      * @param birthDay,
      * @param deleteStatus,
@@ -339,7 +343,6 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
     Optional<Address> findUserByAddressId(@Param("id") Integer id);
 
 
-
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -364,9 +367,11 @@ public interface IUserRepository extends JpaRepository<User,Integer> {
             nativeQuery = true)
     List<UserTopDto> getTopAuctionUser(@Param("quality") String quality);
 
-    /**Created by UyenNC
+    /**
+     * Created by UyenNC
      * Date created 13/12/2022
      * Function Find user by account
+     *
      * @param accountId
      * @return User
      */

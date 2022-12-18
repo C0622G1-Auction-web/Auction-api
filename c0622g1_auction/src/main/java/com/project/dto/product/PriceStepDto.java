@@ -19,6 +19,10 @@ public class PriceStepDto implements Validator {
     public PriceStepDto() {
     }
 
+    public PriceStepDto(String step) {
+        this.step = step;
+    }
+
     public PriceStepDto(Integer id, String step, Set<Product> products) {
         this.id = id;
         this.step = step;
