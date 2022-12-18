@@ -62,6 +62,15 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
             "and status_lock = 0;", nativeQuery = true)
     Account findAccountById(@Param(value = "id") Integer id);
 
+    /**
+     * Created by: DucDH
+     * Date created: 18/12/2022
+     * Function: To find an account by username
+     * @param username
+     * @return Account if username found
+     *         Null if username not found
+     */
+     
     @Query(
             value = " select * " +
                     " from account " +

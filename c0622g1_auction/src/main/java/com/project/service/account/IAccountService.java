@@ -25,6 +25,15 @@ public interface IAccountService {
      */
     Account updateAccount(Account account);
 
+    /**
+     * Created by: DucDH
+     * Date created: 18/12/2022
+     * Function: To find an account by username
+     * @param username
+     * @return Account if username found
+     *         Null if username not found
+     */
+
     Account findAccountByUsername(String username);
 
     Account saveAccount(Account account);
