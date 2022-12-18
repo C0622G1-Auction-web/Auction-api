@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
+      <module fileurl="file://$PROJECT_DIR$/.idea/Auction-web-api.iml" filepath="$PROJECT_DIR$/.idea/Auction-web-api.iml" />
+=======
       <module fileurl="file://$PROJECT_DIR$/.idea/Auction-api.iml" filepath="$PROJECT_DIR$/.idea/Auction-api.iml" />
 <<<<<<< HEAD
 =======
@@ -9,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/auction.main.iml" filepath="$PROJECT_DIR$/.idea/modules/auction.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/auction.test.iml" filepath="$PROJECT_DIR$/.idea/modules/auction.test.iml" />
 >>>>>>> f7304b7247cb226bde4278a786d7f77823ddb859
+>>>>>>> 452bcf9dbedeb5270c964eadadb3d600bf9a37c0
     </modules>
   </component>
 </project>
