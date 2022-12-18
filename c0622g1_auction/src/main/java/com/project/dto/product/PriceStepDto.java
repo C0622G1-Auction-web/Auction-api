@@ -4,23 +4,13 @@ import com.project.model.product.Product;
 
 import java.util.Set;
 
-class PriceStepDTO {
+public class PriceStepDTO {
 
     private Integer id;
     private String step;
     private Set<Product> products;
 
     public PriceStepDTO() {
-    }
-
-    public PriceStepDTO(String step) {
-        this.step = step;
-    }
-
-    public PriceStepDTO(Integer id, String step, Set<Product> products) {
-        this.id = id;
-        this.step = step;
-        this.products = products;
     }
 
     public Integer getId() {

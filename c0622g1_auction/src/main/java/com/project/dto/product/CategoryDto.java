@@ -4,8 +4,7 @@ import com.project.model.product.Product;
 
 import java.util.Set;
 
-class CategoryDTO {
-
+public class CategoryDTO {
     private Integer id;
     private String name;
     private Set<Product> products;
@@ -13,19 +12,7 @@ class CategoryDTO {
     public CategoryDTO() {
     }
 
-
-    public CategoryDTO(String name) {
-        this.name = name;
-    }
-
-
-    public CategoryDTO(int id, String name, Set<Product> products) {
-        this.id = id;
-        this.name = name;
-        this.products = products;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
