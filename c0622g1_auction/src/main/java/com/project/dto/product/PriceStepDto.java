@@ -4,7 +4,7 @@ import com.project.model.product.Product;
 
 import java.util.Set;
 
-public class PriceStepDTO {
+class PriceStepDTO {
 
     private Integer id;
     private String step;

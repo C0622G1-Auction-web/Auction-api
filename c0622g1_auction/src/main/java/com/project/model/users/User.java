@@ -153,7 +153,6 @@ public class User {
         this.userType = userType;
     }
 
-<<<<<<< HEAD
     public Set<Auction> getAuctions() {
         return auctions;
     }
@@ -177,7 +176,5 @@ public class User {
     public void setProducts(Set<Product> products) {
         this.products = products;
     }
-=======
 
->>>>>>> 81784fa3d5f3b9b1ab5fe4e346c594a080085dc7
 }
