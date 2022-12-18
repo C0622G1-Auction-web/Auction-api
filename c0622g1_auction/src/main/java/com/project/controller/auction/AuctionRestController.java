@@ -49,7 +49,10 @@ public class AuctionRestController {
     @GetMapping("auction-detail/{productId}")
     public ResponseEntity<ProductDto> findProductById(@PathVariable(value = "productId") Integer productId) {
         Optional<Product> productOptional = productService.findProductById(productId);
-        Double maxCurrentPrice = auctionService.getPageAuctionByProductId(productOptional.get().getId(), Pageable.unpaged()).getContent().get(0).getCurrentPrice();
+        Double maxCurrentPrice = auctionService.getPageAuctionByProductId(productId, Pageable.unpaged())
+                .getContent()
+                .get(0)
+                .getCurrentPrice();
         if (productOptional.isPresent()) {
             ProductDto productDto = new ProductDto();
             BeanUtils.copyProperties(productOptional.get(), productDto);
@@ -70,7 +73,7 @@ public class AuctionRestController {
      * @param pageable
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
-    @GetMapping("/tien/{productId}")
+    @GetMapping("/auction-product/{productId}")
     public ResponseEntity<Page<AuctionDto>> getPageAuctionByProductId(
             @PageableDefault(value = 3) Pageable pageable,
             @PathVariable(value = "productId") Integer productId) {

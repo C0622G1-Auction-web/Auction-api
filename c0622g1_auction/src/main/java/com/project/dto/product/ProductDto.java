@@ -47,10 +47,7 @@ public class ProductDto implements Validator {
 
     @NotBlank(message = "Please select options category to auction Product")
     private CategoryDto categoryDto;
-
     private UserDto userDto;
-
-
     private Boolean deleteStatus;
 
     @NotNull(message = "End Time of product not null")
@@ -287,5 +284,9 @@ public class ProductDto implements Validator {
 
     public void setMaxCurrentPrice(Double maxCurrentPrice) {
         this.maxCurrentPrice = maxCurrentPrice;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
