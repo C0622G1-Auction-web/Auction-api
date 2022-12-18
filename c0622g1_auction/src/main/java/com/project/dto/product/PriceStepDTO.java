@@ -13,6 +13,16 @@ public class PriceStepDTO {
     public PriceStepDTO() {
     }
 
+    public PriceStepDTO(String step) {
+        this.step = step;
+    }
+
+    public PriceStepDTO(Integer id, String step, Set<Product> products) {
+        this.id = id;
+        this.step = step;
+        this.products = products;
+    }
+
     public Integer getId() {
         return id;
     }

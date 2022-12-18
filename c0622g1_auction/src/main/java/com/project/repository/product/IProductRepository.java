@@ -137,6 +137,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "from product p\n" +
             "where p.id=:productId and p.delete_status = 0 and p.auction_status_id < 4", nativeQuery = true)
     Optional<Product> findProductById(@Param("productId") Integer productId);
+
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
@@ -151,7 +152,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
-     * Function: to delete products list by List ids
+     * Function: to delete product by List ids
      *
      * @param idList
      */
@@ -162,7 +163,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
-     * Function: to find products list by List ids
+     * Function: to find product by List ids
      *
      * @param idList
      * @return product list
@@ -203,19 +204,21 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * @param pageable
      * @return product page
      */
-    @Query(value = "select pt.* " +
-            "from `product` pt " +
-            "join `category` cy on pt.category_id = cy.id " +
-            "join `user` ur on pt.user_id = ur.id " +
-            "join `auction_status` aus on pt.auction_status_id = aus.id " +
-            "where pt.delete_status = 0 " +
-            "and pt.name like %:#{#productSearchByRoleAdminDto.productName}% " +
-            "and cy.name like %:#{#productSearchByRoleAdminDto.categoryName}% " +
-            "and (concat(ur.first_name,' ',ur.last_name) like %:#{#productSearchByRoleAdminDto.sellerName}%) " +
-            "and (pt.initial_price >= :#{#productSearchByRoleAdminDto.minPrice} " +
-            "and pt.initial_price <= :#{#productSearchByRoleAdminDto.maxPrice}) " +
-            "and aus.name like %:#{#productSearchByRoleAdminDto.auctionStatusName}% "
-            ,nativeQuery = true)
+    @Query(value = "select pt.* from product pt \n" +
+            "join category cy on pt.category_id = cy.id \n" +
+            "join user ur on pt.user_id = ur.id \n" +
+            "join auction_status aus on pt.auction_status_id = aus.id \n" +
+            "where pt.delete_status = 0 \n" +
+            "and pt.name like %:#{#productSearchByRoleAdminDto.productName}% \n" +
+            "and cy.name like %:#{#productSearchByRoleAdminDto.categoryName}% \n" +
+            "and (ur.first_name like %:#{#productSearchByRoleAdminDto.sellerName}% \n" +
+            "   or ur.last_name like %:#{#productSearchByRoleAdminDto.sellerName}% \n" +
+            "   or %:#{#productSearchByRoleAdminDto.sellerName}% like ur.first_name \n" +
+            "   or %:#{#productSearchByRoleAdminDto.sellerName}% like  ur.last_name) \n" +
+            "and (pt.initial_price >= %:#{#productSearchByRoleAdminDto.minPrice}% \n" +
+            "    and pt.initial_price <= %:#{#productSearchByRoleAdminDto.maxPrice}%) \n" +
+            "and aus.name like %:#{#productSearchByRoleAdminDto.auctionStatusName}% ",
+            nativeQuery = true)
     Page<Product> searchByRoleAdmin(@Param("productSearchByRoleAdminDto") ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
                                     Pageable pageable);
 
@@ -232,8 +235,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     Optional<Product> findById(@Param("id") Integer id);
 
 
-
-     /**
+    /**
      * Created SangDD
      * Date created 13/12/2022
      * Function: search and filter product by name, rangePrice, categoryID productAuctionStatus

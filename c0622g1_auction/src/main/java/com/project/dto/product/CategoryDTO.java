@@ -12,7 +12,18 @@ public class CategoryDTO {
     public CategoryDTO() {
     }
 
-    public Integer getId() {
+    public CategoryDTO(String name) {
+        this.name = name;
+    }
+
+
+    public CategoryDTO(int id, String name, Set<Product> products) {
+        this.id = id;
+        this.name = name;
+        this.products = products;
+    }
+
+    public int getId() {
         return id;
     }
 

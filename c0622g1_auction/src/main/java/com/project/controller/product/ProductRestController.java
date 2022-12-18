@@ -1,5 +1,11 @@
 package com.project.controller.product;
 
+
+import com.project.dto.product.ProductSearchByRoleAdminDto;
+import com.project.dto.product.ProductDto;
+import com.project.dto.product.ProductSearchDto;
+import com.project.model.product.Product;
+import com.project.service.product.IProductService;
 import com.project.dto.product.*;
 import com.project.model.product.ReviewStatus;
 import com.project.model.product.*;
@@ -20,12 +26,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import java.util.function.Function;
+
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
-
 
 @CrossOrigin("*")
 @RestController
@@ -90,6 +96,9 @@ public class ProductRestController {
         }
         return new ResponseEntity<>(product.get(), HttpStatus.OK);
     }
+
+
+
 
     /**
      * Create by: HungNV,
@@ -330,6 +339,26 @@ public class ProductRestController {
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
+     * Function: to search product by product name and category and seller name
+     * and product initial price and auction status
+     *
+     * @param productSearchByRoleAdminDto
+     * @param pageable
+     * @return HttpStatus.NO_CONTENT if not found any product /  HttpStatus.OK and Products page if found
+     */
+    @GetMapping("/searchByAdmin")
+    public ResponseEntity<Page<Product>> searchByRoleAdmin(@RequestBody ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
+                                                           @PageableDefault(value = 5) Pageable pageable) {
+        Page<Product> productPage = productService.searchByRoleAdmin(productSearchByRoleAdminDto, pageable);
+        if (productPage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<Page<Product>>(productPage, HttpStatus.OK);
+    }
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
      * Function: to review product
      *
      * @param id
@@ -363,11 +392,10 @@ public class ProductRestController {
         return new ResponseEntity<Product>(HttpStatus.OK);
     }
 
-
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
-     * Function: to find product by list id
+     * Function: to find product by id
      *
      * @param idList
      * @return HttpStatus.NO_CONTENT if exists any product not found/  HttpStatus.OK and products found
@@ -389,9 +417,9 @@ public class ProductRestController {
      * Created SangDD
      * Date created 13/12/2022
      * Function: search and filter product by name, rangePrice, categoryID productAuctionStatus
-     *
      * @param productSearchDto
      * @param pageable
+     * @return HttpStatus.NOT_FOUND if result is empty
      * @return HttpStatus.OK if result is not empty
      */
     @PostMapping("/search")
@@ -399,8 +427,8 @@ public class ProductRestController {
                                                             @PageableDefault(value = 10) Pageable pageable) {
         System.out.println("vo day");
         Page<Product> productPage = productService.getAllAndSearch(productSearchDto, pageable);
-        if (productPage.hasContent()) {
-            Page<ProductDto> productDtoPage = productPage.map(new Function<Product, ProductDto>() {
+        if(productPage.hasContent()) {
+            Page<ProductDto> productDtoPage  = productPage.map(new Function<Product, ProductDto>() {
                 @Override
                 public ProductDto apply(Product product) {
                     ProductDto productDto = new ProductDto();
@@ -412,25 +440,4 @@ public class ProductRestController {
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-    /**
-     * Create by: GiangLBH
-     * Date created: 13/12/2022
-     * Function: to search product by product name and category and seller name
-     * and product initial price and auction status
-     *
-     * @param productSearchByRoleAdminDto
-     * @param pageable
-     * @return HttpStatus.NO_CONTENT if not found any product /  HttpStatus.OK and Products page if found
-     */
-    @GetMapping("/search-by-admin")
-    public ResponseEntity<Page<Product>> searchByRoleAdmin(@RequestBody ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
-                                                           @PageableDefault(value = 5) Pageable pageable) {
-        Page<Product> productPage = productService.searchByRoleAdmin(productSearchByRoleAdminDto, pageable);
-        if (productPage.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<Page<Product>>(productPage, HttpStatus.OK);
-    }
-
 }

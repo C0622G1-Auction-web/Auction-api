@@ -14,6 +14,7 @@ import com.project.service.users.IUserService;
 import com.project.dto.user.UserListDto;
 import com.project.dto.user.UserTopDto;
 import com.project.service.users.IUserTypeService;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,10 +28,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/user/v1")
+@RequestMapping("/api/v1/users")
 public class UserRestController {
 
     @Autowired
@@ -38,16 +40,14 @@ public class UserRestController {
 
     @Autowired
     private IAddressService addressService;
-
     @Autowired
     private IAccountService accountService;
-
     @Autowired
     private IUserTypeService userTypeService;
-
-
     @Autowired
     private ILockAccountService lockAccountService;
+
+
 
     /**
      * Create by: TruongLH
@@ -93,33 +93,38 @@ public class UserRestController {
      * @param name
      * @param email
      * @param address
-     * @param userTypeId
+     * @param userType
      * @return List User by param if param is empty then return list all users
      */
+
     @GetMapping("/list")
-    public ResponseEntity<List<UserListDto>> getAllUser(
+    public ResponseEntity<Page<UserListDto>> getAllUser1(
             @RequestParam(required = false, defaultValue = "") String id,
             @RequestParam(required = false, defaultValue = "") String name,
             @RequestParam(required = false, defaultValue = "") String email,
             @RequestParam(required = false, defaultValue = "") String address,
-            @RequestParam(required = false, defaultValue = "") String userTypeId,
+            @RequestParam(required = false, defaultValue = "") String userType,
             @PageableDefault(value = 3) Pageable pageable) {
-        Page<User> userList = userService.getUserBy(id, name, email, userTypeId, address, pageable);
-        if (userList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        Page<User> userPage = userService.getUserBy(id, name, email, userType, address, pageable);
+
+        if (userPage.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        List<UserListDto> userListDtos = new ArrayList<>();
-        for (User user : userList) {
-            UserListDto userListDto = new UserListDto();
-            BeanUtils.copyProperties(user, userListDto);
-            userListDto.setAccount(user.getAccount());
-            userListDto.setAddress(user.getAddress());
-            userListDto.setUserType(user.getUserType());
-            userListDto.setId(user.getId());
-            userListDtos.add(userListDto);
-        }
-        return new ResponseEntity<>(userListDtos, HttpStatus.OK);
+        Page<UserListDto> auctionDtoPageByProductId = userPage.map(new Function<User, UserListDto>() {
+            @Override
+            public UserListDto apply(User user) {
+                UserListDto userListDto = new UserListDto();
+                BeanUtils.copyProperties(user, userListDto);
+                userListDto.setAccount(user.getAccount());
+                userListDto.setAddress(user.getAddress());
+                userListDto.setUserType(user.getUserType());
+                userListDto.setId(user.getId());
+                return userListDto;
+            }
+        });
+        return new ResponseEntity<>(auctionDtoPageByProductId, HttpStatus.OK);
     }
+
     /**
      * Create by: HungNV
      * Date created: 16/12/2022
@@ -131,23 +136,12 @@ public class UserRestController {
     public ResponseEntity<User> findUserById(@PathVariable() int id) {
         User user = userService.getUser(id);
         if (user == null) {
+
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-//    /**
-//     * Create by: HaiNT
-//     * Date created: 13/12/2022
-//     * @param id
-//     *
-//     * @return Object user by id
-//     */
-//    @GetMapping("/{id}")
-//    public ResponseEntity<User> userById(@PathVariable() int id) {
-//        User user = userService.findById(id).get();
-//        return new ResponseEntity<>(user, HttpStatus.OK);
-//    }
 
     /**
      * Create by: HaiNT
@@ -162,6 +156,12 @@ public class UserRestController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @return Object user by id
+     */
     @GetMapping("/usersType")
     public ResponseEntity<List<UserType>> getAllUserTypes() {
         List<UserType> userTypes = userTypeService.getAllUserTypes();
@@ -171,21 +171,6 @@ public class UserRestController {
         return new ResponseEntity<>(userTypes, HttpStatus.OK);
     }
 
-    /**
-     * Create by: HaiNT
-     * Date created: 13/12/2022
-     *
-     * @param
-     * @param
-     * @return the user object is updated
-     */
-    @PutMapping("/{id}")
-    public ResponseEntity<UserListDto> updateUser(@PathVariable() int id, @RequestBody UserListDto userListDto) {
-        User user = (User) userService.findById(id).get();
-        BeanUtils.copyProperties(userListDto, user);
-        userService.updateUser(user);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
 
     /**
@@ -227,6 +212,7 @@ public class UserRestController {
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
+     *
      * @param idList
      * @return the user object is unlock
      */
@@ -250,17 +236,17 @@ public class UserRestController {
      * @param userEditDto
      * @return the user object is updated
      */
-//    @PutMapping("/{id}")
-//    public ResponseEntity<UserListDto> updateUserByRoleAdmin(@PathVariable() Integer id, @RequestBody UserEditDto userEditDto) {
-//        User user = userService.findById(id).get();
-//        Address address = userService.findByAddressId(user.getAddress().getId()).get();
-//        Account account = userService.findByAccountId(user.getAccount().getId()).get();
-//        BeanUtils.copyProperties(userEditDto, address);
-//        BeanUtils.copyProperties(userEditDto, account);
-//        BeanUtils.copyProperties(userEditDto, user);
-//        userService.updateUserByRoleAdmin(user);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+    @PutMapping("/{id}")
+    public ResponseEntity<UserListDto> updateUserByRoleAdmin(@PathVariable() Integer id, @RequestBody UserEditDto userEditDto) {
+        User user = userService.findById(id).get();
+        Address address = userService.findByAddressId(user.getAddress().getId()).get();
+        Account account = userService.findByAccountId(user.getAccount().getId()).get();
+        BeanUtils.copyProperties(userEditDto, address);
+        BeanUtils.copyProperties(userEditDto, account);
+        BeanUtils.copyProperties(userEditDto, user);
+        userService.updateUserByRoleAdmin(user);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
     /**
      * Created: SangDD

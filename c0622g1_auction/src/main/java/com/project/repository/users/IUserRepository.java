@@ -21,7 +21,6 @@ import java.util.Optional;
 @Transactional
 public interface IUserRepository extends JpaRepository<User, Integer> {
 
-
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -29,7 +28,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param id
      * @param name
      * @param email
-     * @param userTypeId
+     * @param userType
      * @param address
      * @return List User
      */
@@ -42,22 +41,14 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             " AND (user.first_name like %:name% or user.last_name like %:name%) " +
             " AND (address.detail_address LIKE %:address% OR address.town LIKE %:address% or address.district LIKE %:address% or address.city LIKE %:address% or address.country LIKE %:address%) " +
             " AND user.email like %:email% " +
-            " AND user.user_type_id like %:userTypeId% ", nativeQuery = true,
+            " AND user.user_type_id like %:userType% ", nativeQuery = true,
             countQuery = "select count(*) from user")
     Page<User> getUserBy(@Param("id") String id,
                          @Param("name") String name,
                          @Param("email") String email,
-                         @Param("userTypeId") String userTypeId,
+                         @Param("userType") String userType,
                          @Param("address") String address,
                          Pageable pageable);
-
-    /**
-     * Create by: TruongLH
-     * Date created: 13/12/2022
-     * Function: to find all user list
-     *
-     * @return List<User>
-     */
 
     @Query(value = "select * " +
             "from user",
@@ -144,8 +135,9 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Create by: VietNQ
      * Date created: 13/12/2022
      * Function: to create user
+     * <p>
+     * <<<<<<< HEAD
      *
-<<<<<<< HEAD
      * @return void
      */
     @Modifying
@@ -204,41 +196,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
-     *
-     * @param id
-     * @param idCard
-     * @param avatar
-     * @param birthDay
-     * @param email
-     * @param firstName
-     * @param lastName
-     * @param phone
-     */
-    @Transactional
-    @Modifying
-    @Query(value = "UPDATE user " +
-            "SET avatar = :avatar, " +
-            "birth_day = :birthDay , " +
-            "email = :email, " +
-            "first_name = :firstName, " +
-            "id_card = :idCard, " +
-            "last_name = :lastName, " +
-            "phone = :phone " +
-            "WHERE (`id` = :id) ", nativeQuery = true)
-    void updateUserByRoleAdmin(@Param("id") Integer id,
-                               @Param("idCard") String idCard,
-                               @Param("avatar") String avatar,
-                               @Param("birthDay") String birthDay,
-                               @Param("email") String email,
-                               @Param("firstName") String firstName,
-                               @Param("lastName") String lastName,
-                               @Param("phone") String phone
-    );
-
-
-    /**
-     * Create by: HaiNT
-     * Date created: 13/12/2022
      * Function: to unlock account by id
      *
      * @param idList
@@ -253,7 +210,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Date created: 13/12/2022
      * Function: to create user
      *
-     * @return HttpStatus.NotFound
      * @return HttpStatus.OK
      */
     @Transactional
@@ -298,6 +254,42 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
                     @Param("addressId") Integer addressId,
                     @Param("userTypeId") Integer userTypeId);
 
+
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param id
+     * @param idCard
+     * @param avatar
+     * @param birthDay
+     * @param email
+     * @param firstName
+     * @param lastName
+     * @param phone
+     */
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE user " +
+            "SET avatar = :avatar, " +
+            "birth_day = :birthDay , " +
+            "email = :email, " +
+            "first_name = :firstName, " +
+            "id_card = :idCard, " +
+            "last_name = :lastName, " +
+            "phone = :phone " +
+            "WHERE (`id` = :id) ", nativeQuery = true)
+    void updateUserByRoleAdmin(@Param("id") Integer id,
+                               @Param("idCard") String idCard,
+                               @Param("avatar") String avatar,
+                               @Param("birthDay") String birthDay,
+                               @Param("email") String email,
+                               @Param("firstName") String firstName,
+                               @Param("lastName") String lastName,
+                               @Param("phone") String phone
+    );
+
+
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -340,19 +332,19 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "UPDATE auction_api.address " +
+    @Query(value = "UPDATE address " +
             "SET city = :city, " +
             "country = :country, " +
             "detail_address = :detailAddress, " +
             "district = :district, " +
             "town = :town" +
             " WHERE (`id` = :id) ", nativeQuery = true)
-    void updateAddress(@Param("id") Integer id,
-                       @Param("detailAddress") String detailAddress,
-                       @Param("town") String town,
-                       @Param("district") String district,
-                       @Param("city") String city,
-                       @Param("country") String country
+    Address updateAddress(@Param("id") Integer id,
+                          @Param("detailAddress") String detailAddress,
+                          @Param("town") String town,
+                          @Param("district") String district,
+                          @Param("city") String city,
+                          @Param("country") String country
     );
 
     /**
@@ -433,12 +425,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param userTypeId
      * @param id
      */
-//<<<<<<< HEAD
-//    @Query(value = " select * " +
-//            " from user u " +
-//            " where u.id= :id ",
-//=======
-
     @Modifying
     @Query(value = " update `user` " +
             "set `avatar` = :avatar , " +
@@ -468,10 +454,17 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
                     @Param("userTypeId") UserType userTypeId,
                     @Param("id") Integer id);
 
-    @Query(value = "select * " +
-            "from user u " +
-            "where u.id= :id " +
-            "and u.delete_status=1 ",
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find by id
+     *
+     * @param id
+     * @return Optional<User>
+     */
+    @Query(value = " select * " +
+            " from user u " +
+            " where u.id= :id ",
             nativeQuery = true)
     Optional<User> findUserById(@Param("id") Integer id);
 
