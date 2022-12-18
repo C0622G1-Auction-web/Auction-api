@@ -21,10 +21,11 @@ public class Product {
     private Boolean deleteStatus;
     private String registerDay;
 
-    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "price_step_id", referencedColumnName = "id")
+    @JoinColumn(name = "price_step_id",referencedColumnName = "id")
     private PriceStep priceStep;
+
+
 
     @JsonBackReference
     @ManyToOne
@@ -41,9 +42,8 @@ public class Product {
     @JoinColumn(name = "category_id",referencedColumnName = "id")
     private Category category;
 
-
-    @OneToMany(mappedBy = "product")
     @JsonBackReference
+    @OneToMany(mappedBy = "product")
     private Set<ImgUrlProduct> imgUrlProducts;
 
     @JsonBackReference
