@@ -53,6 +53,14 @@ public class AccountService implements IAccountService {
         return accountRepository.save(account);
     }
 
+    /**
+     * Created by: DucDH
+     * Date created: 18/12/2022
+     * Function: To find an account by username
+     * @param username
+     * @return Account if username found
+     *         Null if username not found
+     */
 
     @Override
     public Account findAccountByUsername(String username) {
@@ -143,6 +151,11 @@ public class AccountService implements IAccountService {
         Integer accountId = account.getId();
         String password = account.getPassword();
         accountRepository.updateAccount(accountId, password);
+    }
+
+    @Override
+    public Account findById(Integer id) {
+        return null;
     }
 
 

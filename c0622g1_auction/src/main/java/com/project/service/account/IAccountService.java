@@ -35,6 +35,14 @@ public interface IAccountService {
 
     Account findByUserId(Integer id);
 
+     * Created by: DucDH
+     * Date created: 18/12/2022
+     * Function: To find an account by username
+     * @param username
+     * @return Account if username found
+     *         Null if username not found
+     */
+
     Account findAccountByUsername(String username);
 
     Account saveAccount(Account account);
@@ -43,11 +51,10 @@ public interface IAccountService {
 
     Account findByUsername(String username);
 
-
     void sendMail(String email, String username, String passwordResetToken);
 
-
-
     void save(Account account);
+
+    Account findById(Integer id);
 
 }

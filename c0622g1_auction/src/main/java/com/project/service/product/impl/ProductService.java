@@ -1,9 +1,25 @@
 package com.project.service.product.impl;
 
-import com.project.dto.ProductSearchByRoleAdminDto;
+
+
+import com.project.dto.product.ProductDtoCreate;
+
+import com.project.dto.product.ProductSearchByRoleAdminDto;
+import com.project.dto.product.ProductDto;
+
+
+import com.project.model.product.Product;
+
+
+
+import com.project.dto.product.ProductSearchDto;
+
+
+import com.project.dto.product.IProductDto;
 import com.project.dto.product.ProductDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
+
 import com.project.repository.product.IProductRepository;
 import com.project.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +39,12 @@ public class ProductService implements IProductService {
      * Created by: AnhTDQ,
      * Date created: 15/12/2022
      * Function: get page products Sign up for auctions by user id
-     * @param id
+     * @param 'user id'
      * @param pageable
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
     @Override
-    public Page<ProductDto> showProductById(Integer id, Pageable pageable) {
+    public Page<IProductDto> showProductById(Integer id, Pageable pageable) {
         return productRepository.showProductById(id, pageable);
     }
 
@@ -36,7 +52,7 @@ public class ProductService implements IProductService {
      * Created by: AnhTDQ,
      * Date created: 15/12/2022
      * Function: get page products Sign up for auctions by user id
-     * @param id
+     * @param 'user id'
      * @return void
      */
 
@@ -45,6 +61,18 @@ public class ProductService implements IProductService {
         productRepository.cancelProduct(id);
     }
 
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to find product by id
+     *
+     * @param id
+     * @return Optional product
+     */
+    @Override
+    public Optional<Product> findById(Integer id) {
+        return productRepository.findProductById(id);
+    }
 
 
     /**
@@ -53,10 +81,14 @@ public class ProductService implements IProductService {
      * Function: save Product
      */
 
+//    @Override
+//    public void saveProduct(Product product) {
+//        productRepository.createProduct(product.getDescription(), product.getEndTime(), product.getInitialPrice(), product.getName(), product.getStartTime(), product.getCategory().getId(), product.getPriceStep().getId(), product.getUser().getId());
+//
+//    }
     @Override
     public void saveProduct(Product product) {
-        productRepository.createProduct(product.getDescription(), product.getEndTime(), product.getInitialPrice(), product.getName(), product.getStartTime(), product.getCategory().getId(), product.getPriceStep().getId(), product.getUser().getId());
-
+        productRepository.save(product);
     }
 
     /**
@@ -72,36 +104,87 @@ public class ProductService implements IProductService {
     public Optional<Product> findProductById(Integer productId) {
         return productRepository.findProductById(productId);
     }
+
+
+    @Override
+    public void update(Product product) {
+        productRepository.save(product);
+    }
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to find products list by List ids
+     *
+     * @param idList
+     * @return product list
+     */
     @Override
     public List<Product> findByListId(List<Integer> idList) {
         return productRepository.findByListId(idList);
     }
 
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to delete products list by List ids
+     *
+     * @param idList
+     */
     @Override
     public void removeByListId(List<Integer> idList) {
         productRepository.removeByListId(idList);
     }
 
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to get products in page
+     *
+     * @param pageable
+     * @return product page
+     */
     @Override
     public Page<Product> getAll(Pageable pageable) {
         return productRepository.getAll(pageable);
     }
 
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to search products by product name and category and seller name
+     * and product initial price and auction status
+     *
+     * @param productSearchByRoleAdminDto
+     * @param pageable
+     * @return product page
+     */
     @Override
-    public Page<Product> searchByRoleAdmin(ProductSearchByRoleAdminDto productSearchByRoleAdminDto, Pageable pageable) {
+    public Page<Product> searchByRoleAdmin(ProductSearchByRoleAdminDto productSearchByRoleAdminDto, Pageable
+            pageable) {
         return productRepository.searchByRoleAdmin(productSearchByRoleAdminDto, pageable);
     }
 
-    @Override
-    public Optional<Product> findById(Integer id) {
-        return productRepository.findById(id);
-    }
 
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to review product
+     *
+     * @param id
+     */
     @Override
     public void review(Integer id) {
         productRepository.reviewProduct(id);
     }
 
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to don't review product
+     *
+     * @param id
+     */
     @Override
     public void doNotReview(Integer id) {
         productRepository.doNotReviewProduct(id);
@@ -116,10 +199,24 @@ public class ProductService implements IProductService {
      * @param pageable
      * @return Page<Product>
      */
-
-
     @Override
     public Page<Product> getAllAndSearch(ProductSearchDto productSearchDto, Pageable pageable) {
         return productRepository.getAllAndSearch(productSearchDto, pageable);
+
     }
+
+
+    /**
+     * Created HungNV
+     * Date created 16/12/2022
+     * Function: get product by id
+     *
+     * @param id
+     * @return Product
+     */
+    @Override
+    public Product getProduct(Integer id) {
+        return productRepository.findById(id).orElse(null);
+    }
+
 }

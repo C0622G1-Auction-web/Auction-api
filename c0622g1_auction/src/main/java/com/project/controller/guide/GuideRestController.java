@@ -49,7 +49,6 @@ public class GuideRestController {
      * @Param: Id of guide want to get
      * @return an item guide
      */
-
     @GetMapping("/find/{id}")
     public ResponseEntity<Guide> getGuideById(@PathVariable int id) {
 
@@ -67,7 +66,6 @@ public class GuideRestController {
      * @Param: an item Guide
      * @return a status code
      */
-
     @PostMapping()
     public ResponseEntity<?> createGuide(@Validated @RequestBody GuideDto guideDto,
                                                         BindingResult bindingResult) {
@@ -88,7 +86,6 @@ public class GuideRestController {
      * @Param: an item Guide need to update
      * @return a status code
      */
-
     @PutMapping("")
     public ResponseEntity <GuideDto> updateGuide(@Validated @RequestBody GuideDto guideDto,
                                                  BindingResult bindingResult) {

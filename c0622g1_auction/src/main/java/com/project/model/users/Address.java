@@ -2,6 +2,7 @@ package com.project.model.users;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -23,6 +24,7 @@ public class Address {
     private String country;
     @OneToOne(mappedBy = "address")
     @JsonBackReference
+    @JsonIgnore
     private User user;
 
     public Address() {

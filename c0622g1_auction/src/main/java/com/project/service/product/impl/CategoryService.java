@@ -24,4 +24,32 @@ public class CategoryService implements ICategoryService {
     public List<Category> findAll() {
         return categoryRepository.findAll();
     }
+
+    @Override
+    public List<Category> getListCategory() {
+        return categoryRepository.listCategory();
+    }
+
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: Save Category of Product
+     */
+
+    @Override
+    public Category saveCategory(Category category) {
+       return categoryRepository.save(category);
+    }
+
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: save Category of Product
+     * @return: Category of Product
+     */
+
+    @Override
+    public Category getCategory(Integer category) {
+        return categoryRepository.findById(category).orElse(null);
+    }
 }
