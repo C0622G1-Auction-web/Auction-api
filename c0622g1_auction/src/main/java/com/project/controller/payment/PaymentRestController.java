@@ -59,6 +59,7 @@ public class PaymentRestController {
         return new ResponseEntity<>(payment, HttpStatus.OK);
     }
 
+
     /**
      * Create by: BaoBC
      * Date created: 14/12/2022
@@ -81,7 +82,7 @@ public class PaymentRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<List<IPaymentAddressDto>>(paymentList, HttpStatus.OK);
+        return new ResponseEntity<>(paymentList, HttpStatus.OK);
     }
 
     /**
@@ -102,7 +103,7 @@ public class PaymentRestController {
         }
         IPaymentTotalBillDto paymentTotalBillDto = paymentService.getTotalBill(idList);
 
-        return new ResponseEntity<IPaymentTotalBillDto>(paymentTotalBillDto,HttpStatus.OK);
+        return new ResponseEntity<>(paymentTotalBillDto, HttpStatus.OK);
     }
 
     /**
@@ -116,7 +117,7 @@ public class PaymentRestController {
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestBody List<PaymentDtoGetShip> paymentDtoGetShips) {
 
-        List<Integer> idList = new ArrayList<Integer>();
+        List<Integer> idList = new ArrayList<>();
         for (PaymentDtoGetShip payment : paymentDtoGetShips) {
             idList.add(payment.getId());
         }

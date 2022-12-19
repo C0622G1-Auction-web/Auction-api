@@ -4,10 +4,6 @@ import com.project.model.account.Account;
 
 import java.util.List;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> d3bd5434618c40e2cd8ecdf37cc9e5f5bb88fbdc
 public interface IAccountService {
 
     /**
@@ -39,8 +35,5 @@ public interface IAccountService {
     Account findById(Integer id);
 
     void save(Account account);
-<<<<<<< HEAD
-=======
 
->>>>>>> d3bd5434618c40e2cd8ecdf37cc9e5f5bb88fbdc
 }

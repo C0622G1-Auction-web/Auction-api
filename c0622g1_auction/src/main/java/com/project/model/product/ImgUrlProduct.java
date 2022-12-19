@@ -13,7 +13,7 @@ public class ImgUrlProduct {
     private String url;
 
     @JsonBackReference
-    @JsonIgnore
+//    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;

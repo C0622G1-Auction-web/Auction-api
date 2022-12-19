@@ -69,14 +69,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/auth/login")
+                .antMatchers("/api/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
 
 
-                .and().cors().and()
-                .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
+//                .and().cors().and()
+//                .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
