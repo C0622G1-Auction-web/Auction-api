@@ -9,12 +9,7 @@ import com.project.service.account.IAccountService;
 import com.project.service.account.ILockAccountService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
-
-
-import com.project.dto.user.UserListDto;
-import com.project.dto.user.UserTopDto;
 import com.project.service.users.IUserTypeService;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,13 +32,15 @@ public class UserRestController {
 
     @Autowired
     private IUserService userService;
-
     @Autowired
     private IAddressService addressService;
     @Autowired
     private IAccountService accountService;
     @Autowired
     private IUserTypeService userTypeService;
+    @Autowired
+    private ILockAccountService lockAccountService;
+
 
     /**
      * Create by: TruongLH
@@ -91,7 +88,6 @@ public class UserRestController {
      * @param userType
      * @return List User by param if param is empty then return list all users
      */
-
     @GetMapping("/list")
     public ResponseEntity<Page<UserListDto>> getAllUser1(
             @RequestParam(required = false, defaultValue = "") String id,
@@ -288,9 +284,33 @@ public class UserRestController {
      * Created: VietNQ
      * Created date: 13/12/2022
      * Function: create user account
-     * @return HttpStatus.OK if result is not empty
+     *
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
+    @PostMapping("/add")
+    public ResponseEntity<?> addUser(@RequestBody FormAddUser formAddUser) {
+
+        AddressDto addressDto = new AddressDto(formAddUser.getDetailAddress(), formAddUser.getTown(), formAddUser.getDistrict(), formAddUser.getCity(), formAddUser.getCountry());
+        AccountDto accountDto = new AccountDto(formAddUser.getUsername(), formAddUser.getPassword(), formAddUser.getStatusLock(), formAddUser.getDeleteStatus());
+        AddUserDto addUserDto = new AddUserDto(formAddUser.getFirstName(), formAddUser.getLastName(), formAddUser.getEmail(),
+                formAddUser.getPhone(), formAddUser.getPointDedication(), formAddUser.getBirthDay(),
+                formAddUser.getIdCard(), formAddUser.getAvatar(), addressDto, accountDto);
+
+        User user = new User();
+        Address address = new Address();
+        Account account = new Account();
+
+        BeanUtils.copyProperties(addressDto, address);
+        BeanUtils.copyProperties(accountDto, account);
+        BeanUtils.copyProperties(addUserDto, user);
+
+        Address addressATBC = addressService.saveAddress(address);
+        Account accountABT = accountService.saveAccount(account);
+
+        userService.saveAddUser(user, addressATBC.getId(), accountABT.getId(), 4);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 //    @PostMapping("/create")
 //    public ResponseEntity<?> addUser(@RequestBody AddUserDto addUserDto) {
 //
@@ -335,5 +355,6 @@ public class UserRestController {
         userService.lockUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 
 }

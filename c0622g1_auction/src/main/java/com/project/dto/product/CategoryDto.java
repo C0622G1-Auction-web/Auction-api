@@ -1,25 +1,28 @@
-package com.project.model.product;
+package com.project.dto.product;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.project.model.product.Product;
 
-import javax.persistence.*;
 import java.util.Set;
 
-@Entity
-public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CategoryDto {
     private Integer id;
     private String name;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "category")
     private Set<Product> products;
 
-    public Category() {
+    public CategoryDto() {
     }
 
-    public Integer getId() {
+    public CategoryDto(String name) {
+        this.name = name;
+    }
+
+    public CategoryDto(int id, String name, Set<Product> products) {
+        this.id = id;
+        this.name = name;
+        this.products = products;
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -43,3 +46,5 @@ public class Category {
         this.products = products;
     }
 }
+
+

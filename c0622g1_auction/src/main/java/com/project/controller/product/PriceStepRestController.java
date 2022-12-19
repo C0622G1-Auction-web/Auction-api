@@ -1,8 +1,6 @@
 package com.project.controller.product;
 
-import com.project.model.product.Category;
 import com.project.model.product.PriceStep;
-import com.project.service.product.ICategoryService;
 import com.project.service.product.IPriceStepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +24,7 @@ public class PriceStepRestController {
      * Create by: SonPT,
      * Date created: 13/12/2022
      * Function: find all price Step of product
+     *
      * @return list of price Step and status code
      */
 

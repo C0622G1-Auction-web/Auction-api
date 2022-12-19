@@ -66,7 +66,7 @@ public class UserService implements IUserService {
      *
      * @return User
      */
-    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
+    public void saveAddUser(User user, Integer addressId, Integer accountId, Integer userType) {
 
         userRepository.createUser(
                 user.getAvatar(),
@@ -115,7 +115,7 @@ public class UserService implements IUserService {
         userRepository.lockAccount(id);
     }
 
-    /* Create by: HaiNT
+     /* Create by: HaiNT
      * Date created: 13/12/2022
      * @param id
      * @param name
