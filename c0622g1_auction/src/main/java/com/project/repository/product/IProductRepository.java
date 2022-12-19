@@ -1,6 +1,7 @@
 package com.project.repository.product;
 
 
+import com.project.dto.product.IProductDto;
 import com.project.dto.product.ProductSearchByRoleAdminDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
@@ -30,23 +31,32 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * @param id
      * @return Optional<Product>
      */
-    @Query(value = "select * from product where delete_status = 0 and product.id = :id", nativeQuery = true)
-    Optional<Product> findProductById(@Param("id") Integer id);
+//    @Query(value = "select * from product where delete_status = 0 and product.id = :id", nativeQuery = true)
+//    Optional<Product> findProductById(@Param("id") Integer id);
 
     /**
      * Create by: HungNV
      * Date created: 14/12/2022
      * Function: create new product
      *
-     * @param name,         initialPrice,  id,  category,  description,  stepPrice,  startTime,  endTime, registerDay, auctionStatus, reviewStatus
-     * @param auctionStatus
-     * @param reviewStatus
+     * @param name, initialPrice,  id,  category,  description,  stepPrice,  startTime,  endTime, registerDay
      * @return Optional<Product>
      */
     @Modifying
     @Query(value = "insert into product (name,initial_price,user_id,category_id, description, price_step_id,start_time, end_time, register_day, auction_status_id, review_status_id) " +
-            "values (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)", nativeQuery = true)
-    void saveProduct(String name, Double initialPrice, Integer user, Integer category, String description, Integer stepPrice, String startTime, String endTime, String registerDay, Integer auctionStatus, Integer reviewStatus);
+            "values (?1,?2,?3,?4,?5,?6,?7,?8,?9,1,1)", nativeQuery = true)
+    void saveProduct(String name, Double initialPrice, Integer user, Integer category, String description, Integer stepPrice, String startTime, String endTime, String registerDay);
+
+
+    /**
+     * Create by: HungNV
+     * Date created: 16/12/2022
+     * Function: get last id
+     *
+     * @return Optional<Product>
+     */
+    @Query(value = "select last_insert_id()", nativeQuery = true)
+    Integer getLastId();
 
     /**
      * Create by: HungNV
@@ -59,6 +69,76 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     @Modifying
     @Query(value = "update product set name = ?1,initial_price =?2,user_id=?3,category_id=?4, description=?5, price_step_id=?6,start_time=?7, end_time=?8, register_day=?9 where id=?10 ", nativeQuery = true)
     void updateProduct(String name, Double initialPrice, Integer id, Integer category, String description, Integer stepPrice, String startTime, String endTime, String registerDay, int productId);
+
+    /**
+     * Created by:AnhTDQ,
+     * Date created:15/12/2022
+     * Function:get page products Sign up for auctions by user id
+     *
+     * @param id       Created by: AnhTDQ,
+     *                 Date created: 15/12/2022
+     *                 Function: get page products Sign up for auctions by user id
+     * @param 'user    id'
+     * @param pageable
+     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus OK if result is not empty
+     */
+    @Query(value = "select user.id as user ,product.`name` as name, product.description as description, " +
+            "product.register_day as registerDay , review_status.`name` as reviewStatus , product.delete_status as isDelete " +
+            "from product " +
+            "join user on product.user_id = user.id " +
+            "join review_status on review_status.id = product.review_status_id " +
+            "where product.user_id = :id ",
+            countQuery = "count (*)from product " +
+                    "join user on product.user_id = user.id " +
+                    "join review_status on review_status.id = product.review_status_id " +
+                    "where product.user_id = :id  ", nativeQuery = true)
+    Page<IProductDto> showProductById(@Param("id") Integer id, Pageable pageable);
+
+
+    /**
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function: cancel Sign up for auctions by user id
+     *
+     * @param id
+     * @param 'user id'
+     * @return voice
+     */
+    @Modifying
+    @Query(value = " UPDATE  product set delete_status = 1 where product.id = :id ", nativeQuery = true)
+    void cancelProduct(@Param("id") Integer id);
+
+
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     *
+     * @param: description, end_time, initial_price, name, register_day, start_time, category_id, price_step_id, user_id
+     * Function: create Product
+     */
+    @Modifying
+    @Query(value = "INSERT INTO product " +
+            "(`description`, `end_time`, `initial_price`, `name`, `start_time`, `category_id`, `price_step_id`, `user_id`) VALUES " +
+            "( :description, :end_time, :initial_price, :name, :start_time, :category_id, :price_step_id, :user_id);",
+            nativeQuery = true)
+    void createProduct(@Param("description") String description, @Param("end_time") String endTime,
+                       @Param("initial_price") Double initialPrice, @Param("name") String name,
+                       @Param("start_time") String startTime, @Param("category_id") Integer categoryId,
+                       @Param("price_step_id") Integer priceStepId, @Param("user_id") Integer user_id);
+
+
+    /**
+     * Created by: TienBM,
+     * Date created: 13/12/2022
+     * Function: find product by id
+     *
+     * @param productId
+     * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
+     */
+    @Query(value = "select p.*" +
+            "from product p\n" +
+            "where p.id=:productId and p.delete_status = 0 and p.auction_status_id < 4", nativeQuery = true)
+    Optional<Product> findProductById(@Param("productId") Integer productId);
 
     /**
      * Create by: GiangLBH
@@ -74,7 +154,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
-     * Function: to delete products list by List ids
+     * Function: to delete product by List ids
      *
      * @param idList
      */
@@ -85,7 +165,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
-     * Function: to find products list by List ids
+     * Function: to find product by List ids
      *
      * @param idList
      * @return product list
@@ -157,9 +237,8 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "and pt.initial_price <= :#{#productSearchByRoleAdminDto.maxPrice}) " +
             "and aus.name like %:#{#productSearchByRoleAdminDto.auctionStatusName}% "
             , nativeQuery = true)
-    Page<ProductDtoAdminList> searchByRoleAdmin(@Param("productSearchByRoleAdminDto") ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
-                                                Pageable pageable);
-
+            Page<ProductDtoAdminList> searchByRoleAdmin(@Param("productSearchByRoleAdminDto") ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
+                                                        Pageable pageable);
 
     /**
      * Create by: GiangLBH
@@ -197,6 +276,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             , nativeQuery = true)
     Optional<ProductDtoAdminList> findDtoById(@Param("id") Integer id);
 
+
     /**
      * Created SangDD
      * Date created 13/12/2022
@@ -221,7 +301,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "price_step_id, " +
             "review_status_id, " +
             "user_id " +
-            "FROM product " +
+            "FROM product "+
             "WHERE product.review_status_id = 2 " +
             "    AND product.delete_status = 0 " +
             "    AND product.category_id like %:#{#productSearchDto.categoryID}%" +
@@ -231,7 +311,5 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "         OR product.initial_price = :#{#productSearchDto.rangePrice}) " +
             "ORDER BY product.start_time DESC",
             nativeQuery = true)
-    Page<Product> getAllAndSearch(@Param("productSearchDto") ProductSearchDto productSearchDto, Pageable pageable);
-
-
+            Page<Product>getAllAndSearch(@Param("productSearchDto") ProductSearchDto productSearchDto, Pageable pageable);
 }

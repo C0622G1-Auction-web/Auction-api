@@ -1,9 +1,11 @@
 package com.project.service.product;
 
+
+import com.project.dto.product.IProductDto;
+import com.project.dto.product.ProductDto;
 import com.project.dto.product.ProductSearchByRoleAdminDto;
 import com.project.dto.product.ProductSearchDto;
 import com.project.model.product.Product;
-import com.project.model.product.dto.ProductDTO;
 import com.project.model.product.dto.ProductDeleteDto;
 import com.project.model.product.dto.ProductDtoAdminList;
 import org.springframework.data.domain.Page;
@@ -22,13 +24,13 @@ public interface IProductService {
      * @param id
      * @return Optional product
      */
-    Optional<ProductDtoAdminList> findById(Integer id);
+    Optional<ProductDtoAdminList> findDtoById(Integer id);
 
     Optional<Product> findByProductId(Integer id);
 
-    void saveProduct(ProductDTO ProductDTO);
+    void saveProduct(ProductDto productDTO);
 
-    void update(ProductDTO ProductDTO);
+    void update(ProductDto productDTO);
 
     /**
      * Create by: GiangLBH
@@ -53,40 +55,53 @@ public interface IProductService {
      * Create by: GiangLBH
      * Date created: 13/12/2022
      * Function: to get products in page
+     * <p>
+     * /**
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function: get page products Sign up for auctions by user id
      *
+     * @param "user    id"
      * @param pageable
-     * @return product page
+     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
-    Page<Product> getAll(Pageable pageable);
+    Page<IProductDto> showProductById(Integer id, Pageable pageable);
 
     /**
-     * Create by: GiangLBH
-     * Date created: 13/12/2022
-     * Function: to search products by product name and category and seller name
-     * and product initial price and auction status
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function:cancel Sign up for auctions by user id
      *
-     * @param productSearchByRoleAdminDto
-     * @param pageable
-     * @return product page
+     * @param "user id"
+     * @return voi
      */
     Page<ProductDtoAdminList> searchByRoleAdmin(ProductSearchByRoleAdminDto productSearchByRoleAdminDto, Pageable pageable);
 
-    /**
-     * Create by: GiangLBH
-     * Date created: 13/12/2022
-     * Function: to review product
-     *
-     * @param id
-     */
-    void review(Integer id);
+    void cancelProduct(Integer id);
 
     /**
-     * Create by: GiangLBH
-     * Date created: 13/12/2022
-     * Function: to don't review product
-     *
-     * @param id
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: save Product
      */
+    void saveProduct(Product product);
+
+    /**
+     * Created by: TienBM,
+     * Date created: 13/12/2022
+     * Function: find product by id
+     *
+     * @param productId
+     * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
+     */
+    Optional<Product> findProductById(Integer productId);
+
+    void update(Product product);
+
+    Page<Product> getAll(Pageable pageable);
+
+    void review(Integer id);
+
     void doNotReview(Integer id);
 
     /**
@@ -99,4 +114,15 @@ public interface IProductService {
      * @return Page<Product>
      */
     Page<Product> getAllAndSearch(ProductSearchDto productSearchDto, Pageable pageable);
+
+    /**
+     * Created HungNV
+     * Date created 13/12/2022
+     * Function: get product by id
+     *
+     * @param id
+     * @return product
+     */
+    Product getProduct(Integer id);
+
 }

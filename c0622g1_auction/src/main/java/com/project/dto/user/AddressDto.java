@@ -1,5 +1,6 @@
 package com.project.dto.user;
 
+import com.project.model.users.User;
 
 public class AddressDto {
     private Integer id;
@@ -8,7 +9,7 @@ public class AddressDto {
     private String district;
     private String city;
     private String  country;
-
+    private User user;
 
     public AddressDto() {
     }
@@ -19,6 +20,13 @@ public class AddressDto {
         this.district = district;
         this.city = city;
         this.country = country;
+    }
+
+    public AddressDto(String detailAddress, String town, String district, String city) {
+        this.detailAddress = detailAddress;
+        this.town = town;
+        this.district = district;
+        this.city = city;
     }
 
     public Integer getId() {
@@ -67,5 +75,13 @@ public class AddressDto {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
