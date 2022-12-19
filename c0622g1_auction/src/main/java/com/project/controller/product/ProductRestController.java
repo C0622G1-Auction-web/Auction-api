@@ -49,7 +49,6 @@ public class ProductRestController {
     @Autowired
     private AuctionStatusService auctionStatusService;
 
-
     @Autowired
     private IImgUrlProductService iImgUrlProductService;
 
@@ -64,7 +63,6 @@ public class ProductRestController {
      * @return categoryList and HttpStatus.OK
      */
     @GetMapping("category")
-
     public ResponseEntity<List<Category>> getListCategory() {
         List<Category> categoryList = categoryService.getListCategory();
         if (categoryList.isEmpty()) {
@@ -165,7 +163,6 @@ public class ProductRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(productList, HttpStatus.OK);
-
     }
 
     /**
@@ -196,7 +193,6 @@ public class ProductRestController {
         }
         return new ResponseEntity<>(reviewStatusList, HttpStatus.OK);
     }
-
 
     /**
      * Created by: SonPT
