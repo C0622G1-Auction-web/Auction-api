@@ -1,6 +1,7 @@
 package com.project.controller.product;
 
-import com.project.dto.product.ImgUrlProductDTO;
+
+import com.project.dto.product.ImgUrlProductDto;
 import com.project.model.product.ImgUrlProduct;
 import com.project.model.product.Product;
 import com.project.service.product.impl.ImgUrlProductService;
@@ -54,7 +55,7 @@ public class ImageProductRestController {
      */
 
     @PostMapping("/create")
-    public ResponseEntity<List<FieldError>> saveImgProduct(@Validated @RequestBody ImgUrlProductDTO imgUrlProductDTO, BindingResult bindingResult) {
+    public ResponseEntity<List<FieldError>> saveImgProduct(@Validated @RequestBody ImgUrlProductDto imgUrlProductDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
