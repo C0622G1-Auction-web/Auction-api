@@ -11,13 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
-
 public interface IUserService {
     void saveAddUser(User user, Integer addressId, Integer accountId, Integer Number);
-
-
 
     /**
      * Create by: TruongLH
@@ -70,7 +66,7 @@ public interface IUserService {
      *
      * @return
      */
-    List<User> findByIdList(List<Integer> id);
+//    List<User> findByIdList(List<Integer> id);
 
 
     /**
@@ -132,6 +128,15 @@ public interface IUserService {
      * @Param: int ID of User
      * Function: get User
      */
+    List<User> findByIdList(List<Integer> id);
+
+
+    void updateAddress(User user);
+
+    Optional<Object> findById(int id);
+
+    void unlockUser(List<Integer> idList);
+
     User findUserByAccount(Account account);
 
 }

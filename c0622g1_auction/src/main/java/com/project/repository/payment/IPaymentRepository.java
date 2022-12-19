@@ -68,7 +68,7 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
      * @param id
      * @return Payment
      */
-    @Query(value = "SELECT payment.* FROM payment WHERE payment_status = 0 AND id =:id", nativeQuery = true)
+    @Query(value = " SELECT * FROM payment WHERE payment_status = 0 AND id = :id ", nativeQuery = true)
     Payment findPaymentById(@Param("id") Integer id);
 
     /**
@@ -82,11 +82,12 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
 
     @Query(value = "select address.city, address.country, address.detail_address as detailAddress ,address.district," +
             "address.town,user.email, user.first_name as firstName,user.last_name as lastName,user.phone," +
-            "payment.shipping_description  as description ,payment.id " +
+            "payment.shipping_description  as description ,payment.id, pr.name as productName, auction.current_price as productPrice " +
             " from user " +
             " join address on address.id = user.address_id " +
             " join auction on auction.user_id = user.id " +
-            " join payment on payment.auction_id = auction.id " +
+            " join payment on payment.auction_id = auction.id" +
+            " join product as pr on pr.id = auction.product_id  " +
             " where payment.id in :idList and payment.payment_status = 0" +
             " and payment.delete_status = 0", nativeQuery = true)
     List<IPaymentAddressDto> findByListId(@Param("idList") List<Integer> idList);
