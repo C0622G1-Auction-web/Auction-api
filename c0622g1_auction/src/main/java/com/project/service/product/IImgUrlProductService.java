@@ -36,4 +36,6 @@ public interface IImgUrlProductService {
     void update(ImgUrlProduct imgUrlProduct);
 
     void delete(ImgUrlProduct imgUrlProduct);
+
+    List<ImgUrlProduct> getImgs(Integer id);
 }

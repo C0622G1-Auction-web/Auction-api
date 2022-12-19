@@ -471,5 +471,22 @@ public class ProductRestController {
         }
         return new ResponseEntity<>(reason.get(), HttpStatus.OK);
     }
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 17/12/2022
+     * Function: to get img list by product id
+     *
+     * @Param productId
+     * @Return img list
+     */
+    @GetMapping("/imgs/{id}")
+    public ResponseEntity<List<ImgUrlProduct>> getImgsByProductId(@PathVariable Integer id) {
+        List<ImgUrlProduct> imgs = iImgUrlProductService.getImgs(id);
+        if (imgs.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(imgs, HttpStatus.OK);
+    }
 }
 

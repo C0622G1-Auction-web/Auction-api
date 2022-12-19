@@ -70,4 +70,9 @@ public class ImgUrlProductService implements IImgUrlProductService {
     public void delete(ImgUrlProduct imgUrlProduct) {
         imgUrlProductRepository.delete(imgUrlProduct);
     }
+
+    @Override
+    public List<ImgUrlProduct> getImgs(Integer id) {
+        return imgUrlProductRepository.getImgs(id);
+    }
 }
