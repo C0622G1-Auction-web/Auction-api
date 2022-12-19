@@ -65,6 +65,7 @@ public class AuctionRestController {
      * Created by : HuyNV,
      * Date created: 18/12/2022
      * Function: to list delete transaction
+     *
      * @param idList
      * @return HttpStatus.OK
      */
@@ -76,6 +77,7 @@ public class AuctionRestController {
         }
         return new ResponseEntity<>(transactionList, HttpStatus.OK);
     }
+
 
     /**
      * Created by : HuyNV,
@@ -128,7 +130,7 @@ public class AuctionRestController {
      * @param pageable
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
-    @GetMapping("/tien/{productId}")
+    @GetMapping("/auction-product/{productId}")
     public ResponseEntity<Page<AuctionDto>> getPageAuctionByProductId(
             @PageableDefault(value = 3) Pageable pageable,
             @PathVariable(value = "productId") Integer productId) {

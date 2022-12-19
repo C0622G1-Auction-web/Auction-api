@@ -36,23 +36,22 @@ public class User {
     private Boolean deleteStatus;
 
     @OneToOne
-    @JoinColumn(name = "address_id",referencedColumnName = "id")
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     @JsonBackReference
 
     @ManyToOne
-    @JoinColumn(name = "user_type_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     private UserType userType;
 
     @JsonBackReference
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy = "user")
     private Set<Auction> auctions;
 
     @OneToOne
-    @JoinColumn(name = "account_id",referencedColumnName = "id")
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
-
 
 
     @OneToOne(mappedBy = "user")
@@ -169,6 +168,14 @@ public class User {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public Account getAccount1() {
+        return account1;
+    }
+
+    public void setAccount1(Account account1) {
+        this.account1 = account1;
     }
 
     public Address getAddress() {
