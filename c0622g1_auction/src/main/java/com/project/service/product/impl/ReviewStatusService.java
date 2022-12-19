@@ -14,6 +14,30 @@ public class ReviewStatusService implements IReviewStatusService {
     private IReviewStatusRepository reviewStatusRepository;
 
     /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: find all Review Status of Product
+     * @return: List Review Status of Product
+     */
+
+    @Override
+    public List<ReviewStatus> findReviewStatus() {
+        return reviewStatusRepository.getReviewStatus();
+    }
+
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: save Review Status of Product
+     * @return: Review Status of Product
+     */
+
+    @Override
+    public ReviewStatus getReviewStatus(Integer reviewStatus) {
+        return reviewStatusRepository.findById(reviewStatus).orElse(null);
+    }
+
+    /**
      * Created by: AnhTDQ,
      * Date created: 15/12/2022
      * Function: get list review Status of products Sign up for auctions

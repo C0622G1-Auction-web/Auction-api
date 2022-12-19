@@ -1,4 +1,5 @@
 package com.project.model.product;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.auction.Auction;
 import com.project.model.users.User;
@@ -29,7 +30,7 @@ public class Product {
     @JoinColumn(name = "review_status_id", referencedColumnName = "id")
     private ReviewStatus reviewStatus;
 
-    @JsonBackReference
+
     @ManyToOne
     @JoinColumn(name = "auction_status_id", referencedColumnName = "id")
     private AuctionStatus auctionStatus;

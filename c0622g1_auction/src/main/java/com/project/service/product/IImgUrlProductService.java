@@ -6,6 +6,11 @@ import java.util.List;
 
 public interface IImgUrlProductService {
 
+    void saveImgProduct(ImgUrlProduct imgUrlProduct);
+
+    ImgUrlProduct getImgUrlProduct(Integer id);
+
+
     /**
      * Created by: SonPT
      * Date created: 13-12-2022
@@ -28,5 +33,7 @@ public interface IImgUrlProductService {
      * Function: save image of product
      */
 
-    void saveImgProduct(ImgUrlProduct imgUrlProduct);
+    void update(ImgUrlProduct imgUrlProduct);
+
+    void delete(ImgUrlProduct imgUrlProduct);
 }

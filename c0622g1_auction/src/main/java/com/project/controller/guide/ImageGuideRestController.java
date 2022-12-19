@@ -1,6 +1,4 @@
-
 package com.project.controller.guide;
-
 import com.project.dto.guide.ImgUrlGuideDto;
 import com.project.model.guide.ImgUrlGuide;
 import com.project.service.guide.IImgUrlGuideService;
@@ -10,11 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
-@RequestMapping("auction/api/guide/image")
+@RequestMapping("api/v1/guide/image")
 @CrossOrigin("*")
 public class ImageGuideRestController {
     @Autowired
@@ -28,7 +25,6 @@ public class ImageGuideRestController {
      * @return list of image url and status code
      * @Param: id of guide
      */
-
     @GetMapping("/find/{id}")
     public ResponseEntity<List<ImgUrlGuide>> getImgGuideById(@PathVariable int id) {
         List<ImgUrlGuide> listImg = imgUrlGuideService.findImgByGuideId(id);
@@ -46,7 +42,6 @@ public class ImageGuideRestController {
      * @return status code
      * @Param: a item of ImgUrlGuide
      */
-
     @PostMapping()
     public ResponseEntity<ImgUrlGuideDto> createImgGuide(@Validated @RequestBody ImgUrlGuideDto imgUrlGuideDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -60,12 +55,9 @@ public class ImageGuideRestController {
      * Create by: QuangND,
      * Date created: 13/12/2022
      * Function: update a image of guide
-     *
-     * @return status code
-     * @Param: id of guide
      * @Param: a item of ImgUrlGuide
+     * @return status code
      */
-
     @PutMapping()
     public ResponseEntity<ImgUrlGuide> updateImgGuide(@Validated @RequestBody ImgUrlGuideDto imgUrlGuideDto,
                                                       BindingResult bindingResult) {
@@ -76,6 +68,19 @@ public class ImageGuideRestController {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
         imgUrlGuideService.updateImgGuie(imgUrlGuideDto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Create by: QuangND,
+     * Date created: 17/12/2022
+     * Function: delete an image of guide
+     * @Param: a id of image
+     * @return status code
+     */
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ImgUrlGuideDto> deleteImgGuide(@PathVariable("id") int id){
+        imgUrlGuideService.deleteImgGuide(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

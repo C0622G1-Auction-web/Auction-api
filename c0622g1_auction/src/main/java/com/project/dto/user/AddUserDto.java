@@ -10,6 +10,9 @@ public class AddUserDto {
     private String idCard;
     private String avatar;
     private Boolean deleteStatus;
+
+    private AddressDto addressDto;
+    private AccountDto accountDto;
     private String detailAddress;
     private String town;
     private String district;
@@ -20,10 +23,17 @@ public class AddUserDto {
 
     public AddUserDto() {
     }
-
     public AddUserDto(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, AddressDto addressDto, AccountDto accountDto) {
-
-
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.pointDedication = pointDedication;
+        this.birthDay = birthDay;
+        this.idCard = idCard;
+        this.avatar = avatar;
+        this.addressDto = addressDto;
+        this.accountDto = accountDto;
     }
 
 

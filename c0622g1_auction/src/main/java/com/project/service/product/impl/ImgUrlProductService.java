@@ -16,9 +16,10 @@ public class ImgUrlProductService implements IImgUrlProductService {
     /**
      * Created by: SonPT
      * Date created: 13-12-2022
+     *
+     * @return List<ImgUrlProduct>
      * @pathVariable: ID
      * Function: find image of product by ID
-     * @return List<ImgUrlProduct>
      */
 
     @Override
@@ -26,12 +27,19 @@ public class ImgUrlProductService implements IImgUrlProductService {
         return imgUrlProductRepository.findImgByProductId(id);
     }
 
+
+    @Override
+    public ImgUrlProduct getImgUrlProduct(Integer id) {
+        return imgUrlProductRepository.findById(id).orElse(null);
+    }
+
     /**
      * Created by: SonPT
      * Date created: 13-12-2022
+     *
+     * @return ImgUrlProduct
      * @pathVariable: ID
      * Function: find image by ID
-     * @return ImgUrlProduct
      */
 
     @Override
@@ -42,6 +50,7 @@ public class ImgUrlProductService implements IImgUrlProductService {
     /**
      * Created by: SonPT
      * Date created: 13-12-2022
+     *
      * @param: url, ID
      * Function: save Image of Product
      */
@@ -49,5 +58,16 @@ public class ImgUrlProductService implements IImgUrlProductService {
     @Override
     public void saveImgProduct(ImgUrlProduct imgUrlProduct) {
         imgUrlProductRepository.createImgProduct(imgUrlProduct.getUrl(), imgUrlProduct.getProduct().getId());
+
+    }
+
+    @Override
+    public void update(ImgUrlProduct imgUrlProduct) {
+        imgUrlProductRepository.save(imgUrlProduct);
+    }
+
+    @Override
+    public void delete(ImgUrlProduct imgUrlProduct) {
+        imgUrlProductRepository.delete(imgUrlProduct);
     }
 }
