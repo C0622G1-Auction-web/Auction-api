@@ -19,5 +19,4 @@ public interface ICategoryRepository extends JpaRepository<Category,Integer> {
      */
     @Query(value = "SELECT * FROM category", nativeQuery = true)
     List<Category> listCategory();
-
 }

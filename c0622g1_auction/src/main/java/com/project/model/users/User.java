@@ -11,42 +11,49 @@ import java.util.Set;
 
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String firstName;
+
     private String lastName;
+
     private String email;
+
     private String phone;
+
     private Double pointDedication;
+
     private String birthDay;
+
     private String idCard;
+
     private String avatar;
+
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
     @JsonBackReference
     @OneToOne
-
     @JsonIgnore
-    @JoinColumn(name = "address_id",referencedColumnName = "id")
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
-
+    @JsonBackReference
     @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "user_type_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     private UserType userType;
+
     @JsonBackReference
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy = "user")
     private Set<Auction> auctions;
+
     @OneToOne
-    @JsonBackReference
-    @JsonIgnore
-    @JoinColumn(name = "account_id",referencedColumnName = "id")
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
     @OneToOne(mappedBy = "user")
-    @JsonIgnore
     @JsonBackReference
     private Account account1;
 
@@ -55,6 +62,25 @@ public class User {
     private Set<Product> products;
 
     public User() {
+    }
+
+    public User(Integer id, String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, Boolean deleteStatus, Address address, UserType userType, Set<Auction> auctions, Account account, Account account1, Set<Product> products) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.pointDedication = pointDedication;
+        this.birthDay = birthDay;
+        this.idCard = idCard;
+        this.avatar = avatar;
+        this.deleteStatus = deleteStatus;
+        this.address = address;
+        this.userType = userType;
+        this.auctions = auctions;
+        this.account = account;
+        this.account1 = account1;
+        this.products = products;
     }
 
     public Integer getId() {
@@ -169,6 +195,14 @@ public class User {
         this.account = account;
     }
 
+    public Account getAccount1() {
+        return account1;
+    }
+
+    public void setAccount1(Account account1) {
+        this.account1 = account1;
+    }
+
     public Set<Product> getProducts() {
         return products;
     }
@@ -176,5 +210,4 @@ public class User {
     public void setProducts(Set<Product> products) {
         this.products = products;
     }
-
 }

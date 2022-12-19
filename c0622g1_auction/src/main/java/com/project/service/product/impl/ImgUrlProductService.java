@@ -1,7 +1,6 @@
 package com.project.service.product.impl;
 
 import com.project.model.product.ImgUrlProduct;
-import com.project.dto.product.ImgUrlProductDTO;
 import com.project.repository.product.IImgUrlProductRepository;
 import com.project.service.product.IImgUrlProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,10 @@ public class ImgUrlProductService implements IImgUrlProductService {
     /**
      * Created by: SonPT
      * Date created: 13-12-2022
+     *
+     * @return List<ImgUrlProduct>
      * @pathVariable: ID
      * Function: find image of product by ID
-     * @return List<ImgUrlProduct>
      */
 
     @Override
@@ -36,9 +36,10 @@ public class ImgUrlProductService implements IImgUrlProductService {
     /**
      * Created by: SonPT
      * Date created: 13-12-2022
+     *
+     * @return ImgUrlProduct
      * @pathVariable: ID
      * Function: find image by ID
-     * @return ImgUrlProduct
      */
 
     @Override
@@ -49,6 +50,7 @@ public class ImgUrlProductService implements IImgUrlProductService {
     /**
      * Created by: SonPT
      * Date created: 13-12-2022
+     *
      * @param: url, ID
      * Function: save Image of Product
      */
@@ -58,6 +60,7 @@ public class ImgUrlProductService implements IImgUrlProductService {
         imgUrlProductRepository.createImgProduct(imgUrlProduct.getUrl(), imgUrlProduct.getProduct().getId());
 
     }
+
     @Override
     public void update(ImgUrlProduct imgUrlProduct) {
         imgUrlProductRepository.save(imgUrlProduct);
