@@ -4,7 +4,6 @@ import com.project.model.account.AccountRole;
 import com.project.model.account.LockAccount;
 import com.project.model.account.PasswordResetToken;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.model.users.User;
 
 import javax.persistence.*;
@@ -27,19 +26,15 @@ public class Account {
 
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
-
     @OneToMany(mappedBy = "account")
     @JsonBackReference
     private Set<AccountRole> accountRoles;
-
     @OneToMany(mappedBy = "account")
     @JsonBackReference
     private Set<PasswordResetToken> passwordResetTokens;
-
     @OneToOne(mappedBy = "account")
     @JsonBackReference
     private User user;
-
     @OneToOne(mappedBy = "account")
     @JsonBackReference
     private LockAccount lockAccount;

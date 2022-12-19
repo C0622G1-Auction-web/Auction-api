@@ -19,5 +19,5 @@ public interface IAuctionStatusRepository extends JpaRepository<AuctionStatus,In
      * @return auction status list
      */
     @Query(value = "SELECT * FROM auction_status", nativeQuery = true)
-    List<AuctionStatus> listAuctionStatus();
+    List<AuctionStatus> getListAuctionStatus();
 }

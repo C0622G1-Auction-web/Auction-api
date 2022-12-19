@@ -1,18 +1,12 @@
 package com.project.service.users;
 
 import com.project.dto.user.UserTopDto;
-import com.project.model.product.PriceStep;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import com.project.model.account.Account;
-
-import java.util.List;
-import java.util.Optional;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +15,8 @@ import java.util.Optional;
 @Service
 
 public interface IUserService {
+    void saveAddUser(User user, Integer addressId, Integer accountId, Integer Number);
+
 
 
     /**
@@ -63,13 +59,10 @@ public interface IUserService {
      */
     List<User> findAll();
 
-
-
-
     /**
      * By: HaiNT - Find list of users by param
      */
-    Page<User> getUserBy(String id, String name, String email, String userTypeId, String address, Pageable pageable);
+    Page<User> getUserBy(String id, String name, String email, String userType, String address, Pageable pageable);
 
 
     /**
@@ -85,11 +78,26 @@ public interface IUserService {
      */
     Optional<Account> findByAccountId(int id);
 
+      /**
+     * By: HaiNT - Find list of address by AddressId
+     */
+    Optional<Address> findByAddressId(int id);
+
+
     /**
      * By: HaiNT - Find list of address by AddressId
      */
     void updateAddressByRoleAdmin(User user);
 
+    /**
+     * By: HaiNT - Find list of address by AddressId
+     */
+    void updateUserByRoleAdmin(User user);
+
+    /**
+     * By: HaiNT - Find list of address by AddressId
+     */
+    void unlockAccountByIdList(List<Integer> idList);
 
     /**
      * By: HaiNT - Find list of users by id
@@ -108,10 +116,6 @@ public interface IUserService {
      */
     List<UserTopDto> getTopAuctionUser(String quality);
 
-    /**
-     * By: HaiNT - Find list of address by AddressId
-     */
-    void updateUserByRoleAdmin(User user);
 
     /**
      * By: HungNV - Find user id
@@ -119,21 +123,8 @@ public interface IUserService {
     User getUser(Integer id);
 
 
-    /**
-     * By: HaiNT - Find list of address by AddressId
-     */
-    void unlockAccountByIdList(List<Integer> idList);
 
     void lockUser(List<Integer> id);
-
-
-    Optional<Address> findByAddressId(Integer id);
-
-    void updateAddress(User user);
-
-    Optional<Object> findById(int id);
-
-    void unlockUser(List<Integer> idList);
 
     /**
      * Created by: SonPT
