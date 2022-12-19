@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f0ec174-2ce7-4655-b76c-36cf5cdee914" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/auction/AuctionRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/auction/AuctionRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/auction.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/auction.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/CategoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/CategoryDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/PriceStepDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/PriceStepDTO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +49,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RunManager">
     <configuration name="AuctionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -68,6 +72,7 @@
       <updated>1671074819848</updated>
       <workItem from="1671074836244" duration="41081000" />
       <workItem from="1671242508903" duration="7395000" />
+      <workItem from="1671374410788" duration="105000" />
     </task>
     <servers />
   </component>
@@ -143,5 +148,9 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="1237" height="357" key="GridCell.Tab.2.right/0.0.1280.720@0.0.1280.720" timestamp="1671191879221" />
+    <state x="142" y="5" key="SettingsEditor" timestamp="1671374470980">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="142" y="5" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1671374470980" />
   </component>
 </project>
