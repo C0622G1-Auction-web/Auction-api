@@ -2,14 +2,14 @@ package com.project.service.product;
 
 
 import com.project.dto.product.IProductDto;
+import com.project.dto.product.ProductDto;
 import com.project.dto.product.ProductSearchByRoleAdminDto;
-
 import com.project.dto.product.ProductSearchDto;
-
 import com.project.model.product.Product;
+import com.project.model.product.dto.ProductDeleteDto;
+import com.project.model.product.dto.ProductDtoAdminList;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +17,46 @@ import java.util.Optional;
 public interface IProductService {
 
     /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to find product by id
+     *
+     * @param id
+     * @return Optional product
+     */
+    Optional<ProductDtoAdminList> findDtoById(Integer id);
+
+    Optional<Product> findByProductId(Integer id);
+
+    void saveProduct(ProductDto productDTO);
+
+    void update(ProductDto productDTO);
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to find products list by List ids
+     *
+     * @param idList
+     * @return product list
+     */
+    List<ProductDeleteDto> findByListId(List<Integer> idList);
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to delete products list by List ids
+     *
+     * @param idList
+     */
+    void removeByListId(List<Integer> idList);
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to get products in page
+     * <p>
+     * /**
      * Created by: AnhTDQ,
      * Date created: 15/12/2022
      * Function: get page products Sign up for auctions by user id
@@ -35,6 +75,8 @@ public interface IProductService {
      * @param "user id"
      * @return voi
      */
+    Page<ProductDtoAdminList> searchByRoleAdmin(ProductSearchByRoleAdminDto productSearchByRoleAdminDto, Pageable pageable);
+
     void cancelProduct(Integer id);
 
     /**
@@ -54,35 +96,9 @@ public interface IProductService {
      */
     Optional<Product> findProductById(Integer productId);
 
-
-    /**
-     * Create by: GiangLBH
-     * Date created: 13/12/2022
-     * Function: to find product by id
-     *
-     * @param id
-     * @return Optional product
-     */
-    Optional<Product> findById(Integer id);
-
     void update(Product product);
 
-    /**
-     * Create by: GiangLBH
-     * Date created: 13/12/2022
-     * Function: to find products list by List ids
-     *
-     * @param idList
-     * @return product list
-     */
-    List<Product> findByListId(List<Integer> idList);
-
-    void removeByListId(List<Integer> idList);
-
     Page<Product> getAll(Pageable pageable);
-
-    Page<Product> searchByRoleAdmin(ProductSearchByRoleAdminDto productSearchByRoleAdminDto, Pageable pageable);
-
 
     void review(Integer id);
 
@@ -98,7 +114,6 @@ public interface IProductService {
      * @return Page<Product>
      */
     Page<Product> getAllAndSearch(ProductSearchDto productSearchDto, Pageable pageable);
-
 
     /**
      * Created HungNV

@@ -18,6 +18,5 @@ public interface IAuctionStatusService {
      * @Param: int ID of Auction Status
      * Function: get Auction Status of Product
      */
-
     AuctionStatus getAuctionStatus(Integer auctionStatus);
 }

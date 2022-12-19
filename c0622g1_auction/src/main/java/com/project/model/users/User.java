@@ -1,6 +1,7 @@
 package com.project.model.users;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.model.account.Account;
 import com.project.model.auction.Auction;
 import com.project.model.product.Product;
@@ -36,6 +37,7 @@ public class User {
     private Boolean deleteStatus;
 
     @OneToOne
+    @JsonIgnore
     @JoinColumn(name = "address_id",referencedColumnName = "id")
     private Address address;
 
@@ -52,8 +54,6 @@ public class User {
     @OneToOne
     @JoinColumn(name = "account_id",referencedColumnName = "id")
     private Account account;
-
-
 
     @OneToOne(mappedBy = "user")
     @JsonBackReference

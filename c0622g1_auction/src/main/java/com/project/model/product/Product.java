@@ -25,8 +25,6 @@ public class Product {
     @JoinColumn(name = "price_step_id",referencedColumnName = "id")
     private PriceStep priceStep;
 
-
-
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "review_status_id", referencedColumnName = "id")
