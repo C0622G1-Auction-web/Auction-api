@@ -2,11 +2,11 @@ package com.project.controller.product;
 
 
 
+
 import com.project.dto.product.*;
 import com.project.model.product.*;
 import com.project.model.users.User;
 import com.project.service.product.*;
-import com.project.service.users.IUserService;
 import com.project.dto.product.ProductSearchByRoleAdminDto;
 import com.project.model.product.Category;
 import com.project.model.product.ImgUrlProduct;
@@ -17,24 +17,28 @@ import com.project.service.product.IImgUrlProductService;
 import com.project.service.product.IPriceStepService;
 import com.project.service.product.IProductService;
 
+
+
+import com.project.model.product.ReviewStatus;
+import com.project.service.product.impl.AuctionStatusService;
+import com.project.service.product.impl.ReviewStatusService;
+import com.project.service.users.impl.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-
-
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
 
 
 import com.project.dto.product.ProductDto;
@@ -42,7 +46,6 @@ import com.project.dto.product.ProductSearchDto;
 
 
 import java.util.function.Function;
-
 
 
 
@@ -63,16 +66,20 @@ public class ProductRestController {
     private IPriceStepService priceStepService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ReviewStatusService reviewStatusService;
+
+    @Autowired
+    private AuctionStatusService auctionStatusService;
+
+
+    @Autowired
     private IImgUrlProductService iImgUrlProductService;
 
     @Autowired
-    private IReviewStatusService reviewStatusService;
-
-    @Autowired
-    private IAuctionStatusService auctionStatusService;
-
-    @Autowired
-    private IUserService userService;
+    private IProductPropertiesService productPropertiesService;
 
     /**
      * Create by: HungNV,
@@ -82,6 +89,7 @@ public class ProductRestController {
      * @return categoryList and HttpStatus.OK
      */
     @GetMapping("category")
+
     public ResponseEntity<List<Category>> getListCategory() {
         List<Category> categoryList = categoryService.getListCategory();
         if (categoryList.isEmpty()) {
@@ -105,7 +113,6 @@ public class ProductRestController {
         }
         return new ResponseEntity<>(priceStepList, HttpStatus.OK);
     }
-
     /**
      * Create by: HungNV,
      * Date created: 14/12/2022
@@ -116,7 +123,7 @@ public class ProductRestController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Product> findById(@PathVariable Integer id) {
-        Optional<Product> product = productService.findById(id);
+        Optional<Product> product = productService.findByProductId(id);
         if (!product.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -128,28 +135,27 @@ public class ProductRestController {
      * Date created: 14/12/2022
      * Function: create new product
      *
-     * @param productDTO,bindingResult
+     * @param productDtoCreate,bindingResult
      * @return HttpStatus.create or (bindingResult.getFieldErrors() and HttpStatus.NOT_ACCEPTABLE)
      */
-
     @PostMapping("/create")
-    public ResponseEntity<Product> create(@RequestBody @Validated ProductDtoCreate productDTO, BindingResult bindingResult) {
+    public ResponseEntity<Product> create(@Validated @RequestBody ProductDtoCreate productDtoCreate, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
         Date date = new Date();
-        productDTO.setRegisterDay(String.valueOf(date));
+        productDtoCreate.setRegisterDay(String.valueOf(date));
         Product product = new Product();
-        BeanUtils.copyProperties(productDTO, product);
-        PriceStep priceStep = priceStepService.getPriceStep(productDTO.getPriceStep());
+        BeanUtils.copyProperties(productDtoCreate, product);
+        PriceStep priceStep = priceStepService.getPriceStep(productDtoCreate.getPriceStep());
         product.setPriceStep(priceStep);
-        Category category = categoryService.getCategory(productDTO.getCategory());
+        Category category = categoryService.getCategory(productDtoCreate.getCategory());
         product.setCategory(category);
         ReviewStatus reviewStatus = reviewStatusService.getReviewStatus(1);
         product.setReviewStatus(reviewStatus);
         AuctionStatus auctionStatus = auctionStatusService.getAuctionStatus(1);
         product.setAuctionStatus(auctionStatus);
-        User user = userService.getUser(productDTO.getUser());
+        User user = userService.getUser(productDtoCreate.getUser());
         product.setUser(user);
         productService.saveProduct(product);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
@@ -185,32 +191,63 @@ public class ProductRestController {
     }
 
     /**
-     * Create by: HungNV,
-     * Date created: 13/12/2022
-     * Function: find img product by product id
+     * Create by AnhTDQ
+     * Date created: 15/12/2022
+     * Function: get all products Sign up for auctions
+     *
+     * @return HttpStatus.NO_CONTENT if not found any product /  HttpStatus.OK and Products page if found
+     */
+    @GetMapping("/list/{id}")
+    public ResponseEntity<Page<IProductDto>> historyProduct(Integer id, Pageable pageable) {
+        Page<IProductDto> productList = productService.showProductById(1, pageable);
+
+        if (productList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(productList, HttpStatus.OK);
+
+    }
+
+    /**
+     * Create by AnhTDQ
+     * Date created: 15/12/2022
+     * Function: cancel products Sign up for auctions
      *
      * @param id
-     * @return listImg and HttpStatus.OK
+     * @return HttpStatus.CREATED
+
+     * @return : HttpStatus.OK and cancel successfully
      */
-    @GetMapping("img/{id}")
-    public ResponseEntity<List<ImgUrlProduct>> findImgProductId(@PathVariable Integer id) {
-        List<ImgUrlProduct> listImg = iImgUrlProductService.findImgByProductId(id);
-        if (listImg.isEmpty()) {
+    @GetMapping("/canceled/{id}")
+    public ResponseEntity<Product> canceledProduct(@PathVariable("id") Integer id) {
+        productService.cancelProduct(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Create by AnhTDQ
+     * Date created: 15/12/2022
+     * Function: get all reviewStatus of Sign up for auctions
+     *
+     * @return HttpStatus.NO_CONTENT if not found any reviewStatus /  HttpStatus.OK and  list reviewStatus if found
+     */
+    @GetMapping("/listReviewStatus")
+    public ResponseEntity<List<ReviewStatus>> showReviewStatus() {
+        List<ReviewStatus> reviewStatusList = reviewStatusService.findAll();
+        if (reviewStatusList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(listImg, HttpStatus.OK);
+        return new ResponseEntity<>(reviewStatusList, HttpStatus.OK);
     }
 
     /**
      * Create by: HungNV,
-     * Date created: 13/12/2022
-     * Function: create new img product of product
+     * Date created: 19/12/2022
+     * Function: create new image of product
      *
      * @param imgUrlProductDto
-     * @return HttpStatus.CREATED
+     * @return imgUrlProduct and HttpStatus.CREATED / bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE
      */
-
-
     @PostMapping("img/create")
     public ResponseEntity<List<FieldError>> saveImgProduct(@Validated @RequestBody ImgUrlProductDto imgUrlProductDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -254,7 +291,7 @@ public class ProductRestController {
      * @return imgUrlProduct and HttpStatus.CREATED / bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE
      */
     @DeleteMapping("img/delete/{id}")
-    public ResponseEntity<ImgUrlProduct> updateImageProduct(@PathVariable Integer id) {
+    public ResponseEntity<ImgUrlProduct> deleteImageById(@PathVariable Integer id) {
         ImgUrlProduct imgUrlProduct = iImgUrlProductService.getImgUrlProduct(id);
         iImgUrlProductService.delete(imgUrlProduct);
         return new ResponseEntity<>(imgUrlProduct, HttpStatus.OK);
@@ -284,17 +321,17 @@ public class ProductRestController {
      * @param idList
      * @return HttpStatus.OK if remove successfully / HttpStatus.NOT_FOUND if exists not found product
      */
-    @PutMapping("/remove")
-    public ResponseEntity<List<Product>> remove(@RequestBody List<Integer> idList) {
+    @PostMapping("/remove")
+    public ResponseEntity<?> remove(@RequestBody List<Integer> idList) {
         if (idList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        List<Product> productList = productService.findByListId(idList);
+        List<ProductDeleteDto> productList = productService.findByListId(idList);
         if (idList.size() != productList.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         productService.removeByListId(idList);
-        return new ResponseEntity<List<Product>>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
@@ -305,9 +342,9 @@ public class ProductRestController {
      * @param id
      * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK if found
      */
-    @PutMapping("/review/{id}")
-    public ResponseEntity<Product> review(@PathVariable("id") Integer id) {
-        Optional<Product> optionalProduct = productService.findById(id);
+    @GetMapping("/review/{id}")
+    public ResponseEntity<?> review(@PathVariable("id") Integer id) {
+        Optional<ProductDtoAdminList> optionalProduct = productService.findDtoById(id);
         if (!optionalProduct.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -323,9 +360,9 @@ public class ProductRestController {
      * @param id
      * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK if found
      */
-    @PutMapping("/do-not-review/{id}")
-    public ResponseEntity<Product> doNotReview(@PathVariable("id") Integer id) {
-        Optional<Product> optionalProduct = productService.findById(id);
+    @GetMapping("/do-not-review/{id}")
+    public ResponseEntity<?> doNotReview(@PathVariable("id") Integer id) {
+        Optional<ProductDtoAdminList> optionalProduct = productService.findDtoById(id);
         if (!optionalProduct.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -333,25 +370,41 @@ public class ProductRestController {
         return new ResponseEntity<Product>(HttpStatus.OK);
     }
 
-
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
-     * Function: to find product by list id
+     * Function: to find product by id
      *
      * @param idList
      * @return HttpStatus.NO_CONTENT if exists any product not found/  HttpStatus.OK and products found
      */
-    @GetMapping("/find-by-list-id")
-    public ResponseEntity<List<Product>> findByListId(@RequestBody List<Integer> idList) {
-        if (idList.size() == 0) {
+    @PostMapping("/find-by-list-id")
+    public ResponseEntity<List<ProductDeleteDto>> findByListId(@RequestBody List<Integer> idList) {
+        if (idList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        List<Product> productList = productService.findByListId(idList);
-        if (idList.size() != productList.size()) {
+        List<ProductDeleteDto> productDeleteDtos = productService.findByListId(idList);
+        if (idList.size() != productDeleteDtos.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<List<Product>>(productList, HttpStatus.OK);
+        return new ResponseEntity<List<ProductDeleteDto>>(productDeleteDtos, HttpStatus.OK);
+    }
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 13/12/2022
+     * Function: to find product by id
+     *
+     * @param id
+     * @return HttpStatus.NO_CONTENT if null found/  HttpStatus.OK and product found
+     */
+    @GetMapping("/find-by-id/{id}")
+    public ResponseEntity<ProductDtoAdminList> findByListId(@PathVariable Integer id) {
+        Optional<ProductDtoAdminList> optionalProduct = productService.findDtoById(id);
+        if (!optionalProduct.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<ProductDtoAdminList>(optionalProduct.get(), HttpStatus.OK);
     }
 
 
@@ -392,14 +445,51 @@ public class ProductRestController {
      * @param pageable
      * @return HttpStatus.NO_CONTENT if not found any product /  HttpStatus.OK and Products page if found
      */
-    @GetMapping("/search-by-admin")
-    public ResponseEntity<Page<Product>> searchByRoleAdmin(@RequestBody ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
-                                                           @PageableDefault(value = 5) Pageable pageable) {
-        Page<Product> productPage = productService.searchByRoleAdmin(productSearchByRoleAdminDto, pageable);
-        if (productPage.isEmpty()) {
+    @PostMapping("/search-by-admin")
+    public ResponseEntity<Page<ProductDtoAdminList>> searchByRoleAdmin(@RequestBody ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
+                                                                       @PageableDefault(value = 5) Pageable pageable) {
+        List<SearchProductRange> searchRanges = productPropertiesService.getListSearchProductRange();
+        for (SearchProductRange searchRange : searchRanges) {
+            if (searchRange.getId().equals(productSearchByRoleAdminDto.getPriceRange())) {
+                productSearchByRoleAdminDto.setMinPrice(searchRange.getMin());
+                productSearchByRoleAdminDto.setMaxPrice(searchRange.getMax());
+            }
+        }
+        Page<ProductDtoAdminList> productDtoPage = productService.searchByRoleAdmin(productSearchByRoleAdminDto, pageable);
+        if (productDtoPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<Page<Product>>(productPage, HttpStatus.OK);
+        return new ResponseEntity<Page<ProductDtoAdminList>>(productDtoPage, HttpStatus.OK);
     }
 
+    /**
+     * Create by: GiangLBH
+     * Date created: 17/12/2022
+     * Function: to write Reason when do not review
+     *
+     * @Return reason
+     */
+    @PostMapping("/reason")
+    public ResponseEntity<?> writeReason(
+            @RequestBody Reason reason) {
+        productPropertiesService.addReason(reason);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 17/12/2022
+     * Function: to get Reason when do not review
+     *
+     * @Return reason
+     */
+    @GetMapping("/reason/{id}")
+    public ResponseEntity<Reason> getReason(@PathVariable Integer id) {
+        Optional<Reason> reason = productPropertiesService.getReason(id);
+        if (!reason.isPresent()) {
+            return new ResponseEntity<>(new Reason(), HttpStatus.CREATED);
+        }
+        return new ResponseEntity<Reason>(reason.get(), HttpStatus.OK);
+    }
 }
+

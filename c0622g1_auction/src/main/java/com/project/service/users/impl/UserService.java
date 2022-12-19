@@ -1,14 +1,13 @@
 package com.project.service.users.impl;
 
+import com.project.dto.user.UserTopDto;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
-import com.project.dto.user.UserTopDto;
-
 import com.project.repository.account.IAccountRepository;
 import com.project.repository.users.IAddressRepository;
-
 import com.project.repository.users.IUserRepository;
+import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,10 +17,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
 public class UserService implements IUserService {
-
     @Autowired
     private IUserRepository userRepository;
     @Autowired
@@ -30,15 +27,47 @@ public class UserService implements IUserService {
     private IAccountRepository accountRepository;
 
     /**
-     * Create by: VietNQ
+     * Create by: TruongLH
      * Date created: 13/12/2022
-     * Function: to create user
+     * Function: to update user
      *
-     * @return void
+     * @param user
+     * @return User
      */
+
     @Override
-    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
-        userRepository.addUser(
+    public void updateUser(User user) {
+        userRepository.updateUser(
+                user.getAvatar(),
+                user.getBirthDay(),
+                user.getDeleteStatus(),
+                user.getEmail(),
+                user.getFirstName(),
+                user.getIdCard(),
+                user.getLastName(),
+                user.getPhone(),
+                user.getPointDedication(),
+                user.getAccount(),
+                user.getAddress(),
+                user.getUserType(),
+                user.getId());
+    }
+
+    @Override
+    public void createUser(User user) {
+        userRepository.save(user);
+    }
+
+    /**
+     * Create by: HaiNT
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     *
+     * @return User
+     */
+    public void saveAddUser(User user, Integer addressId, Integer accountId, Integer userType) {
+
+        userRepository.createUser(
                 user.getAvatar(),
                 user.getBirthDay(),
                 user.getDeleteStatus(),
@@ -56,6 +85,26 @@ public class UserService implements IUserService {
 
     /**
      * Create by: VietNQ
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user by id
+     *
+     * @param id
+     * @return User
+     */
+
+    @Override
+    public Optional<User> findUserById(int id) {
+        return userRepository.findUserById(id);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return null;
+    }
+
+    /**
+     * Create by: HaiNT
      * Date created: 13/12/2022
      * Function: to lockAccount
      *
@@ -65,42 +114,19 @@ public class UserService implements IUserService {
         userRepository.lockAccount(id);
     }
 
-    /* Create by: HaiNT
+     /* Create by: HaiNT
      * Date created: 13/12/2022
      * @param id
      * @param name
      * @param email
-     * @param userTypeId
+     * @param userType
      * @param address
      * @return List of users by param
      */
-    @Override
-    public Page<User> getUserBy(String id, String name, String email, String userTypeId, String address, Pageable pageable) {
-        return userRepository.getUserBy(id, name, email, userTypeId, address, pageable);
-    }
 
-    /**
-     * Create by: HaiNT
-     * Date created: 13/12/2022
-     *
-     * @param id
-     * @return User object by id
-     */
     @Override
-    public Optional<User> findById(Integer id) {
-        return userRepository.findUserById(id);
-    }
-
-    /**
-     * Create by: HaiNT
-     * Date created: 13/12/2022
-     *
-     * @param id
-     * @return Object Address by id
-     */
-    @Override
-    public Optional<Address> findByAddressId(int id) {
-        return addressRepository.findById(id);
+    public Page<User> getUserBy(String id, String name, String email, String userType, String address, Pageable pageable) {
+        return userRepository.getUserBy(id, name, email, userType, address, pageable);
     }
 
     /**
@@ -119,6 +145,20 @@ public class UserService implements IUserService {
      * Create by: HaiNT
      * Date created: 13/12/2022
      *
+     * @param id
+     * @return Object Address by id
+     */
+    @Override
+    public Optional<Address> findByAddressId(int id) {
+        return addressRepository.findById(id);
+    }
+
+
+
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
      * @param user
      */
     @Override
@@ -126,14 +166,16 @@ public class UserService implements IUserService {
         userRepository.save(user);
     }
 
-
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param id
+     * @return User object by id
+     */
     @Override
-    public void updateUser(User user) {
-    }
-
-    @Override
-    public void unlockUser(List<Integer> idList) {
-
+    public Optional<User> findById(Integer id) {
+        return userRepository.findUserById(id);
     }
 
     /**
@@ -149,6 +191,7 @@ public class UserService implements IUserService {
                 user.getFirstName(), user.getLastName(), user.getPhone());
     }
 
+
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -156,6 +199,7 @@ public class UserService implements IUserService {
      * @param id
      * @return User object by id
      */
+
     @Override
     public List<User> findByIdList(List<Integer> id) {
         return userRepository.findUserByIdList(id);
@@ -172,6 +216,7 @@ public class UserService implements IUserService {
         userRepository.unlockAccountByIdList(idList);
     }
 
+
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -180,10 +225,29 @@ public class UserService implements IUserService {
      * @param quality user quality
      * @return List<User>
      */
+
     @Override
+
     public List<UserTopDto> getTopAuctionUser(String quality) {
         return userRepository.getTopAuctionUser(quality);
     }
+
+    /**
+     * Created by UyenNC
+     * Date created 13/12/2022
+     * Function Find user by account
+     *
+     * @param account
+     * @return User
+     */
+
+    @Override
+
+    public User findUserByAccount(Account account) {
+        String id = account.getId() + "";
+        return userRepository.findUserByAccount(id);
+    }
+
 
     /**
      * Created: HungNV

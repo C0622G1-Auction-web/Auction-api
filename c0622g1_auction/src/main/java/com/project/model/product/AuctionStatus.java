@@ -13,8 +13,8 @@ public class AuctionStatus {
     private Integer id;
     private String name;
 
-    @OneToMany(mappedBy = "auctionStatus")
     @JsonBackReference
+    @OneToMany(mappedBy = "auctionStatus")
     private Set<Product> products;
 
     public AuctionStatus() {

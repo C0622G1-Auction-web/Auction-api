@@ -1,5 +1,6 @@
 package com.project.model.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -13,8 +14,8 @@ public class Category {
     private Integer id;
     private String name;
 
-    @OneToMany(mappedBy = "category")
     @JsonBackReference
+    @OneToMany(mappedBy = "category")
     private Set<Product> products;
 
     public Category() {

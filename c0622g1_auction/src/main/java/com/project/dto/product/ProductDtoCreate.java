@@ -7,6 +7,12 @@ import javax.validation.constraints.Size;
 
 public class ProductDtoCreate {
 
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: create product dto to auction product
+     */
+
     private int id;
     @NotBlank
     @Size(min = 6, max = 255)
