@@ -1,25 +1,11 @@
 package com.project.controller.product;
 
 
-
-
 import com.project.dto.product.*;
+import com.project.model.product.ReviewStatus;
 import com.project.model.product.*;
 import com.project.model.users.User;
 import com.project.service.product.*;
-import com.project.dto.product.ProductSearchByRoleAdminDto;
-import com.project.model.product.Category;
-import com.project.model.product.ImgUrlProduct;
-import com.project.model.product.PriceStep;
-import com.project.model.product.Product;
-import com.project.service.product.ICategoryService;
-import com.project.service.product.IImgUrlProductService;
-import com.project.service.product.IPriceStepService;
-import com.project.service.product.IProductService;
-
-
-
-import com.project.model.product.ReviewStatus;
 import com.project.service.product.impl.AuctionStatusService;
 import com.project.service.product.impl.ReviewStatusService;
 import com.project.service.users.impl.UserService;
@@ -38,17 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
-
-
-import com.project.dto.product.ProductDto;
-import com.project.dto.product.ProductSearchDto;
-
-
 import java.util.function.Function;
-
-
-
 
 
 @CrossOrigin("*")
@@ -111,6 +87,7 @@ public class ProductRestController {
         }
         return new ResponseEntity<>(priceStepList, HttpStatus.OK);
     }
+
     /**
      * Create by: HungNV,
      * Date created: 14/12/2022
@@ -211,8 +188,6 @@ public class ProductRestController {
      * Function: cancel products Sign up for auctions
      *
      * @param id
-     * @return HttpStatus.CREATED
-
      * @return : HttpStatus.OK and cancel successfully
      */
     @GetMapping("/canceled/{id}")
@@ -257,6 +232,7 @@ public class ProductRestController {
         iImgUrlProductService.saveImgProduct(imgUrlProduct);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     /**
      * Create by: HungNV,
      * Date created: 13/12/2022
@@ -273,6 +249,7 @@ public class ProductRestController {
         }
         return new ResponseEntity<>(listImg, HttpStatus.OK);
     }
+
     /**
      * Create by: HungNV,
      * Date created: 17/12/2022
@@ -502,6 +479,23 @@ public class ProductRestController {
             return new ResponseEntity<>(new Reason(), HttpStatus.CREATED);
         }
         return new ResponseEntity<>(reason.get(), HttpStatus.OK);
+    }
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 17/12/2022
+     * Function: to get img list by product id
+     *
+     * @Param productId
+     * @Return img list
+     */
+    @GetMapping("/imgs/{id}")
+    public ResponseEntity<List<ImgUrlProduct>> getImgsByProductId(@PathVariable Integer id) {
+        List<ImgUrlProduct> imgs = iImgUrlProductService.getImgs(id);
+        if (imgs.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(imgs, HttpStatus.OK);
     }
 }
 
