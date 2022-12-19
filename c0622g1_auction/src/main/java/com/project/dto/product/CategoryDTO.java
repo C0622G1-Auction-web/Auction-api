@@ -4,15 +4,26 @@ import com.project.model.product.Product;
 
 import java.util.Set;
 
-public class CategoryDTO {
+public class CategoryDto {
     private Integer id;
     private String name;
     private Set<Product> products;
 
-    public CategoryDTO() {
+    public CategoryDto() {
     }
 
-    public Integer getId() {
+    public CategoryDto(String name) {
+        this.name = name;
+    }
+
+
+    public CategoryDto(int id, String name, Set<Product> products) {
+        this.id = id;
+        this.name = name;
+        this.products = products;
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -36,3 +47,4 @@ public class CategoryDTO {
         this.products = products;
     }
 }
+

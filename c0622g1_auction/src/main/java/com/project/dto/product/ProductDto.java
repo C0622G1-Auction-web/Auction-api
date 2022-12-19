@@ -39,10 +39,10 @@ public class ProductDto implements Validator {
     @NotBlank(message = "Please input end time to auction Product")
     private String endTime;
     @NotBlank(message = "Please input step price to auction Product")
-    private PriceStepDTO priceStepDto;
+    private PriceStepDto priceStepDto;
 
     @NotBlank(message = "Please select options category to auction Product")
-    private CategoryDTO categoryDto;
+    private CategoryDto categoryDto;
     private UserDto userDto;
     private Boolean deleteStatus;
 
@@ -65,7 +65,7 @@ public class ProductDto implements Validator {
     public ProductDto() {
     }
 
-    public ProductDto(int id, String name, String description, Double initialPrice, String startTime, String endTime, PriceStepDTO priceStepDto, CategoryDTO categoryDto, UserDto userDto) {
+    public ProductDto(int id, String name, String description, Double initialPrice, String startTime, String endTime, PriceStepDto priceStepDto, CategoryDto categoryDto, UserDto userDto) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -83,7 +83,7 @@ public class ProductDto implements Validator {
         this.auctions = auctions;
     }
 
-    public ProductDto(String name, String description, Double initialPrice, String startTime, String endTime, Boolean deleteStatus, String registerDay, CategoryDTO categoryDto, PriceStepDTO priceStepDto, UserDto userDto) {
+    public ProductDto(String name, String description, Double initialPrice, String startTime, String endTime, Boolean deleteStatus, String registerDay, CategoryDto categoryDto, PriceStepDto priceStepDto, UserDto userDto) {
         this.name = name;
         this.description = description;
         this.initialPrice = initialPrice;
@@ -145,15 +145,15 @@ public class ProductDto implements Validator {
     }
 
 
-    public void setPriceStepDto(PriceStepDTO priceStepDto) {
+    public void setPriceStepDto(PriceStepDto priceStepDto) {
         this.priceStepDto = priceStepDto;
     }
 
-    public void setCategoryDto(CategoryDTO categoryDto) {
+    public void setCategoryDto(CategoryDto categoryDto) {
         this.categoryDto = categoryDto;
     }
 
-    public void setCategory(CategoryDTO categoryDto) {
+    public void setCategory(CategoryDto categoryDto) {
         this.categoryDto = categoryDto;
     }
 
@@ -252,12 +252,11 @@ public class ProductDto implements Validator {
         this.fullName = fullName;
     }
 
-    public PriceStepDTO getPriceStepDto() {
+    public PriceStepDto getPriceStepDto() {
         return priceStepDto;
     }
 
-
-    public CategoryDTO getCategoryDto() {
+    public CategoryDto getCategoryDto() {
         return categoryDto;
     }
 
