@@ -388,7 +388,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param idList
      * @return List User by idList
      */
-    @Query(value = "select * " +
+    @Query(value = "select u.id as id, concat(u.first_name,' ',u.last_name) as name " +
             "from user u " +
             "where u.id in :idList ",
             nativeQuery = true)
