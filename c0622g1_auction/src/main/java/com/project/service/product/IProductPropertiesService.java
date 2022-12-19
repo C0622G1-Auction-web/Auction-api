@@ -31,6 +31,7 @@ public interface IProductPropertiesService {
      * Create by: GiangLBH
      * Date created: 17/12/2022
      * Function: to write Reason when do not review
+     *
      * @Param reason
      */
     void addReason(Reason reason);
@@ -39,6 +40,7 @@ public interface IProductPropertiesService {
      * Create by: GiangLBH
      * Date created: 17/12/2022
      * Function: to get Reason when do not review
+     *
      * @Return reason
      */
     Optional<Reason> getReason(Integer id);

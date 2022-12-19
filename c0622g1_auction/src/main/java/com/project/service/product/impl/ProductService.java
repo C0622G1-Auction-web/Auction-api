@@ -1,13 +1,8 @@
 package com.project.service.product.impl;
 
 
-import com.project.dto.product.IProductDto;
-import com.project.dto.product.ProductDto;
-import com.project.dto.product.ProductSearchByRoleAdminDto;
-import com.project.dto.product.ProductSearchDto;
+import com.project.dto.product.*;
 import com.project.model.product.Product;
-import com.project.model.product.dto.ProductDeleteDto;
-import com.project.model.product.dto.ProductDtoAdminList;
 import com.project.repository.product.IProductRepository;
 import com.project.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;

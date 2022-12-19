@@ -4,8 +4,6 @@ package com.project.controller.product;
 import com.project.dto.product.*;
 import com.project.model.product.ReviewStatus;
 import com.project.model.product.*;
-import com.project.model.product.dto.ProductDeleteDto;
-import com.project.model.product.dto.ProductDtoAdminList;
 import com.project.model.users.User;
 import com.project.service.product.*;
 import com.project.service.product.impl.AuctionStatusService;
@@ -295,7 +293,7 @@ public class ProductRestController {
         if (productPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<Page<Product>>(productPage, HttpStatus.OK);
+        return new ResponseEntity<>(productPage, HttpStatus.OK);
     }
 
     /**
@@ -307,8 +305,8 @@ public class ProductRestController {
      * @return HttpStatus.OK if remove successfully / HttpStatus.NOT_FOUND if exists not found product
      */
     @PostMapping("/remove")
-    public ResponseEntity<?> remove(@RequestBody List<Integer> idList) {
-        if (idList.size() == 0) {
+    public ResponseEntity<HttpStatus> remove(@RequestBody List<Integer> idList) {
+        if (idList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         List<ProductDeleteDto> productList = productService.findByListId(idList);
@@ -328,13 +326,13 @@ public class ProductRestController {
      * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK if found
      */
     @GetMapping("/review/{id}")
-    public ResponseEntity<?> review(@PathVariable("id") Integer id) {
+    public ResponseEntity<HttpStatus> review(@PathVariable("id") Integer id) {
         Optional<ProductDtoAdminList> optionalProduct = productService.findDtoById(id);
         if (!optionalProduct.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         productService.review(id);
-        return new ResponseEntity<Product>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
@@ -346,13 +344,13 @@ public class ProductRestController {
      * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK if found
      */
     @GetMapping("/do-not-review/{id}")
-    public ResponseEntity<?> doNotReview(@PathVariable("id") Integer id) {
+    public ResponseEntity<HttpStatus> doNotReview(@PathVariable("id") Integer id) {
         Optional<ProductDtoAdminList> optionalProduct = productService.findDtoById(id);
         if (!optionalProduct.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         productService.doNotReview(id);
-        return new ResponseEntity<Product>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
@@ -372,7 +370,7 @@ public class ProductRestController {
         if (idList.size() != productDeleteDtos.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<List<ProductDeleteDto>>(productDeleteDtos, HttpStatus.OK);
+        return new ResponseEntity<>(productDeleteDtos, HttpStatus.OK);
     }
 
     /**
@@ -389,7 +387,7 @@ public class ProductRestController {
         if (!optionalProduct.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<ProductDtoAdminList>(optionalProduct.get(), HttpStatus.OK);
+        return new ResponseEntity<>(optionalProduct.get(), HttpStatus.OK);
     }
 
 
@@ -445,7 +443,7 @@ public class ProductRestController {
         if (productDtoPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<Page<ProductDtoAdminList>>(productDtoPage, HttpStatus.OK);
+        return new ResponseEntity<>(productDtoPage, HttpStatus.OK);
     }
 
     /**
@@ -455,8 +453,8 @@ public class ProductRestController {
      *
      * @Return reason
      */
-    @PostMapping("/reason")
-    public ResponseEntity<?> writeReason(
+    @PostMapping("/reasons")
+    public ResponseEntity<HttpStatus> writeReason(
             @RequestBody Reason reason) {
         productPropertiesService.addReason(reason);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -475,7 +473,7 @@ public class ProductRestController {
         if (!reason.isPresent()) {
             return new ResponseEntity<>(new Reason(), HttpStatus.CREATED);
         }
-        return new ResponseEntity<Reason>(reason.get(), HttpStatus.OK);
+        return new ResponseEntity<>(reason.get(), HttpStatus.OK);
     }
 }
 

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CategoryService implements ICategoryService  {
+public class CategoryService implements ICategoryService {
     @Autowired
     private ICategoryRepository categoryRepository;
 
@@ -17,6 +17,7 @@ public class CategoryService implements ICategoryService  {
      * Created by: SonPT
      * Date created: 13-12-2022
      * Function: find all Category of Product
+     *
      * @return: List Category of Product
      */
 
@@ -40,6 +41,7 @@ public class CategoryService implements ICategoryService  {
      * Created by: SonPT
      * Date created: 13-12-2022
      * Function: save Category of Product
+     *
      * @return: Category of Product
      */
 
@@ -47,12 +49,11 @@ public class CategoryService implements ICategoryService  {
     public Category getCategory(Integer categoryInteger) {
         return categoryRepository.findById(categoryInteger).orElse(null);
     }
+
     @Override
     public List<Category> getListCategory() {
         return categoryRepository.listCategory();
     }
-
-
 
 
 }

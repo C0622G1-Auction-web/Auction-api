@@ -1,12 +1,8 @@
 package com.project.repository.product;
 
 
-import com.project.dto.product.IProductDto;
-import com.project.dto.product.ProductSearchByRoleAdminDto;
-import com.project.dto.product.ProductSearchDto;
+import com.project.dto.product.*;
 import com.project.model.product.Product;
-import com.project.model.product.dto.ProductDeleteDto;
-import com.project.model.product.dto.ProductDtoAdminList;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -237,8 +233,8 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "and pt.initial_price <= :#{#productSearchByRoleAdminDto.maxPrice}) " +
             "and aus.name like %:#{#productSearchByRoleAdminDto.auctionStatusName}% "
             , nativeQuery = true)
-            Page<ProductDtoAdminList> searchByRoleAdmin(@Param("productSearchByRoleAdminDto") ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
-                                                        Pageable pageable);
+    Page<ProductDtoAdminList> searchByRoleAdmin(@Param("productSearchByRoleAdminDto") ProductSearchByRoleAdminDto productSearchByRoleAdminDto,
+                                                Pageable pageable);
 
     /**
      * Create by: GiangLBH
@@ -301,7 +297,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "price_step_id, " +
             "review_status_id, " +
             "user_id " +
-            "FROM product "+
+            "FROM product " +
             "WHERE product.review_status_id = 2 " +
             "    AND product.delete_status = 0 " +
             "    AND product.category_id like %:#{#productSearchDto.categoryID}%" +
@@ -311,5 +307,5 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "         OR product.initial_price = :#{#productSearchDto.rangePrice}) " +
             "ORDER BY product.start_time DESC",
             nativeQuery = true)
-            Page<Product>getAllAndSearch(@Param("productSearchDto") ProductSearchDto productSearchDto, Pageable pageable);
+    Page<Product> getAllAndSearch(@Param("productSearchDto") ProductSearchDto productSearchDto, Pageable pageable);
 }
