@@ -77,6 +77,7 @@ public interface IUserService {
 
     /**
      * By: HungNV - Find user id
+     * @return
      */
     User getUser(Integer id);
 

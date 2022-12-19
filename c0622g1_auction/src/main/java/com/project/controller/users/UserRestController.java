@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
@@ -79,6 +80,7 @@ public class UserRestController {
         }
         return new ResponseEntity<>(userListDtos, HttpStatus.OK);
     }
+
     /**
      * Create by: HungNV
      * Date created: 16/12/2022
@@ -87,7 +89,7 @@ public class UserRestController {
      * @return Object user by id
      */
     @GetMapping("/find/{id}")
-    public ResponseEntity<User> findUserById(@PathVariable() int id) {
+    public ResponseEntity<?> findUserById(@PathVariable() int id) {
         User user = userService.getUser(id);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -98,6 +100,7 @@ public class UserRestController {
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
+     *
      * @param id
      * @return Object user by id
      */
@@ -120,6 +123,7 @@ public class UserRestController {
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
+     *
      * @param idList
      * @return the user object is unlock
      */
@@ -183,10 +187,10 @@ public class UserRestController {
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
     @PostMapping("/add")
-    public ResponseEntity<?> addUser( @Validated @RequestBody FormAddUser formAddUser) {
+    public ResponseEntity<?> addUser(@Validated @RequestBody FormAddUser formAddUser) {
 
-       AddressDto addressDto= new AddressDto(formAddUser.getDetailAddress(),formAddUser.getTown(),formAddUser.getDistrict(),formAddUser.getCity(),formAddUser.getCountry());
-        AccountDto accountDto = new AccountDto(formAddUser.getUsername(), formAddUser.getPassword(),formAddUser.getStatusLock(),formAddUser.getDeleteStatus());
+        AddressDto addressDto = new AddressDto(formAddUser.getDetailAddress(), formAddUser.getTown(), formAddUser.getDistrict(), formAddUser.getCity(), formAddUser.getCountry());
+        AccountDto accountDto = new AccountDto(formAddUser.getUsername(), formAddUser.getPassword(), formAddUser.getStatusLock(), formAddUser.getDeleteStatus());
         AddUserDto addUserDto = new AddUserDto(formAddUser.getFirstName(), formAddUser.getLastName(), formAddUser.getEmail(),
                 formAddUser.getPhone(), formAddUser.getPointDedication(), formAddUser.getBirthDay(),
                 formAddUser.getIdCard(), formAddUser.getAvatar(), addressDto, accountDto);
@@ -210,9 +214,9 @@ public class UserRestController {
     /**
      * Create by: VietNQ
      * Date created: 13/12/2022
-     *Function: to lockAccount
+     * Function: to lockAccount
+     *
      * @param id
-     * @return HttpStatus.OK if result is not empty
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
     @PutMapping("/lockUser")

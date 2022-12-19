@@ -3,15 +3,15 @@ package com.project.dto.product;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class ImgUrlProductDTO {
+public class ImgUrlProductDto {
     private Integer id;
     @NotBlank
     @NotNull
     private String url;
-    @NotNull
+    @NotBlank
     private Integer product;
 
-    public ImgUrlProductDTO() {
+    public ImgUrlProductDto() {
     }
 
     public Integer getId() {

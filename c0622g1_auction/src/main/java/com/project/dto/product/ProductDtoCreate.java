@@ -1,19 +1,35 @@
 package com.project.dto.product;
 
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class ProductDtoCreate {
 
     private int id;
+    @NotBlank
+    @Size(min = 6, max = 255)
     private String name;
+    @NotBlank
     private String description;
+    @NotBlank
+    @Min(0)
+    @Size(max = 15)
     private Double initialPrice;
+    @NotBlank
     private String startTime;
+    @NotBlank
     private String endTime;
     private Boolean deleteStatus = false;
     private String registerDay;
+    @NotBlank
     private Integer priceStep;
     private Integer reviewStatus;
     private Integer auctionStatus;
+    @NotBlank
     private Integer category;
+    @NotBlank
     private Integer user;
 
     public ProductDtoCreate() {

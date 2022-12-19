@@ -54,7 +54,6 @@ public class UserService implements IUserService {
     }
 
 
-
     /**
      * Create by: VietNQ
      * Date created: 13/12/2022
@@ -189,7 +188,7 @@ public class UserService implements IUserService {
     /**
      * Created: HungNV
      * Created date: 16/12/2022
-     * Function: get Top 10 users with the highest total money auction
+     * Function: get user by id
      *
      * @param id
      * @return User
