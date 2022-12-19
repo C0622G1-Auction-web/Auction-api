@@ -14,10 +14,7 @@ import org.springframework.validation.Validator;
 public class ImgUrlProductDto implements Validator {
 
     private Integer id;
-    @NotBlank
-    @NotNull
     private String url;
-    @NotBlank
     private Integer product;
 
     public ImgUrlProductDto() {

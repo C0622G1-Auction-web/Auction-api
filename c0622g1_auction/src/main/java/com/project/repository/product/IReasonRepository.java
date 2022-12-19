@@ -18,6 +18,7 @@ public interface IReasonRepository extends JpaRepository<Reason, Integer> {
      * Create by: GiangLBH
      * Date created: 17/12/2022
      * Function: to get Reason when do not review
+     *
      * @Return reason
      */
     @Query(value = "SELECT * FROM reason where product_id = :id", nativeQuery = true)
@@ -28,6 +29,7 @@ public interface IReasonRepository extends JpaRepository<Reason, Integer> {
      * Create by: GiangLBH
      * Date created: 17/12/2022
      * Function: to write Reason when do not review
+     *
      * @Param reason
      */
     @Modifying

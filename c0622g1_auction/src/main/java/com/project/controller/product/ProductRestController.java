@@ -74,7 +74,6 @@ public class ProductRestController {
     @Autowired
     private AuctionStatusService auctionStatusService;
 
-
     @Autowired
     private IImgUrlProductService iImgUrlProductService;
 
@@ -89,7 +88,6 @@ public class ProductRestController {
      * @return categoryList and HttpStatus.OK
      */
     @GetMapping("category")
-
     public ResponseEntity<List<Category>> getListCategory() {
         List<Category> categoryList = categoryService.getListCategory();
         if (categoryList.isEmpty()) {
@@ -166,25 +164,25 @@ public class ProductRestController {
      * Date created: 14/12/2022
      * Function: update product
      *
-     * @param productDTO,bindingResult
+     * @param productDtoCreate,bindingResult
      * @return HttpStatus.create or (bindingResult.getFieldErrors() and HttpStatus.NOT_ACCEPTABLE)
      */
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@RequestBody @Validated ProductDtoCreate productDTO, BindingResult bindingResult, @PathVariable Integer id) {
+    public ResponseEntity<?> update(@RequestBody @Validated ProductDtoCreate productDtoCreate, BindingResult bindingResult, @PathVariable Integer id) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
         Product product = productService.getProduct(id);
-        BeanUtils.copyProperties(productDTO, product);
-        PriceStep priceStep = priceStepService.getPriceStep(productDTO.getPriceStep());
+        BeanUtils.copyProperties(productDtoCreate, product);
+        PriceStep priceStep = priceStepService.getPriceStep(productDtoCreate.getPriceStep());
         product.setPriceStep(priceStep);
-        Category category = categoryService.getCategory(productDTO.getCategory());
+        Category category = categoryService.getCategory(productDtoCreate.getCategory());
         product.setCategory(category);
-        ReviewStatus reviewStatus = reviewStatusService.getReviewStatus(productDTO.getReviewStatus());
+        ReviewStatus reviewStatus = reviewStatusService.getReviewStatus(productDtoCreate.getReviewStatus());
         product.setReviewStatus(reviewStatus);
-        AuctionStatus auctionStatus = auctionStatusService.getAuctionStatus(productDTO.getAuctionStatus());
+        AuctionStatus auctionStatus = auctionStatusService.getAuctionStatus(productDtoCreate.getAuctionStatus());
         product.setAuctionStatus(auctionStatus);
-        User user = userService.getUser(productDTO.getUser());
+        User user = userService.getUser(productDtoCreate.getUser());
         product.setUser(user);
         productService.update(product);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
@@ -205,7 +203,6 @@ public class ProductRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(productList, HttpStatus.OK);
-
     }
 
     /**
@@ -260,7 +257,22 @@ public class ProductRestController {
         iImgUrlProductService.saveImgProduct(imgUrlProduct);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
+    /**
+     * Create by: HungNV,
+     * Date created: 13/12/2022
+     * Function: find img product by product id
+     *
+     * @param id
+     * @return listImg and HttpStatus.OK
+     */
+    @GetMapping("img/{id}")
+    public ResponseEntity<List<ImgUrlProduct>> findImgProductId(@PathVariable Integer id) {
+        List<ImgUrlProduct> listImg = iImgUrlProductService.findImgByProductId(id);
+        if (listImg.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(listImg, HttpStatus.OK);
+    }
     /**
      * Create by: HungNV,
      * Date created: 17/12/2022
@@ -310,7 +322,7 @@ public class ProductRestController {
         if (productPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<Page<Product>>(productPage, HttpStatus.OK);
+        return new ResponseEntity<>(productPage, HttpStatus.OK);
     }
 
     /**
@@ -322,8 +334,8 @@ public class ProductRestController {
      * @return HttpStatus.OK if remove successfully / HttpStatus.NOT_FOUND if exists not found product
      */
     @PostMapping("/remove")
-    public ResponseEntity<?> remove(@RequestBody List<Integer> idList) {
-        if (idList.size() == 0) {
+    public ResponseEntity<HttpStatus> remove(@RequestBody List<Integer> idList) {
+        if (idList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         List<ProductDeleteDto> productList = productService.findByListId(idList);
@@ -343,13 +355,13 @@ public class ProductRestController {
      * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK if found
      */
     @GetMapping("/review/{id}")
-    public ResponseEntity<?> review(@PathVariable("id") Integer id) {
+    public ResponseEntity<HttpStatus> review(@PathVariable("id") Integer id) {
         Optional<ProductDtoAdminList> optionalProduct = productService.findDtoById(id);
         if (!optionalProduct.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         productService.review(id);
-        return new ResponseEntity<Product>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
@@ -361,13 +373,13 @@ public class ProductRestController {
      * @return HttpStatus.NO_CONTENT if not found product /  HttpStatus.OK if found
      */
     @GetMapping("/do-not-review/{id}")
-    public ResponseEntity<?> doNotReview(@PathVariable("id") Integer id) {
+    public ResponseEntity<HttpStatus> doNotReview(@PathVariable("id") Integer id) {
         Optional<ProductDtoAdminList> optionalProduct = productService.findDtoById(id);
         if (!optionalProduct.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         productService.doNotReview(id);
-        return new ResponseEntity<Product>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
@@ -387,7 +399,7 @@ public class ProductRestController {
         if (idList.size() != productDeleteDtos.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<List<ProductDeleteDto>>(productDeleteDtos, HttpStatus.OK);
+        return new ResponseEntity<>(productDeleteDtos, HttpStatus.OK);
     }
 
     /**
@@ -404,7 +416,7 @@ public class ProductRestController {
         if (!optionalProduct.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<ProductDtoAdminList>(optionalProduct.get(), HttpStatus.OK);
+        return new ResponseEntity<>(optionalProduct.get(), HttpStatus.OK);
     }
 
 
@@ -459,7 +471,7 @@ public class ProductRestController {
         if (productDtoPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<Page<ProductDtoAdminList>>(productDtoPage, HttpStatus.OK);
+        return new ResponseEntity<>(productDtoPage, HttpStatus.OK);
     }
 
     /**
@@ -469,8 +481,8 @@ public class ProductRestController {
      *
      * @Return reason
      */
-    @PostMapping("/reason")
-    public ResponseEntity<?> writeReason(
+    @PostMapping("/reasons")
+    public ResponseEntity<HttpStatus> writeReason(
             @RequestBody Reason reason) {
         productPropertiesService.addReason(reason);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -489,7 +501,7 @@ public class ProductRestController {
         if (!reason.isPresent()) {
             return new ResponseEntity<>(new Reason(), HttpStatus.CREATED);
         }
-        return new ResponseEntity<Reason>(reason.get(), HttpStatus.OK);
+        return new ResponseEntity<>(reason.get(), HttpStatus.OK);
     }
 }
 
