@@ -115,7 +115,6 @@ public class PaymentRestController {
      */
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestBody List<PaymentDtoGetShip> paymentDtoGetShips) {
-
         List<Integer> idList = new ArrayList<Integer>();
         for (PaymentDtoGetShip payment : paymentDtoGetShips) {
             idList.add(payment.getId());
