@@ -1,5 +1,10 @@
 package com.project.dto.product;
 
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class ProductDtoCreate {
 
     /**
@@ -23,22 +28,6 @@ public class ProductDtoCreate {
     private Integer user;
 
     public ProductDtoCreate() {
-    }
-
-    public ProductDtoCreate(int id, String name, String description, Double initialPrice, String startTime, String endTime, Boolean deleteStatus, String registerDay, Integer priceStep, Integer reviewStatus, Integer auctionStatus, Integer category, Integer user) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.initialPrice = initialPrice;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.deleteStatus = deleteStatus;
-        this.registerDay = registerDay;
-        this.priceStep = priceStep;
-        this.reviewStatus = reviewStatus;
-        this.auctionStatus = auctionStatus;
-        this.category = category;
-        this.user = user;
     }
 
     public int getId() {
