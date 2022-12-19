@@ -1,6 +1,7 @@
 package com.project.model.auction;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.model.payment.Payment;
 import com.project.model.product.Product;
@@ -23,7 +24,7 @@ public class Auction {
     @JsonBackReference
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
     @JsonBackReference
     @JsonIgnore

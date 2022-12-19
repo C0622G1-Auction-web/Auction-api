@@ -57,6 +57,7 @@ public class UserService implements IUserService {
      * @param
      * @return User
      */
+
     public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
         userRepository.createUser(
                 user.getAvatar(),
@@ -165,7 +166,6 @@ public class UserService implements IUserService {
         userRepository.unlockAccount(idList);
     }
 
-
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -181,6 +181,7 @@ public class UserService implements IUserService {
 
         return userRepository.getTopAuctionUser(quality);
     }
+
 
     /**
      * Created by UyenNC

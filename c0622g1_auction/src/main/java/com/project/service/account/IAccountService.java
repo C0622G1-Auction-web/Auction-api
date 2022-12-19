@@ -35,5 +35,4 @@ public interface IAccountService {
     Account findById(Integer id);
 
     void save(Account account);
-
 }
