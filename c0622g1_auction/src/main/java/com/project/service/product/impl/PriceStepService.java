@@ -54,7 +54,7 @@ public class PriceStepService implements IPriceStepService {
 
     @Override
     public List<PriceStep> getListPriceStep() {
-        return null;
+        return priceStepRepository.getPriceStep();
     }
 
 }
