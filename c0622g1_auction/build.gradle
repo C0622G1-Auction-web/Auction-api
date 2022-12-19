@@ -4,9 +4,9 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+group = 'com.project'
 sourceCompatibility = '1.8'
+apply plugin:'war'
 
 repositories {
     mavenCentral()
