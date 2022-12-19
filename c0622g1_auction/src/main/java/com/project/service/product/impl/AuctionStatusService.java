@@ -22,6 +22,7 @@ public class AuctionStatusService implements IAuctionStatusService {
      * Created by: SonPT
      * Date created: 13-12-2022
      * Function: find all Auction status of Auction
+     *
      * @return: List Auction Status of Auction
      */
     @Override
