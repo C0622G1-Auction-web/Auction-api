@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("auction/api/v1/guide")
+@RequestMapping("api/v1/guide")
 @CrossOrigin("*")
 public class GuideRestController {
 
@@ -67,10 +67,10 @@ public class GuideRestController {
      * @return a status code
      */
     @PostMapping()
-    public ResponseEntity<?> createGuide(@Validated @RequestBody GuideDto guideDto,
+    public ResponseEntity<Guide> createGuide(@Validated @RequestBody GuideDto guideDto,
                                                         BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
-            return new ResponseEntity<>(bindingResult.getFieldErrors(),HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
         Guide guideObj = new Guide();
         BeanUtils.copyProperties(guideDto, guideObj);
