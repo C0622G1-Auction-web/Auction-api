@@ -37,5 +37,13 @@ public interface IImgUrlProductService {
 
     void delete(ImgUrlProduct imgUrlProduct);
 
+    /**
+     * Created by: GiangLBH
+     * Date created: 19-12-2022
+     * Function: get img by product id
+     *
+     * @return imgs list
+     * @param: id
+     */
     List<ImgUrlProduct> getImgs(Integer id);
 }

@@ -1,6 +1,5 @@
 package com.project.repository.product;
 
-import com.project.dto.product.ImgUrlProductDTO;
 import com.project.model.product.ImgUrlProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -60,7 +59,6 @@ public interface IImgUrlProductRepository extends JpaRepository<ImgUrlProduct, I
      * @return imgs list
      * @param: id
      */
-//    @Query(value = "SELECT img_url_product.url FROM img_url_product where img_url_product.product_id =:id ", nativeQuery = true)
     @Query(value = "SELECT * FROM img_url_product where img_url_product.product_id =:id ", nativeQuery = true)
     List<ImgUrlProduct> getImgs(@Param("id") Integer id);
 }
