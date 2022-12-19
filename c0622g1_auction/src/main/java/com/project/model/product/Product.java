@@ -25,7 +25,7 @@ public class Product {
     @JoinColumn(name = "price_step_id", referencedColumnName = "id")
     private PriceStep priceStep;
 
-    @JsonBackReference
+
     @ManyToOne
     @JoinColumn(name = "review_status_id", referencedColumnName = "id")
     private ReviewStatus reviewStatus;
@@ -35,7 +35,7 @@ public class Product {
     @JoinColumn(name = "auction_status_id", referencedColumnName = "id")
     private AuctionStatus auctionStatus;
 
-    @JsonBackReference
+
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
@@ -48,7 +48,7 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<Auction> auctions;
 
-    @JsonBackReference
+
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
