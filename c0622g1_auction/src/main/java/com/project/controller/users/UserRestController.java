@@ -44,10 +44,6 @@ public class UserRestController {
     private IAccountService accountService;
     @Autowired
     private IUserTypeService userTypeService;
-    @Autowired
-    private ILockAccountService lockAccountService;
-
-
 
     /**
      * Create by: TruongLH
@@ -56,7 +52,6 @@ public class UserRestController {
      *
      * @return HttpStatus.NOT_CONTENT, HttpStatus.NOT_MODIFIED
      */
-
     @PostMapping("/create")
     public ResponseEntity<?> createUser(@Validated @RequestBody UserDto userDto, BindingResult bindingResult) {
         List<User> userList = userService.findAll();
@@ -160,7 +155,7 @@ public class UserRestController {
      * Create by: HaiNT
      * Date created: 13/12/2022
      *
-     * @return Object user by id
+     * @return list user type
      */
     @GetMapping("/usersType")
     public ResponseEntity<List<UserType>> getAllUserTypes() {
@@ -170,7 +165,6 @@ public class UserRestController {
         }
         return new ResponseEntity<>(userTypes, HttpStatus.OK);
     }
-
 
 
     /**
@@ -207,6 +201,7 @@ public class UserRestController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
+
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -237,7 +232,7 @@ public class UserRestController {
 
     @PostMapping("/unlockUser")
     public ResponseEntity<?> unlockUser(@RequestBody List<Integer> idList) {
-        if (idList.size() == 0 ) {
+        if (idList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         List<UserUnlockDto> userUnlockDtos = userService.findByListId(idList);
@@ -326,9 +321,9 @@ public class UserRestController {
     /**
      * Create by: VietNQ
      * Date created: 13/12/2022
-     *Function: to lockAccount
+     * Function: to lockAccount
+     *
      * @param id
-     * @return HttpStatus.OK if result is not empty
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
     @PutMapping("/lockUser")

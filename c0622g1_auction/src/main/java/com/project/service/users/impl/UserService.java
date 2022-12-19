@@ -160,7 +160,6 @@ public class UserService implements IUserService {
     }
 
 
-
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -201,19 +200,6 @@ public class UserService implements IUserService {
         userRepository.updateUserByRoleAdmin(user.getId(), user.getIdCard(), user.getAvatar(), user.getBirthDay(), user.getEmail(),
                 user.getFirstName(), user.getLastName(), user.getPhone());
     }
-
-
-//    /**
-//     * Create by: HaiNT
-//     * Date created: 13/12/2022
-//     *
-//     * @param id
-//     * @return User object by id
-//     */
-//    @Override
-//    public List<User> findByIdList(List<Integer> id) {
-//        return userRepository.findUserByIdList(id);
-//    }
 
     /**
      * Create by: HaiNT

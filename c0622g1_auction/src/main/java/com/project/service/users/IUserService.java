@@ -84,7 +84,7 @@ public interface IUserService {
      */
     Optional<Account> findByAccountId(int id);
 
-      /**
+    /**
      * By: HaiNT - Find list of address by AddressId
      */
     Optional<Address> findByAddressId(int id);
@@ -137,12 +137,12 @@ public interface IUserService {
     User getUser(Integer id);
 
 
-
     void lockUser(List<Integer> id);
 
     /**
      * Created by: SonPT
      * Date created: 13-12-2022
+     *
      * @Param: int ID of User
      * Function: get User
      */

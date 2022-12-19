@@ -26,19 +26,19 @@ public class User {
     private Boolean deleteStatus;
 
     @OneToOne
-    @JoinColumn(name = "address_id",referencedColumnName = "id")
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
     @JsonBackReference
 
     @ManyToOne
-    @JoinColumn(name = "user_type_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     private UserType userType;
     @JsonBackReference
-    @OneToMany(mappedBy="user")
+    @OneToMany(mappedBy = "user")
     private Set<Auction> auctions;
 
     @OneToOne
-    @JoinColumn(name = "account_id",referencedColumnName = "id")
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
     @JsonBackReference

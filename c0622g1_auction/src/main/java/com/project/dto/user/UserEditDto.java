@@ -3,18 +3,33 @@ package com.project.dto.user;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.UserType;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-public class UserEditDto {
+import javax.validation.constraints.NotEmpty;
+
+public class UserEditDto implements Validator {
+    @NotEmpty(message = "Họ không được để trống")
     private String firstName;
+    @NotEmpty(message = "Tên không được để trống")
     private String lastName;
+    @NotEmpty(message = "Username không được để trống")
     private String username;
+    @NotEmpty(message = "Ngày sinh không được để trống")
     private String birthDay;
+    @NotEmpty(message = "CMND không được để trống")
     private String idCard;
+    @NotEmpty(message = "Số điện thoại không được để trống")
     private String phone;
+    @NotEmpty(message = "Email không được để trống")
     private String email;
+    @NotEmpty(message = "Đất nước được để trống")
     private String city;
+    @NotEmpty(message = "Quận huyên được để trống")
     private String district;
+    @NotEmpty(message = "Phường xã được để trống")
     private String town;
+    @NotEmpty(message = "Địa chỉ được để trống")
     private String detailAddress;
 
     public UserEditDto() {
@@ -120,5 +135,83 @@ public class UserEditDto {
 
     public void setDetailAddress(String detailAddress) {
         this.detailAddress = detailAddress;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        UserEditDto userEditDto = (UserEditDto) target;
+        if (userEditDto.getFirstName().equals("")) {
+            errors.rejectValue("firstName", "firstName", "Họ không được bỏ trống");
+        } else {
+            if (!userEditDto.getFirstName().matches("^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{2,30}$")) {
+                errors.rejectValue("firstName", "firstName", "Họ không đúng định dạng !");
+            }
+        }
+        if (userEditDto.getLastName().equals("")) {
+            errors.rejectValue("lastName", "lastName", "Tên không được bỏ trống");
+        } else {
+            if (!userEditDto.getLastName().matches("^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{2,30}$")) {
+                errors.rejectValue("lastName", "lastName", "Tên không đúng định dạng !");
+            }
+        }
+        if (userEditDto.getEmail().equals("")) {
+            errors.rejectValue("email", "email", "Email không được bỏ trông");
+        } else {
+            if (!userEditDto.getEmail().matches("^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$")) {
+                errors.rejectValue("email", "email", "Email must be valid");
+            }
+        }
+        if (userEditDto.getIdCard().equals("")) {
+            errors.rejectValue("idCard", "idCard", "CMND không được bỏ trống");
+        } else {
+            if (!(userEditDto.getIdCard().matches("\\d{9}") ||
+                    userEditDto.getIdCard().matches("\\d{12}"))) {
+                errors.rejectValue("idCard", "idCard", "CMND chỉ có 9 số hoặc 12 số");
+            }
+        }
+        if (userEditDto.getPhone().equals("")) {
+            errors.rejectValue("phoneNumber", "phoneNumber", "Số điện thoại không được để trống");
+        } else {
+            if (!(userEditDto.getPhone().matches("[0][9][0]\\d{7}") ||
+                    userEditDto.getPhone().matches("[0][9][1]\\d{7}") ||
+                    userEditDto.getPhone().matches("[(][8][4][)][+][9][0]\\d{7}") ||
+                    userEditDto.getPhone().matches("[(][8][4][)][+][9][1]\\d{7}"))) {
+                errors.rejectValue("phone", "phone", "Số điện thoại có định dang  (090xxxxxxx) hoặc (091xxxxxxx) hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx");
+            }
+        }
+        if (userEditDto.getTown().equals("")) {
+            errors.rejectValue("town", "town", "Phường xã không được để trống");
+        } else {
+            if (!(userEditDto.getTown().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+                errors.rejectValue("town", "town", "Phường xã nhập từ 5 tới 30 kí tự");
+            }
+        }
+        if (userEditDto.getDistrict().equals("")) {
+            errors.rejectValue("district", "district", "Quận huyện không được để trống");
+        } else {
+            if (!(userEditDto.getDistrict().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+                errors.rejectValue("district", "district", "Quận huyện nhập từ 5 tới 30 kí tự");
+            }
+        }
+        if (userEditDto.getCity().equals("")) {
+            errors.rejectValue("city", "city", "Tỉnh thành không được để trống");
+        } else {
+            if (!(userEditDto.getCity().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+                errors.rejectValue("city", "city", "Tỉnh thành nhập từ 5 tới 30 kí tự");
+            }
+        }
+        if (userEditDto.getDetailAddress().equals("")) {
+            errors.rejectValue("detailAddress", "detailAddress", "Địa chỉ chi tiết không được để trống");
+        } else {
+            if (!(userEditDto.getDetailAddress().matches("\"^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]{5,30}$"))) {
+                errors.rejectValue("detailAddress", "detailAddress", "Tỉnh thành nhập từ 5 tới 30 kí tự");
+            }
+        }
+
     }
 }
