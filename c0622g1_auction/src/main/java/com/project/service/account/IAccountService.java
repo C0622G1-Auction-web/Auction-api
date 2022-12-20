@@ -3,8 +3,6 @@ package com.project.service.account;
 import com.project.model.account.Account;
 
 import java.util.List;
-
-
 public interface IAccountService {
 
     /**
@@ -31,7 +29,8 @@ public interface IAccountService {
 
     Account findByUsername(String username);
 
-    void sendMail(String email, String username, String passwordResetToken);
+
+    void sendMail(String email, String username, String passwordResetToken, Integer accountId);
 
     Account findById(Integer id);
 

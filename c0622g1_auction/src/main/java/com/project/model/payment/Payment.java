@@ -6,14 +6,17 @@ import javax.persistence.*;
 
 @Entity
 public class Payment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String shippingDescription;
+
     private Boolean paymentStatus;
+
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
-
 
     @OneToOne
     @JoinColumn(name = "auction_id", referencedColumnName = "id")
@@ -61,4 +64,5 @@ public class Payment {
     public void setPaymentStatus(Boolean paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
+
 }

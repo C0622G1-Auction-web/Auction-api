@@ -3,7 +3,6 @@ package com.project.controller.payment;
 
 import com.project.dto.payment.IPaymentAddressDto;
 import com.project.dto.payment.IPaymentDto;
-import com.project.dto.payment.IPaymentTotalBillDto;
 import com.project.dto.payment.PaymentDtoGetShip;
 import com.project.model.payment.Payment;
 import com.project.service.payment.IPaymentService;
@@ -46,17 +45,24 @@ public class PaymentRestController {
      * Created by: ChauPTM
      * Date created: 13/12/2022
      * Function: to find payment by id
-     *
-     * @param id
+     * @param idList
      * @return HttpStatus.NO_CONTENT, HttpStatus.OK
      */
-    @GetMapping("/{id}")
-    public ResponseEntity<Payment> getPayment(@PathVariable Integer id) {
-        Payment payment = paymentService.findPaymentById(id);
-        if (payment == null) {
+    @GetMapping("")
+    @ResponseBody
+    public ResponseEntity<List<Payment>> getPayment(@RequestParam(value = "id") List<String> idList) {
+        List<Payment> paymentList = new ArrayList<>();
+        Payment payment;
+        for (int i = 0; i < idList.size(); i++) {
+            payment = paymentService.findPaymentById(Integer.valueOf(idList.get(i)));
+            paymentList.add(payment);
+        }
+
+
+        if (paymentList == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(payment, HttpStatus.OK);
+        return new ResponseEntity<>(paymentList, HttpStatus.OK);
     }
 
     /**
@@ -66,12 +72,10 @@ public class PaymentRestController {
      *
      * @return HttpStatus.BAD_REQUEST if exists any payment not found/  HttpStatus.OK and payments found
      */
-    @GetMapping("/find-by-list-id")
-    public ResponseEntity<List<IPaymentAddressDto>> findByListId() {
-         List<Integer> idList = new ArrayList<>();
-         idList.add(5);
-         idList.add(7);
 
+
+    @PostMapping("/find-by-list-id")
+    public ResponseEntity<List<IPaymentAddressDto>> findByListId(@RequestBody List<Integer> idList) {
         if (idList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -81,28 +85,7 @@ public class PaymentRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<List<IPaymentAddressDto>>(paymentList, HttpStatus.OK);
-    }
-
-    /**
-     * Create by: BaoBC
-     * Date created: 15/12/2022
-     * Function: get totalBill by list id payment
-     *
-     * @return HttpStatus.BAD_REQUEST if exists any payment not found/  HttpStatus.OK and payments found
-     */
-    @GetMapping("/get-total-bill")
-    public ResponseEntity<IPaymentTotalBillDto> getTotalBill() {
-        List<Integer> idList = new ArrayList<>();
-        idList.add(5);
-        idList.add(7);
-
-        if (idList.size() == 0) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        IPaymentTotalBillDto paymentTotalBillDto = paymentService.getTotalBill(idList);
-
-        return new ResponseEntity<IPaymentTotalBillDto>(paymentTotalBillDto,HttpStatus.OK);
+        return new ResponseEntity<>(paymentList, HttpStatus.OK);
     }
 
     /**
@@ -116,7 +99,7 @@ public class PaymentRestController {
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestBody List<PaymentDtoGetShip> paymentDtoGetShips) {
 
-        List<Integer> idList = new ArrayList<Integer>();
+        List<Integer> idList = new ArrayList<>();
         for (PaymentDtoGetShip payment : paymentDtoGetShips) {
             idList.add(payment.getId());
         }
@@ -124,6 +107,5 @@ public class PaymentRestController {
         paymentService.updateByListId(idList, shippingDescription);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 }
+

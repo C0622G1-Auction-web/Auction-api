@@ -55,7 +55,6 @@ public class AccountService implements IAccountService {
         return accountRepository.findAccountByUsername(username);
     }
 
-
     @Override
     public Account saveAccount(Account account) {
         return accountRepository.save(account);
@@ -96,9 +95,9 @@ public class AccountService implements IAccountService {
      * @param passwordResetToken
      */
     @Override
-    public void sendMail(String email, String username, String passwordResetToken) {
+    public void sendMail(String email, String username, String passwordResetToken, Integer accountId) {
         String message = "Xin chào " + username + "," + "\nVui lòng bấm vào link để đặt lại mật khẩu: \n";
-        String url = "http://localhost:8080/api/v1/account/token_check?token=" + passwordResetToken;
+        String url = "http://localhost:4200/account/reset_password?token=" + passwordResetToken+"&account="+accountId;
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setSubject("Cấp lại mật khẩu");
         mailMessage.setText(message + url);

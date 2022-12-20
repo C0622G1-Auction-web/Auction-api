@@ -1,6 +1,8 @@
 package com.project.model.auction;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.model.payment.Payment;
 import com.project.model.product.Product;
 import com.project.model.users.User;

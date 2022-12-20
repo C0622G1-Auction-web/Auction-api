@@ -16,8 +16,9 @@ public class AuctionDto implements Validator {
     private Integer productId;
     private Double maxCurrentPrice;
     private User user;
-    //    private Product product;
     private String fullName;
+
+
     private Boolean deleteStatus = true;
 
     public AuctionDto() {

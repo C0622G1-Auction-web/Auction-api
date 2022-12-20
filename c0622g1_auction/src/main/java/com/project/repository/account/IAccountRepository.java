@@ -35,7 +35,8 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
             "and status_lock = 0;", nativeQuery = true)
     List<Account> findAllAccount();
 
-    /**Created by UyenNC
+    /**
+     * Created by UyenNC
      * Date created 13/12/2022
      * Function Update password for account with given id
      *
@@ -49,9 +50,11 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
     void updateAccount(@Param(value = "accountId") Integer accountId,
                        @Param(value = "password") String password);
 
-    /**Created by UyenNC
+    /**
+     * Created by UyenNC
      * Date created 13/12/2022
      * Function Find account by given id
+     *
      * @param id
      * @return account
      */
@@ -73,16 +76,15 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
      * Create by: TruongLH
      * Date created: 13/12/2022
      *
-     * @param username,password
-     * Function: to create account
+     * @param username,password Function: to create account
      * @return Account
      */
     @Modifying
     @Query(value = "insert into " +
-                     "account(username," +
-                     "password," +
-                     " values(:username," +
-                     ":password)",
+            "account(username," +
+            "password," +
+            " values(:username," +
+            ":password)",
             nativeQuery = true)
     Account createAccount(@Param("username") String username,
                           @Param("password") String password);
@@ -96,11 +98,10 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
      */
     @Modifying
     @Query(value = " update `account` " +
-                    "set `username` = :username, " +
-                       " `password` = :password",
+            "set `username` = :username, " +
+            " `password` = :password",
             nativeQuery = true)
     Account updateAccount(@Param("username") String username,
                           @Param("password") String password);
-
 
 }
