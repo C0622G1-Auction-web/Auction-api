@@ -1,7 +1,6 @@
 package com.project.repository.auction;
 
 import com.project.dto.auction.ITransactionDto;
-import com.project.dto.auction.TransactionListDto;
 import com.project.dto.auction.TransactionSearchDto;
 import com.project.dto.product.IAuctionProductDto;
 import com.project.model.auction.Auction;
@@ -29,24 +28,28 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
      * @return HttpStatus.OK
      */
 
-    @Query(value = " select auc.id as id, " +
+    @Query(value = " select pm.id as paymentId," +
+            "            pm.auction_id as auctionId, " +
             "            auc.auction_day as auctionDay, " +
             "            pt.name as productName, " +
-            "            auc.current_price as currentPrice," +
-            "            auc.auction_status as auctionStatus," +
-            "            auc.delete_status as deleteStatus," +
+            "            auc.current_price as currentPrice, " +
+            "            auc.auction_status as auctionStatus, " +
+            "            pm.delete_status as deleteStatus, " +
+            "            pm.payment_status as paymentStatus, " +
             "            concat(ur.first_name,' ', ur.last_name) as userPost, " +
             "            concat(vw.first_name,' ', vw.last_name) as userBuying " +
             "            from `auction` auc join `product` pt " +
             "            on auc.product_id = pt.id " +
             "            join `user` ur on pt.user_id = ur.id " +
             "            join `view_user` vw on auc.user_id = vw.id " +
-            "            where auc.delete_status = 0 " +
+            "            join `payment` pm on auc.id = pm.auction_id" +
+            "            where auc.delete_status = 0 and auc.auction_status = 1 " +
             "            and concat(ur.first_name,' ', ur.last_name) like %:#{#transactionSearchDto.userBuying} " +
             "            and concat(vw.first_name,' ', vw.last_name) like %:#{#transactionSearchDto.userPost}% " +
             "            and pt.name like %:#{#transactionSearchDto.nameProduct}% " +
-            "            and auc.current_price >= :#{#transactionSearchDto.currentPrice} " +
-            "            and auc.auction_status like %:#{#transactionSearchDto.auctionStatus}%  ", nativeQuery = true)
+            "            and pm.payment_status like %:#{#transactionSearchDto.paymentStatus}% " +
+            "            and pm.delete_status like %:#{#transactionSearchDto.deleteStatus}% " +
+            "            and auc.current_price >= :#{#transactionSearchDto.currentPrice} ", nativeQuery = true)
     Page<ITransactionDto> findAllTransaction(@Param("transactionSearchDto") TransactionSearchDto transactionSearchDto,
                                              Pageable pageable);
 
@@ -63,25 +66,43 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
 
     /**
      * Created by : HuyNV
+     * Date Created: 20/12/2022
+     * Function: to find transaction by List ids
+     *
+     * @param idList
+     * @return
+     */
+    @Query(value = "select auc.id " +
+            "from `auction` auc " +
+            "join `payment` pm on auc.id = pm.auction_id " +
+            "where pm.id in :idList ", nativeQuery = true)
+    List<Integer> getAuctionIds(@Param("idList") List<Integer> idList);
+
+    /**
+     * Created by : HuyNV
      * Date Created: 14/12/2022
      * Function: to find transaction by List ids
      *
      * @param idList
      * @return transaction list
      */
-    @Query(value = " select auc.id as id, " +
+    @Query(value = " select pm.id as paymentId," +
+            "            pm.auction_id as auctionId, " +
             "            auc.auction_day as auctionDay, " +
             "            pt.name as productName, " +
-            "            auc.current_price as currentPrice," +
-            "            auc.auction_status as auctionStatus," +
-            "            auc.delete_status as deleteStatus," +
+            "            auc.current_price as currentPrice, " +
+            "            auc.auction_status as auctionStatus, " +
+            "            pm.delete_status as deleteStatus, " +
+            "            pm.payment_status as paymentStatus, " +
             "            concat(ur.first_name,' ', ur.last_name) as userPost, " +
             "            concat(vw.first_name,' ', vw.last_name) as userBuying " +
             "            from `auction` auc join `product` pt " +
             "            on auc.product_id = pt.id " +
             "            join `user` ur on pt.user_id = ur.id " +
             "            join `view_user` vw on auc.user_id = vw.id " +
-            "            where auc.delete_status = 0 and auc.id in :idList ", nativeQuery = true)
+            "            join `payment` pm on auc.id = pm.auction_id" +
+            "            where auc.delete_status = 0 and auc.auction_status = 1 " +
+            "            and pm.id in :idList ", nativeQuery = true)
     List<ITransactionDto> findByListId(@Param("idList") List<Integer> idList);
 
     @Query(value = "select product.name, product.description,auction.auction_day,auction_status.name " +

@@ -15,17 +15,9 @@ public class AuctionDto implements Validator {
     private Integer userId;
     private Integer productId;
     private Double maxCurrentPrice;
-        private User user;
-    //    private Product product;
+    private User user;
     private String fullName;
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     private Boolean deleteStatus = true;
 
@@ -56,13 +48,13 @@ public class AuctionDto implements Validator {
         this.userId = userId;
     }
 
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getProductId() {
         return productId;

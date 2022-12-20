@@ -1,10 +1,8 @@
 package com.project.service.auction.impl;
 
 import com.project.dto.auction.ITransactionDto;
-import com.project.dto.auction.TransactionListDto;
 import com.project.dto.auction.TransactionSearchDto;
 import com.project.dto.product.IAuctionProductDto;
-import com.project.model.product.Product;
 import com.project.dto.AuctionDto;
 import com.project.model.auction.Auction;
 import com.project.repository.auction.IAuctionRepository;
@@ -105,5 +103,18 @@ public class AuctionService implements IAuctionService {
     @Override
     public Page<IAuctionProductDto> getPageAuctionProductByUserId(Integer userId, Pageable pageable) {
         return auctionRepository.getPageAuctionProductByIdUser(userId, pageable);
+    }
+
+    /**
+     * Created by : HuyNV
+     * Date Created: 14/12/2022
+     * Function: to find transaction by List ids
+     *
+     * @param idList
+     * @return
+     */
+    @Override
+    public List<Integer> getAuctionIds(List<Integer> idList) {
+        return auctionRepository.getAuctionIds(idList);
     }
 }
