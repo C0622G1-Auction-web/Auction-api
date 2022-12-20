@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
+=======
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
   </component>
+>>>>>>> 452bcf9dbedeb5270c964eadadb3d600bf9a37c0
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/c0622g1_auction" />
   </component>
+<<<<<<< HEAD
+  <component name="ProjectRootManager" version="2" project-jdk-name="jbr-17" project-jdk-type="JavaSDK" />
+=======
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
   </component>
@@ -14,4 +20,5 @@
   <component name="ProjectType">
     <option name="id" value="jpab" />
   </component>
+>>>>>>> 452bcf9dbedeb5270c964eadadb3d600bf9a37c0
 </project>

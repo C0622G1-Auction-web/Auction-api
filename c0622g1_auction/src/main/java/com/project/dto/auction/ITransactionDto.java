@@ -1,7 +1,9 @@
 package com.project.dto.auction;
 
 public interface ITransactionDto {
-    String getId();
+    String getPaymentId();
+
+    String getAuctionId();
 
     String getUserPost();
 
@@ -15,6 +17,8 @@ public interface ITransactionDto {
 
     String getAuctionStatus();
 
-    String getDeleteStatus();
+    Boolean getDeleteStatus();
+
+    Integer getPaymentStatus();
 
 }

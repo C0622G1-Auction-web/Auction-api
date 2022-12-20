@@ -53,13 +53,31 @@ public class AuctionRestController {
         if (transactionSearchDto.getCurrentPrice() == null) {
             transactionSearchDto.setCurrentPrice(0.0);
         }
+        switch (transactionSearchDto.getPaymentStatus()) {
+            case "0": {
+                transactionSearchDto.setDeleteStatus("0");
+                break;
+            }
+            case "1": {
+                transactionSearchDto.setDeleteStatus("1");
+                break;
+            }
+            case "2": {
+                transactionSearchDto.setPaymentStatus("1");
+                transactionSearchDto.setDeleteStatus("0");
+                break;
+            }
+            default: {
+                transactionSearchDto.setPaymentStatus("");
+                transactionSearchDto.setDeleteStatus("");
+            }
+        }
         Page<ITransactionDto> transactionPage = auctionService.findAllTransaction(transactionSearchDto, pageable);
         if (transactionPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(transactionPage, HttpStatus.OK);
     }
-
 
     /**
      * Created by : HuyNV,
@@ -88,13 +106,10 @@ public class AuctionRestController {
      * @return HttpStatus.NOT_FOUND if exists not found transaction
      */
     @PostMapping("/delete")
-    public ResponseEntity<List<ITransactionDto>> remove(@RequestBody List<Integer> idList) {
-        List<ITransactionDto> transactionList = auctionService.findByListId(idList);
-        if (idList.size() != transactionList.size()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        auctionService.removeByListId(idList);
-        return new ResponseEntity<>(transactionList, HttpStatus.OK);
+    public ResponseEntity<?> remove(@RequestBody List<Integer> idList) {
+        List<Integer> auctionIds = auctionService.getAuctionIds(idList);
+        auctionService.removeByListId(auctionIds);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**
@@ -109,7 +124,10 @@ public class AuctionRestController {
     @GetMapping("auction-detail/{productId}")
     public ResponseEntity<ProductDto> findProductById(@PathVariable(value = "productId") Integer productId) {
         Optional<Product> productOptional = productService.findProductById(productId);
-        Double maxCurrentPrice = auctionService.getPageAuctionByProductId(productOptional.get().getId(), Pageable.unpaged()).getContent().get(0).getCurrentPrice();
+        Double maxCurrentPrice = auctionService.getPageAuctionByProductId(productId, Pageable.unpaged())
+                .getContent()
+                .get(0)
+                .getCurrentPrice();
         if (productOptional.isPresent()) {
             ProductDto productDto = new ProductDto();
             BeanUtils.copyProperties(productOptional.get(), productDto);

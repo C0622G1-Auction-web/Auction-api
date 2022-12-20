@@ -104,4 +104,9 @@ public class AuctionService implements IAuctionService {
     public Page<IAuctionProductDto> getPageAuctionProductByUserId(Integer userId, Pageable pageable) {
         return auctionRepository.getPageAuctionProductByIdUser(userId, pageable);
     }
+
+    @Override
+    public List<Integer> getAuctionIds(List<Integer> idList) {
+        return auctionRepository.getAuctionIds(idList);
+    }
 }

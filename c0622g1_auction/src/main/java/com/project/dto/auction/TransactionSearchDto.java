@@ -5,10 +5,12 @@ public class TransactionSearchDto {
     private String userBuying;
     private String nameProduct;
     private Double currentPrice;
-    private String auctionStatus;
+    private String deleteStatus;
+    private String paymentStatus;
 
     public TransactionSearchDto() {
     }
+
 
     public String getUserPost() {
         return userPost;
@@ -42,11 +44,19 @@ public class TransactionSearchDto {
         this.currentPrice = currentPrice;
     }
 
-    public String getAuctionStatus() {
-        return auctionStatus;
+    public String getDeleteStatus() {
+        return deleteStatus;
     }
 
-    public void setAuctionStatus(String auctionStatus) {
-        this.auctionStatus = auctionStatus;
+    public void setDeleteStatus(String deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 }

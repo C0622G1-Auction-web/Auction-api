@@ -1,19 +1,12 @@
 package com.project.service.users;
 
 import com.project.dto.user.UserTopDto;
-import com.project.model.product.PriceStep;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import com.project.model.account.Account;
-
-import javax.persistence.Tuple;
-import java.util.List;
-import java.util.Optional;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +15,8 @@ import java.util.Optional;
 @Service
 
 public interface IUserService {
+    void saveAddUser(User user, Integer addressId, Integer accountId, Integer Number);
+
 
 
     /**

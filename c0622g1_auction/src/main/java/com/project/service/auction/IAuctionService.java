@@ -74,4 +74,6 @@ public interface IAuctionService {
      */
 
     Page<IAuctionProductDto> getPageAuctionProductByUserId(Integer userId, Pageable pageable);
+
+    List<Integer> getAuctionIds(List<Integer> idList);
 }
