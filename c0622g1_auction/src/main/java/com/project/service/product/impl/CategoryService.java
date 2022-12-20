@@ -17,6 +17,7 @@ public class CategoryService implements ICategoryService {
      * Created by: SonPT
      * Date created: 13-12-2022
      * Function: find all Category of Product
+     *
      * @return: List Category of Product
      */
 
@@ -24,4 +25,35 @@ public class CategoryService implements ICategoryService {
     public List<Category> findAll() {
         return categoryRepository.findAll();
     }
+
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: Save Category of Product
+     */
+
+    @Override
+    public Category saveCategory(Category category) {
+        return categoryRepository.save(category);
+    }
+
+    /**
+     * Created by: SonPT
+     * Date created: 13-12-2022
+     * Function: save Category of Product
+     *
+     * @return: Category of Product
+     */
+
+    @Override
+    public Category getCategory(Integer categoryInteger) {
+        return categoryRepository.findById(categoryInteger).orElse(null);
+    }
+
+    @Override
+    public List<Category> getListCategory() {
+        return categoryRepository.listCategory();
+    }
+
+
 }

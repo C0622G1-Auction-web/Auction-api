@@ -1,9 +1,10 @@
-package com.project.dto;
+package com.project.dto.product;
 
 public class ProductSearchByRoleAdminDto {
     private String productName;
     private String categoryName;
     private String sellerName;
+    private Integer priceRange;
     private Double minPrice;
     private Double maxPrice;
     private String auctionStatusName;
@@ -11,10 +12,11 @@ public class ProductSearchByRoleAdminDto {
     public ProductSearchByRoleAdminDto() {
     }
 
-    public ProductSearchByRoleAdminDto(String productName, String categoryName, String sellerName, Double minPrice, Double maxPrice, String auctionStatusName) {
+    public ProductSearchByRoleAdminDto(String productName, String categoryName, String sellerName, Integer priceRange, Double minPrice, Double maxPrice, String auctionStatusName) {
         this.productName = productName;
         this.categoryName = categoryName;
         this.sellerName = sellerName;
+        this.priceRange = priceRange;
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
         this.auctionStatusName = auctionStatusName;
@@ -66,5 +68,13 @@ public class ProductSearchByRoleAdminDto {
 
     public void setAuctionStatusName(String auctionStatusName) {
         this.auctionStatusName = auctionStatusName;
+    }
+
+    public Integer getPriceRange() {
+        return priceRange;
+    }
+
+    public void setPriceRange(Integer priceRange) {
+        this.priceRange = priceRange;
     }
 }
