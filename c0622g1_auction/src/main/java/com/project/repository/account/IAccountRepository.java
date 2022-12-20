@@ -22,11 +22,6 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
      * @param username
      * @return Account
      */
-    @Query(value = "select * from account " +
-            "where account.username =:username " +
-            "and delete_status = 0 " +
-            "and status_lock = 0", nativeQuery = true)
-    Account findAccountByUsername(@Param(value = "username") String username);
 
     /**
      * Created by UyenNC
@@ -40,7 +35,8 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
             "and status_lock = 0;", nativeQuery = true)
     List<Account> findAllAccount();
 
-    /**Created by UyenNC
+    /**
+     * Created by UyenNC
      * Date created 13/12/2022
      * Function Update password for account with given id
      *
@@ -54,9 +50,11 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
     void updateAccount(@Param(value = "accountId") Integer accountId,
                        @Param(value = "password") String password);
 
-    /**Created by UyenNC
+    /**
+     * Created by UyenNC
      * Date created 13/12/2022
      * Function Find account by given id
+     *
      * @param id
      * @return account
      */
@@ -65,4 +63,45 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
             "and delete_status = 0 " +
             "and status_lock = 0;", nativeQuery = true)
     Account findAccountById(@Param(value = "id") Integer id);
+
+    @Query(
+            value = " select * " +
+                    " from account " +
+                    " where username = :username ",
+            nativeQuery = true
+    )
+    Account findAccountByUsername(@Param("username") String username);
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     *
+     * @param username,password Function: to create account
+     * @return Account
+     */
+    @Modifying
+    @Query(value = "insert into " +
+            "account(username," +
+            "password," +
+            " values(:username," +
+            ":password)",
+            nativeQuery = true)
+    Account createAccount(@Param("username") String username,
+                          @Param("password") String password);
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     *
+     * @param username,password Function: to update account
+     * @return Account
+     */
+    @Modifying
+    @Query(value = " update `account` " +
+            "set `username` = :username, " +
+            " `password` = :password",
+            nativeQuery = true)
+    Account updateAccount(@Param("username") String username,
+                          @Param("password") String password);
+
 }

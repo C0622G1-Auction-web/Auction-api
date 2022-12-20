@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0f0ec174-2ce7-4655-b76c-36cf5cdee914" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/auction.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/auction.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/auction.test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/config/ApplicationConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/config/WebSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/product/CategoryRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/product/PriceStepRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/product/ProductPropertiesRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/security/SecurityController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/ReviewStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/auction/ITransactionDeleteDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/auction/ITransactionDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/auction/TransactionListDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/auction/TransactionSearchDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/payment/IPaymentTotalBillDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/payment/PaymentDtoGetShip.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/AuctionStatusDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/IAuctionProductDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/IProductDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/ImgUrlProductDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/ProductDeleteDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/ProductDtoAdminList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/ProductDtoCreate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/ReviewStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/ReviewStatusDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/user/FormAddUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/user/UserEditDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/product/Reason.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/product/SearchProductRange.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/payload/request/LoginForm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/payload/respone/JwtRespone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/payload/respone/MessageRespone.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IPriceRangeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IReasonRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/ISearchProductRangeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/security/jwt/JwtEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/security/jwt/JwtProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/security/jwt/JwtTokenFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/security/user_detail/MyUserDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/security/user_detail/MyUserDetailServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/IProductPropertiesService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/impl/ProductPropertiesService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/resources/messageValidate.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/resources/noname" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/ImageGuideRestController_updateImgGuide.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/ProductRestController_historyAuction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/ProductRestController_historyProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/ProductRestController_saveImgProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/TransactionRestController_getListTransaction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/UserRestController_getListUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/UserRestController_getListUserById.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/UserRestController_unlockUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/UserRestController_updateUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/security/SecurityController_login.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/userCreateUpdate/AuctionRestController_createUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/userCreateUpdate/AuctionRestController_updateUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mintty.exe.stackdump" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/auction/AuctionRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/auction/AuctionRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/GuideRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/GuideRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/ImageGuideRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/ImageGuideRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/payment/PaymentRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/payment/PaymentRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/product/ImageProductRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/product/ImageProductRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/product/ProductRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/product/ProductRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/users/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/users/UserRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/AuctionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/AuctionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/IPaymentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/payment/IPaymentAddressDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/ProductDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/ProductSearchByRoleAdminDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/ProductSearchByRoleAdminDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/UserListDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/user/UserListDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/guide/GuideDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/guide/GuideDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/guide/ImgUrlGuideDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/guide/ImgUrlGuideDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/payment/IPaymentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/payment/IPaymentDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/CategoryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/CategoryDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/PriceStepDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/PriceStepDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/ProductDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/ProductDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/user/AccountDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/user/AccountDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/user/AddUserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/user/AddUserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/user/AddressDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/user/AddressDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/user/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/user/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/account/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/account/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/account/AccountRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/account/AccountRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/auction/Auction.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/auction/Auction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/guide/Guide.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/guide/Guide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/payment/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/payment/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/product/ImgUrlProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/product/ImgUrlProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/product/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/product/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/product/ReviewStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/product/ReviewStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/account/IAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/account/IAccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/auction/IAuctionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/auction/IAuctionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/guide/IGuideRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/guide/IGuideRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/guide/IImgUrlGuideRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/guide/IImgUrlGuideRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/payment/IPaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/payment/IPaymentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IAuctionStatusRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IAuctionStatusRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IImgUrlProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IImgUrlProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IPriceStepRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IPriceStepRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IReviewStatusRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IReviewStatusRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/users/IAddressRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/users/IAddressRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/users/IUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/users/IUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/users/IUserTypeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/users/IUserTypeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/account/IAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/account/IAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/account/ILockAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/account/ILockAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/account/impl/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/account/impl/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/auction/IAuctionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/auction/IAuctionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/auction/impl/AuctionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/auction/impl/AuctionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/guide/IGuideService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/guide/IGuideService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/guide/IImgUrlGuideService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/guide/IImgUrlGuideService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/guide/impl/GuideService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/guide/impl/GuideService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/guide/impl/ImgUrlGuideService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/guide/impl/ImgUrlGuideService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/payment/IPaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/payment/IPaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/payment/impl/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/payment/impl/PaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/IAuctionStatusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/IAuctionStatusService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/ICategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/ICategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/IImgUrlProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/IImgUrlProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/IPriceStepService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/IPriceStepService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/IProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/IReviewStatusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/IReviewStatusService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/impl/AuctionStatusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/impl/AuctionStatusService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/impl/CategoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/impl/CategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/impl/ImgUrlProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/impl/ImgUrlProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/impl/PriceStepService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/impl/PriceStepService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/impl/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/impl/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/impl/ReviewStatusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/product/impl/ReviewStatusService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/IAddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/IAddressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/IUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/IUserTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/IUserTypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/impl/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/impl/AddressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/impl/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/impl/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/impl/UserTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/impl/UserTypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/GuideRestController_createGuide.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/GuideRestController_createGuide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/GuideRestController_getGuideById.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/GuideRestController_getGuideById.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/GuideRestController_updateGuide.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/GuideRestController_updateGuide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/ImageGuideRestController_createImgGuide.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/ImageGuideRestController_createImgGuide.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/ImageGuideRestController_getImgGuideById.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/ImageGuideRestController_getImgGuideById.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/PaymentRestController_getPayment.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/PaymentRestController_getPayment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/ProductRestController_createProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controller/ProductRestController_createProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controllor/AuctionControllerAddUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/test/java/com/project/controllor/AuctionControllerLockAccount.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/c0622g1_auction">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2IvvLcGqfhRnKq25bs0indvyZLY" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "spring.configuration.checksum": "1e1babc9d3f8189517540bc3aac9fe66"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="AuctionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="auction.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.project.AuctionApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0f0ec174-2ce7-4655-b76c-36cf5cdee914" name="Default Changelist" comment="" />
+      <created>1671074819848</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1671074819848</updated>
+      <workItem from="1671074836244" duration="41081000" />
+      <workItem from="1671242508903" duration="7395000" />
+      <workItem from="1671374410788" duration="105000" />
+      <workItem from="1671501883403" duration="779000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -1,5 +1,8 @@
 package com.project.model.account;
 
+import com.project.model.account.AccountRole;
+import com.project.model.account.LockAccount;
+import com.project.model.account.PasswordResetToken;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.users.User;
 
@@ -11,6 +14,7 @@ import java.util.Set;
 
 @Entity
 public class Account {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -19,6 +23,7 @@ public class Account {
     private String password;
     @Column(columnDefinition = "boolean default true")
     private Boolean statusLock;
+
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
     @OneToMany(mappedBy = "account")
@@ -33,6 +38,7 @@ public class Account {
     @OneToOne(mappedBy = "account")
     @JsonBackReference
     private LockAccount lockAccount;
+
     public Account() {
     }
 

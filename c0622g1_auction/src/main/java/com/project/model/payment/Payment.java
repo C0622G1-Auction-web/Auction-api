@@ -1,23 +1,25 @@
 package com.project.model.payment;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.auction.Auction;
 
 import javax.persistence.*;
 
 @Entity
 public class Payment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String shippingDescription;
+
     private Boolean paymentStatus;
+
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
 
-    @JsonBackReference
     @OneToOne
-    @JoinColumn(name = "auction_id",referencedColumnName = "id")
+    @JoinColumn(name = "auction_id", referencedColumnName = "id")
     private Auction auction;
 
     public Payment() {
@@ -62,4 +64,5 @@ public class Payment {
     public void setPaymentStatus(Boolean paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
+
 }

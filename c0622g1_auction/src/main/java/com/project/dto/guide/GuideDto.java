@@ -1,32 +1,43 @@
 package com.project.dto.guide;
-
-import com.project.model.guide.ImgUrlGuide;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Set;
+
+/**
+ * Create by: QuangND,
+ * Date created: 13/12/2022
+ * Function: create a guide Dto model
+ */
 
 
 public class GuideDto {
     private Integer id;
     @NotBlank(message = "Không được để trống tên chủ đề")
-    @Size(min = 10, max = 30, message = "Tên chủ đề quá dài hoặc quá ngắn")
+    @Size(min = 10, max = 100, message = "Tên chủ đề quá dài hoặc quá ngắn")
     @Pattern(regexp = "^[a-zA-Z0-9 ]*$", message = "Vui lòng nhập đúng định dạng")
     private String title;
     @NotBlank(message = "Không được để trống nội dung")
     @Size(min = 10, max = 300, message = "Nội dung quá độ dài quy định")
     private String content;
-    private Boolean deleteStatus;
-    private Set<ImgUrlGuide> images;
+    private Boolean deleteStatus=true;
+    private String images;
 
     public GuideDto() {
     }
 
-    public GuideDto(Integer id, String title, String content, Set<ImgUrlGuide> images) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
+    }
+
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
+    }
+
+    public String getImages() {
+        return images;
+    }
+
+    public void setImages(String images) {
         this.images = images;
     }
 
@@ -54,13 +65,5 @@ public class GuideDto {
         this.content = content;
     }
 
-
-    public Set<ImgUrlGuide> getImages() {
-        return images;
-    }
-
-    public void setImages(Set<ImgUrlGuide> images) {
-        this.images = images;
-    }
 
 }

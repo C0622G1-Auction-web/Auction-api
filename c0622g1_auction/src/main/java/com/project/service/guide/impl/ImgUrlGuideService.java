@@ -1,5 +1,9 @@
+/**Create By QuangND
+ Service: ImgUrlGuideService Service
+ create Dat:16/12/2022
+ **/
 package com.project.service.guide.impl;
-
+import com.project.dto.guide.ImgUrlGuideDto;
 import com.project.model.guide.ImgUrlGuide;
 import com.project.repository.guide.IImgUrlGuideRepository;
 import com.project.service.guide.IImgUrlGuideService;
@@ -18,11 +22,10 @@ public class ImgUrlGuideService implements IImgUrlGuideService {
      * Created by: SonPT
      * Date created: 13-12-2022
      * Function: display list Image Guide
+     *
      * @param: ID
      * @return: List<ImgUrlGuide>
      */
-
-
 
 
     @Override
@@ -31,10 +34,9 @@ public class ImgUrlGuideService implements IImgUrlGuideService {
     }
 
 
-
     @Override
-    public void createImgGuide(ImgUrlGuide imgUrlGuide) {
-        imgUrlGuideRepository.createImgGuide(imgUrlGuide.getUrl(),imgUrlGuide.getGuide().getId());
+    public void createImgGuide(ImgUrlGuideDto imgUrlGuideDto) {
+        imgUrlGuideRepository.createImgGuide(imgUrlGuideDto.getUrl(), imgUrlGuideDto.getGuideId());
     }
 
     @Override
@@ -43,8 +45,13 @@ public class ImgUrlGuideService implements IImgUrlGuideService {
     }
 
     @Override
-    public void updateImgGuie(ImgUrlGuide imgUrlGuide) {
-        imgUrlGuideRepository.updateImgGuie(imgUrlGuide.getId(),imgUrlGuide.getUrl());
+    public void updateImgGuie(ImgUrlGuideDto imgUrlGuideDto) {
+        imgUrlGuideRepository.updateImgGuie(imgUrlGuideDto.getId(), imgUrlGuideDto.getUrl());
+    }
+
+    @Override
+    public void deleteImgGuide(int id) {
+        imgUrlGuideRepository.deleteImgGuide(id);
     }
 
 }

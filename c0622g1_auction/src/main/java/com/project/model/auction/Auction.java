@@ -1,6 +1,7 @@
 package com.project.model.auction;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.model.payment.Payment;
 import com.project.model.product.Product;
@@ -10,38 +11,37 @@ import javax.persistence.*;
 
 @Entity
 public class Auction {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private Double currentPrice;
+
     private String auctionTime;
-    private Boolean payStatus;
+
     @Column(columnDefinition = "boolean default false")
     private Boolean auctionStatus;
-    @Column(columnDefinition = "boolean default false")
+
+    @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
 
-    private String auctionDay;
-
-
-
-    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonBackReference
     private User user;
 
-
-    @JsonBackReference
-    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "product_id",referencedColumnName = "id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JsonBackReference
     private Product product;
 
+    private String auctionDay;
 
-    @JsonBackReference
     @OneToOne(mappedBy = "auction")
+    @JsonBackReference
     private Payment payment;
+
     public Auction() {
     }
 
@@ -69,13 +69,6 @@ public class Auction {
         this.auctionTime = auctionTime;
     }
 
-    public Boolean getPayStatus() {
-        return payStatus;
-    }
-
-    public void setPayStatus(Boolean payStatus) {
-        this.payStatus = payStatus;
-    }
 
     public Boolean getAuctionStatus() {
         return auctionStatus;
@@ -123,5 +116,6 @@ public class Auction {
 
     public void setPayment(Payment payment) {
         this.payment = payment;
+
     }
 }

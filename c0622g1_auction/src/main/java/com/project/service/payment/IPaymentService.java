@@ -1,12 +1,14 @@
 package com.project.service.payment;
-
-import com.project.dto.IPaymentDTO;
+import com.project.dto.payment.IPaymentAddressDto;
+import com.project.dto.payment.IPaymentDto;
+import com.project.dto.payment.IPaymentTotalBillDto;
 import com.project.model.payment.Payment;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface IPaymentService {
-    List<IPaymentDTO> findValidPaymentByUserId(String userId);
+    List<IPaymentDto> findValidPaymentByUserId(String userId);
     
     /**
      * Created by: ChauPTM
@@ -17,4 +19,12 @@ public interface IPaymentService {
      * @return Payment
      */
     Payment findPaymentById(Integer id);
+
+//    List<Payment> findByListId(List<Integer> idList);
+
+    List<IPaymentAddressDto> findByListId(List<Integer> idList);
+
+    IPaymentTotalBillDto getTotalBill(List<Integer> idList);
+
+    void updateByListId(List<Integer> idList, String shippingDescription);
 }
