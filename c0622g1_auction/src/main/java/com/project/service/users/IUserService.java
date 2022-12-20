@@ -107,14 +107,14 @@ public interface IUserService {
      * Created date: 13/12/2022
      * Function: get Top 10 users with the highest total money auction
      *
-     * @param quality user quality
      * @return List<User>
      */
-    List<UserTopDto> getTopAuctionUser(String quality);
+    List<User> getTopAuctionUser();
 
 
     /**
      * By: HungNV - Find user id
+     * @return user
      */
     User getUser(Integer id);
 

@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f0ec174-2ce7-4655-b76c-36cf5cdee914" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__antlr_antlr_2_7_7.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_classic_1_2_11.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_core_1_2_11.xml" beforeDir="false" />
@@ -105,6 +106,28 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_xmlunit_xmlunit_core_2_9_0.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_yaml_snakeyaml_1_30.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/auction.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/auction.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/auction.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/auction.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/auction.test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/auction/AuctionRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/auction/AuctionRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/GuideRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/GuideRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/ImageGuideRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/ImageGuideRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/product/ProductRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/product/ProductRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/users/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/users/UserRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/AuctionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/AuctionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/CategoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/CategoryDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/CategoryDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/PriceStepDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/PriceStepDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/PriceStepDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/ProductDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/ProductDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/users/IUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/users/IUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/IUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/impl/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/impl/UserService.java" afterDir="false" />
+>>>>>>> 52f60b72c39d0daaa965b9f92422e6737068dccb
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,9 +167,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
+=======
+>>>>>>> 52f60b72c39d0daaa965b9f92422e6737068dccb
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -165,6 +191,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+<<<<<<< HEAD
     "last_opened_file_path": "E:/P1/codegym/module6/duplicate_project/account-UyenNC",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "spring.configuration.checksum": "1e1babc9d3f8189517540bc3aac9fe66"
@@ -175,6 +202,12 @@
       <recent name="E:\P1\codegym\module6\project_auction\account-UyenNC\Auction-api\c0622g1_auction\src\main\resources" />
     </key>
   </component>
+=======
+    "last_opened_file_path": "C:/Users/PC/Desktop/Auction-api",
+    "spring.configuration.checksum": "1e1babc9d3f8189517540bc3aac9fe66"
+  }
+}]]></component>
+>>>>>>> 52f60b72c39d0daaa965b9f92422e6737068dccb
   <component name="RunManager">
     <configuration name="AuctionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <option name="ACTIVE_PROFILES" />
@@ -200,9 +233,13 @@
       <updated>1671074819848</updated>
       <workItem from="1671074836244" duration="41081000" />
       <workItem from="1671242508903" duration="7395000" />
+<<<<<<< HEAD
       <workItem from="1671374410788" duration="105000" />
       <workItem from="1671501883403" duration="1105000" />
       <workItem from="1671503717396" duration="526000" />
+=======
+      <workItem from="1671472425082" duration="1821000" />
+>>>>>>> 52f60b72c39d0daaa965b9f92422e6737068dccb
     </task>
     <servers />
   </component>

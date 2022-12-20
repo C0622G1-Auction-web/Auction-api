@@ -242,9 +242,8 @@ public class UserService implements IUserService {
      */
 
     @Override
-
-    public List<UserTopDto> getTopAuctionUser(String quality) {
-        return userRepository.getTopAuctionUser(quality);
+    public List<User> getTopAuctionUser() {
+        return userRepository.getTopAuctionUser();
     }
 
     /**
@@ -267,7 +266,7 @@ public class UserService implements IUserService {
     /**
      * Created: HungNV
      * Created date: 16/12/2022
-     * Function: get Top 10 users with the highest total money auction
+     * Function: get user by id
      *
      * @param id
      * @return User

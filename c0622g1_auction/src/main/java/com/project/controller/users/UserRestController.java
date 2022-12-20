@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 
 @RestController
@@ -125,10 +126,9 @@ public class UserRestController {
      * @return Object user by id
      */
     @GetMapping("/find/{id}")
-    public ResponseEntity<User> findUserById(@PathVariable() int id) {
+    public ResponseEntity<?> findUserById(@PathVariable() int id) {
         User user = userService.getUser(id);
         if (user == null) {
-
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(user, HttpStatus.OK);
@@ -152,7 +152,7 @@ public class UserRestController {
      * Create by: HaiNT
      * Date created: 13/12/2022
      *
-     * @return Object user by id
+     * @return list user type
      */
     @GetMapping("/usersType")
     public ResponseEntity<List<UserType>> getAllUserTypes() {
@@ -247,18 +247,23 @@ public class UserRestController {
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
 
-    @GetMapping("/top/{quality}")
-    public ResponseEntity<List<UserTopDto>> getTopAuctionUser(@PathVariable String quality) {
-        String regexNumber = "^\\d+$";
-        if (!quality.matches(regexNumber)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        List<UserTopDto> userTopDtoList = userService.getTopAuctionUser(quality);
+//    @GetMapping("/top")
+//    public ResponseEntity<List<UserTopDto>> getTopAuctionUser() {
+//        List<UserTopDto> userTopDtoList = userService.getTopAuctionUser();
+//        if (userTopDtoList.size() == 0) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(userTopDtoList, HttpStatus.OK);
+//    }
+    @GetMapping("/top")
+    public ResponseEntity<List<User>> getTopAuctionUser() {
+        List<User> userTopDtoList = userService.getTopAuctionUser();
         if (userTopDtoList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(userTopDtoList, HttpStatus.OK);
     }
+
 
     /**
      * Created: VietNQ
@@ -268,8 +273,7 @@ public class UserRestController {
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
     @PostMapping("/add")
-    public ResponseEntity<?> addUser(@RequestBody FormAddUser formAddUser) {
-
+    public ResponseEntity<?> addUser(@Validated @RequestBody FormAddUser formAddUser) {
         AddressDto addressDto = new AddressDto(formAddUser.getDetailAddress(), formAddUser.getTown(), formAddUser.getDistrict(), formAddUser.getCity(), formAddUser.getCountry());
         AccountDto accountDto = new AccountDto(formAddUser.getUsername(), formAddUser.getPassword(), formAddUser.getStatusLock(), formAddUser.getDeleteStatus());
         AddUserDto addUserDto = new AddUserDto(formAddUser.getFirstName(), formAddUser.getLastName(), formAddUser.getEmail(),
@@ -279,11 +283,9 @@ public class UserRestController {
         User user = new User();
         Address address = new Address();
         Account account = new Account();
-
         BeanUtils.copyProperties(addressDto, address);
         BeanUtils.copyProperties(accountDto, account);
         BeanUtils.copyProperties(addUserDto, user);
-
         Address addressATBC = addressService.saveAddress(address);
         Account accountABT = accountService.saveAccount(account);
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="auction:test" external.linked.project.path="$MODULE_DIR$/../../c0622g1_auction" external.root.project.path="$MODULE_DIR$/../../c0622g1_auction" external.system.id="GRADLE" external.system.module.group="com.example" external.system.module.type="sourceSet" external.system.module.version="0.0.1-SNAPSHOT" type="JAVA_MODULE" version="4">
+<module version="4">
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration />
@@ -18,6 +18,7 @@
       </configuration>
     </facet>
   </component>
+<<<<<<< HEAD
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output-test url="file://$MODULE_DIR$/../../c0622g1_auction/build/classes/java/test" />
     <exclude-output />
@@ -126,5 +127,7 @@
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.objenesis:objenesis:3.2" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: org.junit.platform:junit-platform-engine:1.8.2" level="project" />
   </component>
+=======
+>>>>>>> 52f60b72c39d0daaa965b9f92422e6737068dccb
   <component name="TestModuleProperties" production-module="auction.main" />
 </module>
