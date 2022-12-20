@@ -14,5 +14,6 @@ public interface IProductDto {
     String getRegisterDay();
     String getReviewStatus();
     String getIsDelete();
+    String getAuctionStatus();
 
 }
