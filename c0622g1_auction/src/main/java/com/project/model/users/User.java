@@ -36,7 +36,6 @@ public class User {
     private Boolean deleteStatus;
     @JsonBackReference
     @OneToOne
-    @JsonIgnore
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
@@ -49,6 +48,7 @@ public class User {
     private Set<Auction> auctions;
 
     @OneToOne
+    @JsonBackReference
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 

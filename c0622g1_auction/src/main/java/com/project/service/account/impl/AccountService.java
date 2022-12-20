@@ -55,7 +55,6 @@ public class AccountService implements IAccountService {
         return accountRepository.findAccountByUsername(username);
     }
 
-
     @Override
     public Account saveAccount(Account account) {
         return accountRepository.save(account);

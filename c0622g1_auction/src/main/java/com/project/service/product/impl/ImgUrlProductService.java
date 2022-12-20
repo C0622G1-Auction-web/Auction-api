@@ -70,4 +70,17 @@ public class ImgUrlProductService implements IImgUrlProductService {
     public void delete(ImgUrlProduct imgUrlProduct) {
         imgUrlProductRepository.delete(imgUrlProduct);
     }
+
+    /**
+     * Created by: GiangLBH
+     * Date created: 19-12-2022
+     * Function: get img by product id
+     *
+     * @return imgs list
+     * @param: id
+     */
+    @Override
+    public List<ImgUrlProduct> getImgs(Integer id) {
+        return imgUrlProductRepository.getImgs(id);
+    }
 }

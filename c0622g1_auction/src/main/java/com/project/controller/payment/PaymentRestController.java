@@ -66,12 +66,8 @@ public class PaymentRestController {
      *
      * @return HttpStatus.BAD_REQUEST if exists any payment not found/  HttpStatus.OK and payments found
      */
-    @GetMapping("/find-by-list-id")
-    public ResponseEntity<List<IPaymentAddressDto>> findByListId() {
-         List<Integer> idList = new ArrayList<>();
-         idList.add(5);
-         idList.add(7);
-
+    @PostMapping("/find-by-list-id")
+    public ResponseEntity<List<IPaymentAddressDto>> findByListId(@RequestBody List<Integer> idList) {
         if (idList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -81,28 +77,7 @@ public class PaymentRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<List<IPaymentAddressDto>>(paymentList, HttpStatus.OK);
-    }
-
-    /**
-     * Create by: BaoBC
-     * Date created: 15/12/2022
-     * Function: get totalBill by list id payment
-     *
-     * @return HttpStatus.BAD_REQUEST if exists any payment not found/  HttpStatus.OK and payments found
-     */
-    @GetMapping("/get-total-bill")
-    public ResponseEntity<IPaymentTotalBillDto> getTotalBill() {
-        List<Integer> idList = new ArrayList<>();
-        idList.add(5);
-        idList.add(7);
-
-        if (idList.size() == 0) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        IPaymentTotalBillDto paymentTotalBillDto = paymentService.getTotalBill(idList);
-
-        return new ResponseEntity<IPaymentTotalBillDto>(paymentTotalBillDto,HttpStatus.OK);
+        return new ResponseEntity<>(paymentList, HttpStatus.OK);
     }
 
     /**
@@ -116,7 +91,7 @@ public class PaymentRestController {
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestBody List<PaymentDtoGetShip> paymentDtoGetShips) {
 
-        List<Integer> idList = new ArrayList<Integer>();
+        List<Integer> idList = new ArrayList<>();
         for (PaymentDtoGetShip payment : paymentDtoGetShips) {
             idList.add(payment.getId());
         }
@@ -124,6 +99,4 @@ public class PaymentRestController {
         paymentService.updateByListId(idList, shippingDescription);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 }

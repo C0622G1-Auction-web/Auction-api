@@ -3,12 +3,11 @@ package com.project.service.users.impl;
 import com.project.dto.user.UserTopDto;
 import com.project.dto.user.UserUnlockDto;
 import com.project.model.account.Account;
-import com.project.model.users.Address;
 import com.project.model.users.User;
+import com.project.model.users.Address;
 import com.project.repository.account.IAccountRepository;
 import com.project.repository.users.IAddressRepository;
 import com.project.repository.users.IUserRepository;
-import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -78,9 +77,13 @@ public class UserService implements IUserService {
                 user.getLastName(),
                 user.getPhone(),
                 user.getPointDedication(),
-                accountId,
-                addressId,
-                userType);
+                user.getAccount(),
+                user.getAddress(),
+                user.getUserType());
+//        accountId,
+//                addressId,
+//                userType);
+
     }
 
 
@@ -130,10 +133,7 @@ public class UserService implements IUserService {
         return userRepository.getUserBy(id, name, email, userType, address, pageable);
     }
 
-    @Override
-    public List<User> findByIdList(List<Integer> id) {
-        return null;
-    }
+
 
     /**
      * Create by: HaiNT
@@ -159,7 +159,6 @@ public class UserService implements IUserService {
         return addressRepository.findById(id);
     }
 
-
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -183,6 +182,13 @@ public class UserService implements IUserService {
         return userRepository.findUserById(id);
     }
 
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param idList
+     * @return User object by id
+     */
     @Override
     public List<UserUnlockDto> findByListId(List<Integer> idList) {
         return userRepository.findByListId(idList);
@@ -201,6 +207,22 @@ public class UserService implements IUserService {
                 user.getFirstName(), user.getLastName(), user.getPhone());
     }
 
+
+    @Override
+    public void updateAddress(User user) {
+
+    }
+
+    @Override
+    public Optional<Object> findById(int id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public void unlockUser(List<Integer> idList) {
+
+    }
+
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -212,20 +234,18 @@ public class UserService implements IUserService {
         userRepository.unlockAccountByIdList(idList);
     }
 
-
     /**
      * Created: SangDD
      * Created date: 13/12/2022
      * Function: get Top 10 users with the highest total money auction
      *
-     * @param quality user quality
+     * @param
      * @return List<User>
      */
 
     @Override
-
-    public List<UserTopDto> getTopAuctionUser(String quality) {
-        return userRepository.getTopAuctionUser(quality);
+    public List<User> getTopAuctionUser() {
+        return userRepository.getTopAuctionUser();
     }
 
     /**
@@ -248,7 +268,7 @@ public class UserService implements IUserService {
     /**
      * Created: HungNV
      * Created date: 16/12/2022
-     * Function: get Top 10 users with the highest total money auction
+     * Function: get user by id
      *
      * @param id
      * @return User

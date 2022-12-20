@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("api/v1/products")
@@ -73,6 +74,22 @@ public class ProductRestController {
 
     /**
      * Create by: HungNV,
+     * Date created: 15/12/2022
+     * Function: get list of priceStep
+     *
+     * @return priceStepList and HttpStatus.OK
+     */
+    @GetMapping("priceStep")
+    public ResponseEntity<List<PriceStep>> getListPriceStep() {
+        List<PriceStep> priceStepList = priceStepService.getListPriceStep();
+        if (priceStepList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(priceStepList, HttpStatus.OK);
+    }
+
+    /**
+     * Create by: HungNV,
      * Date created: 14/12/2022
      * Function: find product by product id
      *
@@ -93,27 +110,27 @@ public class ProductRestController {
      * Date created: 14/12/2022
      * Function: create new product
      *
-     * @param productDTO,bindingResult
+     * @param productDtoCreate,bindingResult
      * @return HttpStatus.create or (bindingResult.getFieldErrors() and HttpStatus.NOT_ACCEPTABLE)
      */
     @PostMapping("/create")
-    public ResponseEntity<Product> create(@Validated @RequestBody ProductDtoCreate productDTO, BindingResult bindingResult) {
+    public ResponseEntity<Product> create(@Validated @RequestBody ProductDtoCreate productDtoCreate, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
         Date date = new Date();
-        productDTO.setRegisterDay(String.valueOf(date));
+        productDtoCreate.setRegisterDay(String.valueOf(date));
         Product product = new Product();
-        BeanUtils.copyProperties(productDTO, product);
-        PriceStep priceStep = priceStepService.getPriceStep(productDTO.getPriceStep());
+        BeanUtils.copyProperties(productDtoCreate, product);
+        PriceStep priceStep = priceStepService.getPriceStep(productDtoCreate.getPriceStep());
         product.setPriceStep(priceStep);
-        Category category = categoryService.getCategory(productDTO.getCategory());
+        Category category = categoryService.getCategory(productDtoCreate.getCategory());
         product.setCategory(category);
         ReviewStatus reviewStatus = reviewStatusService.getReviewStatus(1);
         product.setReviewStatus(reviewStatus);
         AuctionStatus auctionStatus = auctionStatusService.getAuctionStatus(1);
         product.setAuctionStatus(auctionStatus);
-        User user = userService.getUser(productDTO.getUser());
+        User user = userService.getUser(productDtoCreate.getUser());
         product.setUser(user);
         productService.saveProduct(product);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
@@ -124,25 +141,25 @@ public class ProductRestController {
      * Date created: 14/12/2022
      * Function: update product
      *
-     * @param productDTO,bindingResult
+     * @param productDtoCreate,bindingResult
      * @return HttpStatus.create or (bindingResult.getFieldErrors() and HttpStatus.NOT_ACCEPTABLE)
      */
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@RequestBody @Validated ProductDtoCreate productDTO, BindingResult bindingResult, @PathVariable Integer id) {
+    public ResponseEntity<?> update(@RequestBody @Validated ProductDtoCreate productDtoCreate, BindingResult bindingResult, @PathVariable Integer id) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
         Product product = productService.getProduct(id);
-        BeanUtils.copyProperties(productDTO, product);
-        PriceStep priceStep = priceStepService.getPriceStep(productDTO.getPriceStep());
+        BeanUtils.copyProperties(productDtoCreate, product);
+        PriceStep priceStep = priceStepService.getPriceStep(productDtoCreate.getPriceStep());
         product.setPriceStep(priceStep);
-        Category category = categoryService.getCategory(productDTO.getCategory());
+        Category category = categoryService.getCategory(productDtoCreate.getCategory());
         product.setCategory(category);
-        ReviewStatus reviewStatus = reviewStatusService.getReviewStatus(productDTO.getReviewStatus());
+        ReviewStatus reviewStatus = reviewStatusService.getReviewStatus(productDtoCreate.getReviewStatus());
         product.setReviewStatus(reviewStatus);
-        AuctionStatus auctionStatus = auctionStatusService.getAuctionStatus(productDTO.getAuctionStatus());
+        AuctionStatus auctionStatus = auctionStatusService.getAuctionStatus(productDtoCreate.getAuctionStatus());
         product.setAuctionStatus(auctionStatus);
-        User user = userService.getUser(productDTO.getUser());
+        User user = userService.getUser(productDtoCreate.getUser());
         product.setUser(user);
         productService.update(product);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
@@ -170,6 +187,7 @@ public class ProductRestController {
      * Date created: 15/12/2022
      * Function: cancel products Sign up for auctions
      *
+     * @param id
      * @return : HttpStatus.OK and cancel successfully
      */
     @GetMapping("/canceled/{id}")
@@ -195,46 +213,21 @@ public class ProductRestController {
     }
 
     /**
-     * Created by: SonPT
-     * Date created: 13-12-2022
-     * Function: create product to auction
+     * Create by: HungNV,
+     * Date created: 19/12/2022
+     * Function: create new image of product
      *
-     * @param: description, endTime, initialPrice, name, registerDay, startTime, categoryId, priceStepId, user_id
-     * @return: HttpStatus.BAD_REQUEST
-     * HttpStatus.NO_CONTENT if create product lose, ex: has a validate,....
-     * HttpStatus.OK if create product success, ex: no validate, ....
+     * @param imgUrlProductDto
+     * @return imgUrlProduct and HttpStatus.CREATED / bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE
      */
-//    @PostMapping("/create")
-//    public ResponseEntity<Product> create(@RequestBody @Validated ProductDtoCreate productDTO, BindingResult bindingResult) {
-//        if (bindingResult.hasErrors()) {
-//            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-//        }
-//        Date date = new Date();
-//        productDTO.setRegisterDay(String.valueOf(date));
-//        Product product = new Product();
-//        BeanUtils.copyProperties(productDTO, product);
-//        PriceStep priceStep = priceStepService.getPriceStep(productDTO.getPriceStep());
-//        product.setPriceStep(priceStep);
-//        Category category = categoryService.getCategory(productDTO.getCategory());
-//        product.setCategory(category);
-//        ReviewStatus reviewStatus = reviewStatusService.getReviewStatus(1);
-//        product.setReviewStatus(reviewStatus);
-//        AuctionStatus auctionStatus = auctionStatusService.getAuctionStatus(1);
-//        product.setAuctionStatus(auctionStatus);
-//        User user = userService.getUser(productDTO.getUser());
-//        product.setUser(user);
-//        product.setDeleteStatus(false);
-//        productService.saveProduct(product);
-//        return new ResponseEntity<>(product, HttpStatus.CREATED);
-//    }
     @PostMapping("img/create")
-    public ResponseEntity<List<FieldError>> saveImgProduct(@Validated @RequestBody ImgUrlProductDTO imgUrlProductDTO, BindingResult bindingResult) {
+    public ResponseEntity<List<FieldError>> saveImgProduct(@Validated @RequestBody ImgUrlProductDto imgUrlProductDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
         ImgUrlProduct imgUrlProduct = new ImgUrlProduct();
-        BeanUtils.copyProperties(imgUrlProductDTO, imgUrlProduct);
-        Product product = productService.getProduct(imgUrlProductDTO.getProduct());
+        BeanUtils.copyProperties(imgUrlProductDto, imgUrlProduct);
+        Product product = productService.getProduct(imgUrlProductDto.getProduct());
         imgUrlProduct.setProduct(product);
         iImgUrlProductService.saveImgProduct(imgUrlProduct);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -242,20 +235,37 @@ public class ProductRestController {
 
     /**
      * Create by: HungNV,
+     * Date created: 13/12/2022
+     * Function: find img product by product id
+     *
+     * @param id
+     * @return listImg and HttpStatus.OK
+     */
+    @GetMapping("img/{id}")
+    public ResponseEntity<List<ImgUrlProduct>> findImgProductId(@PathVariable Integer id) {
+        List<ImgUrlProduct> listImg = iImgUrlProductService.findImgByProductId(id);
+        if (listImg.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(listImg, HttpStatus.OK);
+    }
+
+    /**
+     * Create by: HungNV,
      * Date created: 17/12/2022
      * Function: update img product of product
      *
-     * @param imgUrlProductDTO
+     * @param imgUrlProductDto
      * @return imgUrlProduct and HttpStatus.CREATED / bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE
      */
     @PutMapping("img/update/{id}")
-    public ResponseEntity<?> updateImageProduct(@Validated @RequestBody ImgUrlProductDTO imgUrlProductDTO, BindingResult bindingResult, @PathVariable Integer id) {
+    public ResponseEntity<?> updateImageProduct(@Validated @RequestBody ImgUrlProductDto imgUrlProductDto, BindingResult bindingResult, @PathVariable Integer id) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }
         ImgUrlProduct imgUrlProduct = iImgUrlProductService.getImgUrlProduct(id);
-        BeanUtils.copyProperties(imgUrlProductDTO, imgUrlProduct);
-        Product product = productService.getProduct(imgUrlProductDTO.getProduct());
+        BeanUtils.copyProperties(imgUrlProductDto, imgUrlProduct);
+        Product product = productService.getProduct(imgUrlProductDto.getProduct());
         imgUrlProduct.setProduct(product);
         iImgUrlProductService.update(imgUrlProduct);
         return new ResponseEntity<>(imgUrlProduct, HttpStatus.CREATED);
@@ -270,7 +280,7 @@ public class ProductRestController {
      * @return imgUrlProduct and HttpStatus.CREATED / bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE
      */
     @DeleteMapping("img/delete/{id}")
-    public ResponseEntity<?> updateImageProduct(@PathVariable Integer id) {
+    public ResponseEntity<ImgUrlProduct> deleteImageById(@PathVariable Integer id) {
         ImgUrlProduct imgUrlProduct = iImgUrlProductService.getImgUrlProduct(id);
         iImgUrlProductService.delete(imgUrlProduct);
         return new ResponseEntity<>(imgUrlProduct, HttpStatus.OK);
@@ -399,7 +409,6 @@ public class ProductRestController {
     @PostMapping("/search")
     public ResponseEntity<Page<ProductDto>> getAllAndSearch(@RequestBody ProductSearchDto productSearchDto,
                                                             @PageableDefault(value = 10) Pageable pageable) {
-        System.out.println("vo day");
         Page<Product> productPage = productService.getAllAndSearch(productSearchDto, pageable);
         if (productPage.hasContent()) {
             Page<ProductDto> productDtoPage = productPage.map(new Function<Product, ProductDto>() {
@@ -470,6 +479,23 @@ public class ProductRestController {
             return new ResponseEntity<>(new Reason(), HttpStatus.CREATED);
         }
         return new ResponseEntity<>(reason.get(), HttpStatus.OK);
+    }
+
+    /**
+     * Create by: GiangLBH
+     * Date created: 17/12/2022
+     * Function: to get img list by product id
+     *
+     * @Param productId
+     * @Return img list
+     */
+    @GetMapping("/imgs/{id}")
+    public ResponseEntity<List<ImgUrlProduct>> getImgsByProductId(@PathVariable Integer id) {
+        List<ImgUrlProduct> imgs = iImgUrlProductService.getImgs(id);
+        if (imgs.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(imgs, HttpStatus.OK);
     }
 }
 

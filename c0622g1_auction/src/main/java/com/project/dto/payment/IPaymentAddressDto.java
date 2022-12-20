@@ -22,4 +22,8 @@ public interface IPaymentAddressDto {
     String getTown();
 
     String getDescription();
+
+    String getProductName();
+
+    Double getProductPrice();
 }

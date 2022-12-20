@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 
 @RestController
@@ -123,10 +124,9 @@ public class UserRestController {
      * @return Object user by id
      */
     @GetMapping("/find/{id}")
-    public ResponseEntity<User> findUserById(@PathVariable() int id) {
+    public ResponseEntity<?> findUserById(@PathVariable() int id) {
         User user = userService.getUser(id);
         if (user == null) {
-
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(user, HttpStatus.OK);
@@ -160,7 +160,6 @@ public class UserRestController {
         }
         return new ResponseEntity<>(userTypes, HttpStatus.OK);
     }
-
 
     /**
      * Create by: TruongLH
@@ -238,6 +237,7 @@ public class UserRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -266,18 +266,23 @@ public class UserRestController {
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
 
-    @GetMapping("/top/{quality}")
-    public ResponseEntity<List<UserTopDto>> getTopAuctionUser(@PathVariable String quality) {
-        String regexNumber = "^\\d+$";
-        if (!quality.matches(regexNumber)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        List<UserTopDto> userTopDtoList = userService.getTopAuctionUser(quality);
+//    @GetMapping("/top")
+//    public ResponseEntity<List<UserTopDto>> getTopAuctionUser() {
+//        List<UserTopDto> userTopDtoList = userService.getTopAuctionUser();
+//        if (userTopDtoList.size() == 0) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(userTopDtoList, HttpStatus.OK);
+//    }
+    @GetMapping("/top")
+    public ResponseEntity<List<User>> getTopAuctionUser() {
+        List<User> userTopDtoList = userService.getTopAuctionUser();
         if (userTopDtoList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(userTopDtoList, HttpStatus.OK);
     }
+
 
     /**
      * Created: VietNQ
@@ -287,8 +292,7 @@ public class UserRestController {
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
     @PostMapping("/add")
-    public ResponseEntity<?> addUser(@RequestBody FormAddUser formAddUser) {
-
+    public ResponseEntity<?> addUser(@Validated @RequestBody FormAddUser formAddUser) {
         AddressDto addressDto = new AddressDto(formAddUser.getDetailAddress(), formAddUser.getTown(), formAddUser.getDistrict(), formAddUser.getCity(), formAddUser.getCountry());
         AccountDto accountDto = new AccountDto(formAddUser.getUsername(), formAddUser.getPassword(), formAddUser.getStatusLock(), formAddUser.getDeleteStatus());
         AddUserDto addUserDto = new AddUserDto(formAddUser.getFirstName(), formAddUser.getLastName(), formAddUser.getEmail(),
@@ -298,60 +302,14 @@ public class UserRestController {
         User user = new User();
         Address address = new Address();
         Account account = new Account();
-
         BeanUtils.copyProperties(addressDto, address);
         BeanUtils.copyProperties(accountDto, account);
         BeanUtils.copyProperties(addUserDto, user);
-
         Address addressATBC = addressService.saveAddress(address);
         Account accountABT = accountService.saveAccount(account);
 
         userService.saveAddUser(user, addressATBC.getId(), accountABT.getId(), 4);
 
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-//    @PostMapping("/create")
-//    public ResponseEntity<?> addUser(@RequestBody AddUserDto addUserDto) {
-//
-//        AddressDto addressDto = new AddressDto(addUserDto.getDetailAddress(), addUserDto.getTown(), addUserDto.getDistrict(), addUserDto.getCity(), addUserDto.getCountry());
-//        AccountDto accountDto = new AccountDto(addUserDto.getUsername(), addUserDto.getPassword());
-//
-//        UserDto userDto = new UserDto(addUserDto.getFirstName(), addUserDto.getLastName(), addUserDto.getEmail(),
-//                addUserDto.getPhone(), addUserDto.getPointDedication(), addUserDto.getBirthDay(), addUserDto.getIdCard(), addUserDto.getAvatar(), addressDto, accountDto);
-//
-//        User user = new User();
-//        Address address = new Address();
-//        Account account = new Account();
-//
-////        BeanUtils.copyProperties(addressDto, address);
-////        BeanUtils.copyProperties(accountDto, account);
-//        BeanUtils.copyProperties(userDto, user);
-//
-//        Address addressATBC = addressService.saveAddress(address);
-//        Account accountABT = accountService.saveAccount(account);
-//        accountABT.setStatusLock(true);
-//        accountABT.setDeleteStatus(true);
-//        accountABT.setPassword("12345678");
-//        userService.saveUser(user, addressATBC.getId(), accountABT.getId(), 4);
-//
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-
-    /**
-     * Create by: VietNQ
-     * Date created: 13/12/2022
-     * Function: to lockAccount
-     *
-     * @param id
-     * @return HttpStatus.NOT_FOUND if result is not empty
-     */
-    @PutMapping("/lockUser")
-    public ResponseEntity<UserListDto> lockUser(@RequestBody List<Integer> id) {
-        List<User> userList = userService.findByIdList(id);
-        if (id.size() != userList.size()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        userService.lockUser(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

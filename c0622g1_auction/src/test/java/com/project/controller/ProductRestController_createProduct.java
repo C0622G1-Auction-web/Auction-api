@@ -1,6 +1,7 @@
 package com.project.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.dto.product.CategoryDto;
 import com.project.dto.product.PriceStepDto;
 import com.project.dto.product.ProductDto;
 import com.project.dto.user.UserDto;

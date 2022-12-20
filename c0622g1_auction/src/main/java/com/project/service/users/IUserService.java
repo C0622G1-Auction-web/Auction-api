@@ -13,12 +13,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
-
 public interface IUserService {
     void saveAddUser(User user, Integer addressId, Integer accountId, Integer Number);
-
 
     /**
      * Create by: TruongLH
@@ -71,7 +68,7 @@ public interface IUserService {
      *
      * @return
      */
-    List<User> findByIdList(List<Integer> id);
+//    List<User> findByIdList(List<Integer> id);
 
 
     /**
@@ -120,27 +117,28 @@ public interface IUserService {
      * Created date: 13/12/2022
      * Function: get Top 10 users with the highest total money auction
      *
-     * @param quality user quality
      * @return List<User>
      */
-    List<UserTopDto> getTopAuctionUser(String quality);
+    List<User> getTopAuctionUser();
 
 
     /**
      * By: HungNV - Find user id
+     *
+     * @return user
      */
     User getUser(Integer id);
 
 
     void lockUser(List<Integer> id);
 
-    /**
-     * Created by: SonPT
-     * Date created: 13-12-2022
-     *
-     * @Param: int ID of User
-     * Function: get User
-     */
+
+    void updateAddress(User user);
+
+    Optional<Object> findById(int id);
+
+    void unlockUser(List<Integer> idList);
+
     User findUserByAccount(Account account);
 
 }
