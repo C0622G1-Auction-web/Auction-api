@@ -26,10 +26,11 @@ public class Account {
 
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "account",
+            fetch = FetchType.EAGER)
     @JsonBackReference
     private Set<AccountRole> accountRoles;
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "account", fetch = FetchType.EAGER)
     @JsonBackReference
     private Set<PasswordResetToken> passwordResetTokens;
     @OneToOne(mappedBy = "account")

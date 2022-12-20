@@ -14,12 +14,12 @@ public class GuideDto {
     private Integer id;
     @NotBlank(message = "Không được để trống tên chủ đề")
     @Size(min = 10, max = 100, message = "Tên chủ đề quá dài hoặc quá ngắn")
-    @Pattern(regexp = "^[a-zA-Z0-9 ]*$", message = "Vui lòng nhập đúng định dạng")
+    @Pattern(regexp = "^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêếìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ0-9,.?! ]*$", message = "Vui lòng nhập đúng định dạng")
     private String title;
     @NotBlank(message = "Không được để trống nội dung")
-    @Size(min = 10, max = 300, message = "Nội dung quá độ dài quy định")
+    @Size(min = 30, max = 2000, message = "Nội dung quá độ dài quy định")
     private String content;
-    private Boolean deleteStatus;
+    private Boolean deleteStatus=true;
     private String images;
 
     public GuideDto() {

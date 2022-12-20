@@ -2,12 +2,11 @@ package com.project.service.users.impl;
 
 import com.project.dto.user.UserTopDto;
 import com.project.model.account.Account;
-import com.project.model.users.Address;
 import com.project.model.users.User;
+import com.project.model.users.Address;
 import com.project.repository.account.IAccountRepository;
 import com.project.repository.users.IAddressRepository;
 import com.project.repository.users.IUserRepository;
-import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -77,9 +76,13 @@ public class UserService implements IUserService {
                 user.getLastName(),
                 user.getPhone(),
                 user.getPointDedication(),
-                accountId,
-                addressId,
-                userType);
+                user.getAccount(),
+                user.getAddress(),
+                user.getUserType());
+//        accountId,
+//                addressId,
+//                userType);
+
     }
 
 
@@ -153,8 +156,6 @@ public class UserService implements IUserService {
         return addressRepository.findById(id);
     }
 
-
-
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -205,6 +206,21 @@ public class UserService implements IUserService {
         return userRepository.findUserByIdList(id);
     }
 
+    @Override
+    public void updateAddress(User user) {
+        
+    }
+
+    @Override
+    public Optional<Object> findById(int id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public void unlockUser(List<Integer> idList) {
+
+    }
+
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -216,7 +232,6 @@ public class UserService implements IUserService {
         userRepository.unlockAccountByIdList(idList);
     }
 
-
     /**
      * Created: SangDD
      * Created date: 13/12/2022
@@ -227,9 +242,8 @@ public class UserService implements IUserService {
      */
 
     @Override
-
-    public List<UserTopDto> getTopAuctionUser(String quality) {
-        return userRepository.getTopAuctionUser(quality);
+    public List<User> getTopAuctionUser() {
+        return userRepository.getTopAuctionUser();
     }
 
     /**

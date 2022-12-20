@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -23,6 +24,33 @@
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0f0ec174-2ce7-4655-b76c-36cf5cdee914" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/auction.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/auction.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/auction.main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/auction.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/auction.test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/auction/AuctionRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/auction/AuctionRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/GuideRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/GuideRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/ImageGuideRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/ImageGuideRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/product/ProductRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/product/ProductRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/users/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/users/UserRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/AuctionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/AuctionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/CategoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/CategoryDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/CategoryDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/PriceStepDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/PriceStepDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/PriceStepDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/ProductDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/ProductDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/users/IUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/users/IUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/IUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/impl/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/impl/UserService.java" afterDir="false" />
+>>>>>>> dev
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,12 +82,16 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2IvvLcGqfhRnKq25bs0indvyZLY" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent">
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
@@ -72,6 +104,21 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/PC/Desktop/Auction-api",
+    "spring.configuration.checksum": "1e1babc9d3f8189517540bc3aac9fe66"
+  }
+}]]></component>
+>>>>>>> dev
   <component name="RunManager">
     <configuration name="AuctionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="auction.main" />
@@ -81,6 +128,7 @@
       </method>
     </configuration>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -93,17 +141,21 @@
       <updated>1671074819848</updated>
       <workItem from="1671074836244" duration="41081000" />
       <workItem from="1671242508903" duration="7395000" />
+<<<<<<< HEAD
       <workItem from="1671439879718" duration="2653000" />
       <workItem from="1671448568335" duration="8000" />
       <workItem from="1671448633137" duration="1705000" />
       <workItem from="1671478530511" duration="4157000" />
       <workItem from="1671484894287" duration="1505000" />
       <workItem from="1671499112481" duration="368000" />
+=======
+      <workItem from="1671472425082" duration="1821000" />
+>>>>>>> dev
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -115,6 +167,7 @@
         </entry>
       </map>
     </option>
+<<<<<<< HEAD
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -204,5 +257,7 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1671482046561" />
+=======
+>>>>>>> dev
   </component>
 </project>
