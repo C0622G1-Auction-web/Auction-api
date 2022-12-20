@@ -7,11 +7,14 @@ import com.project.dto.AuctionDto;
 import com.project.model.auction.Auction;
 import com.project.repository.auction.IAuctionRepository;
 import com.project.service.auction.IAuctionService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -82,11 +85,19 @@ public class AuctionService implements IAuctionService {
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
     @Override
-    public void addAuction(AuctionDto auctionDto) {
+    public AuctionDto addAuction(AuctionDto auctionDto) {
+        auctionDto.setAuctionTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         auctionRepository.addAuction(
                 auctionDto.getCurrentPrice(),
                 auctionDto.getProductId(),
-                auctionDto.getUserId());
+                auctionDto.getUserId(),
+                auctionDto.getAuctionTime());
+
+        Auction auction = auctionRepository.getAuctionFromProductId(auctionDto.getProductId());
+        AuctionDto newDto = new AuctionDto();
+        newDto.setFullName(auction.getUser().getFirstName()+" "+auction.getUser().getLastName());
+        BeanUtils.copyProperties(auction, newDto);
+        return newDto;
     }
 
 

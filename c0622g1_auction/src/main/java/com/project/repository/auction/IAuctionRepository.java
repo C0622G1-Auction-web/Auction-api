@@ -155,12 +155,24 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
      * Function: find product by id
      *
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
-     * @param: auctionDay, currentPrice, productId, userId
+     * @param: auctionTime, currentPrice, productId, userId
      */
     @Modifying
     @Query(value = "insert into `auction` (auction_time ,current_price, product_id, user_id) " +
-            "values (now(), :currentPrice, :productId, :userId)", nativeQuery = true)
+            "values (:auctionTime, :currentPrice, :productId, :userId)", nativeQuery = true)
     void addAuction(@Param("currentPrice") Double currentPrice,
                     @Param("productId") Integer productId,
-                    @Param("userId") Integer userId);
+                    @Param("userId") Integer userId,
+                    @Param("auctionTime") String auctionTime);
+
+    /**
+     * Created by: TienBM,
+     * Date created: 20/12/2022
+     * Function: Get Auction From ProductId
+
+     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
+     * @param: productId
+     */
+    @Query(value = "select a.*  from `auction` a where a.product_id=:productId and a.delete_status = 1 order by a.current_price desc limit 1", nativeQuery = true)
+    Auction getAuctionFromProductId(@Param("productId") Integer productId);
 }

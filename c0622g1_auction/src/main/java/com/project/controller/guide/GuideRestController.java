@@ -30,24 +30,26 @@ public class GuideRestController {
      * Create by: SonPT,
      * Date created: 13/12/2022
      * Function: find all guide
+     *
      * @return list of guide status code OK
      */
 
-    @GetMapping()
-    public ResponseEntity<List<Guide>> getGuideList() {
-        List<Guide> guideList = guideService.findAllGuide();
-        if (guideList.isEmpty()) {
+    @GetMapping
+    public ResponseEntity<List<Guide>> getAll(@RequestParam(required = false, defaultValue = "") String title) {
+        List<Guide> guidePage = guideService.findAllGuide(title);
+        if (guidePage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(guideList, HttpStatus.OK);
+        return new ResponseEntity<List<Guide>>(guidePage, HttpStatus.OK);
     }
-    
+
     /**
      * Create by: QuangND,
      * Date created: 13/12/2022
      * Function: find a guide by id
-     * @Param: Id of guide want to get
+     *
      * @return an item guide
+     * @Param: Id of guide want to get
      */
     @GetMapping("/find/{id}")
     public ResponseEntity<Guide> getGuideById(@PathVariable int id) {
@@ -63,36 +65,38 @@ public class GuideRestController {
      * Create by: QuangND,
      * Date created: 13/12/2022
      * Function: create a new guide
-     * @Param: an item Guide
+     *
      * @return a status code
+     * @Param: an item Guide
      */
     @PostMapping()
     public ResponseEntity<Guide> createGuide(@Validated @RequestBody GuideDto guideDto,
-                                                        BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
+                                             BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
         Guide guideObj = new Guide();
         BeanUtils.copyProperties(guideDto, guideObj);
-         guideService.createGuide(guideObj);
-        return new ResponseEntity<>(guideObj,HttpStatus.CREATED);
+        guideService.createGuide(guideObj);
+        return new ResponseEntity<>(guideObj, HttpStatus.CREATED);
     }
 
     /**
      * Create by: QuangND,
      * Date created: 13/12/2022
      * Function: update a guide
+     *
+     * @return a status code
      * @Param: id
      * @Param: an item Guide need to update
-     * @return a status code
      */
     @PutMapping("")
-    public ResponseEntity <GuideDto> updateGuide(@Validated @RequestBody GuideDto guideDto,
-                                                 BindingResult bindingResult) {
-        if(guideService.getGuideById(guideDto.getId()) == null){
+    public ResponseEntity<GuideDto> updateGuide(@Validated @RequestBody GuideDto guideDto,
+                                                BindingResult bindingResult) {
+        if (guideService.getGuideById(guideDto.getId()) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
         Guide guideObj = new Guide();

@@ -61,7 +61,7 @@ public interface IAuctionService {
      * @param auctionDto
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus. OK if result is not error
      */
-    void addAuction(AuctionDto auctionDto);
+    AuctionDto addAuction(AuctionDto auctionDto);
 
 
     /**

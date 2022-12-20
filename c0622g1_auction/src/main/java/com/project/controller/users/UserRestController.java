@@ -97,11 +97,10 @@ public class UserRestController {
             @RequestParam(required = false, defaultValue = "") String email,
             @RequestParam(required = false, defaultValue = "") String address,
             @RequestParam(required = false, defaultValue = "") String userType,
-            @PageableDefault(value = 3) Pageable pageable) {
+            @PageableDefault(value = 5) Pageable pageable){
         Page<User> userPage = userService.getUserBy(id, name, email, userType, address, pageable);
-
         if (userPage.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         Page<UserListDto> auctionDtoPageByProductId = userPage.map(new Function<User, UserListDto>() {
             @Override
@@ -165,7 +164,6 @@ public class UserRestController {
 
 
     /**
-     * <<<<<<< HEAD
      * Create by: TruongLH
      * Date created: 13/12/2022
      * Function: to update user by id
@@ -208,7 +206,7 @@ public class UserRestController {
      * @return the user object is unlock
      */
 
-    @PutMapping("/unlockUser")
+    @PostMapping("/unlockUser")
     public ResponseEntity<UserListDto> unlockUser(@RequestBody List<Integer> idList) {
         List<User> userList = userService.findByIdList(idList);
         if (idList.size() != userList.size()) {
@@ -338,5 +336,29 @@ public class UserRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     * Function: to find product by list id
+     *
+     * @param idList
+     * @return HttpStatus.NO_CONTENT if exists any product not found/  HttpStatus.OK and products found
+     */
+    @PostMapping("/find-by-list-id")
+    public ResponseEntity<List<UserUnlockDto>> findByListId(@RequestBody List<Integer> idList) {
+        if (idList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        List<UserUnlockDto> productDeleteDtos = userService.findByListId(idList);
+        if (idList.size() != productDeleteDtos.size()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(productDeleteDtos, HttpStatus.OK);
+    }
 
+    @GetMapping("/getAll")
+    public ResponseEntity<List<User>> findAll() {
+        List<User> userList= userService.findAll();
+        return new ResponseEntity<>(userList, HttpStatus.OK);
+    }
 }

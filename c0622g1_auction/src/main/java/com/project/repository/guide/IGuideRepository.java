@@ -18,8 +18,8 @@ public interface IGuideRepository extends JpaRepository<Guide, Integer> {
      * @return list of guide
      */
 
-    @Query(value = "SELECT guide.id, guide.title, guide.content, guide.delete_status FROM guide WHERE guide.delete_status=true ", nativeQuery = true)
-    List<Guide> findAllGuide();
+    @Query(value = "SELECT * FROM guide WHERE guide.title LIKE %:title% ", nativeQuery = true, countQuery = "select count(*) from guide")
+    List<Guide> findAllGuide(@Param("title") String title);
 
 
 

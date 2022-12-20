@@ -1,6 +1,7 @@
 package com.project.service.users;
 
 import com.project.dto.user.UserTopDto;
+import com.project.dto.user.UserUnlockDto;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
@@ -139,5 +140,20 @@ public interface IUserService {
 
     User findUserByAccount(Account account);
 
+    /**
+     * By: HaiNT - Find list of users by id
+     *
+     * @param idList
+     */
+    List<UserUnlockDto> findByListId(List<Integer> idList);
+
+    /**
+     * Created by: DucDH
+     * Date: 17/12/2022
+     * Function: To get an User by email
+     * @param email
+     * @return: User if email found, null otherwise
+     */
+    User getUserByEmail(String email);
 }
 

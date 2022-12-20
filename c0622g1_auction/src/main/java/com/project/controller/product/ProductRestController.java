@@ -21,6 +21,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -161,6 +163,7 @@ public class ProductRestController {
         product.setAuctionStatus(auctionStatus);
         User user = userService.getUser(productDtoCreate.getUser());
         product.setUser(user);
+        product.setRegisterDay(LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
         productService.update(product);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }

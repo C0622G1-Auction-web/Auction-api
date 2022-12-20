@@ -1,6 +1,7 @@
 package com.project.service.users.impl;
 
 import com.project.dto.user.UserTopDto;
+import com.project.dto.user.UserUnlockDto;
 import com.project.model.account.Account;
 import com.project.model.users.User;
 import com.project.model.users.Address;
@@ -103,7 +104,7 @@ public class UserService implements IUserService {
 
     @Override
     public List<User> findAll() {
-        return null;
+        return userRepository.findAll();
     }
 
     /**
@@ -237,7 +238,6 @@ public class UserService implements IUserService {
      * Created date: 13/12/2022
      * Function: get Top 10 users with the highest total money auction
      *
-     * @param quality user quality
      * @return List<User>
      */
 
@@ -262,6 +262,24 @@ public class UserService implements IUserService {
         return userRepository.findUserByAccount(id);
     }
 
+    @Override
+    public List<UserUnlockDto> findByListId(List<Integer> idList) {
+
+        return userRepository.findByListId(idList);
+    }
+
+    /**
+     * Created by: DucDH
+     * Date: 17/12/2022
+     * Function: To get an User by email
+     * @param email
+     * @return: User if email found, null otherwise
+     */
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepository.getUserByEmail(email);
+    }
+
 
     /**
      * Created: HungNV
@@ -275,6 +293,7 @@ public class UserService implements IUserService {
     public User getUser(Integer id) {
         return userRepository.findById(id).orElse(null);
     }
+
 
 
 }

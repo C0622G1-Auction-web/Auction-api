@@ -2,6 +2,7 @@ package com.project.model.users;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.model.account.Account;
 import com.project.model.auction.Auction;
 import com.project.model.product.Product;
@@ -34,12 +35,13 @@ public class User {
 
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
-    @JsonBackReference
+
+
     @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @JsonManagedReference
     private Address address;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     private UserType userType;
@@ -49,7 +51,6 @@ public class User {
     private Set<Auction> auctions;
 
     @OneToOne
-    @JsonBackReference
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
