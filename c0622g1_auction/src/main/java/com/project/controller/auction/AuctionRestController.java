@@ -53,17 +53,37 @@ public class AuctionRestController {
         if (transactionSearchDto.getCurrentPrice() == null) {
             transactionSearchDto.setCurrentPrice(0.0);
         }
+        switch (transactionSearchDto.getPaymentStatus()) {
+            case "0": {
+                transactionSearchDto.setDeleteStatus("0");
+                break;
+            }
+            case "1": {
+                transactionSearchDto.setDeleteStatus("1");
+                break;
+            }
+            case "2": {
+                transactionSearchDto.setPaymentStatus("1");
+                transactionSearchDto.setDeleteStatus("0");
+                break;
+            }
+            default: {
+                transactionSearchDto.setPaymentStatus("");
+                transactionSearchDto.setDeleteStatus("");
+            }
+        }
         Page<ITransactionDto> transactionPage = auctionService.findAllTransaction(transactionSearchDto, pageable);
         if (transactionPage.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(transactionPage, HttpStatus.OK);
     }
-    
+
     /**
      * Created by : HuyNV,
      * Date created: 18/12/2022
      * Function: to list delete transaction
+     *
      * @param idList
      * @return HttpStatus.OK
      */
@@ -76,6 +96,7 @@ public class AuctionRestController {
         return new ResponseEntity<>(transactionList, HttpStatus.OK);
     }
 
+
     /**
      * Created by : HuyNV,
      * Date created: 14/12/2022
@@ -85,13 +106,10 @@ public class AuctionRestController {
      * @return HttpStatus.NOT_FOUND if exists not found transaction
      */
     @PostMapping("/delete")
-    public ResponseEntity<List<ITransactionDto>> remove(@RequestBody List<Integer> idList) {
-        List<ITransactionDto> transactionList = auctionService.findByListId(idList);
-        if (idList.size() != transactionList.size()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        auctionService.removeByListId(idList);
-        return new ResponseEntity<>(transactionList, HttpStatus.OK);
+    public ResponseEntity<?> remove(@RequestBody List<Integer> idList) {
+        List<Integer> auctionIds = auctionService.getAuctionIds(idList);
+        auctionService.removeByListId(auctionIds);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     /**

@@ -2,7 +2,6 @@ package com.project.service.auction;
 
 import com.project.dto.AuctionDto;
 import com.project.dto.auction.ITransactionDto;
-import com.project.dto.auction.TransactionListDto;
 import com.project.dto.auction.TransactionSearchDto;
 import com.project.dto.product.IAuctionProductDto;
 import com.project.model.auction.Auction;
@@ -75,4 +74,6 @@ public interface IAuctionService {
      */
 
     Page<IAuctionProductDto> getPageAuctionProductByUserId(Integer userId, Pageable pageable);
+
+    List<Integer> getAuctionIds(List<Integer> idList);
 }
