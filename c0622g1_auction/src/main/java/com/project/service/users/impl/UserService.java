@@ -61,7 +61,6 @@ public class UserService implements IUserService {
 
     }
 
-    public void saveUser(User user, Integer addressId, Integer accountId, Integer userType) {
     public void createUser(User user) {
         userRepository.createUser(
                 user.getAvatar(),

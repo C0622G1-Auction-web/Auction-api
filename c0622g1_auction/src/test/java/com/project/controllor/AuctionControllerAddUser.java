@@ -43,7 +43,6 @@ public class AuctionControllerAddUser {
         userDto.setBirthDay("12/12/2021");
         userDto.setPhone("123456789");
         userDto.setAccountDto(accountDto);
-        userDto.setAddressDto(addressDto);
 
         this.mockMvc.perform(MockMvcRequestBuilders
                         .post("/api/user/v1/create")

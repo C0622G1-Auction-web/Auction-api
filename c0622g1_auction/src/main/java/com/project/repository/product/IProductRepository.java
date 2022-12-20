@@ -33,16 +33,12 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
 
-    @Query(value = "select user.id as user ,product.`name` as name, product.description as description, " +
+    @Query(value = "select user.id as user , product.id as id ,product.`name` as name, product.description as description, " +
             "product.register_day as registerDay , review_status.`name` as reviewStatus , product.delete_status as isDelete " +
-            "from product " +
-            "join user on product.user_id = user.id " +
-            "join review_status on review_status.id = product.review_status_id " +
-            "where product.user_id = :id ",
-            countQuery = "count (*)from product " +
-                    "join user on product.user_id = user.id " +
-                    "join review_status on review_status.id = product.review_status_id " +
-                    "where product.user_id = :id  ", nativeQuery = true)
+            "from `product` " +
+            "join `user` on product.user_id = user.id " +
+            "join `review_status` on review_status.id = product.review_status_id " +
+            "where product.user_id = :id ", nativeQuery = true)
     Page<IProductDto> showProductById(@Param("id") Integer id, Pageable pageable);
 
 

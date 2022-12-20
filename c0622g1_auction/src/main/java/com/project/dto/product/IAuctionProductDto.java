@@ -1,7 +1,7 @@
 package com.project.dto.product;
 
 public interface IAuctionProductDto {
-    String getIdUser();
+    Integer getIdUser();
     String getNameProduct();
     String getDescription();
     String getPriceNow();

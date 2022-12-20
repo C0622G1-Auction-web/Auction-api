@@ -24,7 +24,7 @@ import java.util.function.Function;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1/auction")
+@RequestMapping("api/v1/auction")
 public class AuctionRestController {
 
     @Autowired
@@ -35,6 +35,26 @@ public class AuctionRestController {
 
     @Autowired
     private IUserService userService;
+
+    /**
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function: find auction product by id
+     *
+     * @param 'user Id'
+     * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
+     */
+
+    @GetMapping("/list/{userId}")
+    public ResponseEntity<Page<IAuctionProductDto>> historyAuctionProduct(@PathVariable Integer userId,
+                                                                          @PageableDefault(value = 5) Pageable pageable) {
+        Page<IAuctionProductDto> productList = auctionService.getPageAuctionProductByUserId(userId,pageable);
+        if (productList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(productList, HttpStatus.OK);
+
+    }
 
     /**
      * Created by: TienBM,
@@ -111,24 +131,6 @@ public class AuctionRestController {
         return new ResponseEntity(auctionDto, HttpStatus.OK);
     }
 
-    /**
-     * Created by: AnhTDQ,
-     * Date created: 15/12/2022
-     * Function: find auction product by id
-     *
-     * @param 'user Id'
-     * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
-     */
 
-    @GetMapping("/list/{id}")
-    public ResponseEntity<Page<IAuctionProductDto>> historyAuctionProduct(Integer userId, Pageable pageable) {
-        Page<IAuctionProductDto> productList = auctionService.getPageAuctionProductByUserId(1,pageable);
-
-        if (productList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(productList, HttpStatus.OK);
-
-    }
 
 }

@@ -1,6 +1,4 @@
 package com.project.controller.product;
-
-import com.project.model.guide.Guide;
 import com.project.model.product.Category;
 import com.project.service.product.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

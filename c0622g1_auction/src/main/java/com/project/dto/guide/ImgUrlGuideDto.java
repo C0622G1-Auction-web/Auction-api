@@ -9,10 +9,6 @@ public class ImgUrlGuideDto {
     public ImgUrlGuideDto() {
     }
 
-    public Integer getGuideId() {
-        return guideId;
-    }
-
     public Integer getId() {
         return id;
     }

@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-//@RequestMapping("/api/v1/product")
 @RequestMapping("api/v1/products")
 @CrossOrigin("*")
 public class ProductRestController {
@@ -50,8 +49,9 @@ public class ProductRestController {
      */
 
     @GetMapping("/list/{id}")
-    public ResponseEntity<Page<IProductDto>> historyProduct(Integer id, Pageable pageable) {
-        Page<IProductDto> productList = productService.showProductById(1, pageable);
+    public ResponseEntity<Page<IProductDto>> historyProduct(@PathVariable Integer id,
+                                                            @PageableDefault(value = 5) Pageable pageable) {
+        Page<IProductDto> productList = productService.showProductById(id, pageable);
 
         if (productList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -68,10 +68,14 @@ public class ProductRestController {
      * @return : HttpStatus.OK and cancel successfully
      */
 
-    @GetMapping("/canceled/{id}")
-    public ResponseEntity<Product> canceledProduct(@PathVariable("id") Integer id) {
-        productService.cancelProduct(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    @DeleteMapping("/canceled/{id}")
+    public ResponseEntity<Product> canceledProduct(@PathVariable Integer id) {
+        Optional<Product> product = productService.findProductById(id);
+        if (product.isPresent()) {
+            productService.cancelProduct(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 
@@ -86,10 +90,10 @@ public class ProductRestController {
     @GetMapping("/listReviewStatus")
     public ResponseEntity<List<ReviewStatus>> showReviewStatus() {
         List<ReviewStatus> reviewStatusList = iReviewStatusService.findAll();
-        if (reviewStatusList.isEmpty()){
+        if (reviewStatusList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(reviewStatusList,HttpStatus.OK);
+        return new ResponseEntity<>(reviewStatusList, HttpStatus.OK);
     }
 
 
@@ -119,6 +123,7 @@ public class ProductRestController {
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     /**
      * Create by GiangLBH
      * Date created: 13/12/2022
@@ -254,6 +259,7 @@ public class ProductRestController {
      * Created SangDD
      * Date created 13/12/2022
      * Function: search and filter product by name, rangePrice, categoryID productAuctionStatus
+     *
      * @param productSearchDto
      * @param pageable
      * @return HttpStatus.NOT_FOUND if result is empty
@@ -264,8 +270,8 @@ public class ProductRestController {
                                                             @PageableDefault(value = 5) Pageable pageable) {
 
         Page<Product> productPage = productService.getAllAndSearch(productSearchDto, pageable);
-        if(productPage.hasContent()) {
-            Page<ProductDto> productDtoPage  = productPage.map(new Function<Product, ProductDto>() {
+        if (productPage.hasContent()) {
+            Page<ProductDto> productDtoPage = productPage.map(new Function<Product, ProductDto>() {
                 @Override
                 public ProductDto apply(Product product) {
                     ProductDto productDto = new ProductDto();

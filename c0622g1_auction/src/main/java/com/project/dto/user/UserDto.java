@@ -249,4 +249,10 @@ public class UserDto implements Validator {
             }
         }
     }
+
+    public void setAccountDto(AccountDto accountDto) {
+    }
+
+    public void setAddressDto(AddressDto addressDto) {
+    }
 }

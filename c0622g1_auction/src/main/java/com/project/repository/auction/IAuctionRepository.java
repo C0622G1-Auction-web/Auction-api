@@ -35,12 +35,7 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
             "   join `user` on auction.user_id = `user`.id " +
             "   join product on auction.product_id = product.id " +
             "   join  auction_status on product. auction_status_id =  auction_status.id " +
-            "   where auction.user_id = :userId",
-            countQuery = "count (*) from auction" +
-                    "   join `user` on auction.user_id = `user`.id " +
-                    "   join product on auction.product_id = product.id " +
-                    "   join  auction_status on product. auction_status_id =  auction_status.id " +
-                    "   where auction.user_id = :userId",nativeQuery = true)
+            "   where auction.user_id = :userId",nativeQuery = true)
 
     Page<IAuctionProductDto> getPageAuctionProductByIdUser(@Param("userId") Integer userId, Pageable pageable);
 

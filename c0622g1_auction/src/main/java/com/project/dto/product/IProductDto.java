@@ -6,7 +6,9 @@ public interface IProductDto {
      * Date created: 15/12/2022
      * Function: transfer data to backend
      */
+
     String getUser();
+    String getId();
     String getName();
     String getDescription();
     String getRegisterDay();
