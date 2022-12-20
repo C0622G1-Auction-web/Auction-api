@@ -28,8 +28,8 @@ public class GuideService implements IGuideService {
 
 
     @Override
-    public List<Guide> findAllGuide() {
-        return guideRepository.findAllGuide();
+    public List<Guide> findAllGuide(String title) {
+        return guideRepository.findAllGuide(title);
     }
 
 

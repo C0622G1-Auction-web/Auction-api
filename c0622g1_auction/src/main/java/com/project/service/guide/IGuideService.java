@@ -5,7 +5,7 @@ import java.util.List;
 
 
 public interface IGuideService {
-    List<Guide> findAllGuide();
+    List<Guide> findAllGuide(String title);
 
     Guide getGuideById(int id);
 

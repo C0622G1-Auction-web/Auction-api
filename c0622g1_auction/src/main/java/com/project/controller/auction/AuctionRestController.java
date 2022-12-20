@@ -17,6 +17,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -194,6 +196,25 @@ public class AuctionRestController {
         }
         return new ResponseEntity<>(productList, HttpStatus.OK);
 
+    }
+
+    /**
+     * Created by: TienBM,
+     * Date created: 20/12/2022
+     * Function: Create New Auction
+     *
+     * @param auctionDto
+     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
+     */
+    @MessageMapping("/auctions")
+    @SendTo("/topic/auction")
+    public AuctionDto createNewAuction(AuctionDto auctionDto) {
+//        Auction auction = auctionService.getAuctionFromProductId(auctionDto.getProductId());
+//        BeanUtils.copyProperties(auction,auctionDto);
+        AuctionDto newAuctionDto = auctionService.addAuction(auctionDto);
+//        newAuctionDto.setFullName("Tien");
+//        auctionService.sendAuctionMail();
+        return newAuctionDto;
     }
 
 }

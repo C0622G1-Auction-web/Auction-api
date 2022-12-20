@@ -39,6 +39,21 @@ public class JwtProvider {
 
     /**
      * Created by DucDH,
+     * Date Created: 17/12/2022
+     * @param username
+     * @return a Token
+     */
+
+    public String createTokenWithUsername(String username) {
+        return Jwts.builder().setSubject(username)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(new Date().getTime() + jwtExpiration * 1000))
+                .signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .compact();
+    }
+
+    /**
+     * Created by DucDH,
      * Date Created: 13/12/2022
      * Function: to validate a token
      * @param token

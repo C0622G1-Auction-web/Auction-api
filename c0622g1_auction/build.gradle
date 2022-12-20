@@ -25,6 +25,12 @@ dependencies {
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
     testImplementation 'org.springframework.security:spring-security-test'
     implementation('io.jsonwebtoken:jjwt:0.9.1')
+    implementation group: 'org.webjars', name: 'stomp-websocket', version: '2.3.3'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket'
+
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation group: 'com.google.api-client', name: 'google-api-client', version: '1.30.9'
+
 }
 
 tasks.named('test') {

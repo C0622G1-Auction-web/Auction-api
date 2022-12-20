@@ -1,6 +1,7 @@
 package com.project.repository.users;
 
 import com.project.dto.user.UserTopDto;
+import com.project.dto.user.UserUnlockDto;
 import com.project.model.account.Account;
 import com.project.model.users.Address;
 import com.project.model.users.User;
@@ -136,7 +137,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Date created: 13/12/2022
      * Function: to create user
      * <p>
-     * <<<<<<< HEAD
      *
      * @return void
      */
@@ -253,6 +253,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
                     @Param("accountId") Integer accountId,
                     @Param("addressId") Integer addressId,
                     @Param("userTypeId") Integer userTypeId);
+
 
 
     /**
@@ -546,4 +547,29 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "where account_id =:accountId and delete_status = 0;", nativeQuery = true)
     User findUserByAccount(@Param("accountId") String accountId);
 
+    /**
+     * Create by: HaiNT
+     * Date created: 13/12/2022
+     *
+     * @param idList
+     * @return List User by idList
+     */
+    @Query(value = "select u.id as id, concat(u.first_name,' ',u.last_name) as name " +
+            "from user u " +
+            "where u.id in :idList ",
+            nativeQuery = true)
+    List<UserUnlockDto> findByListId(List<Integer> idList);
+
+    /**
+     * Create by: DucDH
+     * Date: 17/12/2022
+     * Function: To get a User by email
+     * @Param: email
+     * @return: User if email found, null otherwise
+     */
+
+    @Query(
+            value = " select * from user where email = :email ", nativeQuery = true
+    )
+    User getUserByEmail(@Param("email") String email);
 }
