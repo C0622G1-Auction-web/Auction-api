@@ -53,6 +53,7 @@ public class PaymentService implements IPaymentService {
 
     @Override
     public void updateByListId(List<Integer> idList, String shippingDescription) {
-         paymentRepository.updateByListId(idList, shippingDescription);
+        paymentRepository.updateByListId(idList, shippingDescription);
     }
 }
+
