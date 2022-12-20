@@ -61,20 +61,23 @@ public class AccountRestController {
     @GetMapping("verify_account")
     public ResponseEntity<String> verifyAccount(@RequestParam(value = "email") String email, @RequestParam(value = "username") String username) {
         Account account = accountService.findByUsername(username);
-
+        String message;
         if (account == null) {
-            return new ResponseEntity<>("Không tìm thấy tài khoản, vui lòng kiểm tra lại", HttpStatus.NOT_FOUND);
+            message = "Không tìm thấy tài khoản, vui lòng kiểm tra lại";
+            return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
         }
         User user = userService.findUserByAccount(account);
 
 
         if (user.getEmail().equals(email)) {
             PasswordResetToken passwordResetToken = passwordResetTokenUtil.createToken(account);
-            accountService.sendMail(email, username, passwordResetToken.getToken());
-            return new ResponseEntity<>("Tài khoản hợp lệ, vui lòng kiểm tra hòm thư gmail", HttpStatus.OK);
+            accountService.sendMail(email, username, passwordResetToken.getToken(), account.getId());
+            message = "Tài khoản hợp lệ, vui lòng kiểm tra hòm thư gmail";
+            return new ResponseEntity<>(message, HttpStatus.OK);
         }
+        message = "Email không hợp lệ, vui lòng kiểm tra lại";
 
-        return new ResponseEntity<>("Email không hợp lệ, vui lòng kiểm tra lại", HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
     /***Created by UyenNC
@@ -97,10 +100,7 @@ public class AccountRestController {
         if (expiryDate.isBefore(LocalDateTime.now())) {
             return new ResponseEntity<>("Token đã hết hạn", HttpStatus.BAD_REQUEST);
         }
-        Integer accountId = passwordResetToken.getAccount().getId();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(URI.create("/api/v1/accounts/update_pass?id=" + accountId + "&token=" + token));
-        return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
+        return new ResponseEntity<>("Token hợp lệ", HttpStatus.OK);
     }
 
     /***Created by UyenNC

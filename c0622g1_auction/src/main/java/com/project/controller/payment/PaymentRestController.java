@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin("*")
@@ -40,15 +41,23 @@ public class PaymentRestController {
      * Created by: ChauPTM
      * Date created: 13/12/2022
      * Function: to find payment by id
-     * @param id
+     * @param idList
      * @return HttpStatus.NO_CONTENT, HttpStatus.OK
      */
-    @GetMapping("/{id}")
-    public ResponseEntity<Payment> getPayment(@PathVariable Integer id) {
-        Payment payment = paymentService.findPaymentById(id);
-        if (payment == null) {
+    @GetMapping("")
+    @ResponseBody
+    public ResponseEntity<List<Payment>> getPayment(@RequestParam(value = "id") List<String> idList) {
+        List<Payment> paymentList = new ArrayList<>();
+        Payment payment;
+        for (int i = 0; i < idList.size(); i++) {
+            payment = paymentService.findPaymentById(Integer.valueOf(idList.get(i)));
+            paymentList.add(payment);
+        }
+
+
+        if (paymentList == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(payment, HttpStatus.OK);
+        return new ResponseEntity<>(paymentList, HttpStatus.OK);
     }
 }

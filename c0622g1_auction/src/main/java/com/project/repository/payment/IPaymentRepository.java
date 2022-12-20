@@ -22,14 +22,15 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
      * @return List<IPaymentDTO>
      */
     @Query(value = "SELECT p.id AS code, us.last_name AS lastName , us.first_name AS firstName, ad.city, ad.district, \n" +
-            "            ad.detail_address AS address , ad.country, pr.name AS productName, au.current_price AS productPrice,\n" +
-            "            pr.description, pr.id  as productId\n" +
+            "            ad.town AS town, ad.detail_address AS detailAddress , ad.country, pr.name AS productName, au.current_price AS productPrice,\n" +
+            "            pr.description, img.url as productImage\n" +
             "            FROM payment AS p \n" +
             "            JOIN auction AS au ON p.auction_id = au.id  \n" +
             "            JOIN product AS pr ON au.product_id = pr.id\n" +
             "            JOIN user AS us ON au.user_id = us.id\n" +
-            "            JOIN address AS ad ON us.address_id \n" +
-            "            WHERE us.id =:user_id \n" +
+            "            JOIN address AS ad ON us.address_id = ad.id\n" +
+            "            JOIN img_url_product as img on img.product_id = pr.id\n" +
+            "            WHERE us.id =3\n" +
             "            AND p.payment_status = 0 \n" +
             "            AND p.delete_status = 0 \n" +
             "            AND au.auction_status = 1 group by p.id;", nativeQuery = true)
@@ -54,7 +55,7 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
             "WHERE p.id = :id " +
             "AND p.payment_status = 0 " +
             "AND p.delete_status = 0 " +
-            "AND au.auction_status = 1 group by us.id", nativeQuery = true, countQuery = "select count(*) from payment")
+            "AND au.auction_status = 1 group by p.id", nativeQuery = true, countQuery = "select count(*) from payment")
     Optional<IPaymentDTO> findPaymentIdByDTO(@Param("id") Integer id);
 
    /**

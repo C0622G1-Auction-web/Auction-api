@@ -13,7 +13,9 @@ public interface IPaymentDTO {
 
     String getDistrict();
 
-    String getAddress();
+    String getTown();
+
+    String getDetailAddress();
 
     String getCountry();
 
@@ -25,6 +27,11 @@ public interface IPaymentDTO {
 
     Integer getProductId();
 
+    String getProductImage();
+
+    String getEmail();
+
+    String getPhone();
 
 
 }

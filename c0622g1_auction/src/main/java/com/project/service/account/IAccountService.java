@@ -12,7 +12,7 @@ public interface IAccountService {
     Account findByUsername(String username);
 
 
-    void sendMail(String email, String username, String passwordResetToken);
+    void sendMail(String email, String username, String passwordResetToken, Integer accountId);
 
     Account findById(Integer id);
 
