@@ -135,8 +135,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * Create by: VietNQ
      * Date created: 13/12/2022
      * Function: to create user
-     * <p>
-     * <<<<<<< HEAD
      *
      * @return void
      */
@@ -189,8 +187,8 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @param id
      */
     @Modifying
-    @Query(value = "UPDATE account SET status_lock = 0 WHERE (id = :id);", nativeQuery = true)
-    void lockAccount(@Param("id") List<Integer> id);
+    @Query(value = "UPDATE account SET status_lock = 1 WHERE (id = :id);", nativeQuery = true)
+    void lockAccount(@Param("id") Integer id);
 
 
     /**
@@ -202,7 +200,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      */
     @Transactional
     @Modifying
-    @Query(value = "UPDATE account SET status_lock = 1 WHERE (id in :idList);", nativeQuery = true)
+    @Query(value = "UPDATE account SET status_lock = 0 WHERE (id in :idList);", nativeQuery = true)
     void unlockAccountByIdList(@Param("idList") List<Integer> idList);
 
     /**
@@ -228,7 +226,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             "address_id," +
             "user_type_id)" +
             " values(:avatar," +
-            ":avatar," +
             ":birthDay," +
             ":deleteStatus," +
             ":email," +

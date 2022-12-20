@@ -141,12 +141,27 @@ public class AccountRestController {
         if (password.length() < 5 || password.length() > 50) {
             return new ResponseEntity<>("Password có độ dài tối thiểu là 5 kí tự và tối đa là 50 kí tự", HttpStatus.BAD_REQUEST);
         }
-
-//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        String encryptPass = passwordEncoder.encode(password);
-//        account.setPassword(encryptPass);
         accountService.save(account);
         return new ResponseEntity<>("Cập nhật mật khẩu thành công", HttpStatus.OK);
+    }
+
+    /**
+     * Created by: VietNQ
+     * Date: 19/12/20200
+     * Function: To get account by id
+     * @Param: id
+     * @Return: Account if accountId found
+     *          Null if accountId not found
+     */
+
+    @GetMapping("/getAccountById/{id}")
+    public ResponseEntity<?> getAccountById(@PathVariable String id) {
+
+        Account account = accountService.findById(Integer.valueOf(id));
+        if (account == null) {
+            return new ResponseEntity<>("Account not found!", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(account, HttpStatus.OK);
     }
 }
 

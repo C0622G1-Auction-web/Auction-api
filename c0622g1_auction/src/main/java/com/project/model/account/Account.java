@@ -1,15 +1,8 @@
 package com.project.model.account;
-
-import com.project.model.account.AccountRole;
-import com.project.model.account.LockAccount;
-import com.project.model.account.PasswordResetToken;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.project.model.users.User;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -26,10 +19,10 @@ public class Account {
 
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
-    @OneToMany(mappedBy = "account")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "account")
     @JsonBackReference
     private Set<AccountRole> accountRoles;
-    @OneToMany(mappedBy = "account")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "account")
     @JsonBackReference
     private Set<PasswordResetToken> passwordResetTokens;
     @OneToOne(mappedBy = "account")

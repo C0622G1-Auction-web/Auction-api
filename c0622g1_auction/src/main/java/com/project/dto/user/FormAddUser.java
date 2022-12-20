@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public class FormAddUser implements Validator {
+public class FormAddUser {
 
     private Integer id;
     @NotEmpty(message = "Họ không được để trống")
@@ -215,15 +215,15 @@ public class FormAddUser implements Validator {
     }
 
 
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return false;
-    }
-
-    @Override
-    public void validate(Object target, Errors errors) {
-
-    }
+//    @Override
+//    public boolean supports(Class<?> clazz) {
+//        return false;
+//    }
+//
+//    @Override
+//    public void validate(Object target, Errors errors) {
+//
+//    }
     public Boolean getDeleteStatus() {
         return deleteStatus;
     }

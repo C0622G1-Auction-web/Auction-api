@@ -110,7 +110,7 @@ public class UserService implements IUserService {
      *
      * @param id
      */
-    public void lockUser(List<Integer> id) {
+    public void lockUser(Integer id) {
         userRepository.lockAccount(id);
     }
 

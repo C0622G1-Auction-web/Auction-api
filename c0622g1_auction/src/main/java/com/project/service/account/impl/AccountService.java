@@ -118,6 +118,10 @@ public class AccountService implements IAccountService {
     public Account findById(Integer id) {
         return accountRepository.findAccountById(id);
     }
+    @Override
+    public Account findLockById(Integer id) {
+        return accountRepository.findLockAccountById(id);
+    }
 
     /**
      * Created by UyenNC

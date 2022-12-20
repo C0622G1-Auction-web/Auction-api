@@ -34,6 +34,7 @@ public interface IAccountService {
     void sendMail(String email, String username, String passwordResetToken);
 
     Account findById(Integer id);
+    Account findLockById(Integer id);
 
     void save(Account account);
 

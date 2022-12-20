@@ -18,7 +18,6 @@ public interface IUserService {
     void saveAddUser(User user, Integer addressId, Integer accountId, Integer Number);
 
 
-
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022
@@ -123,8 +122,13 @@ public interface IUserService {
     User getUser(Integer id);
 
 
-
-    void lockUser(List<Integer> id);
+    /**
+     * Created by: VietNQ
+     * Date created: 19-12-2022
+     * @Param: int ID of Lock user
+     * Function: get User
+     */
+    void lockUser(Integer id);
 
     /**
      * Created by: SonPT

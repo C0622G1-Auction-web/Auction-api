@@ -60,6 +60,9 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
             "and delete_status = 0 " +
             "and status_lock = 0;", nativeQuery = true)
     Account findAccountById(@Param(value = "id") Integer id);
+ @Query(value = "select * from account " +
+            "where id =:id ", nativeQuery = true)
+    Account findLockAccountById(@Param(value = "id") Integer id);
 
     @Query(
             value = " select * " +
@@ -101,6 +104,14 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
             nativeQuery = true)
     Account updateAccount(@Param("username") String username,
                           @Param("password") String password);
+
+
+    @Modifying
+    @Query(value = " insert into account_role (account_id, role_id) " +
+            " values" +
+            " ( :accountRoleId, :roleId ) ", nativeQuery = true)
+    void createAccountRole(@Param("accountRoleId") Integer accountRoleId,
+                           @Param("roleId") Integer roleId);
 
 
 }

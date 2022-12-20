@@ -1,7 +1,9 @@
 package com.project.service.account;
 
-import org.springframework.stereotype.Service;
+
+import com.project.model.account.LockAccount;
 
 public interface ILockAccountService {
-    void lockAccount(Integer id);
+    void addLockUser(LockAccount lockAccount);
 }
+
