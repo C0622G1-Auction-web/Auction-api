@@ -396,8 +396,7 @@ public class ProductRestController {
      */
     @PostMapping("/search")
     public ResponseEntity<Page<ProductDto>> getAllAndSearch(@RequestBody ProductSearchDto productSearchDto,
-                                                            @PageableDefault(value = 10) Pageable pageable) {
-        System.out.println("vo day");
+                                                            @PageableDefault(value = 6) Pageable pageable) {
         Page<Product> productPage = productService.getAllAndSearch(productSearchDto, pageable);
         if (productPage.hasContent()) {
             Page<ProductDto> productDtoPage = productPage.map(new Function<Product, ProductDto>() {

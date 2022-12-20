@@ -133,10 +133,11 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * @param productId
      * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
      */
-    @Query(value = "select p.*"+
-            "from product p\n" +
-            "where p.id=:productId and p.delete_status = 0 and p.auction_status_id < 4", nativeQuery = true)
+    @Query(value = "select * "+
+            "from product p\n " +
+            "where p.id = :productId and p.delete_status = 0 and p.auction_status_id < 4", nativeQuery = true)
     Optional<Product> findProductById(@Param("productId") Integer productId);
+
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
@@ -247,10 +248,11 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "FROM product " +
             "WHERE product.review_status_id = 2 " +
             "    AND product.delete_status = 0 " +
+            "    AND product.auction_status_id < 4 " +
             "    AND product.category_id like %:#{#productSearchDto.categoryID}%" +
             "    AND product.auction_status_id like %:#{#productSearchDto.productAuctionStatus}%" +
             "    AND product.name like %:#{#productSearchDto.name}%" +
-            "    AND (product.initial_price > :#{#productSearchDto.rangePrice} " +
+            "    AND (product.initial_price < :#{#productSearchDto.rangePrice} " +
             "         OR product.initial_price = :#{#productSearchDto.rangePrice}) " +
             "ORDER BY product.start_time DESC",
             nativeQuery = true)

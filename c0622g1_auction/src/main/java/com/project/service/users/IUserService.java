@@ -103,10 +103,9 @@ public interface IUserService {
      * Created date: 13/12/2022
      * Function: get Top 10 users with the highest total money auction
      *
-     * @param quality user quality
      * @return List<User>
      */
-    List<UserTopDto> getTopAuctionUser(String quality);
+    List<User> getTopAuctionUser();
 
     /**
      * By: HaiNT - Find list of address by AddressId

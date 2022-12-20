@@ -57,6 +57,11 @@ public class ProductDto implements Validator {
     @NotBlank(message = "Please select options category to auction Product")
     private Category category;
     private User user;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     private ReviewStatus reviewStatus;
     private AuctionStatus auctionStatus;
     private Set<ImgUrlProduct> imgUrlProducts;
