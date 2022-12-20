@@ -105,6 +105,14 @@ public class AuctionService implements IAuctionService {
         return auctionRepository.getPageAuctionProductByIdUser(userId, pageable);
     }
 
+    /**
+     * Created by : HuyNV
+     * Date Created: 14/12/2022
+     * Function: to find transaction by List ids
+     *
+     * @param idList
+     * @return
+     */
     @Override
     public List<Integer> getAuctionIds(List<Integer> idList) {
         return auctionRepository.getAuctionIds(idList);

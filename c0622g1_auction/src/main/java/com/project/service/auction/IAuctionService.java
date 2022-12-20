@@ -75,5 +75,13 @@ public interface IAuctionService {
 
     Page<IAuctionProductDto> getPageAuctionProductByUserId(Integer userId, Pageable pageable);
 
+    /**
+     * Created by : HuyNV
+     * Date Created: 20/12/2022
+     * Function: to find transaction by List ids
+     *
+     * @param idList
+     * @return
+     */
     List<Integer> getAuctionIds(List<Integer> idList);
 }

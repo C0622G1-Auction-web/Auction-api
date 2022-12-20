@@ -64,6 +64,14 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
     @Query(value = "update auction_web_system_v3.auction set delete_status = 1 where id in :idList ", nativeQuery = true)
     void removeByListId(@Param("idList") List<Integer> idList);
 
+    /**
+     * Created by : HuyNV
+     * Date Created: 20/12/2022
+     * Function: to find transaction by List ids
+     *
+     * @param idList
+     * @return
+     */
     @Query(value = "select auc.id " +
             "from `auction` auc " +
             "join `payment` pm on auc.id = pm.auction_id " +
