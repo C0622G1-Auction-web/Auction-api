@@ -247,18 +247,23 @@ public class UserRestController {
      * @return HttpStatus.NOT_FOUND if result is not empty
      */
 
-    @GetMapping("/top/{quality}")
-    public ResponseEntity<List<UserTopDto>> getTopAuctionUser(@PathVariable String quality) {
-        String regexNumber = "^\\d+$";
-        if (!quality.matches(regexNumber)) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        List<UserTopDto> userTopDtoList = userService.getTopAuctionUser(quality);
+//    @GetMapping("/top")
+//    public ResponseEntity<List<UserTopDto>> getTopAuctionUser() {
+//        List<UserTopDto> userTopDtoList = userService.getTopAuctionUser();
+//        if (userTopDtoList.size() == 0) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        return new ResponseEntity<>(userTopDtoList, HttpStatus.OK);
+//    }
+    @GetMapping("/top")
+    public ResponseEntity<List<User>> getTopAuctionUser() {
+        List<User> userTopDtoList = userService.getTopAuctionUser();
         if (userTopDtoList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(userTopDtoList, HttpStatus.OK);
     }
+
 
     /**
      * Created: VietNQ

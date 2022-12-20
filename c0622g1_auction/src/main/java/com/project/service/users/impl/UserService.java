@@ -242,9 +242,8 @@ public class UserService implements IUserService {
      */
 
     @Override
-
-    public List<UserTopDto> getTopAuctionUser(String quality) {
-        return userRepository.getTopAuctionUser(quality);
+    public List<User> getTopAuctionUser() {
+        return userRepository.getTopAuctionUser();
     }
 
     /**
