@@ -26,7 +26,7 @@ public class PaymentRestController_getPayment {
     @Test
     public void getPayment_id_1() throws Exception {
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.get("/api/payment/v1/"))
+                        MockMvcRequestBuilders.get("//api/v1/payments/"))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -39,7 +39,7 @@ public class PaymentRestController_getPayment {
     @Test
     public void getPayment_id_2() throws Exception {
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.get("/api/payment/v1?id="))
+                        MockMvcRequestBuilders.get("//api/v1/payments?id="))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());
     }
@@ -52,7 +52,7 @@ public class PaymentRestController_getPayment {
     @Test
     public void getPayment_id_3() throws Exception {
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.get("/api/payment/v1/9"))
+                        MockMvcRequestBuilders.get("//api/v1/payments/9"))
                 .andDo(print())
                 .andExpect(status().is(204));
     }
@@ -65,13 +65,13 @@ public class PaymentRestController_getPayment {
     @Test
     public void getPayment_id_4() throws Exception {
         this.mockMvc.perform(
-                        MockMvcRequestBuilders.get("/api/payment/v1/1"))
+                        MockMvcRequestBuilders.get("//api/v1/payments/1"))
                 .andDo(print())
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("id").value(1))
                 .andExpect(jsonPath("deleteStatus").value(false))
                 .andExpect(jsonPath("paymentStatus").value(false))
                 .andExpect(jsonPath("shippingDescription").value("Giao tận ngõ"))
-                .andExpect(jsonPath("auctionId").value(8));
+                .andExpect(jsonPath("auctionId.id").value(8));
     }
 }

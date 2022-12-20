@@ -19,7 +19,7 @@ public class GuideDto {
     @NotBlank(message = "Không được để trống nội dung")
     @Size(min = 10, max = 300, message = "Nội dung quá độ dài quy định")
     private String content;
-    private Boolean deleteStatus;
+    private Boolean deleteStatus=true;
     private String images;
 
     public GuideDto() {

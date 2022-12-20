@@ -1,16 +1,18 @@
 package com.project.service.auction;
 
 import com.project.dto.AuctionDto;
+import com.project.dto.auction.ITransactionDto;
+import com.project.dto.auction.TransactionListDto;
 import com.project.dto.auction.TransactionSearchDto;
 import com.project.dto.product.IAuctionProductDto;
 import com.project.model.auction.Auction;
-import com.project.model.product.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface IAuctionService {
+
 
     /**
      * Created by : HuyNV,
@@ -20,7 +22,7 @@ public interface IAuctionService {
      * @param pageable
      * @return
      */
-    Page<Auction> findAllTransaction(TransactionSearchDto transactionSearchDto, Pageable pageable);
+    Page<ITransactionDto> findAllTransaction(TransactionSearchDto transactionSearchDto, Pageable pageable);
 
     /**
      * Created by : HuyNV
@@ -39,7 +41,7 @@ public interface IAuctionService {
      * @param idList
      * @return
      */
-    List<Auction> findByListId(List<Integer> idList);
+    List<ITransactionDto> findByListId(List<Integer> idList);
 
     /**
      * Created by: TienBM,

@@ -1,6 +1,5 @@
 package com.project.model.product;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
@@ -16,6 +15,7 @@ public class ReviewStatus {
     @JsonBackReference
     @OneToMany(mappedBy = "reviewStatus")
     private Set<Product> products;
+
     public ReviewStatus() {
     }
 

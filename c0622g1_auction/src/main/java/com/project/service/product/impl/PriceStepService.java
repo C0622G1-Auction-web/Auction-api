@@ -17,6 +17,7 @@ public class PriceStepService implements IPriceStepService {
      * Created by: SonPT
      * Date created: 13-12-2022
      * Function: find all Category of Product
+     *
      * @return: List Category of Product
      */
 
@@ -29,6 +30,7 @@ public class PriceStepService implements IPriceStepService {
      * Created by: SonPT
      * Date created: 13-12-2022
      * Function: save Price Step of Product
+     *
      * @return: Price Step of Product
      */
 
@@ -41,6 +43,7 @@ public class PriceStepService implements IPriceStepService {
      * Created by: SonPT
      * Date created: 13-12-2022
      * Function: save Price Step of Product
+     *
      * @return: Price Step of Product
      */
 
@@ -51,6 +54,7 @@ public class PriceStepService implements IPriceStepService {
 
     @Override
     public List<PriceStep> getListPriceStep() {
-        return null;
+        return priceStepRepository.getPriceStep();
     }
+
 }

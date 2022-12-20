@@ -8,12 +8,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface IPriceStepRepository extends JpaRepository<PriceStep,Integer> {
+public interface IPriceStepRepository extends JpaRepository<PriceStep, Integer> {
 
     /**
      * Create by: GiangLBH
      * Date created: 13/12/2022
      * Function: get all price step
+     *
      * @return price step list
      */
     @Query(value = "select * from price_step", nativeQuery = true)

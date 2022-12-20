@@ -3,21 +3,21 @@ package com.project.dto.product;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+
+
+
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
-public class ImgUrlProductDTO implements Validator {
+
+public class ImgUrlProductDto implements Validator {
+
     private Integer id;
-    @NotBlank
-    @NotNull
     private String url;
-    @NotNull
     private Integer product;
 
-    public ImgUrlProductDTO() {
+    public ImgUrlProductDto() {
     }
 
     public Integer getId() {

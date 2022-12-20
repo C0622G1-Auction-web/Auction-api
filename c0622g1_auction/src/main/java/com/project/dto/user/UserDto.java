@@ -12,172 +12,212 @@ import java.util.List;
 
 public class UserDto implements Validator {
     private Integer id;
-    @NotEmpty(message = "Họ không được để trống")
+    //    @NotEmpty(message = "Họ không được để trống")
     private String firstName;
-    @NotEmpty(message = "Tên không được để trống")
+    //    @NotEmpty(message = "Tên không được để trống")
     private String lastName;
-    @NotEmpty(message = "Email không được để trống")
+    //    @NotEmpty(message = "Email không được để trống")
     private String email;
-    @NotEmpty(message = "Số điện thoại không được để trống")
+    //    @NotEmpty(message = "Số điện thoại không được để trống")
     private String phone;
-    @NotNull(message = "Điểm cống hiến không được bỏ trống")
-    @Min(value = 0, message = "Điểm cống hiến không được bé thua 0")
-    @Max(value = 500, message = "Điểm cống hiến không được lớn hơn 500")
+    //    @NotNull(message = "Điểm cống hiến không được bỏ trống")
+//    @Min(value = 0, message = "Điểm cống hiến không được bé thua 0")
+//    @Max(value = 500, message = "Điểm cống hiến không được lớn hơn 500")
     private Double pointDedication;
-    @NotEmpty(message = "Ngày sinh không được để trống")
+    //    @NotEmpty(message = "Ngày sinh không được để trống")
     private String birthDay;
-    @NotEmpty(message = "CMND không được để trống")
+    //    @NotEmpty(message = "CMND không được để trống")
     private String idCard;
-    @NotEmpty(message = "Avatar được để trống")
+    //    @NotEmpty(message = "Avatar được để trống")
     private String avatar;
-    @NotEmpty(message = "Địa chỉ được để trống")
+    //    @NotEmpty(message = "Địa chỉ được để trống")
     private String detailAddress;
-    @NotEmpty(message = "Phường xã được để trống")
+    //    @NotEmpty(message = "Phường xã được để trống")
     private String town;
-    @NotEmpty(message = "Quận huyên được để trống")
+    //    @NotEmpty(message = "Quận huyên được để trống")
     private String district;
-    @NotEmpty(message = "Tỉnh được để trống")
+    //    @NotEmpty(message = "Tỉnh được để trống")
     private String city;
-    @NotEmpty(message = "Đất nước được để trống")
+    //    @NotEmpty(message = "Đất nước được để trống")
     private String country;
-    @NotEmpty(message = "Tên đăng nhập được để trống")
+    //    @NotEmpty(message = "Tên đăng nhập được để trống")
     private String username;
-    @NotEmpty(message = "Mật khẩu được để trống")
+    //    @NotEmpty(message = "Mật khẩu được để trống")
     private String password;
+    private Boolean deleteStatus;
+    private Boolean statusLock;
     private List<String> emailList;
-    private UserType userType;
-    private AddressDto addressDto;
-    private AccountDto accountDto;
+    private Integer userTypeId;
+
     public UserDto() {
     }
-
-    public UserDto(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, AddressDto addressDto, AccountDto accountDto) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.pointDedication = pointDedication;
-        this.birthDay = birthDay;
-        this.idCard = idCard;
-        this.avatar = avatar;
-        this.addressDto = addressDto;
-        this.accountDto = accountDto;
-
-    }
-
 
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getPhone() {
         return phone;
     }
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
     public Double getPointDedication() {
         return pointDedication;
     }
+
     public void setPointDedication(Double pointDedication) {
         this.pointDedication = pointDedication;
     }
+
     public String getBirthDay() {
         return birthDay;
     }
+
     public void setBirthDay(String birthDay) {
         this.birthDay = birthDay;
     }
+
     public String getIdCard() {
         return idCard;
     }
+
     public void setIdCard(String idCard) {
         this.idCard = idCard;
     }
+
     public String getAvatar() {
         return avatar;
     }
+
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
+
     public String getUsername() {
         return username;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
+
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
     public List<String> getEmailList() {
         return emailList;
     }
+
     public void setEmailList(List<String> emailList) {
         this.emailList = emailList;
     }
+
     public String getDetailAddress() {
         return detailAddress;
     }
+
     public void setDetailAddress(String detailAddress) {
         this.detailAddress = detailAddress;
     }
+
     public String getTown() {
         return town;
     }
+
     public void setTown(String town) {
         this.town = town;
     }
+
     public String getDistrict() {
         return district;
     }
+
     public void setDistrict(String district) {
         this.district = district;
     }
+
     public String getCity() {
         return city;
     }
+
     public void setCity(String city) {
         this.city = city;
     }
+
     public String getCountry() {
         return country;
     }
+
     public void setCountry(String country) {
         this.country = country;
     }
-    public UserType getUserType() {
-        return userType;
+
+    public Boolean getDeleteStatus() {
+        return deleteStatus;
     }
-    public void setUserType(UserType userType) {
-        this.userType = userType;
+
+    public void setDeleteStatus(Boolean deleteStatus) {
+        this.deleteStatus = deleteStatus;
     }
+
+    public Boolean getStatusLock() {
+        return statusLock;
+    }
+
+    public Integer getUserTypeId() {
+        return userTypeId;
+    }
+
+    public void setUserTypeId(Integer userTypeId) {
+        this.userTypeId = userTypeId;
+    }
+
+    public void setStatusLock(Boolean statusLock) {
+        this.statusLock = statusLock;
+    }
+
+
     @Override
     public boolean supports(Class<?> clazz) {
         return false;
     }
+
     /**
      * Create by: TruongLH
      * Date created: 13/12/2022

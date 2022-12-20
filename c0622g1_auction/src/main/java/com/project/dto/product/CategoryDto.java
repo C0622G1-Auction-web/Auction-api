@@ -4,20 +4,19 @@ import com.project.model.product.Product;
 
 import java.util.Set;
 
-public class CategoryDTO {
+public class CategoryDto {
     private Integer id;
     private String name;
     private Set<Product> products;
 
-    public CategoryDTO() {
+    public CategoryDto() {
     }
 
-    public CategoryDTO(String name) {
+    public CategoryDto(String name) {
         this.name = name;
     }
 
-
-    public CategoryDTO(int id, String name, Set<Product> products) {
+    public CategoryDto(int id, String name, Set<Product> products) {
         this.id = id;
         this.name = name;
         this.products = products;
@@ -47,3 +46,5 @@ public class CategoryDTO {
         this.products = products;
     }
 }
+
+

@@ -1,9 +1,9 @@
 package com.project.controller.product;
 
-import com.project.dto.product.ImgUrlProductDTO;
+
+import com.project.dto.product.ImgUrlProductDto;
 import com.project.model.product.ImgUrlProduct;
 import com.project.model.product.Product;
-import com.project.service.product.IImgUrlProductService;
 import com.project.service.product.impl.ImgUrlProductService;
 import com.project.service.product.impl.ProductService;
 import org.springframework.beans.BeanUtils;
@@ -31,8 +31,9 @@ public class ImageProductRestController {
      * Create by: SonPT,
      * Date created: 13/12/2022
      * Function: find all image url by id of product
-     * @pathVariable: id of product
+     *
      * @return list of image url and status code
+     * @pathVariable: id of product
      */
 
     @GetMapping("/{id}")
@@ -48,12 +49,13 @@ public class ImageProductRestController {
      * Create by: SonPT,
      * Date created: 13/12/2022
      * Function: save a new image url for a product
-     * @Param: a item of ImgUrlGuide
+     *
      * @return status code
+     * @Param: a item of ImgUrlGuide
      */
 
     @PostMapping("/create")
-    public ResponseEntity<List<FieldError>> saveImgProduct(@Validated @RequestBody ImgUrlProductDTO imgUrlProductDTO, BindingResult bindingResult) {
+    public ResponseEntity<List<FieldError>> saveImgProduct(@Validated @RequestBody ImgUrlProductDto imgUrlProductDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getFieldErrors(), HttpStatus.NOT_ACCEPTABLE);
         }

@@ -3,8 +3,6 @@ package com.project.service.account;
 import com.project.model.account.Account;
 
 import java.util.List;
-
-
 public interface IAccountService {
 
     /**

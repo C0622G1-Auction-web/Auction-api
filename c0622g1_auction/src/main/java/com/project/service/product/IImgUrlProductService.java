@@ -1,7 +1,6 @@
 package com.project.service.product;
 
 import com.project.model.product.ImgUrlProduct;
-import com.project.dto.product.ImgUrlProductDTO;
 
 import java.util.List;
 
@@ -37,4 +36,14 @@ public interface IImgUrlProductService {
     void update(ImgUrlProduct imgUrlProduct);
 
     void delete(ImgUrlProduct imgUrlProduct);
+
+    /**
+     * Created by: GiangLBH
+     * Date created: 19-12-2022
+     * Function: get img by product id
+     *
+     * @return imgs list
+     * @param: id
+     */
+    List<ImgUrlProduct> getImgs(Integer id);
 }
