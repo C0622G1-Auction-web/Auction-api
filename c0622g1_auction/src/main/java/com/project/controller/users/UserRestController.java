@@ -95,11 +95,10 @@ public class UserRestController {
             @RequestParam(required = false, defaultValue = "") String email,
             @RequestParam(required = false, defaultValue = "") String address,
             @RequestParam(required = false, defaultValue = "") String userType,
-            @PageableDefault(value = 3) Pageable pageable) {
+            @PageableDefault(value = 5) Pageable pageable){
         Page<User> userPage = userService.getUserBy(id, name, email, userType, address, pageable);
-
         if (userPage.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         Page<UserListDto> auctionDtoPageByProductId = userPage.map(new Function<User, UserListDto>() {
             @Override
