@@ -150,7 +150,7 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      * @param: productId
      */
-    @Query(value = "select a.*  from `auction` a where a.product_id=:productId and a.delete_status = 1 order by a.current_price desc limit 1", nativeQuery = true)
+    @Query(value = "select a.*  from `auction` a where a.product_id=:productId and a.delete_status = 0 order by a.current_price desc limit 1", nativeQuery = true)
     Auction getAuctionFromProductId(@Param("productId") Integer productId);
 
     /**
