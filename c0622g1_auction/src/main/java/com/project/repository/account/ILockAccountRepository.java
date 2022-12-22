@@ -21,4 +21,20 @@ public interface ILockAccountRepository extends JpaRepository<LockAccount, Integ
     @Modifying
     @Query(value = "UPDATE lock_account SET start_day= :start_day, end_day= :end_day, reason= :reason,`status_lock` = 0 WHERE (`id` = :id);", nativeQuery = true)
     void lockAccount(@Param("id") Integer id);
+
+    /**
+     * Created by: VietNQ
+     * */
+    @Transactional
+    @Modifying
+    @Query(value = "insert into  lock_account (start_day, end_day, reason, account_id)"+
+            " values(:startDay," +
+            ":endDay," +
+            ":reason," +
+            ":accountId)",
+            nativeQuery = true)
+    void createLockUser(@Param("startDay") String startDay,
+                        @Param("endDay") String endDay,
+                        @Param("reason") String reason,
+                        @Param("accountId") Integer accountId);
 }

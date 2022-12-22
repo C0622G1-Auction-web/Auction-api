@@ -59,7 +59,7 @@ public class User {
     private Account account1;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Product> products;
 
     public User() {

@@ -4,6 +4,7 @@ import com.project.security.user_detail.MyUserDetail;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,8 @@ public class JwtProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
-    private String jwtSecret = "C0622G1-daugia";
+    @Value("${jwtSecret}")
+    private String jwtSecret;
 
     private Integer jwtExpiration = 1 * 24 * 60 * 60;
 

@@ -65,10 +65,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      * @return Optional<User>
      */
 
-    @Query(value = "select * " +
-            "from user u " +
-            "where u.id= :id " +
-            "and u.delete_status=1",
+    @Query(value = " select * from user where user.id = :id and user.delete_status = 0 ",
             nativeQuery = true)
     Optional<User> findUserById(@Param("id") int id);
 
@@ -190,7 +187,7 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
      */
     @Modifying
     @Query(value = "UPDATE account SET status_lock = 0 WHERE (id = :id);", nativeQuery = true)
-    void lockAccount(@Param("id") List<Integer> id);
+    void lockAccount(@Param("id") Integer id);
 
 
     /**
@@ -572,4 +569,48 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
             value = " select * from user where email = :email ", nativeQuery = true
     )
     User getUserByEmail(@Param("email") String email);
+
+    /**
+     * Create by: VietNQ
+     */
+    @Transactional
+    @Modifying
+    @Query(value = "insert into " +
+            "user(avatar," +
+            "birth_day," +
+            "delete_status," +
+            "email," +
+            "first_name," +
+            "id_card," +
+            "last_name," +
+            "phone," +
+            "point_dedication," +
+            "account_id," +
+            "address_id," +
+            "user_type_id)" +
+            " values(:avatar," +
+            ":birthDay," +
+            ":deleteStatus," +
+            ":email," +
+            ":fistName," +
+            ":idCard," +
+            ":lastName," +
+            ":phone," +
+            ":pointDedication," +
+            ":accountId," +
+            ":addressId," +
+            ":userTypeId)",
+            nativeQuery = true)
+    void addAccountUser(@Param("avatar") String avatar,
+                        @Param("birthDay") String birthDay,
+                        @Param("deleteStatus") Boolean deleteStatus,
+                        @Param("email") String email,
+                        @Param("fistName") String fistName,
+                        @Param("idCard") String idCard,
+                        @Param("lastName") String lastName,
+                        @Param("phone") String phone,
+                        @Param("pointDedication") Double pointDedication,
+                        @Param("accountId") Integer accountId,
+                        @Param("addressId") Integer addressId,
+                        @Param("userTypeId") Integer userTypeId);
 }

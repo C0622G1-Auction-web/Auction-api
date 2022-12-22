@@ -58,7 +58,7 @@ public class MyUserDetail implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return !account.getStatusLock();
+        return account.getStatusLock();
     }
 
     public Account getAccount() {

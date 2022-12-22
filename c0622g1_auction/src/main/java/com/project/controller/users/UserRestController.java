@@ -2,11 +2,13 @@ package com.project.controller.users;
 
 import com.project.dto.user.*;
 import com.project.model.account.Account;
+import com.project.model.account.LockAccount;
 import com.project.model.users.Address;
 import com.project.model.users.User;
 import com.project.model.users.UserType;
 import com.project.service.account.IAccountService;
 import com.project.service.account.ILockAccountService;
+import com.project.service.account_role.IAccountRoleService;
 import com.project.service.users.IAddressService;
 import com.project.service.users.IUserService;
 import com.project.service.users.IUserTypeService;
@@ -17,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -39,8 +42,14 @@ public class UserRestController {
     private IAccountService accountService;
     @Autowired
     private IUserTypeService userTypeService;
+
     @Autowired
     private ILockAccountService lockAccountService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private IAccountRoleService accountRoleService;
 
 
     /**
@@ -48,37 +57,34 @@ public class UserRestController {
      * Date created: 13/12/2022
      * Function: to create user
      *
-     * @return HttpStatus.NOT_CONTENT, HttpStatus.NOT_MODIFIED
+     * @return HttpStatus.NOT_CONTENT, HttpStatus.OK
      */
 
     @PostMapping("/create")
-    public ResponseEntity<?> createUser(@Validated @RequestBody UserDto userDto, BindingResult bindingResult) {
-        List<User> userList = userService.findAll();
-        List<String> emailList = new ArrayList<>();
-        for (User item : userList) {
-            emailList.add(item.getEmail());
-            emailList.add(item.getAccount().getUsername());
-        }
-        userDto.setEmailList(emailList);
-        userDto.validate(userDto, bindingResult);
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NO_CONTENT);
-        }
+    public ResponseEntity<?> createUser(@RequestBody UserDto userDto) {
         User user = new User();
         Account account = new Account();
         BeanUtils.copyProperties(userDto, account);
+
         Address address = new Address();
         BeanUtils.copyProperties(userDto, address);
+
+        BeanUtils.copyProperties(userDto,userService);
         Address address1 = addressService.createAddress(address);
+        account.setPassword(passwordEncoder.encode(userDto.getPassword()));
         Account account1 = accountService.createAccount(account);
+
         BeanUtils.copyProperties(userDto, user);
+
         user.setAccount(account1);
         user.setAddress(address1);
-        user.setDeleteStatus(true);
+        user.setDeleteStatus(false);
+
+
         userService.createUser(user);
+        accountRoleService.createAccountRole(user.getAccount().getId(), 2);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -162,42 +168,6 @@ public class UserRestController {
         return new ResponseEntity<>(userTypes, HttpStatus.OK);
     }
 
-
-    /**
-     * Create by: TruongLH
-     * Date created: 13/12/2022
-     * Function: to update user by id
-     *
-     * @return HttpStatus.OK, HttpStatus.NOT_MODIFIED
-     */
-    @PutMapping("/{id}/update")
-    public ResponseEntity<?> editUserById(@Validated @PathVariable() int id, @RequestBody UserDto userDto, BindingResult bindingResult) {
-        List<User> userList = userService.findAll();
-        List<String> emailList = new ArrayList<>();
-        for (User item : userList) {
-            emailList.add(item.getEmail());
-            emailList.add(item.getAccount().getUsername());
-        }
-        userDto.setEmailList(emailList);
-        userDto.validate(userDto, bindingResult);
-        if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>(bindingResult.getAllErrors(), HttpStatus.NOT_MODIFIED);
-        } else {
-            User user = userService.findUserById(id).get();
-            Account account = new Account();
-            BeanUtils.copyProperties(userDto, account);
-            Address address = new Address();
-            BeanUtils.copyProperties(userDto, address);
-            Address address1 = addressService.updateAddress(address);
-            Account account1 = accountService.updateAccount(account);
-            BeanUtils.copyProperties(userDto, user);
-            user.setAccount(account1);
-            user.setAddress(address1);
-            userService.updateUser(user);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }
-    }
-
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -262,80 +232,6 @@ public class UserRestController {
         return new ResponseEntity<>(userTopDtoList, HttpStatus.OK);
     }
 
-
-    /**
-     * Created: VietNQ
-     * Created date: 13/12/2022
-     * Function: create user account
-     *
-     * @return HttpStatus.NOT_FOUND if result is not empty
-     */
-    @PostMapping("/add")
-    public ResponseEntity<?> addUser(@Validated @RequestBody FormAddUser formAddUser) {
-        AddressDto addressDto = new AddressDto(formAddUser.getDetailAddress(), formAddUser.getTown(), formAddUser.getDistrict(), formAddUser.getCity(), formAddUser.getCountry());
-        AccountDto accountDto = new AccountDto(formAddUser.getUsername(), formAddUser.getPassword(), formAddUser.getStatusLock(), formAddUser.getDeleteStatus());
-        AddUserDto addUserDto = new AddUserDto(formAddUser.getFirstName(), formAddUser.getLastName(), formAddUser.getEmail(),
-                formAddUser.getPhone(), formAddUser.getPointDedication(), formAddUser.getBirthDay(),
-                formAddUser.getIdCard(), formAddUser.getAvatar(), addressDto, accountDto);
-
-        User user = new User();
-        Address address = new Address();
-        Account account = new Account();
-        BeanUtils.copyProperties(addressDto, address);
-        BeanUtils.copyProperties(accountDto, account);
-        BeanUtils.copyProperties(addUserDto, user);
-        Address addressATBC = addressService.saveAddress(address);
-        Account accountABT = accountService.saveAccount(account);
-
-        userService.saveAddUser(user, addressATBC.getId(), accountABT.getId(), 4);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-//    @PostMapping("/create")
-//    public ResponseEntity<?> addUser(@RequestBody AddUserDto addUserDto) {
-//
-//        AddressDto addressDto = new AddressDto(addUserDto.getDetailAddress(), addUserDto.getTown(), addUserDto.getDistrict(), addUserDto.getCity(), addUserDto.getCountry());
-//        AccountDto accountDto = new AccountDto(addUserDto.getUsername(), addUserDto.getPassword());
-//
-//        UserDto userDto = new UserDto(addUserDto.getFirstName(), addUserDto.getLastName(), addUserDto.getEmail(),
-//                addUserDto.getPhone(), addUserDto.getPointDedication(), addUserDto.getBirthDay(), addUserDto.getIdCard(), addUserDto.getAvatar(), addressDto, accountDto);
-//
-//        User user = new User();
-//        Address address = new Address();
-//        Account account = new Account();
-//
-////        BeanUtils.copyProperties(addressDto, address);
-////        BeanUtils.copyProperties(accountDto, account);
-//        BeanUtils.copyProperties(userDto, user);
-//
-//        Address addressATBC = addressService.saveAddress(address);
-//        Account accountABT = accountService.saveAccount(account);
-//        accountABT.setStatusLock(true);
-//        accountABT.setDeleteStatus(true);
-//        accountABT.setPassword("12345678");
-//        userService.saveUser(user, addressATBC.getId(), accountABT.getId(), 4);
-//
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-
-    /**
-     * Create by: VietNQ
-     * Date created: 13/12/2022
-     * Function: to lockAccount
-     *
-     * @param id
-     * @return HttpStatus.NOT_FOUND if result is not empty
-     */
-    @PutMapping("/lockUser")
-    public ResponseEntity<UserListDto> lockUser(@RequestBody List<Integer> id) {
-        List<User> userList = userService.findByIdList(id);
-        if (id.size() != userList.size()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        userService.lockUser(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
     /**
      * Create by: HaiNT
      * Date created: 13/12/2022
@@ -360,5 +256,104 @@ public class UserRestController {
     public ResponseEntity<List<User>> findAll() {
         List<User> userList= userService.findAll();
         return new ResponseEntity<>(userList, HttpStatus.OK);
+    }
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     *
+     * @param
+     * @return all user
+     */
+    @GetMapping("/findAll")
+    public ResponseEntity<?> userFindAll() {
+        List<User> userList =userService.findAll();
+        return new ResponseEntity<>(userList, HttpStatus.OK);
+    }
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to update user by id
+     *
+     * @return HttpStatus.OK, HttpStatus.NOT_MODIFIED
+     */
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> editUserById(@PathVariable() int id, @RequestBody UserDto userDto) {
+        User user = userService.findUserById(id);
+        Integer userId = user.getId();
+        Address address = addressService.findAddressById(user.getAddress().getId());
+        Integer addressId = user.getAddress().getId();
+        Account account = accountService.findByUserId(user.getAccount().getId());
+        Integer accountId = user.getAccount().getId();
+        BeanUtils.copyProperties(userDto, account);
+        BeanUtils.copyProperties(userDto, address);
+        BeanUtils.copyProperties(userDto, user);
+        account.setId(accountId);
+        account.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        address.setId(addressId);
+        user.setId(userId);
+        user.setAccount(account);
+        user.setAddress(address);
+        user.setDeleteStatus(false);
+        userService.updateUserByIdServer(user);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     *
+     * @param
+     * @return Object user by id
+     */
+
+    @GetMapping("/getUserById/{id}")
+    public ResponseEntity<?> userByIdServer(@PathVariable() int id) {
+        User user = userService.findById(id).get();
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+    /**
+     * Create by: VietNQ
+     * Date created: 13/12/2022
+     * Function: to lockAccount
+     *
+     * @param lockAccountDto
+     * @return HttpStatus.OK if result is not empty
+     * @return HttpStatus.NOT_FOUND if result is not empty
+     */
+    @PutMapping("/lockUser")
+    public ResponseEntity<UserListDto> lockUser(@RequestBody LockAccountDto lockAccountDto) {
+        userService.lockUser(lockAccountDto.getAccountId());
+        Account accountIsLock = accountService.findLockById(lockAccountDto.getAccountId());
+        LockAccount lockAccount = new LockAccount();
+        BeanUtils.copyProperties(lockAccountDto, lockAccount);
+        lockAccount.setAccount(accountIsLock);
+        lockAccountService.addLockUser(lockAccount);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PostMapping("/add")
+    public ResponseEntity<?> addUser(@RequestBody FormAddUser formAddUser) {
+
+        AddressDto addressDto = new AddressDto(formAddUser.getDetailAddress(), formAddUser.getTown(), formAddUser.getDistrict(), formAddUser.getCity(), formAddUser.getCountry());
+        AccountDto accountDto = new AccountDto(formAddUser.getUsername(), formAddUser.getPassword(), formAddUser.getStatusLock(), formAddUser.getDeleteStatus());
+        AddUserDto addUserDto = new AddUserDto(formAddUser.getFirstName(), formAddUser.getLastName(), formAddUser.getEmail(),
+                formAddUser.getPhone(), formAddUser.getPointDedication(), formAddUser.getBirthDay(),
+                formAddUser.getIdCard(), formAddUser.getDeleteStatus(), formAddUser.getAvatar(), addressDto, accountDto);
+
+        User user = new User();
+        Address address = new Address();
+        Account account = new Account();
+
+        BeanUtils.copyProperties(addressDto, address);
+        BeanUtils.copyProperties(accountDto, account);
+        BeanUtils.copyProperties(addUserDto, user);
+
+        Address addressATBC = addressService.saveAddress(address);
+        Account accountABT = accountService.saveAccount(account);
+
+        userService.saveAddUser(user, addressATBC.getId(), accountABT.getId(), 3);
+        accountRoleService.createAccountRole(accountABT.getId(), 2);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

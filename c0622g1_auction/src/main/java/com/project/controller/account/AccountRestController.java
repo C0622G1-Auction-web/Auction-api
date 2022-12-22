@@ -1,6 +1,5 @@
 package com.project.controller.account;
 
-import com.project.dto.AuctionDto;
 import com.project.model.account.Account;
 import com.project.model.account.PasswordResetToken;
 import com.project.model.users.User;
@@ -8,14 +7,12 @@ import com.project.service.account.IAccountService;
 import com.project.service.users.IUserService;
 import com.project.util.PasswordResetTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
+import javax.mail.MessagingException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -29,6 +26,9 @@ public class AccountRestController {
 
     @Autowired
     private PasswordResetTokenUtil passwordResetTokenUtil;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private IUserService userService;
@@ -62,7 +62,7 @@ public class AccountRestController {
      * "Email không hợp lệ, vui lòng kiểm tra lại" + HttpStatus.NOT_FOUND
      */
     @GetMapping("verify_account")
-    public ResponseEntity<String> verifyAccount(@RequestParam(value = "email") String email, @RequestParam(value = "username") String username) {
+    public ResponseEntity<String> verifyAccount(@RequestParam(value = "email") String email, @RequestParam(value = "username") String username) throws MessagingException {
         Account account = accountService.findByUsername(username);
         String message;
         if (account == null) {
@@ -92,11 +92,18 @@ public class AccountRestController {
      *  headers + HttpStatus.MOVED_PERMANENTLY
      */
     @GetMapping("token_check")
-    public ResponseEntity<String> checkToken(@RequestParam(value = "token") String token) {
-        PasswordResetToken passwordResetToken = passwordResetTokenUtil.validateToken(token);
-        if (passwordResetToken == null) {
-            return new ResponseEntity<>("Token không tồn tại", HttpStatus.NOT_FOUND);
+    public ResponseEntity<String> checkToken(@RequestParam(value = "token") String token, @RequestParam(value = "account") String accountId) {
+        Account account = accountService.findById(Integer.valueOf(accountId));
+
+        if (account == null) {
+            return new ResponseEntity<>("Tài khoản không tồn tại", HttpStatus.NOT_FOUND);
         }
+
+        PasswordResetToken passwordResetToken = passwordResetTokenUtil.validateTokenByAccountId(String.valueOf(account.getId()), token);
+        if (passwordResetToken == null) {
+            return new ResponseEntity<>("Token không đúng", HttpStatus.NOT_FOUND);
+        }
+
         String date = passwordResetToken.getExpiryDate();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         LocalDateTime expiryDate = LocalDateTime.parse(date, formatter);
@@ -145,13 +152,25 @@ public class AccountRestController {
             return new ResponseEntity<>("Password có độ dài tối thiểu là 5 kí tự và tối đa là 50 kí tự", HttpStatus.BAD_REQUEST);
         }
 
-//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//        String encryptPass = passwordEncoder.encode(password);
-//        account.setPassword(encryptPass);
+        account.setPassword(passwordEncoder.encode(password));
         accountService.save(account);
         return new ResponseEntity<>("Cập nhật mật khẩu thành công", HttpStatus.OK);
     }
 
-
+    /**
+     * Created by: VietNQ
+     * Date: 19/12/20200
+     * Function: To get account by id
+     * @Param: id
+     * @Return: Account if accountId found
+     *          Null if accountId not found
+     */
+    @GetMapping("/getAccountById/{id}")
+    public ResponseEntity<?> getAccountById(@PathVariable String id) {
+        Account account = accountService.findById(Integer.valueOf(id));
+        if (account == null) {
+            return new ResponseEntity<>("Account not found!", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(account, HttpStatus.OK);
+    };
 }
-

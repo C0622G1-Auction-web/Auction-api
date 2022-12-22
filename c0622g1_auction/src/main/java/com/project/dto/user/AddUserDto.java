@@ -23,7 +23,8 @@ public class AddUserDto {
 
     public AddUserDto() {
     }
-    public AddUserDto(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, AddressDto addressDto, AccountDto accountDto) {
+
+    public AddUserDto(String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, Boolean deleteStatus, String avatar, AddressDto addressDto, AccountDto accountDto) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -34,6 +35,7 @@ public class AddUserDto {
         this.avatar = avatar;
         this.addressDto = addressDto;
         this.accountDto = accountDto;
+        this.deleteStatus = deleteStatus;
     }
 
 

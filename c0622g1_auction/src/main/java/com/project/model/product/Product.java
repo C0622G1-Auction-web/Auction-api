@@ -20,7 +20,6 @@ public class Product {
     @Column(columnDefinition = "boolean default false")
     private Boolean deleteStatus;
     private String registerDay;
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "price_step_id", referencedColumnName = "id")
     private PriceStep priceStep;
@@ -40,7 +39,6 @@ public class Product {
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "product")
     private Set<ImgUrlProduct> imgUrlProducts;
 

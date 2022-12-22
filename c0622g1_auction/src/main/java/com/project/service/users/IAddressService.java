@@ -20,4 +20,6 @@ public interface IAddressService {
     Address updateAddress(Address address);
 
     Address saveAddress(Address address);
+
+    Address findAddressById(Integer id);
 }

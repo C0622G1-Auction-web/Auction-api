@@ -2,6 +2,7 @@ package com.project.repository.payment;
 
 import com.project.dto.payment.IPaymentAddressDto;
 import com.project.dto.payment.IPaymentDto;
+import com.project.dto.payment.IPaymentDtoCart;
 import com.project.dto.payment.IPaymentTotalBillDto;
 import com.project.model.payment.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,7 +25,7 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
      * @param userId
      * @return List<IPaymentDTO>
      */
-    @Query(value = "SELECT p.id AS code, us.last_name AS lastName , us.first_name AS firstName, ad.city, ad.district, \n" +
+    @Query(value = " SELECT p.id AS id, us.last_name AS lastName , us.first_name AS firstName, ad.city, ad.district, \n" +
             "            ad.town AS town, ad.detail_address AS detailAddress , ad.country, pr.name AS productName, au.current_price AS productPrice,\n" +
             "            pr.description, img.url as productImage\n" +
             "            FROM payment AS p \n" +
@@ -33,11 +34,11 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
             "            JOIN user AS us ON au.user_id = us.id\n" +
             "            JOIN address AS ad ON us.address_id = ad.id\n" +
             "            JOIN img_url_product as img on img.product_id = pr.id\n" +
-            "            WHERE us.id =3\n" +
+            "            WHERE us.id =:user_id\n" +
             "            AND p.payment_status = 0 \n" +
-            "            AND p.delete_status = 0 \n" +
+            "            AND au.delete_status = 0 \n" +
             "            AND au.auction_status = 1 group by p.id;", nativeQuery = true)
-    List<IPaymentDto> findValidPaymentByUserId(@Param(value = "user_id") String userId);
+    List<IPaymentDtoCart> findValidPaymentByUserId(@Param(value = "user_id") String userId);
 
     /**
      * Created by: ChauPTM
@@ -61,19 +62,8 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
             "AND au.auction_status = 1 group by p.id", nativeQuery = true, countQuery = "select count(*) from payment")
     Optional<IPaymentDto> findPaymentIdByDTO(@Param("id") Integer id);
 
-   /**
-     * Created by: ChauPTM
-     * Date created: 13/12/2022
-     * Function: to find payment by id
-     *
-     * @param id
-     * @return Payment
-     */
-    @Query(value = " SELECT * FROM payment WHERE payment_status = 0 AND id = :id ", nativeQuery = true)
-    Payment findPaymentById(@Param("id") Integer id);
-
     /**
-     * Create by: BaoBC
+     * Create by: ChauPTM
      * Date created: 14/12/2022
      * Function: to find payment by List ids
      *
@@ -95,7 +85,7 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
 
 
     /**
-     * Create by: BaoBC
+     * Create by: ChauPTM
      * Date created: 14/12/2022
      * Function: update shippingDescription payment by id payment
      *
@@ -105,23 +95,6 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
     @Modifying
     @Query(value = "update payment set shipping_description = :shippingDescription where id in :idList", nativeQuery = true)
     void updateByListId(@Param("idList") List<Integer> idList,
-                         @Param("shippingDescription") String shippingDescription);
-
-    /**
-     * Create by: BaoBC
-     * Date created: 15/12/2022
-     * Function: to get total bill
-     *
-     * @param idList
-     * @return
-     */
-
-    @Query(value = "select sum(auction.current_price) as totalBill "+
-            "from user " +
-            " join address on address.id = user.address_id " +
-            " join auction on auction.user_id = user.id " +
-            " join payment on payment.auction_id = auction.id where payment.id in :idList and payment.payment_status = 0" +
-            " and payment.delete_status = 0", nativeQuery = true)
-    IPaymentTotalBillDto getTotalBill(@Param("idList") List<Integer> idList);
+                        @Param("shippingDescription") String shippingDescription);
 
 }

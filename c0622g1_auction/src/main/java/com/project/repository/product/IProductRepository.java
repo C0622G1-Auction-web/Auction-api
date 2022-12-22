@@ -67,45 +67,6 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     void updateProduct(String name, Double initialPrice, Integer id, Integer category, String description, Integer stepPrice, String startTime, String endTime, String registerDay, int productId);
 
     /**
-     * Created by:AnhTDQ,
-     * Date created:15/12/2022
-     * Function:get page products Sign up for auctions by user id
-     *
-     * @param id       Created by: AnhTDQ,
-     *                 Date created: 15/12/2022
-     *                 Function: get page products Sign up for auctions by user id
-     * @param 'user    id'
-     * @param pageable
-     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus OK if result is not empty
-     */
-    @Query(value = "select user.id as user ,product.`name` as name, product.description as description, " +
-            "product.register_day as registerDay , review_status.`name` as reviewStatus , product.delete_status as isDelete " +
-            "from product " +
-            "join user on product.user_id = user.id " +
-            "join review_status on review_status.id = product.review_status_id " +
-            "where product.user_id = :id ",
-            countQuery = "count (*)from product " +
-                    "join user on product.user_id = user.id " +
-                    "join review_status on review_status.id = product.review_status_id " +
-                    "where product.user_id = :id  ", nativeQuery = true)
-    Page<IProductDto> showProductById(@Param("id") Integer id, Pageable pageable);
-
-
-    /**
-     * Created by: AnhTDQ,
-     * Date created: 15/12/2022
-     * Function: cancel Sign up for auctions by user id
-     *
-     * @param id
-     * @param 'user id'
-     * @return voice
-     */
-    @Modifying
-    @Query(value = " UPDATE  product set delete_status = 1 where product.id = :id ", nativeQuery = true)
-    void cancelProduct(@Param("id") Integer id);
-
-
-    /**
      * Created by: SonPT
      * Date created: 13-12-2022
      *
@@ -297,4 +258,35 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
             "ORDER BY product.start_time DESC",
             nativeQuery = true)
     Page<Product> getAllAndSearch(@Param("productSearchDto") ProductSearchDto productSearchDto, Pageable pageable);
+
+    /**
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function: get page products Sign up for auctions by user id
+     * @param 'user id'
+     * @param pageable
+     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
+     */
+
+    @Query(value = "select user.id as user , product.id as id ,product.`name` as name, product.description as description, " +
+            "product.register_day as registerDay , review_status.`name` as reviewStatus , product.delete_status as isDelete, product.auction_status_id as auctionStatus  " +
+            "from `product` " +
+            "join `user` on product.user_id = user.id " +
+            "join `review_status` on review_status.id = product.review_status_id " +
+            "join `auction_status` on product.auction_status_id = auction_status.id " +
+            "where product.user_id = :id ",
+            countQuery = " select count(*) from `product`",nativeQuery = true)
+    Page<IProductDto> showProductById(@Param("id") Integer id, Pageable pageable);
+
+    /**
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function: cancel Sign up for auctions by user id
+     * @param 'user id'
+     * @return voice
+     */
+    @Modifying
+    @Transactional
+    @Query(value = " UPDATE  product set delete_status = 1 where product.id = :id ", nativeQuery = true)
+    void cancelProduct(@Param("id") Integer id);
 }

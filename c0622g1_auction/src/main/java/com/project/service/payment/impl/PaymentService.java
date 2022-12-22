@@ -2,6 +2,7 @@ package com.project.service.payment.impl;
 
 import com.project.dto.payment.IPaymentAddressDto;
 import com.project.dto.payment.IPaymentDto;
+import com.project.dto.payment.IPaymentDtoCart;
 import com.project.dto.payment.IPaymentTotalBillDto;
 import com.project.model.payment.Payment;
 import com.project.repository.payment.IPaymentRepository;
@@ -23,37 +24,35 @@ public class PaymentService implements IPaymentService {
      * @return List<Payment>
      */
     @Override
-    public List<IPaymentDto> findValidPaymentByUserId(String userId) {
+    public List<IPaymentDtoCart> findValidPaymentByUserId(String userId) {
         return paymentRepository.findValidPaymentByUserId(userId);
     }
+
     /**
      * Created by: ChauPTM
      * Date created: 13/12/2022
      * Function: to find payment by id using DTO
      *
-     * @param id
+     * @param idList
      * @return Payment
      */
-    @Override
-    public Payment findPaymentById(Integer id) {
-        return paymentRepository.findPaymentById(id);
-    }
-
-
-
     @Override
     public List<IPaymentAddressDto> findByListId(List<Integer> idList) {
         return paymentRepository.findByListId(idList);
     }
 
-    @Override
-    public IPaymentTotalBillDto getTotalBill(List<Integer> idList) {
-        return paymentRepository.getTotalBill(idList);
-    }
-
+    /**
+     * Created by: ChauPTM
+     * Date created: 13/12/2022
+     * Function: to find payment by id using DTO
+     *
+     * @param idList,shippingDescription
+     * @return Payment
+     */
     @Override
     public void updateByListId(List<Integer> idList, String shippingDescription) {
         paymentRepository.updateByListId(idList, shippingDescription);
     }
+
 }
 

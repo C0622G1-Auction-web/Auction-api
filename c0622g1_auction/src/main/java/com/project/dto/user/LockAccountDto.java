@@ -4,9 +4,16 @@ public class LockAccountDto {
     private String startDay;
     private String endDay;
     private String reason;
-    private AccountDto accountDto;
+    private Integer accountId;
 
     public LockAccountDto() {
+    }
+
+    public LockAccountDto(String startDay, String endDay, String reason, int accountId) {
+        this.startDay = startDay;
+        this.endDay = endDay;
+        this.reason = reason;
+        this.accountId = accountId;
     }
 
     public String getStartDay() {
@@ -33,11 +40,11 @@ public class LockAccountDto {
         this.reason = reason;
     }
 
-    public AccountDto getAccountDto() {
-        return accountDto;
+    public Integer getAccountId() {
+        return accountId;
     }
 
-    public void setAccountDto(AccountDto accountDto) {
-        this.accountDto = accountDto;
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
     }
 }

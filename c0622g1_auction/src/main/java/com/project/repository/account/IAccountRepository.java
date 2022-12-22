@@ -46,7 +46,7 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
     @Modifying
     @Query(value = "update `account` " +
             "set `password` =:password " +
-            "where (`id` =:accountId );", nativeQuery = true)
+            "where `id` =:accountId ", nativeQuery = true)
     void updateAccount(@Param(value = "accountId") Integer accountId,
                        @Param(value = "password") String password);
 
@@ -61,7 +61,7 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
     @Query(value = "select * from account " +
             "where id =:id " +
             "and delete_status = 0 " +
-            "and status_lock = 0;", nativeQuery = true)
+            "and status_lock = 1 ", nativeQuery = true)
     Account findAccountById(@Param(value = "id") Integer id);
 
     @Query(
@@ -70,7 +70,7 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
                     " where username = :username ",
             nativeQuery = true
     )
-    Account findAccountByUsername(@Param("username") String username);
+    Account findAccountByUsername(@Param("username") String username);;
 
     /**
      * Create by: TruongLH
@@ -104,4 +104,10 @@ public interface IAccountRepository extends JpaRepository<Account, Integer> {
     Account updateAccount(@Param("username") String username,
                           @Param("password") String password);
 
+    /**
+     * Created by: VietNQ
+     * */
+    @Query(value = "select * from account " +
+            "where id =:id ", nativeQuery = true)
+    Account findLockAccountById(@Param(value = "id") Integer id);
 }

@@ -51,28 +51,9 @@ public interface IProductService {
      * Date created: 13/12/2022
      * Function: to get products in page
      * <p>
-     * /**
-     * Created by: AnhTDQ,
-     * Date created: 15/12/2022
-     * Function: get page products Sign up for auctions by user id
-     *
-     * @param "user    id"
-     * @param pageable
-     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
-    Page<IProductDto> showProductById(Integer id, Pageable pageable);
 
-    /**
-     * Created by: AnhTDQ,
-     * Date created: 15/12/2022
-     * Function:cancel Sign up for auctions by user id
-     *
-     * @param "user id"
-     * @return voi
-     */
     Page<ProductDtoAdminList> searchByRoleAdmin(ProductSearchByRoleAdminDto productSearchByRoleAdminDto, Pageable pageable);
-
-    void cancelProduct(Integer id);
 
     /**
      * Created by: SonPT
@@ -119,5 +100,27 @@ public interface IProductService {
      * @return product
      */
     Product getProduct(Integer id);
+
+    /**
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function: get page products Sign up for auctions by user id
+     *
+     * @param "user    id"
+     * @param pageable
+     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
+     */
+    Page<IProductDto> showProductById(Integer id, Pageable pageable);
+
+    /**
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function:cancel Sign up for auctions by user id
+     *
+     * @param "user id"
+     * @return voi
+     */
+
+    void cancelProduct(Integer id);
 
 }

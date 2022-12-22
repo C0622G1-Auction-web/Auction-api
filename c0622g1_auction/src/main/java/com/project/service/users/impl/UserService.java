@@ -59,15 +59,12 @@ public class UserService implements IUserService {
     }
 
     /**
-     * Create by: HaiNT
-     * Create by: TruongLH
+     * Create by: VietNQ
      * Date created: 13/12/2022
-     *
      * @return User
      */
     public void saveAddUser(User user, Integer addressId, Integer accountId, Integer userType) {
-
-        userRepository.createUser(
+        userRepository.addAccountUser(
                 user.getAvatar(),
                 user.getBirthDay(),
                 user.getDeleteStatus(),
@@ -77,13 +74,9 @@ public class UserService implements IUserService {
                 user.getLastName(),
                 user.getPhone(),
                 user.getPointDedication(),
-                user.getAccount(),
-                user.getAddress(),
-                user.getUserType());
-//        accountId,
-//                addressId,
-//                userType);
-
+                accountId,
+                addressId,
+                userType);
     }
 
 
@@ -98,8 +91,8 @@ public class UserService implements IUserService {
      */
 
     @Override
-    public Optional<User> findUserById(int id) {
-        return userRepository.findUserById(id);
+    public User findUserById(int id) {
+        return userRepository.findUserById(id).get();
     }
 
     @Override
@@ -107,16 +100,6 @@ public class UserService implements IUserService {
         return userRepository.findAll();
     }
 
-    /**
-     * Create by: HaiNT
-     * Date created: 13/12/2022
-     * Function: to lockAccount
-     *
-     * @param id
-     */
-    public void lockUser(List<Integer> id) {
-        userRepository.lockAccount(id);
-    }
 
      /* Create by: HaiNT
      * Date created: 13/12/2022
@@ -212,9 +195,15 @@ public class UserService implements IUserService {
         
     }
 
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     *
+     * @param
+     */
     @Override
-    public Optional<Object> findById(int id) {
-        return Optional.empty();
+    public Optional<User> findById(int id) {
+        return userRepository.findUserById(id);
     }
 
     @Override
@@ -280,6 +269,19 @@ public class UserService implements IUserService {
         return userRepository.getUserByEmail(email);
     }
 
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user by id
+     *
+     * @param user
+     * @return User
+     */
+    @Override
+    public void updateUserByIdServer(User user) {
+        userRepository.save(user);
+    }
+
 
     /**
      * Created: HungNV
@@ -294,6 +296,13 @@ public class UserService implements IUserService {
         return userRepository.findById(id).orElse(null);
     }
 
+    /**
+     * Created by: VietNQ
+     * */
+    @Override
+    public void lockUser(Integer id) {
+        userRepository.lockAccount(id);
+    }
 
 
 }

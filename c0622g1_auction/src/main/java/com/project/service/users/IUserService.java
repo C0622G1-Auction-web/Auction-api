@@ -45,7 +45,7 @@ public interface IUserService {
      * @return User
      */
 
-    Optional<User> findUserById(int id);
+    User findUserById(int id);
 
     /**
      * Create by: TruongLH
@@ -121,7 +121,7 @@ public interface IUserService {
 
 
 
-    void lockUser(List<Integer> id);
+    void lockUser(Integer id);
 
     /**
      * Created by: SonPT
@@ -134,7 +134,14 @@ public interface IUserService {
 
     void updateAddress(User user);
 
-    Optional<Object> findById(int id);
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user by id
+     *
+     * @return List<User>
+     */
+    Optional<User> findById(int id);
 
     void unlockUser(List<Integer> idList);
 
@@ -155,5 +162,14 @@ public interface IUserService {
      * @return: User if email found, null otherwise
      */
     User getUserByEmail(String email);
+
+    /**
+     * Create by: TruongLH
+     * Date created: 13/12/2022
+     * Function: to find user
+     *
+     * @return List<User>
+     */
+    void updateUserByIdServer(User user);
 }
 

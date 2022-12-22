@@ -7,10 +7,12 @@ public interface IProductDto {
      * Function: transfer data to backend
      */
     String getUser();
+    String getId();
     String getName();
     String getDescription();
     String getRegisterDay();
     String getReviewStatus();
     String getIsDelete();
+    String getAuctionStatus();
 
 }

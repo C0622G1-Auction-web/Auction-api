@@ -39,32 +39,6 @@ public class ProductService implements IProductService {
     }
 
     /**
-     * Created by: AnhTDQ,
-     * Date created: 15/12/2022
-     * Function: get page products Sign up for auctions by user id
-     *
-     * @param 'user    id'
-     * @param pageable
-     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
-     */
-    public Page<IProductDto> showProductById(Integer id, Pageable pageable) {
-        return productRepository.showProductById(id, pageable);
-    }
-
-    /**
-     * Created by: AnhTDQ,
-     * Date created: 15/12/2022
-     * Function: get page products Sign up for auctions by user id
-     *
-     * @param 'user id'
-     * @return void
-     */
-    @Override
-    public void cancelProduct(Integer id) {
-        productRepository.cancelProduct(id);
-    }
-
-    /**
      * Created by: SonPT
      * Date created: 13-12-2022
      * Function: save Product
@@ -165,6 +139,32 @@ public class ProductService implements IProductService {
     @Override
     public Product getProduct(Integer id) {
         return productRepository.findById(id).orElse(null);
+    }
+
+    /**
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function: get page products Sign up for auctions by user id
+     *
+     * @param 'user    id'
+     * @param pageable
+     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
+     */
+    public Page<IProductDto> showProductById(Integer id, Pageable pageable) {
+        return productRepository.showProductById(id, pageable);
+    }
+
+    /**
+     * Created by: AnhTDQ,
+     * Date created: 15/12/2022
+     * Function: get page products Sign up for auctions by user id
+     *
+     * @param 'user id'
+     * @return void
+     */
+    @Override
+    public void cancelProduct(Integer id) {
+        productRepository.cancelProduct(id);
     }
 
 }

@@ -171,37 +171,6 @@ public class ProductRestController {
     /**
      * Create by AnhTDQ
      * Date created: 15/12/2022
-     * Function: get all products Sign up for auctions
-     *
-     * @return HttpStatus.NO_CONTENT if not found any product /  HttpStatus.OK and Products page if found
-     */
-    @GetMapping("/list/{id}")
-    public ResponseEntity<Page<IProductDto>> historyProduct(Integer id, Pageable pageable) {
-        Page<IProductDto> productList = productService.showProductById(1, pageable);
-
-        if (productList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(productList, HttpStatus.OK);
-    }
-
-    /**
-     * Create by AnhTDQ
-     * Date created: 15/12/2022
-     * Function: cancel products Sign up for auctions
-     *
-     * @param id
-     * @return : HttpStatus.OK and cancel successfully
-     */
-    @GetMapping("/canceled/{id}")
-    public ResponseEntity<Product> canceledProduct(@PathVariable("id") Integer id) {
-        productService.cancelProduct(id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    /**
-     * Create by AnhTDQ
-     * Date created: 15/12/2022
      * Function: get all reviewStatus of Sign up for auctions
      *
      * @return HttpStatus.NO_CONTENT if not found any reviewStatus /  HttpStatus.OK and  list reviewStatus if found
@@ -461,7 +430,7 @@ public class ProductRestController {
      *
      * @Return reason
      */
-    @PostMapping("/reasons")
+    @PostMapping("/reason")
     public ResponseEntity<HttpStatus> writeReason(
             @RequestBody Reason reason) {
         productPropertiesService.addReason(reason);
@@ -500,5 +469,43 @@ public class ProductRestController {
         }
         return new ResponseEntity<>(imgs, HttpStatus.OK);
     }
+
+    /**
+     * Create by AnhTDQ
+     * Date created: 15/12/2022
+     * Function: get all products Sign up for auctions
+     *
+     * @return HttpStatus.NO_CONTENT if not found any product /  HttpStatus.OK and Products page if found
+     */
+    @GetMapping("/list/{id}")
+    public ResponseEntity<Page<IProductDto>> historyProduct(@PathVariable Integer id,
+                                                            @PageableDefault(value = 5) Pageable pageable) {
+        Page<IProductDto> productList = productService.showProductById(id, pageable);
+
+        if (productList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(productList, HttpStatus.OK);
+
+    }
+
+    /**
+     * Create by AnhTDQ
+     * Date created: 15/12/2022
+     * Function: cancel products Sign up for auctions
+     *
+     * @param id
+     * @return : HttpStatus.OK and cancel successfully
+     */
+    @GetMapping("/canceled/{id}")
+    public ResponseEntity<Product> canceledProduct(@PathVariable Integer id) {
+        Optional<Product> product = productService.findByProductId(id);
+        if (product.isPresent()) {
+            productService.cancelProduct(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
 }
 

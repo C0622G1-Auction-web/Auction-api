@@ -2,6 +2,7 @@ package com.project.service.account;
 
 import com.project.model.account.Account;
 
+import javax.mail.MessagingException;
 import java.util.List;
 public interface IAccountService {
 
@@ -30,10 +31,14 @@ public interface IAccountService {
     Account findByUsername(String username);
 
 
-    void sendMail(String email, String username, String passwordResetToken, Integer accountId);
+    void sendMail(String email, String username, String passwordResetToken, Integer accountId) throws MessagingException;
 
     Account findById(Integer id);
 
     void save(Account account);
 
+
+    Account findByUserId(Integer id);
+
+    Account findLockById(Integer accountId);
 }
