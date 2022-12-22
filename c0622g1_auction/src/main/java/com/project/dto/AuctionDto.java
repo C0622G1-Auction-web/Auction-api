@@ -15,7 +15,7 @@ public class AuctionDto implements Validator {
     private Integer userId;
     private Integer productId;
     private Double maxCurrentPrice;
-    private User user;
+//    private User user;
     private String fullName;
 
 
@@ -46,14 +46,6 @@ public class AuctionDto implements Validator {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Integer getProductId() {

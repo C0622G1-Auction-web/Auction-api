@@ -81,7 +81,7 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
             " join product as pr on pr.id = auction.product_id  " +
             " where payment.id in :idList and payment.payment_status = 0" +
             " and payment.delete_status = 0", nativeQuery = true)
-    List<IPaymentAddressDto> findByListId(@Param("idList") List<Integer> idList);
+    List<IPaymentDto> findByListId(@Param("idList") List<Integer> idList);
 
 
     /**

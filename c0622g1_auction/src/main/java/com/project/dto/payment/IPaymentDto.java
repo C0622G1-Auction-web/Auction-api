@@ -1,7 +1,7 @@
 package com.project.dto.payment;
 
 public interface IPaymentDto {
-    Integer getCode();
+    Integer getId();
     String getFirstName();
     String getLastName();
     String getCity();

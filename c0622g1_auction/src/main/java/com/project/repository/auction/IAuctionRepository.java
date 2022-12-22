@@ -30,7 +30,7 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
 
     @Query(value = " select pm.id as paymentId," +
             "            pm.auction_id as auctionId, " +
-            "            auc.auction_day as auctionDay, " +
+            "            auc.auction_time as auctionDay, " +
             "            pt.name as productName, " +
             "            auc.current_price as currentPrice, " +
             "            auc.auction_status as auctionStatus, " +
@@ -122,7 +122,7 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
      * @param pageable
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
-    @Query(value = "select a.*  from `auction` a where a.product_id=:productId and a.delete_status = 1 order by a.current_price desc", nativeQuery = true)
+    @Query(value = "select a.*  from `auction` a where a.product_id=:productId and a.delete_status = 0 order by a.current_price desc", nativeQuery = true)
     Page<Auction> getPageAuctionByProductId(@Param("productId") Integer productId, Pageable pageable);
 
 
@@ -135,8 +135,8 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
      * @param: auctionTime, currentPrice, productId, userId
      */
     @Modifying
-    @Query(value = "insert into `auction` (auction_time ,current_price, product_id, user_id) " +
-            "values (:auctionTime, :currentPrice, :productId, :userId)", nativeQuery = true)
+    @Query(value = "insert into `auction` (auction_time ,current_price, product_id, user_id, delete_status) " +
+            "values (:auctionTime, :currentPrice, :productId, :userId, 0)", nativeQuery = true)
     void addAuction(@Param("currentPrice") Double currentPrice,
                     @Param("productId") Integer productId,
                     @Param("userId") Integer userId,

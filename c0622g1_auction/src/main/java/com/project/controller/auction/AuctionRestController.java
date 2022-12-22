@@ -1,5 +1,7 @@
 package com.project.controller.auction;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.dto.AuctionDto;
 import com.project.dto.auction.ITransactionDto;
 import com.project.dto.auction.TransactionSearchDto;
@@ -201,18 +203,17 @@ public class AuctionRestController {
      * Date created: 20/12/2022
      * Function: Create New Auction
      *
-     * @param auctionDto
+     * @param auctionDtoString
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
-    @MessageMapping("/auctions")
+    @MessageMapping("auctions")
     @SendTo("/topic/auction")
-    public AuctionDto createNewAuction(AuctionDto auctionDto) {
-//        Auction auction = auctionService.getAuctionFromProductId(auctionDto.getProductId());
-//        BeanUtils.copyProperties(auction,auctionDto);
-        AuctionDto newAuctionDto = auctionService.addAuction(auctionDto);
-//        newAuctionDto.setFullName("Tien");
-//        auctionService.sendAuctionMail();
-        return newAuctionDto;
+    public String createNewAuction(String auctionDtoString) throws JsonProcessingException {
+        System.out.println(auctionDtoString);
+        ObjectMapper objectMapper = new ObjectMapper();
+        AuctionDto auctionDto = objectMapper.readValue(auctionDtoString, AuctionDto.class);
+        auctionService.addAuction(auctionDto);
+        return auctionDtoString;
     }
 
     /**
