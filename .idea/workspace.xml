@@ -1,36 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
-    <select />
-  </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="0f0ec174-2ce7-4655-b76c-36cf5cdee914" name="Default Changelist" comment="" />
-=======
-    <list default="true" id="0f0ec174-2ce7-4655-b76c-36cf5cdee914" name="Default Changelist" comment="">
+    <list default="true" id="cc7921ef-47e7-443f-b547-f290e05c76b6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___com_project___auction_plain_war.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___com_project___auction_plain_war__exploded_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___com_project___auction_war.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Gradle___com_project___auction_war__exploded_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
-  <component name="ChangeListManager">
-    <list default="true" id="0f0ec174-2ce7-4655-b76c-36cf5cdee914" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__antlr_antlr_2_7_7.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_classic_1_2_11.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_core_1_2_11.xml" beforeDir="false" />
@@ -130,29 +109,27 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_thymeleaf_extras_thymeleaf_extras_springsecurity5_3_0_4_RELEASE.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_xmlunit_xmlunit_core_2_9_0.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_yaml_snakeyaml_1_30.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules/auction.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/auction.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/auction.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/auction.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/auction.test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/auction.main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/auction.test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/auction/AuctionRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/auction/AuctionRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/GuideRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/GuideRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/ImageGuideRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/guide/ImageGuideRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/product/ProductRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/product/ProductRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/users/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/users/UserRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/payment/PaymentRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/controller/payment/PaymentRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/AuctionDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/AuctionDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/CategoryDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/CategoryDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/CategoryDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/PriceStepDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/PriceStepDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/PriceStepDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/ProductDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/product/ProductDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/payment/IPaymentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/dto/payment/IPaymentDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/auction/Auction.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/auction/Auction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/model/users/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/auction/IAuctionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/auction/IAuctionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/payment/IPaymentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/payment/IPaymentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/product/IProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/users/IUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/repository/users/IUserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/IUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/impl/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/users/impl/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/auction/IAuctionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/auction/IAuctionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/auction/impl/AuctionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/auction/impl/AuctionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/payment/IPaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/payment/IPaymentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/payment/impl/PaymentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/c0622g1_auction/src/main/java/com/project/service/payment/impl/PaymentService.java" afterDir="false" />
     </list>
->>>>>>> 7228cc0cf94e7ffda3593086d4df6a44c3e843a4
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -166,22 +143,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <task path="$PROJECT_DIR$/c0622g1_auction">
-          <activation />
-        </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="auction" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="auction" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -198,295 +162,133 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JpbToolWindowState">
-    <option name="isToolWindowVisible" value="false" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2IvvLcGqfhRnKq25bs0indvyZLY" />
+  <component name="ProjectId" id="2JGJt8gvbVBP2ulIMEbNJK7dsZI" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="D:/code_gym/code_gym/bai_tap_githup/module6/demo_socket" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-<<<<<<< HEAD
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\codegym\MODULE6\C0622G1-Auction-web-v2\Auction-api\c0622g1_auction\src\main\resources" />
-    </key>
-  </component>
-=======
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/P1/codegym/module6/duplicate_project/account-UyenNC",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "spring.configuration.checksum": "1e1babc9d3f8189517540bc3aac9fe66"
-  }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\P1\codegym\module6\project_auction\account-UyenNC\Auction-api\c0622g1_auction\src\main\resources" />
-    </key>
-  </component>
-    "last_opened_file_path": "C:/Users/PC/Desktop/Auction-api",
-    "spring.configuration.checksum": "1e1babc9d3f8189517540bc3aac9fe66"
-  }
-}]]></component>
-
->>>>>>> 7228cc0cf94e7ffda3593086d4df6a44c3e843a4
   <component name="RunManager">
     <configuration name="AuctionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <option name="ACTIVE_PROFILES" />
-      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <module name="auction.main" />
-      <option name="SPRING_BOOT_MAIN_CLASS" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$PROJECT_DIR$/../local.env.txt" />
+        </ENTRIES>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.project.AuctionApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0f0ec174-2ce7-4655-b76c-36cf5cdee914" name="Default Changelist" comment="" />
-      <created>1671074819848</created>
+      <changelist id="cc7921ef-47e7-443f-b547-f290e05c76b6" name="Default Changelist" comment="" />
+      <created>1671698697134</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1671074819848</updated>
-      <workItem from="1671074836244" duration="41081000" />
-      <workItem from="1671242508903" duration="7395000" />
-<<<<<<< HEAD
-      <workItem from="1671418001922" duration="996000" />
-      <workItem from="1671490827337" duration="288000" />
-      <workItem from="1671491190249" duration="169000" />
-=======
-      <workItem from="1671374410788" duration="105000" />
-      <workItem from="1671501883403" duration="1105000" />
-      <workItem from="1671503717396" duration="526000" />
-      <workItem from="1671472425082" duration="1821000" />
-      <workItem from="1671439879718" duration="2653000" />
-      <workItem from="1671448568335" duration="8000" />
-      <workItem from="1671448633137" duration="1705000" />
-      <workItem from="1671478530511" duration="4157000" />
-      <workItem from="1671484894287" duration="1505000" />
-      <workItem from="1671499112481" duration="368000" />
-      <workItem from="1671472425082" duration="1821000" />
-
->>>>>>> 7228cc0cf94e7ffda3593086d4df6a44c3e843a4
+      <updated>1671698697134</updated>
+      <workItem from="1671698699653" duration="6636000" />
+      <workItem from="1671758065831" duration="20286000" />
+      <workItem from="1671866168366" duration="6836000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
+    <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-<<<<<<< HEAD
-    <state x="341" y="0" width="697" height="728" key="#AuctionApplication" timestamp="1671418132490">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="341" y="0" width="697" height="728" key="#AuctionApplication/0.0.1366.728@0.0.1366.728" timestamp="1671418132490" />
-    <state x="476" y="44" key="#com.intellij.ide.util.MemberChooser" timestamp="1671418422663">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="446" y="44" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720@0.0.1280.720" timestamp="1671185786699" />
-    <state x="476" y="44" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1671418422663" />
-    <state x="419" y="153" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1671418131334">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="419" y="153" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1671418131334" />
-=======
-    <state x="341" y="0" width="697" height="728" key="#AuctionApplication" timestamp="1671439938588">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="341" y="0" width="697" height="728" key="#AuctionApplication/0.0.1366.728@0.0.1366.728" timestamp="1671439938588" />
-    <state x="476" y="44" key="#com.intellij.ide.util.MemberChooser" timestamp="1671444799331">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="446" y="44" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720@0.0.1280.720" timestamp="1671185786699" />
-    <state x="476" y="44" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1671444799331" />
->>>>>>> 7228cc0cf94e7ffda3593086d4df6a44c3e843a4
-    <state x="161" y="285" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1671183941306">
+    <state x="96" y="15" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1671702342879">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="161" y="285" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.720@0.0.1280.720" timestamp="1671183941306" />
-    <state x="396" y="108" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1671418276862">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="371" y="107" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720@0.0.1280.720" timestamp="1671183963756" />
-    <state x="396" y="108" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1671418276862" />
-    <state x="705" y="121" key="#xdebugger.evaluate" timestamp="1671179021238">
+    <state x="96" y="15" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.720@0.0.1280.720" timestamp="1671702342879" />
+    <state x="446" y="44" key="#com.intellij.ide.util.MemberChooser" timestamp="1671864597673">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="705" y="121" key="#xdebugger.evaluate/0.0.1280.720@0.0.1280.720" timestamp="1671179021238" />
-<<<<<<< HEAD
-    <state x="449" y="116" key="FileChooserDialogImpl" timestamp="1671418029463">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1671110939429" />
-    <state x="449" y="116" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1671418029463" />
-    <state width="1323" height="404" key="GridCell.Tab.0.bottom" timestamp="1671419043879">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1671255447554" />
-    <state width="1323" height="404" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1671419043879" />
-    <state width="1323" height="404" key="GridCell.Tab.0.center" timestamp="1671419043879">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1671255447554" />
-    <state width="1323" height="404" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1671419043879" />
-    <state width="1323" height="404" key="GridCell.Tab.0.left" timestamp="1671419043879">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1671255447554" />
-    <state width="1323" height="404" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1671419043879" />
-    <state width="1323" height="404" key="GridCell.Tab.0.right" timestamp="1671419043879">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1671255447554" />
-    <state width="1323" height="404" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1671419043879" />
-    <state width="1323" height="404" key="GridCell.Tab.1.bottom" timestamp="1671419043879">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1671255447555" />
-    <state width="1323" height="404" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1671419043879" />
-    <state width="1323" height="404" key="GridCell.Tab.1.center" timestamp="1671419043879">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1671255447555" />
-    <state width="1323" height="404" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1671419043879" />
-    <state width="1323" height="404" key="GridCell.Tab.1.left" timestamp="1671419043879">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1671255447555" />
-    <state width="1323" height="404" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1671419043879" />
-    <state width="1323" height="404" key="GridCell.Tab.1.right" timestamp="1671419043879">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1671255447555" />
-    <state width="1323" height="404" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1671419043879" />
-    <state width="1323" height="333" key="GridCell.Tab.2.bottom" timestamp="1671419042755">
-      <screen x="0" y="0" width="1366" height="728" />
-=======
-    <state x="449" y="116" key="FileChooserDialogImpl" timestamp="1671489940981">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1671110939429" />
-    <state x="449" y="116" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1671489940981" />
-    <state width="1323" height="339" key="GridCell.Tab.0.bottom" timestamp="1671490460640">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1671255447554" />
-    <state width="1323" height="339" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1671490460640" />
-    <state width="1323" height="339" key="GridCell.Tab.0.center" timestamp="1671490460640">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1671255447554" />
-    <state width="1323" height="339" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1671490460640" />
-    <state width="1323" height="339" key="GridCell.Tab.0.left" timestamp="1671490460640">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1671255447554" />
-    <state width="1323" height="339" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1671490460640" />
-    <state width="1323" height="339" key="GridCell.Tab.0.right" timestamp="1671490460640">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1671255447554" />
-    <state width="1323" height="339" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1671490460640" />
-    <state width="1323" height="339" key="GridCell.Tab.1.bottom" timestamp="1671490460640">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1671255447555" />
-    <state width="1323" height="339" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1671490460640" />
-    <state width="1323" height="339" key="GridCell.Tab.1.center" timestamp="1671490460640">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1671255447555" />
-    <state width="1323" height="339" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1671490460640" />
-    <state width="1323" height="339" key="GridCell.Tab.1.left" timestamp="1671490460640">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1671255447555" />
-    <state width="1323" height="339" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1671490460640" />
-    <state width="1323" height="339" key="GridCell.Tab.1.right" timestamp="1671490460640">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1237" height="158" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1671255447555" />
-    <state width="1323" height="339" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1671490460640" />
-    <state width="1237" height="357" key="GridCell.Tab.2.bottom" timestamp="1671191879221">
+    <state x="446" y="44" key="#com.intellij.ide.util.MemberChooser/0.0.1280.720@0.0.1280.720" timestamp="1671864597673" />
+    <state x="396" y="63" key="#xdebugger.evaluate" timestamp="1671769556175">
       <screen x="0" y="0" width="1280" height="720" />
->>>>>>> 7228cc0cf94e7ffda3593086d4df6a44c3e843a4
     </state>
-    <state width="1237" height="357" key="GridCell.Tab.2.bottom/0.0.1280.720@0.0.1280.720" timestamp="1671191879221" />
-    <state width="1323" height="333" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1671419042755" />
-    <state width="1323" height="333" key="GridCell.Tab.2.center" timestamp="1671419042755">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="396" y="63" key="#xdebugger.evaluate/0.0.1280.720@0.0.1280.720" timestamp="1671769556175" />
+    <state x="421" y="115" key="FileChooserDialogImpl" timestamp="1671863519937">
+      <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="357" key="GridCell.Tab.2.center/0.0.1280.720@0.0.1280.720" timestamp="1671191879221" />
-    <state width="1323" height="333" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1671419042755" />
-    <state width="1323" height="333" key="GridCell.Tab.2.left" timestamp="1671419042755">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="421" y="115" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1671863519937" />
+    <state width="1237" height="368" key="GridCell.Tab.0.bottom" timestamp="1671866442148">
+      <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="357" key="GridCell.Tab.2.left/0.0.1280.720@0.0.1280.720" timestamp="1671191879220" />
-    <state width="1323" height="333" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1671419042755" />
-    <state width="1323" height="333" key="GridCell.Tab.2.right" timestamp="1671419042755">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1237" height="368" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1671866442148" />
+    <state width="1237" height="368" key="GridCell.Tab.0.center" timestamp="1671866442148">
+      <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state width="1237" height="357" key="GridCell.Tab.2.right/0.0.1280.720@0.0.1280.720" timestamp="1671191879221" />
-<<<<<<< HEAD
-    <state width="1323" height="333" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1671419042755" />
-=======
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1671482046561">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1237" height="368" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1671866442148" />
+    <state width="1237" height="368" key="GridCell.Tab.0.left" timestamp="1671866442147">
+      <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1671482046561" />
->>>>>>> 7228cc0cf94e7ffda3593086d4df6a44c3e843a4
+    <state width="1237" height="368" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1671866442147" />
+    <state width="1237" height="368" key="GridCell.Tab.0.right" timestamp="1671866442148">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="368" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1671866442148" />
+    <state width="1237" height="368" key="GridCell.Tab.1.bottom" timestamp="1671866442149">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="368" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1671866442149" />
+    <state width="1237" height="368" key="GridCell.Tab.1.center" timestamp="1671866442148">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="368" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1671866442148" />
+    <state width="1237" height="368" key="GridCell.Tab.1.left" timestamp="1671866442148">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="368" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1671866442148" />
+    <state width="1237" height="368" key="GridCell.Tab.1.right" timestamp="1671866442149">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="368" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1671866442149" />
+    <state width="1237" height="169" key="GridCell.Tab.2.bottom" timestamp="1671769924807">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="169" key="GridCell.Tab.2.bottom/0.0.1280.720@0.0.1280.720" timestamp="1671769924807" />
+    <state width="1237" height="169" key="GridCell.Tab.2.center" timestamp="1671769924807">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="169" key="GridCell.Tab.2.center/0.0.1280.720@0.0.1280.720" timestamp="1671769924807" />
+    <state width="1237" height="169" key="GridCell.Tab.2.left" timestamp="1671769924807">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="169" key="GridCell.Tab.2.left/0.0.1280.720@0.0.1280.720" timestamp="1671769924807" />
+    <state width="1237" height="169" key="GridCell.Tab.2.right" timestamp="1671769924807">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state width="1237" height="169" key="GridCell.Tab.2.right/0.0.1280.720@0.0.1280.720" timestamp="1671769924807" />
+    <state x="142" y="5" key="SettingsEditor" timestamp="1671702297538">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="142" y="5" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1671702297538" />
   </component>
 </project>

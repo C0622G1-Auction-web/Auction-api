@@ -37,7 +37,7 @@ public class PaymentService implements IPaymentService {
      * @return Payment
      */
     @Override
-    public List<IPaymentAddressDto> findByListId(List<Integer> idList) {
+    public List<IPaymentDto> findByListId(List<Integer> idList) {
         return paymentRepository.findByListId(idList);
     }
 

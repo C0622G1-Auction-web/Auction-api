@@ -52,11 +52,11 @@ public class PaymentRestController {
      * @return HttpStatus.BAD_REQUEST if exists any payment not found/  HttpStatus.OK and payments found
      */
     @PostMapping("/find-by-list-id")
-    public ResponseEntity<List<IPaymentAddressDto>> findByListId(@RequestBody List<Integer> idList) {
+    public ResponseEntity<List<IPaymentDto>> findByListId(@RequestBody List<Integer> idList) {
         if (idList.size() == 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        List<IPaymentAddressDto> paymentList = paymentService.findByListId(idList);
+        List<IPaymentDto> paymentList = paymentService.findByListId(idList);
 
         if (idList.size() != paymentList.size()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

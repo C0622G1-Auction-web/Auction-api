@@ -19,7 +19,7 @@ public interface IPaymentService {
      * @param idList
      * @return Payment
      */
-    List<IPaymentAddressDto> findByListId(List<Integer> idList);
+    List<IPaymentDto> findByListId(List<Integer> idList);
 
     /**
      * Created by: ChauPTM

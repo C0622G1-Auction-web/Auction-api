@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Transactional
@@ -30,7 +31,7 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
 
     @Query(value = " select pm.id as paymentId," +
             "            pm.auction_id as auctionId, " +
-            "            auc.auction_day as auctionDay, " +
+            "            auc.auction_time as auctionDay, " +
             "            pt.name as productName, " +
             "            auc.current_price as currentPrice, " +
             "            auc.auction_status as auctionStatus, " +
@@ -122,21 +123,21 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
      * @param pageable
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
-    @Query(value = "select a.*  from `auction` a where a.product_id=:productId and a.delete_status = 1 order by a.current_price desc", nativeQuery = true)
+    @Query(value = "select a.id, a.auction_day, a.auction_time, a.current_price, a.product_id, a.user_id, a.auction_status, a.delete_status  from `auction` a where a.product_id=:productId and a.delete_status = 0 order by a.current_price desc", nativeQuery = true)
     Page<Auction> getPageAuctionByProductId(@Param("productId") Integer productId, Pageable pageable);
 
 
     /**
      * Created by: TienBM,
      * Date created: 13/12/2022
-     * Function: find product by id
+     * Function: create new auction
      *
-     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      * @param: auctionTime, currentPrice, productId, userId
+     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      */
     @Modifying
-    @Query(value = "insert into `auction` (auction_time ,current_price, product_id, user_id) " +
-            "values (:auctionTime, :currentPrice, :productId, :userId)", nativeQuery = true)
+    @Query(value = "insert into `auction` (auction_time ,current_price, product_id, user_id, delete_status) " +
+            "values (:auctionTime, :currentPrice, :productId, :userId, 0)", nativeQuery = true)
     void addAuction(@Param("currentPrice") Double currentPrice,
                     @Param("productId") Integer productId,
                     @Param("userId") Integer userId,
@@ -150,8 +151,8 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
      * @param: productId
      */
-    @Query(value = "select a.*  from `auction` a where a.product_id=:productId and a.delete_status = 1 order by a.current_price desc limit 1", nativeQuery = true)
-    Auction getAuctionFromProductId(@Param("productId") Integer productId);
+    @Query(value = "select a.id, a.auction_day, a.auction_time, a.current_price, a.product_id, a.user_id, a.auction_status, a.delete_status  from `auction` a where a.product_id=:productId and a.delete_status = 0 order by a.current_price desc limit 1", nativeQuery = true)
+    Optional<Auction> getAuctionFromProductId(@Param("productId") Integer productId);
 
     /**
      * Created by: AnhTDQ,

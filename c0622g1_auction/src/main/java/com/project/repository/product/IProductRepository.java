@@ -92,7 +92,7 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * @param productId
      * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
      */
-    @Query(value = "select * "+
+    @Query(value = "select p.id,p.delete_status,p.description,p.end_time,p.initial_price,p.name,p.register_day,p.start_time,p.auction_status_id,p.category_id,p.price_step_id,p.review_status_id,p.user_id "+
             "from product p\n " +
             "where p.id = :productId and p.delete_status = 0 and p.auction_status_id < 4", nativeQuery = true)
 
