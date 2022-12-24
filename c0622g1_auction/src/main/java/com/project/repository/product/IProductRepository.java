@@ -22,17 +22,6 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
     /**
      * Create by: HungNV
      * Date created: 14/12/2022
-     * Function: to find product by id
-     *
-     * @param id
-     * @return Optional<Product>
-     */
-//    @Query(value = "select * from product where delete_status = 0 and product.id = :id", nativeQuery = true)
-//    Optional<Product> findProductById(@Param("id") Integer id);
-
-    /**
-     * Create by: HungNV
-     * Date created: 14/12/2022
      * Function: create new product
      *
      * @param name, initialPrice,  id,  category,  description,  stepPrice,  startTime,  endTime, registerDay
@@ -128,7 +117,6 @@ public interface IProductRepository extends JpaRepository<Product, Integer> {
      * @param idList
      * @return product list
      */
-    @Modifying
     @Query(value = "select id, name from product where id in :idList and delete_status = 0", nativeQuery = true)
     List<ProductDeleteDto> findByListId(@Param("idList") List<Integer> idList);
 

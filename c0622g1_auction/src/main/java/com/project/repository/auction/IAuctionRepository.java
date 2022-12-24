@@ -124,6 +124,7 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
      * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
      */
     @Query(value = "select a.id, a.auction_day, a.auction_time, a.current_price, a.product_id, a.user_id, a.auction_status, a.delete_status  from `auction` a where a.product_id=:productId and a.delete_status = 0 order by a.current_price desc", nativeQuery = true)
+
     Page<Auction> getPageAuctionByProductId(@Param("productId") Integer productId, Pageable pageable);
 
 
@@ -153,6 +154,7 @@ public interface IAuctionRepository extends JpaRepository<Auction, Integer> {
      */
     @Query(value = "select a.id, a.auction_day, a.auction_time, a.current_price, a.product_id, a.user_id, a.auction_status, a.delete_status  from `auction` a where a.product_id=:productId and a.delete_status = 0 order by a.current_price desc limit 1", nativeQuery = true)
     Optional<Auction> getAuctionFromProductId(@Param("productId") Integer productId);
+
 
     /**
      * Created by: AnhTDQ,

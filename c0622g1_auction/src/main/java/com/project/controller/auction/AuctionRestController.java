@@ -224,9 +224,11 @@ public class AuctionRestController {
      * @param auctionDtoString
      * @return auctionDtoString if result is not error
      */
+
     @MessageMapping("auctions")
     @SendTo("/topic/auction")
-    public String createNewAuction(@Validated String auctionDtoString) throws JsonProcessingException {
+    public String createNewAuction(String auctionDtoString) throws JsonProcessingException {
+        System.out.println(auctionDtoString);
         ObjectMapper objectMapper = new ObjectMapper();
         AuctionDto auctionDto = objectMapper.readValue(auctionDtoString, AuctionDto.class);
         auctionService.addAuction(auctionDto);
