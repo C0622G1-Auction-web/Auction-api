@@ -63,6 +63,7 @@ public class AccountRestController {
      */
     @GetMapping("verify_account")
     public ResponseEntity<String> verifyAccount(@RequestParam(value = "email") String email, @RequestParam(value = "username") String username) throws MessagingException {
+
         Account account = accountService.findByUsername(username);
         String message;
         if (account == null) {
@@ -126,7 +127,9 @@ public class AccountRestController {
                                             @RequestParam(value = "token", required = false) String token,
                                             @RequestParam(value = "password", required = false) String password) {
         Account account = accountService.findById(Integer.valueOf(accountId));
-
+        if (accountId == "") {
+            return new ResponseEntity<>("Tài khoản không tồn tại", HttpStatus.NOT_FOUND);
+        }
         if (account == null) {
             return new ResponseEntity<>("Tài khoản không tồn tại", HttpStatus.NOT_FOUND);
         }

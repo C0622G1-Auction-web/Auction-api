@@ -613,4 +613,10 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
                         @Param("accountId") Integer accountId,
                         @Param("addressId") Integer addressId,
                         @Param("userTypeId") Integer userTypeId);
+
+    /**
+     * Create by: HungNV;
+     */
+    @Query(value = "select * from user join account on user.account_id = account.id where account.username = :username",nativeQuery = true)
+    User findByUsername(@Param("username") String username);
 }
