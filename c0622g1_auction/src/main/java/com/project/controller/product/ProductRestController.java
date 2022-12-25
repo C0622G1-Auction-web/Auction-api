@@ -4,10 +4,13 @@ package com.project.controller.product;
 import com.project.dto.product.*;
 import com.project.model.product.ReviewStatus;
 import com.project.model.product.*;
+import com.project.model.users.Notification;
 import com.project.model.users.User;
 import com.project.service.product.*;
 import com.project.service.product.impl.AuctionStatusService;
 import com.project.service.product.impl.ReviewStatusService;
+import com.project.service.users.INoficationService;
+import com.project.service.users.impl.NoficationService;
 import com.project.service.users.impl.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
@@ -57,6 +61,9 @@ public class ProductRestController {
 
     @Autowired
     private IProductPropertiesService productPropertiesService;
+
+    @Autowired
+    private INoficationService iNoficationService;
 
     /**
      * Create by: HungNV,
@@ -135,6 +142,16 @@ public class ProductRestController {
         User user = userService.getUser(productDtoCreate.getUser());
         product.setUser(user);
         productService.saveProduct(product);
+        Notification notification = new Notification();
+        LocalDateTime current = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        String formatDateTime = current.format(formatter);
+        notification.setDate(formatDateTime);
+        notification.setMessage("Sản phẩm " + product.getName() + " đang chờ phê duyệt.");
+        notification.setLink("/products");
+        notification.setStatus(1);
+        notification.setAdmin(true);
+        iNoficationService.save(notification);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
 
@@ -310,6 +327,20 @@ public class ProductRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         productService.review(id);
+
+        LocalDateTime current = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        String formatDateTime = current.format(formatter);
+
+        Notification notification = new Notification();
+        notification.setDate(formatDateTime);
+        notification.setLink("/auction-detail/" + id);
+        String message = optionalProduct.get().getName() + "Đã được duyệt.";
+        notification.setStatus(1);
+        User user = userService.findById(optionalProduct.get().getUserId()).get();
+        notification.setUser(user);
+        notification.setMessage(message);
+        iNoficationService.save(notification);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

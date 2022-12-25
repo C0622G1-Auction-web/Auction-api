@@ -35,9 +35,9 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
             "            JOIN address AS ad ON us.address_id = ad.id\n" +
             "            JOIN img_url_product as img on img.product_id = pr.id\n" +
             "            WHERE us.id =:user_id\n" +
-            "            AND p.payment_status = 0 \n" +
-            "            AND au.delete_status = 0 \n" +
-            "            AND au.auction_status = 1 group by p.id;", nativeQuery = true)
+            "            AND p.payment_status = 1 \n" +
+            "            AND p.delete_status = 0 \n" +
+            "            AND au.delete_status = 0 group by p.id;", nativeQuery = true)
     List<IPaymentDtoCart> findValidPaymentByUserId(@Param(value = "user_id") String userId);
 
     /**

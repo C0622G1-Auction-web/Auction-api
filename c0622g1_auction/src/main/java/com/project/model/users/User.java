@@ -64,6 +64,10 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Product> products;
 
+    @JsonBackReference
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<Notification> notifications;
+
     public User() {
     }
 
@@ -84,6 +88,14 @@ public class User {
         this.account = account;
         this.account1 = account1;
         this.products = products;
+    }
+
+    public Set<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(Set<Notification> notifications) {
+        this.notifications = notifications;
     }
 
     public Integer getId() {
