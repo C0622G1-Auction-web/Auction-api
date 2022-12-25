@@ -4,9 +4,11 @@ import com.project.automatic_task.dto.IPaymentCheckDto;
 import com.project.automatic_task.dto.IProductTimeDto;
 import com.project.automatic_task.dto.ITopAuctionDetailDto;
 import com.project.automatic_task.service.IScheduleService;
+import com.project.model.auction.Auction;
 import com.project.model.product.PriceStep;
 import com.project.model.product.Product;
 import com.project.model.users.User;
+import com.project.service.auction.IAuctionService;
 import com.project.service.product.IProductService;
 import com.project.service.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,8 @@ public class ScheduleTask {
     @Autowired
     private IProductService productService;
 
+    @Autowired
+    private IAuctionService auctionService;
 
 
     /**
@@ -80,9 +84,10 @@ public class ScheduleTask {
                     //Tạo payment cho auction thành công
                     scheduleService.createPayment(topAuction.getAuctionId());
                     // Gửi mail cho người mua thanh toán
-                    Product product = productService.findByProductId(productTimeDto.getId()).get();
-                    sendMailPay(product.getUser().getEmail());
-
+//                    Product product = productService.findByProductId(productTimeDto.getId()).get();
+//                    sendMailPay(product.getUser().getEmail());
+                    Auction auction = auctionService.getAuctionByProductId(productTimeDto.getId()).get();
+                    sendMailPay(auction.getUser().getEmail());
 
                 } else {
                     // Thiết lập trạng thái đấu giá thất bại

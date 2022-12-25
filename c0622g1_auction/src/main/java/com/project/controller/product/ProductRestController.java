@@ -135,11 +135,11 @@ public class ProductRestController {
         product.setPriceStep(priceStep);
         Category category = categoryService.getCategory(productDtoCreate.getCategory());
         product.setCategory(category);
-        ReviewStatus reviewStatus = reviewStatusService.getReviewStatus(1);
+        ReviewStatus reviewStatus = reviewStatusService.getReviewStatus(2);
         product.setReviewStatus(reviewStatus);
         AuctionStatus auctionStatus = auctionStatusService.getAuctionStatus(1);
         product.setAuctionStatus(auctionStatus);
-        User user = userService.getUser(productDtoCreate.getUser());
+        User user = userService.findUserById(productDtoCreate.getUser());
         product.setUser(user);
         productService.saveProduct(product);
         Notification notification = new Notification();
@@ -178,7 +178,7 @@ public class ProductRestController {
         product.setReviewStatus(reviewStatus);
         AuctionStatus auctionStatus = auctionStatusService.getAuctionStatus(productDtoCreate.getAuctionStatus());
         product.setAuctionStatus(auctionStatus);
-        User user = userService.getUser(productDtoCreate.getUser());
+        User user = userService.findUserById(productDtoCreate.getUser());
         product.setUser(user);
         product.setRegisterDay(LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
         productService.update(product);

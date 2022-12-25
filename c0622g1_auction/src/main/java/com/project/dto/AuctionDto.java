@@ -1,5 +1,6 @@
 package com.project.dto;
 
+//import com.project.util.annotation.CheckAuctionPrice;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -9,6 +10,7 @@ public class AuctionDto implements Validator {
 
     private Integer id;
     @NotNull(message = "Current price can not be null")
+//    @CheckAuctionPrice
     private Double currentPrice;
     private String auctionTime;
     private Integer userId;
@@ -96,10 +98,10 @@ public class AuctionDto implements Validator {
     public void validate(Object target, Errors errors) {
         AuctionDto auctionDto = (AuctionDto) target;
         if (auctionDto.getCurrentPrice() <= 0) {
-            errors.rejectValue("currentPrice", "", "Current price must be positive");
+            errors.rejectValue("currentPrice", "", "Giá Đấu Phải Là Số Dương");
         }
         if (auctionDto.getCurrentPrice() <= auctionDto.getMaxCurrentPrice()) {
-            errors.rejectValue("currentPrice", "", "Bid cannot be less than current price");
+            errors.rejectValue("currentPrice", "", "Giá Đấu Phải Lớn Hơn Giá Hiện Tại Một Bước Giá");
         }
 
 

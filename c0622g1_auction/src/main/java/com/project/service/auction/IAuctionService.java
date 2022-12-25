@@ -5,9 +5,12 @@ import com.project.dto.auction.ITransactionDto;
 import com.project.dto.auction.TransactionSearchDto;
 import com.project.dto.product.IAuctionProductDto;
 import com.project.model.auction.Auction;
+import com.project.model.product.Product;
+import com.project.model.users.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import javax.mail.MessagingException;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,4 +89,35 @@ public interface IAuctionService {
     Page<IAuctionProductDto> getPageAuctionProductByUserId(Integer userId, Pageable pageable);
 
     Optional<Auction> getAuctionByProductId(Integer productId);
+
+    /**
+     * Created by: TienBM,
+     * Date created: 25/12/2022
+     * Function: Send Mail First Auction
+     *
+     * @param  maxCurrentPrice, userId, productId
+     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
+     */
+    void sendMailFirstAuction(Double maxCurrentPrice, Integer userId, Integer productId) throws MessagingException;
+
+    /**
+     * Created by: TienBM,
+     * Date created: 25/12/2022
+     * Function: Get Second Auction
+     *
+     * @param  productId
+     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
+     */
+    Optional<Auction> getSecondAuction(Integer productId);
+
+
+    /**
+     * Created by: TienBM,
+     * Date created: 25/12/2022
+     * Function: Send Mail Second Auction
+     *
+     * @param  user, product, currentPrice
+     * @return HttpStatus.NO_CONTENT if result is empty or HttpStatus.OK if result is not empty
+     */
+    void sendMailSecondAuction(User user, Product product, Double currentPrice, Double maxCurrentPrice) throws MessagingException;
 }

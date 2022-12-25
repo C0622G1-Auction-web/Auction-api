@@ -1,7 +1,6 @@
 package com.project.model.users;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.model.account.Account;
 import com.project.model.auction.Auction;
@@ -57,7 +56,6 @@ public class User {
     private Account account;
 
     @OneToOne(mappedBy = "user")
-    @JsonBackReference
     private Account account1;
 
     @JsonBackReference

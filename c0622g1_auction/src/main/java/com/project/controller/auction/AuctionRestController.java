@@ -9,6 +9,7 @@ import com.project.dto.product.IAuctionProductDto;
 import com.project.dto.product.ProductDto;
 import com.project.model.auction.Auction;
 import com.project.model.product.Product;
+import com.project.model.users.User;
 import com.project.service.auction.IAuctionService;
 import com.project.service.product.IProductService;
 import org.springframework.beans.BeanUtils;
@@ -24,6 +25,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -227,11 +230,22 @@ public class AuctionRestController {
 
     @MessageMapping("auctions")
     @SendTo("/topic/auction")
-    public String createNewAuction(String auctionDtoString) throws JsonProcessingException {
-        System.out.println(auctionDtoString);
+    public String createNewAuction(@Validated String auctionDtoString) throws JsonProcessingException, MessagingException {
         ObjectMapper objectMapper = new ObjectMapper();
         AuctionDto auctionDto = objectMapper.readValue(auctionDtoString, AuctionDto.class);
         auctionService.addAuction(auctionDto);
+
+            auctionService.sendMailFirstAuction(
+                    auctionDto.getCurrentPrice(),
+                    auctionDto.getUserId(),
+                    auctionDto.getProductId());
+
+        Optional<Auction> auctionSecond = auctionService.getSecondAuction(auctionDto.getProductId());
+
+            if (auctionSecond.isPresent()){
+                auctionService.sendMailSecondAuction(auctionSecond.get().getUser(),auctionSecond.get().getProduct(),auctionSecond.get().getCurrentPrice(),auctionDto.getCurrentPrice());
+            }
+
         return auctionDtoString;
     }
 

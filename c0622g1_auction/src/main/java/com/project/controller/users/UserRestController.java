@@ -127,12 +127,12 @@ public class UserRestController {
      * Create by: HungNV
      * Date created: 16/12/2022
      *
-     * @param id
-     * @return Object user by id
+     * @param username
+     * @return Object user by username
      */
-    @GetMapping("/find/{id}")
-    public ResponseEntity<?> findUserById(@PathVariable() int id) {
-        User user = userService.getUser(id);
+    @GetMapping("/find/{username}")
+    public ResponseEntity<?> findUserById(@PathVariable() String username) {
+        User user = userService.getUser(username);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
