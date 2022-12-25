@@ -1,7 +1,6 @@
 package com.project.model.users;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.model.account.Account;
 import com.project.model.auction.Auction;
@@ -57,7 +56,6 @@ public class User {
     private Account account;
 
     @OneToOne(mappedBy = "user")
-    @JsonBackReference
     private Account account1;
 
     @JsonBackReference
@@ -65,25 +63,6 @@ public class User {
     private Set<Product> products;
 
     public User() {
-    }
-
-    public User(Integer id, String firstName, String lastName, String email, String phone, Double pointDedication, String birthDay, String idCard, String avatar, Boolean deleteStatus, Address address, UserType userType, Set<Auction> auctions, Account account, Account account1, Set<Product> products) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phone = phone;
-        this.pointDedication = pointDedication;
-        this.birthDay = birthDay;
-        this.idCard = idCard;
-        this.avatar = avatar;
-        this.deleteStatus = deleteStatus;
-        this.address = address;
-        this.userType = userType;
-        this.auctions = auctions;
-        this.account = account;
-        this.account1 = account1;
-        this.products = products;
     }
 
     public Integer getId() {

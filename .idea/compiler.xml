@@ -2,9 +2,6 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="auction" target="1.8" />
-      <module name="auction.main" target="1.8" />
-      <module name="auction.test" target="1.8" />
       <module name="com.project.auction" target="1.8" />
     </bytecodeTargetLevel>
   </component>

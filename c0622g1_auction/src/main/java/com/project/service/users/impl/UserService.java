@@ -288,12 +288,12 @@ public class UserService implements IUserService {
      * Created date: 16/12/2022
      * Function: get user by id
      *
-     * @param id
+     * @param username
      * @return User
      */
     @Override
-    public User getUser(Integer id) {
-        return userRepository.findById(id).orElse(null);
+    public User getUser(String username) {
+        return userRepository.findByUsername(username);
     }
 
     /**

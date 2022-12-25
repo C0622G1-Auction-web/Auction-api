@@ -3,8 +3,6 @@
     <output-path>$PROJECT_DIR$/c0622g1_auction/build/libs/exploded/auction-plain.war</output-path>
     <properties id="gradle-properties">
       <options external-project-path="$PROJECT_DIR$/c0622g1_auction">
-        <buildTaskPath>:war_exploded</buildTaskPath>
-        <cleanTaskPath>:cleanWar_exploded</cleanTaskPath>
         <manifest>TWFuaWZlc3QtVmVyc2lvbjogMS4wDQoNCg==</manifest>
       </options>
     </properties>
