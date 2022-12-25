@@ -2,7 +2,10 @@
   <artifact type="war" name="Gradle : com.project : auction.war">
     <output-path>$PROJECT_DIR$/c0622g1_auction/build/libs</output-path>
     <properties id="gradle-properties">
-      <options external-project-path="$PROJECT_DIR$/c0622g1_auction" />
+      <options external-project-path="$PROJECT_DIR$/c0622g1_auction">
+        <buildTaskPath>:war</buildTaskPath>
+        <cleanTaskPath>:cleanWar</cleanTaskPath>
+      </options>
     </properties>
     <root id="archive" name="auction.war">
       <element id="artifact" artifact-name="Gradle : com.project : auction.war (exploded)" />

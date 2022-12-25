@@ -54,5 +54,17 @@ public class PaymentService implements IPaymentService {
         paymentRepository.updateByListId(idList, shippingDescription);
     }
 
+    /**
+     * Created by: ChauPTM
+     * Date created: 22/12/2022
+     * Function: to find payment by id using DTO
+     *
+     * @param idList,shippingDescription
+     */
+    @Override
+    public void updatePaymentStatus(List<Integer> idList){
+        paymentRepository.updatePaymentStatus(idList);
+    }
+
 }
 

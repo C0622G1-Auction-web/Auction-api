@@ -30,4 +30,12 @@ public interface IPaymentService {
      * @return Payment
      */
     void updateByListId(List<Integer> idList, String shippingDescription);
+
+    /**
+     * Created by: ChauPTM
+     * Date created: 22/12/2022
+     * Function: to update payment status
+     * @param idList
+     */
+    void updatePaymentStatus(List<Integer> idList);
 }

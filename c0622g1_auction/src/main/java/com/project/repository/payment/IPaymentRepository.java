@@ -27,7 +27,7 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
      */
     @Query(value = " SELECT p.id AS id, us.last_name AS lastName , us.first_name AS firstName, ad.city, ad.district, \n" +
             "            ad.town AS town, ad.detail_address AS detailAddress , ad.country, pr.name AS productName, au.current_price AS productPrice,\n" +
-            "            pr.description, img.url as productImage\n" +
+            "            pr.description, img.url as productImage, pr.id as productId\n" +
             "            FROM payment AS p \n" +
             "            JOIN auction AS au ON p.auction_id = au.id  \n" +
             "            JOIN product AS pr ON au.product_id = pr.id\n" +
@@ -96,5 +96,16 @@ public interface IPaymentRepository extends JpaRepository<Payment, Integer> {
     @Query(value = "update payment set shipping_description = :shippingDescription where id in :idList", nativeQuery = true)
     void updateByListId(@Param("idList") List<Integer> idList,
                         @Param("shippingDescription") String shippingDescription);
+
+    /**
+     * Create by: ChauPTM
+     * Date created: 22/12/2022
+     * Function: update payment status and delete status
+     *
+     * @param idList
+     */
+    @Modifying
+    @Query(value = "update payment set delete_status = 1, payment_status = 1  where id in :idList", nativeQuery = true)
+    void updatePaymentStatus(@Param("idList") List<Integer> idList);
 
 }

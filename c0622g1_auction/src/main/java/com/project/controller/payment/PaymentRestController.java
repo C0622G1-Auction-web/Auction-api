@@ -84,6 +84,24 @@ public class PaymentRestController {
         paymentService.updateByListId(idList, shippingDescription);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    /**
+     * Create by: ChauPTM
+     * Date created: 22/12/2022
+     * Function: to update payment status and delete status
+     *
+     * @param paymentDtoGetShips
+     * @return HttpStatus.OK
+     */
+    @PostMapping("/updates")
+    public ResponseEntity<?> updatePaymentStatus(@RequestBody List<PaymentDtoGetShip> paymentDtoGetShips) {
+
+        List<Integer> idList = new ArrayList<>();
+        for (PaymentDtoGetShip payment : paymentDtoGetShips) {
+            idList.add(payment.getId());
+        }
+        paymentService.updatePaymentStatus(idList);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }
 
