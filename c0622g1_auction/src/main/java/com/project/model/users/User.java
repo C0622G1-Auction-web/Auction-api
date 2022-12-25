@@ -33,6 +33,8 @@ public class User {
 
     private String avatar;
 
+    private String message;
+
     @Column(columnDefinition = "boolean default true")
     private Boolean deleteStatus;
 
@@ -210,5 +212,13 @@ public class User {
 
     public void setProducts(Set<Product> products) {
         this.products = products;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

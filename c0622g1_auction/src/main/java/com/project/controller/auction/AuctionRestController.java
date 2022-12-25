@@ -11,7 +11,6 @@ import com.project.model.auction.Auction;
 import com.project.model.product.Product;
 import com.project.service.auction.IAuctionService;
 import com.project.service.product.IProductService;
-import com.project.service.users.IUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -38,9 +37,6 @@ public class AuctionRestController {
 
     @Autowired
     private IProductService productService;
-
-    @Autowired
-    private IUserService userService;
 
     /**
      * Created by : HuyNV,
@@ -129,10 +125,10 @@ public class AuctionRestController {
     public ResponseEntity<ProductDto> findProductById(@PathVariable(value = "productId") Integer productId) {
         Optional<Product> productOptional = productService.findProductById(productId);
         Double maxCurrentPrice;
-        try{
+        try {
             maxCurrentPrice = auctionService.getPageAuctionByProductId(productId, Pageable.unpaged())
                     .getContent().get(0).getCurrentPrice();
-        } catch(Exception e) {
+        } catch (Exception e) {
             maxCurrentPrice = productOptional.get().getInitialPrice();
         }
         if (productOptional.isPresent()) {
@@ -157,7 +153,7 @@ public class AuctionRestController {
      */
     @GetMapping("/auction-product/{productId}")
     public ResponseEntity<Page<AuctionDto>> getPageAuctionByProductId(
-            @PageableDefault(value = 3) Pageable pageable,
+            @PageableDefault(value = 10) Pageable pageable,
             @PathVariable(value = "productId") Integer productId) {
         Page<Auction> auctionPageByProductId = auctionService.getPageAuctionByProductId(productId, pageable);
         if (auctionPageByProductId.isEmpty()) {
@@ -180,7 +176,29 @@ public class AuctionRestController {
     /**
      * Created by: TienBM,
      * Date created: 13/12/2022
-     * Function: find product by id
+     * Function: find auction by product id
+     *
+     * @param productId
+     * @return HttpStatus.NOT_FOUND if result is not present or HttpStatus.OK if result is present
+     */
+
+    @GetMapping("auction/{productId}")
+    public ResponseEntity<AuctionDto> findAuctionByProductId(@PathVariable(value = "productId") Integer productId) {
+        Optional<Auction> auctionOptional = auctionService.getAuctionByProductId(productId);
+        if (auctionOptional.isPresent()) {
+            AuctionDto auctionDto = new AuctionDto();
+            BeanUtils.copyProperties(auctionOptional.get(), auctionDto);
+            auctionDto.setUserId(auctionOptional.get().getUser().getId());
+            auctionDto.setProductId(auctionOptional.get().getProduct().getId());
+            return new ResponseEntity<>(auctionDto, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    /**
+     * Created by: TienBM,
+     * Date created: 13/12/2022
+     * Function: create product by id
      *
      * @param auctionDto
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
@@ -204,8 +222,9 @@ public class AuctionRestController {
      * Function: Create New Auction
      *
      * @param auctionDtoString
-     * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
+     * @return auctionDtoString if result is not error
      */
+
     @MessageMapping("auctions")
     @SendTo("/topic/auction")
     public String createNewAuction(String auctionDtoString) throws JsonProcessingException {
@@ -228,7 +247,7 @@ public class AuctionRestController {
     @GetMapping("/list/{userId}")
     public ResponseEntity<Page<IAuctionProductDto>> historyAuctionProduct(@PathVariable Integer userId,
                                                                           @PageableDefault(value = 5) Pageable pageable) {
-        Page<IAuctionProductDto> productList = auctionService.getPageAuctionProductByUserId(userId,pageable);
+        Page<IAuctionProductDto> productList = auctionService.getPageAuctionProductByUserId(userId, pageable);
         if (productList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

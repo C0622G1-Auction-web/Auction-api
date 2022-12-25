@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AuctionService implements IAuctionService {
@@ -79,7 +80,7 @@ public class AuctionService implements IAuctionService {
     /**
      * Created by: TienBM,
      * Date created: 13/12/2022
-     * Function: find product by id
+     * Function: create new auction
      *
      * @param auctionDto
      * @return HttpStatus.BAD_REQUEST if result is error or HttpStatus.OK if result is not error
@@ -92,12 +93,11 @@ public class AuctionService implements IAuctionService {
                 auctionDto.getProductId(),
                 auctionDto.getUserId(),
                 auctionDto.getAuctionTime());
-
-        Auction auction = auctionRepository.getAuctionFromProductId(auctionDto.getProductId());
-        AuctionDto newDto = new AuctionDto();
-        newDto.setFullName(auction.getUser().getFirstName()+" "+auction.getUser().getLastName());
-        BeanUtils.copyProperties(auction, newDto);
-        return newDto;
+//        Auction auction = auctionRepository.getAuctionFromProductId(auctionDto.getProductId());
+//        AuctionDto newDto = new AuctionDto();
+//        newDto.setFullName(auction.getUser().getFirstName() + " " + auction.getUser().getLastName());
+//        BeanUtils.copyProperties(auction, newDto);
+        return auctionDto;
     }
 
     /**
@@ -126,5 +126,10 @@ public class AuctionService implements IAuctionService {
     @Override
     public Page<IAuctionProductDto> getPageAuctionProductByUserId(Integer userId, Pageable pageable) {
         return auctionRepository.getPageAuctionProductByIdUser(userId, pageable);
+    }
+
+    @Override
+    public Optional<Auction> getAuctionByProductId(Integer productId) {
+        return auctionRepository.getAuctionFromProductId(productId);
     }
 }

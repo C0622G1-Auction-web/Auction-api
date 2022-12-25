@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IAuctionService {
 
@@ -83,4 +84,6 @@ public interface IAuctionService {
      */
 
     Page<IAuctionProductDto> getPageAuctionProductByUserId(Integer userId, Pageable pageable);
+
+    Optional<Auction> getAuctionByProductId(Integer productId);
 }

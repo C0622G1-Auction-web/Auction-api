@@ -1,6 +1,5 @@
 package com.project.dto;
 
-import com.project.model.users.User;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -15,7 +14,6 @@ public class AuctionDto implements Validator {
     private Integer userId;
     private Integer productId;
     private Double maxCurrentPrice;
-//    private User user;
     private String fullName;
 
 
