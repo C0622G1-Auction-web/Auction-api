@@ -4,6 +4,7 @@ import com.project.model.account.Account;
 import com.project.repository.account.IAccountRepository;
 import com.project.service.account.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -21,6 +22,9 @@ public class AccountService implements IAccountService {
 
     @Autowired
     JavaMailSender javaMailSender;
+
+    @Value("${auction_domain }")
+    private String auction_domain;
 
     /**
      * Create by: TruongLH
@@ -102,7 +106,7 @@ public class AccountService implements IAccountService {
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
         mimeMessageHelper.setSubject("Cấp lại mật khẩu");
         mimeMessageHelper.setTo(email);
-        String url = "http://localhost:4200/account/reset_password?token=" + passwordResetToken + "&account=" + accountId;
+        String url = auction_domain + "/account/reset_password?token=" + passwordResetToken + "&account=" + accountId;
         String text = "<html lang=\"en\">\n" +
                 "<head>\n" +
                 "    <meta charset=\"UTF-8\">\n" +
