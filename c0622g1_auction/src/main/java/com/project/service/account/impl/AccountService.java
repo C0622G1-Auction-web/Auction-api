@@ -23,7 +23,7 @@ public class AccountService implements IAccountService {
     @Autowired
     JavaMailSender javaMailSender;
 
-    @Value("${auction_domain }")
+    @Value("${auction_domain}")
     private String auction_domain;
 
     /**
